@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+	<Properties>
+		<Property name="baseDir">logs</Property>
+	</Properties>
+	<Appenders>
+		<RollingFile name="RollingFile"
+			fileName="${baseDir}/Output_${date:yyyy-MM-dd-HH_mm_ss}.log"
+			filePattern="${baseDir}/Output_%d{dd-MMM}-%i.log.gz">
+			<PatternLayout
+				pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %c - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 KB" />
+			</Policies>
+			<DefaultRolloverStrategy>
+				<Delete basePath="${baseDir}" maxDepth="2">
+					<IfFileName glob="*/Output*.log.gz">
+						<IfLastModified age="1d">
+							<IfAny>
+								<IfAccumulatedFileSize exceeds="100 KB" />
+								<IfAccumulatedFileCount exceeds="5" />
+							</IfAny>
+						</IfLastModified>
+					</IfFileName>
+				</Delete>
+			</DefaultRolloverStrategy>
+
+		</RollingFile>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %c - %msg%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+
+		<Logger name="com.RRS" level="debug">
+			<AppenderRef ref="RollingFile" />
+		</Logger>
+		<Root level="debug" additivity="false">
+			<AppenderRef ref="console" />
+		</Root>
+	</Loggers>
+</Configuration>
