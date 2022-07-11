@@ -171,7 +171,6 @@ public class homePage extends PageObject {
 	public void ClickWomensRunningSubMenu() throws InterruptedException {
 		MoveMouse.to(SubMenu_WomensRunning_Lnk);
 		SubMenu_WomensRunning_Lnk.click();
-
 	}
 
 	@Step
@@ -207,7 +206,6 @@ public class homePage extends PageObject {
 	public void click_RRSHomeLogo_SVG_Button() {
 		Actions a = new Actions(getDriver());
 		a.moveToElement(RRSHomeLogo_SVG).click().build().perform();
-
 		StartMyFitNow_Btn.shouldBeVisible();
 	}
 
@@ -216,7 +214,7 @@ public class homePage extends PageObject {
 		open();
 
 		log.debug("Browser launched with the URL");
-
+		Thread.sleep(5000);
 		element(EmailCapturePopUp).waitUntilVisible();
 		/*
 		 * while(EmailCapturePopUp.isDisplayed()==true) { Thread.sleep(1000);
@@ -224,7 +222,6 @@ public class homePage extends PageObject {
 		 * 
 		 * }
 		 */
-
 	}
 
 	@Step
@@ -344,7 +341,7 @@ public class homePage extends PageObject {
 			throws InterruptedException {
 		CommonPage.javaScriptExecutor_Click(mostAskedForSectionShopAll);
 		waitFor(productListingTitle);
-		Assert.assertTrue(productListingTitle.getText().toUpperCase().contains("RESULT FOR"));
+		Assert.assertTrue(productListingTitle.getText().toUpperCase().contains("RESULTS FOR"));
 		Assert.assertTrue(productListingTitle.getText().toLowerCase().contains("running shoe"));
 	}
 
@@ -352,8 +349,9 @@ public class homePage extends PageObject {
 	public void assert_shop_all_button_is_clickable_in_your_bestselling_performance_apparel_section()
 			throws InterruptedException {
 		CommonPage.javaScriptExecutor_Click(yourBestSellingApparelSectionShopAll);
+		Thread.sleep(5000);
 		waitFor(productListingTitle);
-		Assert.assertTrue(productListingTitle.getText().toUpperCase().contains("RESULT FOR"));
+		Assert.assertTrue(productListingTitle.getText().toUpperCase().contains("RESULTS FOR"));
 		Assert.assertTrue(productListingTitle.getText().toLowerCase().contains("apparel"));
 	}
 

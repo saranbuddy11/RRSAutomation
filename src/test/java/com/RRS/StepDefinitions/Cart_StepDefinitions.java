@@ -2,6 +2,8 @@ package com.RRS.StepDefinitions;
 
 import static org.junit.Assert.assertTrue;
 
+import java.awt.AWTException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -70,7 +72,8 @@ public class Cart_StepDefinitions extends baseClass{
 	}
 
 	@Then("User Click on I have source code link and enter valid source code {string}")
-	public void user_click_on_i_have_source_code_link_and_enter_valid_source_code(String SourceCode) {
+	public void user_click_on_i_have_source_code_link_and_enter_valid_source_code(String SourceCode)
+			throws AWTException {
 		try {
 			CartPage.ApplyValidSourceCode(SourceCode);
 		} catch (InterruptedException e) {

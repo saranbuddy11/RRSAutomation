@@ -19,6 +19,7 @@ public class login_StepDefinition extends baseClass {
 	public void user_land_on_the_rrs_home_page() {
 		try {
 			homePage.homePage_Open();
+			Thread.sleep(5000);
 			homePage.homepage_PopUpClose();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -28,7 +29,6 @@ public class login_StepDefinition extends baseClass {
 	@Given("User click on Login Image button in Home Page")
 	public void user_click_on_login_image_button_in_home_page() {
 		loginPage.click_Login_SVG_Button();
-		;
 	}
 
 	@Given("User enter the VIP user Email address {word}")

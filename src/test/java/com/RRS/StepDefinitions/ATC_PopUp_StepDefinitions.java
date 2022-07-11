@@ -71,7 +71,6 @@ public class ATC_PopUp_StepDefinitions extends baseClass {
 		try {
 			ATC_PopupPage.clickViewCartBtn_A2CPopUp();
 		} catch (InterruptedException e) {
-
 			e.printStackTrace();
 		}
 	}

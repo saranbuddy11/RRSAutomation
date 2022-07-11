@@ -71,6 +71,12 @@ public class CommonPage extends PageObject {
 		robot.keyRelease(KeyEvent.VK_DOWN);
 	}
 
+	public void actions_UpArrow() {
+		Robot robot = getRobot();
+		robot.keyPress(KeyEvent.VK_UP);
+		robot.keyRelease(KeyEvent.VK_UP);
+	}
+
 	public void actions_Enter() {
 		Robot robot = getRobot();
 		robot.keyPress(KeyEvent.VK_ENTER);
@@ -109,4 +115,28 @@ public class CommonPage extends PageObject {
 		return Float.parseFloat(Str);
 	}
 
+	@Step
+	public void pageScrolltwice() throws AWTException {
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_PAGE_DOWN);
+		robot.keyRelease(KeyEvent.VK_PAGE_DOWN);
+		robot.keyPress(KeyEvent.VK_PAGE_DOWN);
+		robot.keyRelease(KeyEvent.VK_PAGE_DOWN);
+	}
+
+	@Step
+	public void pageScrollDown() throws AWTException {
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_PAGE_DOWN);
+		robot.keyRelease(KeyEvent.VK_PAGE_DOWN);
+	}
+
+	@Step
+	public void pageZoomOut() throws AWTException {
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_SUBTRACT);
+		robot.keyRelease(KeyEvent.VK_SUBTRACT);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+	}
 }

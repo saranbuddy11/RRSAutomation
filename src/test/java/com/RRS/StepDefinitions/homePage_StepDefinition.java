@@ -112,7 +112,6 @@ public class homePage_StepDefinition extends baseClass {
 	@Given("Assert THIS WEEKS MOST-ASKED-FOR SHOES section is displayed")
 	public void assert_this_weeks_most_asked_for_shoes_section_is_displayed() {
 		homePage.assert_this_weeks_most_asked_for_shoes_section_is_displayed();
-
 	}
 
 	@Given("Assert Shop All button is clickable in THIS WEEKS MOST-ASKED-FOR SHOE section")

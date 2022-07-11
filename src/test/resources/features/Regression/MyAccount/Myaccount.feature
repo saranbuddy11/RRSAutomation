@@ -129,7 +129,7 @@ Feature: My account Smoke scripts
 		And User validates list of dashboard pages
 	  And User validates My Details for Non-VIP user in My account page
     And User validates Free Shopping section details
-    And User click on See All orders button
+    And User click on See All orders button for Non-VIP user
     Then User verify MY ORDERS page with previous order details
     
      Examples: 
