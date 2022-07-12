@@ -12,19 +12,19 @@ import com.RRS.base.baseClass;
 import io.cucumber.java.en.*;
 import net.thucydides.core.annotations.Steps;
 
-public class OrderConfirmation_StepDefinition extends baseClass{
+public class OrderConfirmation_StepDefinition extends baseClass {
 	public static Logger log = LogManager.getLogger(OrderConfirmation_StepDefinition.class);
-	
+
 	@Steps
 	CommonPage CommonPage;
-	
+
 	@Steps
 	OrderConfirmationPage OCPage;
-	
+
 	@Then("Assert Order Number generated successfully")
 	public void assert_order_number_generated_successfully() {
 		try {
-			String OrderNum=OCPage.getOrderNumber();
+			String OrderNum = OCPage.getOrderNumber();
 			propertyFileModifier.setProperty("OrderNumber", OrderNum);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -34,8 +34,8 @@ public class OrderConfirmation_StepDefinition extends baseClass{
 	@Then("Assert Thank You message displayed with FirstName {word}")
 	public void assert_thank_you_message_displayed_with_first_name(String FirstName) {
 		try {
-			String Msg=OCPage.getThankYouMsg();
-			log.info("Msg displayed is: "+Msg);
+			String Msg = OCPage.getThankYouMsg();
+			log.info("Msg displayed is: " + Msg);
 			assertTrue(Msg.contains(FirstName.toUpperCase()));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -60,10 +60,10 @@ public class OrderConfirmation_StepDefinition extends baseClass{
 		}
 	}
 
-	@Then("Assert Order Confirmation page Oops Math Calculation banner")
-	public void assert_order_confirmation_page_oops_math_calculation_banner() {
+	@Then("Assert Order Confirmation page Title")
+	public void assert_order_confirmation_page_title() {
 		try {
-			OCPage.assertOopsBannerMathDetails();
+			OCPage.assertOrderConfirmTitle();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -98,7 +98,7 @@ public class OrderConfirmation_StepDefinition extends baseClass{
 
 	@Then("Assert Upgrade to VIP Plus details is displayed")
 	public void assert_upgrade_to_vip_plus_details_is_displayed() {
-	    
+
 	}
-	
+
 }

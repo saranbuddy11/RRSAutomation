@@ -98,7 +98,6 @@ public class PLPPage extends PageObject {
 
 	@Step
 	public void applyAnyFilter(String Filter) throws InterruptedException {
-
 		String DynamicFilterElement = "//label[contains(normalize-space(),'" + Filter + "')]";
 		System.out.println("Dynamic xpath created: " + DynamicFilterElement);
 		getDriver().findElement(By.xpath(DynamicFilterElement)).click();
@@ -135,7 +134,6 @@ public class PLPPage extends PageObject {
 			}
 			counter++;
 		}
-
 		Plp_LoadMore_Btn.shouldBeVisible();
 		CommonPage.javaScriptExecutor_Click(Plp_LoadMore_Btn);
 		Thread.sleep(2000);
@@ -166,7 +164,6 @@ public class PLPPage extends PageObject {
 
 	@Step
 	public void applyFilter(String Filter) throws InterruptedException {
-
 		String DynamicFilterElement = "//input[@value='r=webPgc%3A" + Filter + "']";
 		// input[@value='r=webPgc%3AShoes']
 		System.out.println("Dynamic xpath created: " + DynamicFilterElement);
@@ -188,7 +185,6 @@ public class PLPPage extends PageObject {
 	public String getFirstProductLink() {
 		AllLinks = findAll("//a[contains(@href,'/product/')]").stream().map(WebElementFacade::getText)
 				.collect(Collectors.toList());
-
 		String First_Product_Link = AllLinks.get(2);
 		String Modified_Product_Link = First_Product_Link.replaceAll("'S", "'s");
 		System.out.println("Modified string is: " + Modified_Product_Link);
@@ -197,7 +193,6 @@ public class PLPPage extends PageObject {
 
 	@Step
 	public void clickFirstProduct(String First_Product_Link) {
-
 		// String FirstProduct="\"Women's ASICS GEL-Kayano 28\"";
 		String FirstProduct = "//h2[contains(text(),\"" + First_Product_Link + "\")]";
 		System.out.println("Dynamic xpath created: " + FirstProduct);
@@ -206,7 +201,6 @@ public class PLPPage extends PageObject {
 		try {
 			CommonPage.javaScriptExecutor_Click(ele);
 		} catch (InterruptedException e) {
-
 			e.printStackTrace();
 		}
 	}
@@ -236,6 +230,7 @@ public class PLPPage extends PageObject {
 
 	@Step
 	public void Click_SearchIcon_PDP() {
+		waitFor(Plp_SearchIcon_SVG);
 		Actions a = new Actions(getDriver());
 		a.moveToElement(Plp_SearchIcon_SVG).click().build().perform();
 		// Plp_SearchResults_BC.waitUntilVisible();
@@ -243,6 +238,7 @@ public class PLPPage extends PageObject {
 
 	@Step
 	public void Type_SearchKeyword(String Keyword) {
+		waitFor(Plp_SearchBar_Txt);
 		Plp_SearchBar_Txt.click();
 		try {
 			typeInto(Plp_SearchBar_Txt, Keyword);
@@ -273,24 +269,20 @@ public class PLPPage extends PageObject {
 	public void Click_ShopNow_Women() throws InterruptedException {
 		CommonPage.javaScriptExecutor_Click(ShopNow_Women);
 		System.out.println("Web element is clicked");
-
 		Thread.sleep(2000);
 		Women_RunningShoe_H1_Lbl.shouldBeVisible();
 	}
 
 	@Step
 	public void Click_ShopNow_HomePage() throws InterruptedException {
-
 		CommonPage.javaScriptExecutor_Scroll(Plp_ShopAll_Btn);
 		System.out.println("SCrolled to the mentioned web element");
 		Thread.sleep(500);
 		CommonPage.javaScriptExecutor_Click(Plp_ShopAll_Btn);
 		System.out.println("Web element is clicked");
-
 		/*
 		 * Scroll.to(Plp_ShopAll_Btn); JavaScriptClick.on(Plp_ShopAll_Btn);
 		 */
-
 		Thread.sleep(5000);
 		// Women_RunningShoe_H1_Lbl.shouldBeVisible();
 	}

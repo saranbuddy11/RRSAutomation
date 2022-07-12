@@ -71,12 +71,14 @@ public class CartPage extends PageObject {
 	@FindBy(xpath = "//h1[text()='START CHECKOUT']")
 	WebElementFacade Checkout_StartCheckout_Lbl;
 
-	@FindBy(xpath = "//button[text()='UPGRADE TO VIP REWARDS PLUS']")
+	@FindBy(xpath = "//button[text()='UPGRADE AND CHECKOUT']")
 	WebElementFacade Checkout_UpgradetoRewardPlus_Btn;
 
 	@Step
 	public void clickCheckoutButtonAsVIPUser() throws InterruptedException {
+		waitFor(Cart_Checkout_Btn);
 		Cart_Checkout_Btn.click();
+		waitFor(Checkout_UpgradetoRewardPlus_Btn);
 		Checkout_UpgradetoRewardPlus_Btn.shouldBeVisible();
 	}
 
@@ -197,6 +199,7 @@ public class CartPage extends PageObject {
 
 	@Step
 	public void assertViewCartPageDsplayed() throws InterruptedException {
+		waitFor(Order_Summary_lbl);
 		Order_Summary_lbl.shouldBeVisible();
 		Cart_Checkout_Btn.shouldBeVisible();
 	}

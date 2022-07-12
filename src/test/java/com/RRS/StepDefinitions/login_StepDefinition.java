@@ -64,7 +64,7 @@ public class login_StepDefinition extends baseClass {
 	}
 
 	@Given("User click on Login button")
-	public void user_click_on_login_button() {
+	public void user_click_on_login_button() throws InterruptedException {
 		loginPage.user_Click_Login_Button();
 	}
 

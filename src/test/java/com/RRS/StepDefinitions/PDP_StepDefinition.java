@@ -58,7 +58,7 @@ public class PDP_StepDefinition extends baseClass {
 		Commonpage.pageZoomOut();
 		PLPpage.Type_SearchKeyword(ProductNumber);
 		PLPpage.Click_SearchIcon_PDP();
-		Thread.sleep(5000);
+		Thread.sleep(8000);
 		PDPPage.waitForAdd2Cart();
 		Thread.sleep(5000);
 	}
@@ -123,9 +123,9 @@ public class PDP_StepDefinition extends baseClass {
 	public void user_verify_the_step_what_s_your_size_in_pdp_allows_user_to_select_one_size_at_one_time_and_image_altered(
 			Integer int1) {
 		try {
-			PDPPage.clickkAnySizeVariant_PDP("S");
-			PDPPage.clickkAnySizeVariant_PDP("M");
 			PDPPage.clickkAnySizeVariant_PDP("L");
+			PDPPage.clickkAnySizeVariant_PDP("XL");
+			PDPPage.clickkAnySizeVariant_PDP("XXL");
 		} catch (InterruptedException e) {
 
 			e.printStackTrace();

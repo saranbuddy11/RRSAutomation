@@ -189,8 +189,9 @@ public class loginPage extends PageObject {
 	}
 
 	@Step
-	public void user_Click_Login_Button() {
+	public void user_Click_Login_Button() throws InterruptedException {
 		Login_Btn.click();
+		Thread.sleep(5000);
 		// LoggedInUser_Hi.shouldBeVisible();
 	}
 

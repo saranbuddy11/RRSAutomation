@@ -12,14 +12,10 @@ Feature: My account Smoke scripts
 		Then User click on My account button in Home Page
 		And User validates list of dashboard pages
 		
-    
      Examples: 
       |Email|Password|
       |testvipuser01@yopmail.com|123456|
-      
-      
-      
-      
+            
   @myaccount_1.1 @SmokeSuite
   Scenario Outline: Verify My Details section
     Given User Land on the RRS home page
@@ -29,8 +25,7 @@ Feature: My account Smoke scripts
 		And User click on Login button
 		Then User click on My account button in Home Page
 		And User validates My Details in My account page
-		
-    
+
      Examples: 
       |Email|Password|
       |testvipuser01@yopmail.com|123456|

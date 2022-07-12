@@ -21,7 +21,7 @@ public class homePage_StepDefinition extends baseClass {
 	}
 
 	@Given("Assert Top banner is displayed for Guest user")
-	public void assert_top_banner_is_displayed_for_guest_user() {
+	public void assert_top_banner_is_displayed_for_guest_user() throws AWTException {
 		homePage.assert_top_banner_is_displayed_for_guest_user();
 	}
 
@@ -82,7 +82,7 @@ public class homePage_StepDefinition extends baseClass {
 	}
 
 	@Given("Assert FIND YOUR PERFECT FITTING SHOES FAST section is displayed")
-	public void assert_find_your_perfect_fitting_shoes_fast_section_is_displayed() {
+	public void assert_find_your_perfect_fitting_shoes_fast_section_is_displayed() throws AWTException {
 		homePage.assert_find_your_perfect_fitting_shoes_fast_section_is_displayed();
 	}
 

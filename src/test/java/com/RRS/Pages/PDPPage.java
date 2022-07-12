@@ -83,7 +83,9 @@ public class PDPPage extends PageObject {
 //		CommonPage.javaScriptExecutor_Scroll(PDP_Add2Cart_Btn);
 //		CommonPage.javaScriptExecutor_Click(PDP_Add2Cart_Btn);
 		CommonPage.pageScrollDown();
+		waitFor(PDP_Add2Cart_Btn);
 		PDP_Add2Cart_Btn.click();
+		waitFor(PDP_A2C_Title_Lbl);
 		PDP_A2C_Title_Lbl.shouldBeVisible();
 	}
 
@@ -272,6 +274,7 @@ public class PDPPage extends PageObject {
 
 	@Step
 	public void assertPDPPage() throws InterruptedException {
+		waitFor(PDP_Add2Cart_Btn);
 		PDP_Add2Cart_Btn.shouldBeCurrentlyVisible();
 		PDP_Item_Lbl.shouldBeCurrentlyVisible();
 		Thread.sleep(5000);
@@ -279,6 +282,7 @@ public class PDPPage extends PageObject {
 
 	@Step
 	public void waitForAdd2Cart() throws InterruptedException {
+		waitFor(PDP_Add2Cart_Btn);
 		PDP_Add2Cart_Btn.shouldBeVisible();
 	}
 }

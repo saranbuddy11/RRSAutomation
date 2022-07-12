@@ -9,7 +9,7 @@ Feature: Checkout Page Smoke scripts
 		And User Search for a particular product "40135" and click on search button
     Then Assert user is direceted to appropriate PDP page
  	  And User Select the color variant "Pale Grey"
-    And User Slect the size as "S"
+    And User Slect the size as "L"
   	And User note down MSPR and VIP price of the product displayed
   	And User click on Add to Cart button
   	Then Assert Add to Cart popup got displayed
@@ -34,6 +34,7 @@ Feature: Checkout Page Smoke scripts
   	Then Assert Giftcard Payment option is displayed
   	Then Assert Credit Card Payment option is displayed
   	Then Assert PayPal Payment option is displayed
+  	Then Assert Join VIP banner is displayed with price calculation
   	And User enter valid First Name <FirstName> and Last Name <LastName>
   	And User enter valid US shipping address <USAddress>	
   	And User enter random Email ID in checkout page
@@ -42,9 +43,8 @@ Feature: Checkout Page Smoke scripts
   	And User click on Place Order button
   	Then Assert Order Number generated successfully
   	Then Assert Thank You message displayed with FirstName <FirstName>
-  	Then Assert Join VIP banner is displayed with price calculation
   	Then Assert Order Details sections is displayed in OC Page
-  	Then Assert Order Confirmation page Oops Math Calculation banner
+  	Then Assert Order Confirmation page Title
 
   	Examples:
   	|FirstName|LastName|USAddress|PaymentMethod|
