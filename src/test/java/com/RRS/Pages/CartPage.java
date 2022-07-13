@@ -82,6 +82,9 @@ public class CartPage extends PageObject {
 	@FindBy(css = ".section-button--2_acT")
 	WebElementFacade Continue_Shoppig_Btn;
 
+	@FindBy(css = ".flex-row--D783L > h2.tag_h2--2y8Ae")
+	WebElementFacade My_Cart_Icon;
+
 	@Step
 	public void clickCheckoutButtonAsVIPUser() throws InterruptedException {
 		waitFor(Cart_Checkout_Btn);
@@ -223,6 +226,14 @@ public class CartPage extends PageObject {
 	public void clickOnContinueShopping() throws InterruptedException {
 		Continue_Shoppig_Btn.shouldBeCurrentlyVisible();
 		Continue_Shoppig_Btn.click();
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void assertCartPageDisplayedAndValidateItemDisplayed() throws InterruptedException {
+		Ensure.thatTheCurrentPage().currentUrl().contains("cart");
+		String value = My_Cart_Icon.getTextContent();
+		assertTrue(value.contains("1"));
 		Thread.sleep(5000);
 	}
 }

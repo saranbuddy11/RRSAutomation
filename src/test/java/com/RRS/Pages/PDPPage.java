@@ -78,11 +78,18 @@ public class PDPPage extends PageObject {
 	@FindBy(xpath = "//h3[normalize-space()='GREAT CHOICE! YOUR ITEM IS NOW ADDED TO YOUR CART']")
 	WebElementFacade PDP_A2C_Title_Lbl;
 
+	@FindBy(css = "[aria-label='Road Runner Sports Logo']")
+	WebElementFacade home_Page_Logo;
+
+	@FindBy(css = ".mini-cart-body-summary-btn-continue--3fwgT")
+	WebElementFacade continue_Shopping_Btn;
+
 	@Step
 	public void click_Add2Cart_PDP() throws InterruptedException, AWTException {
 //		CommonPage.javaScriptExecutor_Scroll(PDP_Add2Cart_Btn);
 //		CommonPage.javaScriptExecutor_Click(PDP_Add2Cart_Btn);
 		CommonPage.pageScrollDown();
+		Thread.sleep(5000);
 		waitFor(PDP_Add2Cart_Btn);
 		PDP_Add2Cart_Btn.click();
 		waitFor(PDP_A2C_Title_Lbl);
@@ -284,5 +291,18 @@ public class PDPPage extends PageObject {
 	public void waitForAdd2Cart() throws InterruptedException {
 		waitFor(PDP_Add2Cart_Btn);
 		PDP_Add2Cart_Btn.shouldBeVisible();
+	}
+
+	@Step
+	public void navigate_BackTo_HomePage() throws InterruptedException {
+		home_Page_Logo.shouldBeVisible();
+		home_Page_Logo.click();
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void clickOnContinueShopping() {
+		continue_Shopping_Btn.shouldBeVisible();
+		continue_Shopping_Btn.click();
 	}
 }

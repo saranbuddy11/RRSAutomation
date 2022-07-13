@@ -1,9 +1,11 @@
 package com.RRS.StepDefinitions;
 
 import java.awt.AWTException;
+import java.io.IOException;
 
 import com.RRS.Pages.CartPage;
 import com.RRS.Pages.GenericFeatures;
+import com.RRS.Pages.PDPPage;
 import com.RRS.Pages.homePage;
 import com.RRS.Pages.loginPage;
 import com.RRS.base.baseClass;
@@ -27,6 +29,9 @@ public class GenericFeatures_StepDefinition extends baseClass {
 
 	@Steps
 	CartPage cartPage;
+
+	@Steps
+	PDPPage pdpPage;
 
 	@Given("User Clicks on Expert Advice link at top right corner of the header")
 	public void user_clicks_on_expert_advice_link_at_top_right_corner_of_the_header() throws InterruptedException {
@@ -149,7 +154,47 @@ public class GenericFeatures_StepDefinition extends baseClass {
 	}
 
 	@Then("User navigate back to Home page")
-	public void user_navigate_back_to_home_page() {
+	public void user_navigate_back_to_home_page() throws InterruptedException {
+		pdpPage.navigate_BackTo_HomePage();
 		GenericFeatures.assertHomePageDisplayed();
+	}
+
+	@When("User Select the color variant {string} and size {string}")
+	public void user_select_the_color_variant_and_size(String colorVariant, String size)
+			throws IOException, AWTException {
+		try {
+			pdpPage.clickkAnyColorvariant_PDP(colorVariant);
+			propertyFileModifier.setProperty("Color", colorVariant);
+			Thread.sleep(5000);
+			pdpPage.clickkAnySizeVariant_PDP(size);
+			propertyFileModifier.setProperty("Size", size);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@When("User click on Add to Cart button and Click Continue Shopping")
+	public void user_click_on_add_to_cart_button_and_click_continue_shopping() throws AWTException {
+		try {
+			pdpPage.click_Add2Cart_PDP();
+			Thread.sleep(5000);
+			pdpPage.clickOnContinueShopping();
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@When("User Verify on Item count on Cart and Clicks on Cart Icon")
+	public void user_verify_on_item_count_on_cart_and_clicks_on_cart_icon() throws InterruptedException {
+		String count = GenericFeatures.check_blank_cart();
+		assertEquals(Integer.parseInt(count), 1);
+		GenericFeatures.click_blank_cart();
+		Thread.sleep(5000);
+	}
+
+	@Then("User navigate to Cart Page and validates the Items displayed")
+	public void user_navigate_to_cart_page_and_validates_the_items_displayed() throws InterruptedException {
+		cartPage.assertCartPageDisplayedAndValidateItemDisplayed();
 	}
 }

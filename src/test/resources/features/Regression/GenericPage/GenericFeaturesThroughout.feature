@@ -69,7 +69,7 @@ Feature: Generic Features Regression scripts
  And User Scrolls down till the bottom to see Back to Top Icon
  And User Clicking on the Back to Top Icon navigates to top of the page 
  
- @Regression_RK
+ @Regression_RK_015
  Scenario: Verify the Cart icon in the header
  Given User Land on the RRS home page
  When User Verify on Blank cart Icon is Displayed
@@ -77,5 +77,17 @@ Feature: Generic Features Regression scripts
  Then User navigate to Cart Page and validates the message
  And User Clicks on continue shopping button
  Then User navigate back to Home page
+ 
+ @Regression_RK_016
+ Scenario: Verify item count in Cart icon
+ Given User Land on the RRS home page
+ When User Search for a particular product "40135" and click on search button
+ And User Select the color variant "Pale Grey" and size "L"
+ And User click on Add to Cart button and Click Continue Shopping
+ And User Verify on Item count on Cart and Clicks on Cart Icon
+ Then User navigate to Cart Page and validates the Items displayed
+ Then User navigate back to Home page
+ And User Verify on Item count on Cart and Clicks on Cart Icon
+ 
  
    
