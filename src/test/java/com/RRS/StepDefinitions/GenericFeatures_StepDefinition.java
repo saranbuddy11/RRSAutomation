@@ -2,12 +2,16 @@ package com.RRS.StepDefinitions;
 
 import java.awt.AWTException;
 
+import com.RRS.Pages.CartPage;
 import com.RRS.Pages.GenericFeatures;
 import com.RRS.Pages.homePage;
 import com.RRS.Pages.loginPage;
 import com.RRS.base.baseClass;
-
+import static org.junit.Assert.assertEquals;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
 import net.thucydides.core.annotations.Steps;
 
 public class GenericFeatures_StepDefinition extends baseClass {
@@ -20,6 +24,9 @@ public class GenericFeatures_StepDefinition extends baseClass {
 
 	@Steps
 	GenericFeatures GenericFeatures;
+
+	@Steps
+	CartPage cartPage;
 
 	@Given("User Clicks on Expert Advice link at top right corner of the header")
 	public void user_clicks_on_expert_advice_link_at_top_right_corner_of_the_header() throws InterruptedException {
@@ -118,5 +125,31 @@ public class GenericFeatures_StepDefinition extends baseClass {
 	@Given("User Clicking on the Back to Top Icon navigates to top of the page")
 	public void user_clicking_on_the_back_to_top_icon_navigates_to_top_of_the_page() throws InterruptedException {
 		GenericFeatures.click_back_to_top();
+	}
+
+	@When("User Verify on Blank cart Icon is Displayed")
+	public void user_verify_on_blank_cart_icon_is_displayed() throws InterruptedException {
+		String count = GenericFeatures.check_blank_cart();
+		assertEquals(Integer.parseInt(count), 0);
+	}
+
+	@When("User Clicks on Cart Icon")
+	public void user_clicks_on_cart_icon() throws InterruptedException {
+		GenericFeatures.click_blank_cart();
+	}
+
+	@Then("User navigate to Cart Page and validates the message")
+	public void user_navigate_to_cart_page_and_validates_the_message() {
+		cartPage.assertCartPageDisplayedAndValidateMessage();
+	}
+
+	@Then("User Clicks on continue shopping button")
+	public void user_clicks_on_continue_shopping_button() throws InterruptedException {
+		cartPage.clickOnContinueShopping();
+	}
+
+	@Then("User navigate back to Home page")
+	public void user_navigate_back_to_home_page() {
+		GenericFeatures.assertHomePageDisplayed();
 	}
 }
