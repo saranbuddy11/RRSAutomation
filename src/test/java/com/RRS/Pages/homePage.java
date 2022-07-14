@@ -16,6 +16,7 @@ import org.openqa.selenium.support.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.screenplay.actions.MoveMouse;
+import net.serenitybdd.screenplay.ensure.Ensure;
 import net.thucydides.core.annotations.Step;
 
 public class homePage extends PageObject {
@@ -166,6 +167,15 @@ public class homePage extends PageObject {
 
 	@FindBy(xpath = "//h2[contains(text(),'VIP Family Bestselling Performance Apparel')]/following::div[contains(@class,'slider-inner')][1]/div//small")
 	List<WebElementFacade> vipFamilyBestsellingApparelSection;
+
+	@FindBy(css = "li.menu-item--3cZEn>a")
+	List<WebElementFacade> navigationMenus;
+
+	@FindBy(css = ".expandable-block--1BXyp")
+	List<WebElementFacade> menuSubCategories;
+
+	@FindBy(css = "div.product-listing-title--3NhpO>.tag_h1--hWc2x")
+	WebElementFacade pLPTitle;
 
 	@Step
 	public void ClickWomensRunningSubMenu() throws InterruptedException {
@@ -543,5 +553,42 @@ public class homePage extends PageObject {
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_PAGE_DOWN);
 		robot.keyRelease(KeyEvent.VK_PAGE_DOWN);
+	}
+
+	@Step
+	public void verifyNavigationMenus(List<List<String>> menu) {
+		int i = 0;
+		for (WebElementFacade ele : navigationMenus) {
+			ele.shouldBeVisible();
+			String actualMenu = ele.getText();
+			actualMenu.equalsIgnoreCase(menu.get(0).get(i));
+			i++;
+		}
+	}
+
+	@Step
+	public void verifyNavigationMenuCategoriesByHoverOnTopOfMenus() throws InterruptedException {
+		for (WebElementFacade menu : navigationMenus) {
+			for (WebElementFacade categories : menuSubCategories) {
+				Actions a = new Actions(getDriver());
+				a.moveToElement(menu).perform();
+				Assert.assertTrue(categories.isPresent());
+			}
+		}
+	}
+
+	@Step
+	public void verifyNavigationToPLPPageFromCategory(String menu, String category)
+			throws InterruptedException, AWTException {
+		String dynamicElement = "li.menu-item--3cZEn>a[href*='" + menu + "']";
+		Actions a = new Actions(getDriver());
+		a.moveToElement(getDriver().findElement(By.cssSelector(dynamicElement))).perform();
+		Thread.sleep(5000);
+		String element = "//a[contains(@href,'" + menu + "') and contains(text(),'" + category + "')]";
+		a.moveToElement(getDriver().findElement(By.xpath(element))).click().build().perform();
+		Thread.sleep(5000);
+		pageScrollDown();
+		Ensure.thatTheCurrentPage().currentUrl().contains(menu);
+		Ensure.thatTheCurrentPage().currentUrl().contains(category);
 	}
 }

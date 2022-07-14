@@ -3,6 +3,7 @@ package com.RRS.StepDefinitions;
 import static org.junit.Assert.assertEquals;
 
 import java.awt.AWTException;
+import java.util.List;
 
 import com.RRS.Pages.CartPage;
 import com.RRS.Pages.GenericFeatures;
@@ -11,6 +12,7 @@ import com.RRS.Pages.homePage;
 import com.RRS.Pages.loginPage;
 import com.RRS.base.baseClass;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -190,5 +192,24 @@ public class GenericFeatures_StepDefinition extends baseClass {
 	@Then("User navigate to Cart Page and validates the Items displayed")
 	public void user_navigate_to_cart_page_and_validates_the_items_displayed() throws InterruptedException {
 		cartPage.assertCartPageDisplayedAndValidateItemDisplayed();
+	}
+
+	@When("User verifies Top navigation Menu should be displayed in the given order as follows")
+	public void user_verifies_top_navigation_menu_should_be_displayed_in_the_given_order_as_follows(DataTable table)
+			throws Throwable {
+		List<List<String>> expectedMeus = table.asLists(String.class);
+		homePage.verifyNavigationMenus(expectedMeus);
+	}
+
+	@When("User should be able to hover on the top nav menu and should able to see listed Categories displayed under the top navigation menu.")
+	public void user_should_be_able_to_hover_on_the_top_nav_menu_and_should_able_to_see_listed_categories_displayed_under_the_top_navigation_menu()
+			throws InterruptedException {
+		homePage.verifyNavigationMenuCategoriesByHoverOnTopOfMenus();
+	}
+
+	@When("User should able to click Categories and directed to respective PLP Page {string} and {string}")
+	public void user_should_able_to_click_categories_and_directed_to_respective_plp_page(String menu, String category)
+			throws InterruptedException, AWTException {
+		homePage.verifyNavigationToPLPPageFromCategory(menu, category);
 	}
 }
