@@ -78,7 +78,7 @@ Feature: Generic Features Regression scripts
  And User Clicks on continue shopping button
  Then User navigate back to Home page
  
- @Regression_RK_016
+ @Regression_RK_015
  Scenario: Verify item count in Cart icon
  Given User Land on the RRS home page
  When User Search for a particular product "40135" and click on search button
@@ -88,6 +88,3 @@ Feature: Generic Features Regression scripts
  Then User navigate to Cart Page and validates the Items displayed
  Then User navigate back to Home page
  And User Verify on Item count on Cart and Clicks on Cart Icon
- 
- 
-   

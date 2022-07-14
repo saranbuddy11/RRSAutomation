@@ -1,7 +1,8 @@
 package com.RRS.StepDefinitions;
 
+import static org.junit.Assert.assertEquals;
+
 import java.awt.AWTException;
-import java.io.IOException;
 
 import com.RRS.Pages.CartPage;
 import com.RRS.Pages.GenericFeatures;
@@ -9,11 +10,10 @@ import com.RRS.Pages.PDPPage;
 import com.RRS.Pages.homePage;
 import com.RRS.Pages.loginPage;
 import com.RRS.base.baseClass;
-import static org.junit.Assert.assertEquals;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
 import net.thucydides.core.annotations.Steps;
 
 public class GenericFeatures_StepDefinition extends baseClass {
@@ -160,17 +160,11 @@ public class GenericFeatures_StepDefinition extends baseClass {
 	}
 
 	@When("User Select the color variant {string} and size {string}")
-	public void user_select_the_color_variant_and_size(String colorVariant, String size)
-			throws IOException, AWTException {
-		try {
-			pdpPage.clickkAnyColorvariant_PDP(colorVariant);
-			propertyFileModifier.setProperty("Color", colorVariant);
-			Thread.sleep(5000);
-			pdpPage.clickkAnySizeVariant_PDP(size);
-			propertyFileModifier.setProperty("Size", size);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+	public void user_select_the_color_variant_and_size(String color, String size)
+			throws InterruptedException, AWTException {
+		pdpPage.clickkAnyColorvariant_PDP(color);
+		Thread.sleep(5000);
+		pdpPage.clickkAnySizeVariant_PDP(size);
 	}
 
 	@When("User click on Add to Cart button and Click Continue Shopping")

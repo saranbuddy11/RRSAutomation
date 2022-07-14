@@ -21,7 +21,7 @@ public class PDPPage extends PageObject {
 
 	public static Logger log = LogManager.getLogger(PDPPage.class);
 
-	@FindBy(xpath = "//button[normalize-space()='Add to Cart']")
+	@FindBy(css = ".product-wrapper-info-add-to-cart-btn--3RcjN")
 	WebElementFacade PDP_Add2Cart_Btn;
 
 	@FindBy(xpath = "//h2[contains(normalize-space(),'Item #')]")
@@ -78,11 +78,14 @@ public class PDPPage extends PageObject {
 	@FindBy(xpath = "//h3[normalize-space()='GREAT CHOICE! YOUR ITEM IS NOW ADDED TO YOUR CART']")
 	WebElementFacade PDP_A2C_Title_Lbl;
 
-	@FindBy(css = "[aria-label='Road Runner Sports Logo']")
+	@FindBy(css = "div.logo-section-logo--37woN")
 	WebElementFacade home_Page_Logo;
 
 	@FindBy(css = ".mini-cart-body-summary-btn-continue--3fwgT")
 	WebElementFacade continue_Shopping_Btn;
+
+	@FindBy(css = "svg.icon-link--XANc9")
+	WebElementFacade Plp_SearchIcon_SVG;
 
 	@Step
 	public void click_Add2Cart_PDP() throws InterruptedException, AWTException {
@@ -289,13 +292,13 @@ public class PDPPage extends PageObject {
 
 	@Step
 	public void waitForAdd2Cart() throws InterruptedException {
-		waitFor(PDP_Add2Cart_Btn);
 		PDP_Add2Cart_Btn.shouldBeVisible();
 	}
 
 	@Step
 	public void navigate_BackTo_HomePage() throws InterruptedException {
-		home_Page_Logo.shouldBeVisible();
+		waitFor(home_Page_Logo);
+		home_Page_Logo.isCurrentlyVisible();
 		home_Page_Logo.click();
 		Thread.sleep(5000);
 	}

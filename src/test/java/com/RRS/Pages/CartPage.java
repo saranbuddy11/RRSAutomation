@@ -1,7 +1,7 @@
 package com.RRS.Pages;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.awt.AWTException;
 
@@ -226,7 +226,6 @@ public class CartPage extends PageObject {
 	public void clickOnContinueShopping() throws InterruptedException {
 		Continue_Shoppig_Btn.shouldBeCurrentlyVisible();
 		Continue_Shoppig_Btn.click();
-		Thread.sleep(5000);
 	}
 
 	@Step

@@ -44,7 +44,7 @@ public class PLPPage extends PageObject {
 	@FindBy(xpath = "//input[@placeholder='What are you looking for?']")
 	WebElementFacade Plp_SearchBar_Txt;
 
-	@FindBy(css = "svg.icon-link--XANc9>g")
+	@FindBy(css = "svg.icon-link--XANc9")
 	WebElementFacade Plp_SearchIcon_SVG;
 
 	@FindBy(xpath = "//span[normalize-space()='Search Results']")
@@ -231,6 +231,7 @@ public class PLPPage extends PageObject {
 	@Step
 	public void Click_SearchIcon_PDP() {
 		waitFor(Plp_SearchIcon_SVG);
+		// Plp_SearchIcon_SVG.click();
 		Actions a = new Actions(getDriver());
 		a.moveToElement(Plp_SearchIcon_SVG).click().build().perform();
 		// Plp_SearchResults_BC.waitUntilVisible();
