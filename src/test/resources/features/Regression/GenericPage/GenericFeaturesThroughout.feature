@@ -96,3 +96,32 @@ Feature: Generic Features Regression scripts
       | Women | Men | Kids | Gear | Brands | Outlet | Gift Cards | Fit Finder | VIP Family Rewards |
     And User should be able to hover on the top nav menu and should able to see listed Categories displayed under the top navigation menu.
     And User should able to click Categories and directed to respective PLP Page "women" and "Running"
+
+  @Regression_RK_018
+  Scenario: Verify Women tab in top navigation menu is displayed with categories or not
+    Given User Land on the RRS home page
+    When User should be able to hover on top nav menu of women
+    Then Verify SHOE, APPAREL and Top performing picks categories should be displayed in the Women top navigation menu
+      | WOMEN'S SHOES | WOMEN'S APPAREL | TOP PERFORMING PICKS |
+
+  @Regression_RK_019
+  Scenario: Verify the Sub categories of SHOE in Women top naviagtion menu
+    Given User Land on the RRS home page
+    When User should be able to hover on top nav menu of women
+    And Verify whether the Sub categories of SHOES are displayed
+      | Running | Trail | Cross Training | Racing | Sandals | Walking | Casual | Hiking | Track & Field | Cross Country | Tennis & Volleyball | Endangered Shoes | New Shoes | Women�s Outlet Shoes | VIP Exclusive Shoe Calendar |
+    Then User should able to click Categories and directed to respective PLP Page "women" and "Running"
+
+  @Regression_RK_020
+  Scenario: Verify Kids tab in top navigation menu
+    Given User Land on the RRS home page
+    When User should be able to hover on top nav menu of kids
+    And Verify whether the Sub categories of kids are displayed with banner and validate the navigation
+      | BOYS | GIRLS | catalog | kids |
+
+  @Regression_RK_021
+  Scenario: Verify the Sub categories of Accesories, Electronics, Equipment, Nutrition, Personal Care categories in Gear top naviagtion menu
+    Given User Land on the RRS home page
+    When User should be able to hover on top nav menu of gear
+    And Verify whether the Sub categories of gear are displayed and validate the navigation
+      | ACCESSORIES | EQUIPMENT | NUTRITION | PERSONAL CARE | category/accessories/gloves | RUNNING GLOVES |

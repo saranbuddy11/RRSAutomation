@@ -212,4 +212,46 @@ public class GenericFeatures_StepDefinition extends baseClass {
 			throws InterruptedException, AWTException {
 		homePage.verifyNavigationToPLPPageFromCategory(menu, category);
 	}
+
+	@When("User should be able to hover on top nav menu of women")
+	public void user_should_be_able_to_hover_on_top_nav_menu_of_women() throws InterruptedException, AWTException {
+		homePage.verifyHoverOnTopNavOfWomen();
+	}
+
+	@Then("Verify SHOE, APPAREL and Top performing picks categories should be displayed in the Women top navigation menu")
+	public void verify_shoe_apparel_and_top_performing_picks_categories_should_be_displayed_in_the_women_top_navigation_menu(
+			DataTable table) {
+		List<List<String>> expectedSubCat = table.asLists(String.class);
+		homePage.validateWomenSubCategories(expectedSubCat);
+	}
+
+	@When("Verify whether the Sub categories of SHOES are displayed")
+	public void verify_whether_the_sub_categories_of_shoes_are_displayed(DataTable table) {
+		List<List<String>> expectedType = table.asLists(String.class);
+		homePage.verifyWomenShoeCategories(expectedType);
+	}
+
+	@When("User should be able to hover on top nav menu of kids")
+	public void user_should_be_able_to_hover_on_top_nav_menu_of_kids() throws InterruptedException, AWTException {
+		homePage.verifyHoverOnTopNavOfkids();
+	}
+
+	@When("Verify whether the Sub categories of kids are displayed with banner and validate the navigation")
+	public void verify_whether_the_sub_categories_of_kids_are_displayed_with_banner_and_validate_the_navigation(
+			DataTable table) throws InterruptedException {
+		List<List<String>> expectedSubCat = table.asLists(String.class);
+		homePage.validatekidsSubCategoriesAndItsNavigation(expectedSubCat);
+	}
+
+	@When("User should be able to hover on top nav menu of gear")
+	public void user_should_be_able_to_hover_on_top_nav_menu_of_gear() throws InterruptedException, AWTException {
+		homePage.verifyHoverOnTopNavOfGear();
+	}
+
+	@When("Verify whether the Sub categories of gear are displayed and validate the navigation")
+	public void verify_whether_the_sub_categories_of_gear_are_displayed_and_validate_the_navigation(
+			DataTable table) throws InterruptedException {
+		List<List<String>> expectedSubCat = table.asLists(String.class);
+		homePage.validateGearSubCategoriesAndItsNavigation(expectedSubCat);
+	}
 }

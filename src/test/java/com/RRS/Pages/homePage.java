@@ -174,8 +174,32 @@ public class homePage extends PageObject {
 	@FindBy(css = ".expandable-block--1BXyp")
 	List<WebElementFacade> menuSubCategories;
 
+	@FindBy(css = "div.category--3WjBw>h4>a")
+	List<WebElementFacade> menuSubCategoriesType;
+
+	@FindBy(css = "div.categoryKids--1jGpl>h4>a")
+	List<WebElementFacade> kidsSubCategories;
+
+	@FindBy(css = "li.items-category-link--12dlE>a[href*='womens/shoes']")
+	List<WebElementFacade> womenShoeType;
+
+	@FindBy(css = "li.items-category-link--12dlE>a[href*='gloves']")
+	WebElementFacade gearSubCategoryGloves;
+
+	@FindBy(css = "a[href*='womens/shoes']>h5.tag_h5--15p8m")
+	List<WebElementFacade> womenShoeSpecialType;
+
+	@FindBy(css = "a[href*='calendar']>h5")
+	List<WebElementFacade> shoeCalendar;
+
 	@FindBy(css = "div.product-listing-title--3NhpO>.tag_h1--hWc2x")
 	WebElementFacade pLPTitle;
+
+	@FindBy(css = "a[href*='catalog/kids']>img")
+	WebElementFacade kidsCatalogImage;
+
+	@FindBy(css = "h1.brand-content-title--3-TvC")
+	WebElementFacade kidsBrandContentTitle;
 
 	@Step
 	public void ClickWomensRunningSubMenu() throws InterruptedException {
@@ -578,6 +602,36 @@ public class homePage extends PageObject {
 	}
 
 	@Step
+	public void verifyHoverOnTopNavOfWomen() throws InterruptedException, AWTException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(navigationMenus.get(0)).perform();
+		Assert.assertTrue(menuSubCategories.get(0).isPresent());
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void verifyHoverOnTopNavOfkids() throws InterruptedException, AWTException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(navigationMenus.get(2)).perform();
+		Assert.assertTrue(menuSubCategories.get(2).isPresent());
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void verifyHoverOnTopNavOfGear() throws InterruptedException, AWTException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(navigationMenus.get(3)).perform();
+		Assert.assertTrue(menuSubCategories.get(3).isPresent());
+		Thread.sleep(5000);
+	}
+
+	@Step
 	public void verifyNavigationToPLPPageFromCategory(String menu, String category)
 			throws InterruptedException, AWTException {
 		String dynamicElement = "li.menu-item--3cZEn>a[href*='" + menu + "']";
@@ -590,5 +644,63 @@ public class homePage extends PageObject {
 		pageScrollDown();
 		Ensure.thatTheCurrentPage().currentUrl().contains(menu);
 		Ensure.thatTheCurrentPage().currentUrl().contains(category);
+	}
+
+	@Step
+	public void validateWomenSubCategories(List<List<String>> subCat) {
+		for (int i = 0; i < 3; i++) {
+			String s = menuSubCategoriesType.get(i).getText();
+			Assert.assertTrue(s.equalsIgnoreCase(subCat.get(0).get(i)));
+		}
+	}
+
+	@Step
+	public void validatekidsSubCategoriesAndItsNavigation(List<List<String>> subCat) throws InterruptedException {
+		for (int i = 0; i < 2; i++) {
+			String s = kidsSubCategories.get(i).getText();
+			Assert.assertTrue(s.equalsIgnoreCase(subCat.get(0).get(i)));
+		}
+		kidsCatalogImage.isPresent();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(kidsCatalogImage).click().build().perform();
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(subCat.get(0).get(2));
+		Ensure.thatTheCurrentPage().currentUrl().contains(subCat.get(0).get(3));
+		kidsBrandContentTitle.isPresent();
+	}
+
+	@Step
+	public void validateGearSubCategoriesAndItsNavigation(List<List<String>> subCat) throws InterruptedException {
+		int j = 0;
+		for (int i = 6; i < 10; i++) {
+			String s = menuSubCategoriesType.get(i).getText();
+			Assert.assertTrue(s.equalsIgnoreCase(subCat.get(0).get(j)));
+			j++;
+		}
+		Actions a = new Actions(getDriver());
+		a.moveToElement(gearSubCategoryGloves).click().build().perform();
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(subCat.get(0).get(4));
+		pLPTitle.isPresent();
+		String title = pLPTitle.getText();
+		Assert.assertTrue(title.contains(subCat.get(0).get(5)));
+	}
+
+	@Step
+	public void verifyWomenShoeCategories(List<List<String>> type) {
+		int j = 11;
+		for (int i = 0; i < womenShoeType.size() - 1; i++) {
+			String s = womenShoeType.get(i).getText();
+			Assert.assertTrue(s.equalsIgnoreCase(type.get(0).get(i)));
+		}
+		for (int i = 0; i < womenShoeSpecialType.size() - 1; i++) {
+			String s = womenShoeSpecialType.get(i).getText();
+			Assert.assertTrue(s.equalsIgnoreCase(type.get(0).get(j)));
+			j++;
+		}
+		for (int i = 0; i < shoeCalendar.size() - 1; i++) {
+			String s = shoeCalendar.get(i).getText();
+			Assert.assertTrue(s.equalsIgnoreCase(type.get(0).get(14)));
+		}
 	}
 }
