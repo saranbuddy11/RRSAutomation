@@ -295,10 +295,22 @@ public class GenericFeatures_StepDefinition extends baseClass {
 		String RndEmail = RndGenerators.RndEmail();
 		homePage.verifyEmailSignUpButtonAndItsNavigation(expectedData, RndEmail);
 	}
-	
+
 	@When("Verify Shop Now on Saucony banner and validates its navigation")
-	public void verify_shop_now_on_saucony_banner_and_validates_its_navigation(DataTable table) throws InterruptedException {
+	public void verify_shop_now_on_saucony_banner_and_validates_its_navigation(DataTable table)
+			throws InterruptedException {
 		List<List<String>> expectedData = table.asLists(String.class);
 		homePage.verifyShopNowBannerAndNavigation(expectedData);
+	}
+
+	@Given("User Lauch RRS application and navigate to home page")
+	public void user_lauch_rrs_application_and_navigate_to_home_page() throws InterruptedException {
+		homePage.homePage_Open();
+	}
+
+	@When("Verify the Pop up")
+	public void verify_the_pop_up(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		homePage.verifyFTvPopUp(expectedData);
 	}
 }

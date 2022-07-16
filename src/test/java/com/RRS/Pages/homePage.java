@@ -31,6 +31,12 @@ public class homePage extends PageObject {
 	@FindBy(xpath = "//body/div[@id='rrs-modal']/div//*[name()='svg']")
 	WebElementFacade EmailCapturePopUp_Close;
 
+	@FindBy(css = "div.rrs-modal-wrapper--1uNw5")
+	WebElementFacade fTvPopUp;
+
+	@FindBy(css = "h1.subscription-form-head--3B4u2")
+	WebElementFacade subscriptionFormHead;
+
 	@FindBy(xpath = "//a[@aria-label='Road Runner Sports Logo']//*[name()='svg']")
 	WebElementFacade RRSHomeLogo_SVG;
 
@@ -828,7 +834,8 @@ public class homePage extends PageObject {
 		Assert.assertTrue(text.contains(expectedData.get(0).get(2)));
 	}
 
-	public void verifyShopNowBannerAndNavigation(List<List<String>> expectedData) throws SerenityManagedException, InterruptedException {
+	public void verifyShopNowBannerAndNavigation(List<List<String>> expectedData)
+			throws SerenityManagedException, InterruptedException {
 		saucoyBanner.isVisible();
 		saucoyLogo.isVisible();
 		shopNowBtn.isClickable();
@@ -837,5 +844,12 @@ public class homePage extends PageObject {
 //		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
 //		String text = pageTitle.getText();
 //		Assert.assertTrue(text.contains(expectedData.get(0).get(0)));
+	}
+
+	public void verifyFTvPopUp(List<List<String>> expectedData) {
+		fTvPopUp.isVisible();
+		fTvPopUp.isPresent();
+		String text = subscriptionFormHead.getText();
+		Assert.assertTrue(text.contains(expectedData.get(0).get(0)));
 	}
 }

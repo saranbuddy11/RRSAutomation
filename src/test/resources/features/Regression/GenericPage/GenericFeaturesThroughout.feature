@@ -157,3 +157,9 @@ Feature: Generic Features Regression scripts
     Given User Land on the RRS home page
     When Verify Shop Now on Saucony banner and validates its navigation
       | Saucony |
+
+  @Regression_RK_027
+  Scenario: Verify FTV pop up for first time guest non VIP user in non Hoka pages
+    Given User Lauch RRS application and navigate to home page
+    When Verify the Pop up
+      | SAVE 20% TODAY* |
