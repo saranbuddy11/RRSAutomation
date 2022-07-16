@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import net.serenitybdd.core.exceptions.SerenityManagedException;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.screenplay.actions.MoveMouse;
@@ -195,11 +196,50 @@ public class homePage extends PageObject {
 	@FindBy(css = "div.product-listing-title--3NhpO>.tag_h1--hWc2x")
 	WebElementFacade pLPTitle;
 
+	@FindBy(css = ".tag_h1--hWc2x")
+	WebElementFacade pageTitle;
+
+	@FindBy(css = "h1.steps-nav-title--3eb_y")
+	WebElementFacade fitFinderPageTitle;
+
+	@FindBy(css = ".brand-content-title--3-TvC")
+	WebElementFacade brandPageTitle;
+
 	@FindBy(css = "a[href*='catalog/kids']>img")
 	WebElementFacade kidsCatalogImage;
 
 	@FindBy(css = "h1.brand-content-title--3-TvC")
 	WebElementFacade kidsBrandContentTitle;
+
+	@FindBy(xpath = "(//a[contains(text(),'Nike')])[1]")
+	WebElementFacade nikeBrandSubCat;
+
+	@FindBy(css = "a[href*='shoefinder']>img[src*='main']")
+	WebElementFacade fitFinderBanner;
+
+	@FindBy(css = "button.back-to-top--2iv3K")
+	WebElementFacade backToTopBtn;
+
+	@FindBy(css = "div.text-align-left--1c_kk>a")
+	WebElementFacade topNavLinks;
+
+	@FindBy(css = "input[aria-label='Email Signup']")
+	WebElementFacade emailSignUpInput;
+
+	@FindBy(css = "div.justify-flex-end--1pK1_+button[type='submit']")
+	WebElementFacade emailSignUpBtn;
+
+	@FindBy(css = "div.logo-section-logo--37woN")
+	WebElementFacade home_Page_Logo;
+
+	@FindBy(css = "div.banner_hp_saucony_content")
+	WebElementFacade saucoyBanner;
+
+	@FindBy(css = "div.banner_hp_saucony_logo")
+	WebElementFacade saucoyLogo;
+
+	@FindBy(css = "a[href*='Saucony%20Price']")
+	WebElementFacade shopNowBtn;
 
 	@Step
 	public void ClickWomensRunningSubMenu() throws InterruptedException {
@@ -632,6 +672,26 @@ public class homePage extends PageObject {
 	}
 
 	@Step
+	public void verifyHoverOnTopNavOfBrands() throws InterruptedException, AWTException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(navigationMenus.get(4)).perform();
+		Assert.assertTrue(menuSubCategories.get(4).isPresent());
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void verifyHoverOnTopNavOfFitFinder() throws InterruptedException, AWTException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(navigationMenus.get(7)).perform();
+		Assert.assertTrue(menuSubCategories.get(7).isPresent());
+		Thread.sleep(5000);
+	}
+
+	@Step
 	public void verifyNavigationToPLPPageFromCategory(String menu, String category)
 			throws InterruptedException, AWTException {
 		String dynamicElement = "li.menu-item--3cZEn>a[href*='" + menu + "']";
@@ -687,6 +747,23 @@ public class homePage extends PageObject {
 	}
 
 	@Step
+	public void validateBrandsSubCategoriesAndItsNavigation(List<List<String>> subCat) throws InterruptedException {
+		int j = 0;
+		for (int i = 10; i < 12; i++) {
+			String s = menuSubCategoriesType.get(i).getText();
+			Assert.assertTrue(s.equalsIgnoreCase(subCat.get(0).get(j)));
+			j++;
+		}
+		Actions a = new Actions(getDriver());
+		a.moveToElement(nikeBrandSubCat).click().build().perform();
+		Thread.sleep(15000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(subCat.get(0).get(2));
+		brandPageTitle.isPresent();
+		String title = brandPageTitle.getText();
+		Assert.assertTrue(title.contains(subCat.get(0).get(3)));
+	}
+
+	@Step
 	public void verifyWomenShoeCategories(List<List<String>> type) {
 		int j = 11;
 		for (int i = 0; i < womenShoeType.size() - 1; i++) {
@@ -702,5 +779,63 @@ public class homePage extends PageObject {
 			String s = shoeCalendar.get(i).getText();
 			Assert.assertTrue(s.equalsIgnoreCase(type.get(0).get(14)));
 		}
+	}
+
+	@Step
+	public void verifyFitFinderBannerAndNavigation(List<List<String>> expectedData) throws InterruptedException {
+		fitFinderBanner.isVisible();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(fitFinderBanner).click().build().perform();
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
+		fitFinderPageTitle.isPresent();
+		String title = fitFinderPageTitle.getText();
+		Assert.assertTrue(title.contains(expectedData.get(0).get(1)));
+		Assert.assertTrue(title.contains(expectedData.get(0).get(2)));
+	}
+
+	@Step
+	public void verifyBackToTopUpwardIcon() throws AWTException {
+		CommonPage.pageScrolltwice();
+		backToTopBtn.isVisible();
+	}
+
+	@Step
+	public void verifyApplicationResponseOnBackToTopIcon() {
+		backToTopBtn.click();
+		topNavLinks.isDisplayed();
+	}
+
+	@Step
+	public void verifyEmailSignUpButtonAndItsNavigation(List<List<String>> expectedData, String email)
+			throws AWTException, InterruptedException {
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrollDown();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(home_Page_Logo).perform();
+		Thread.sleep(5000);
+		emailSignUpInput.isDisplayed();
+		String text = emailSignUpBtn.getText();
+		Assert.assertTrue(text.contains(expectedData.get(0).get(0)));
+		typeInto(emailSignUpInput, email);
+		emailSignUpBtn.click();
+		Thread.sleep(10000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(1));
+		text = pageTitle.getText();
+		Assert.assertTrue(text.contains(expectedData.get(0).get(2)));
+	}
+
+	public void verifyShopNowBannerAndNavigation(List<List<String>> expectedData) throws SerenityManagedException, InterruptedException {
+		saucoyBanner.isVisible();
+		saucoyLogo.isVisible();
+		shopNowBtn.isClickable();
+//		shopNowBtn.click();
+//		Thread.sleep(5000);
+//		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
+//		String text = pageTitle.getText();
+//		Assert.assertTrue(text.contains(expectedData.get(0).get(0)));
 	}
 }

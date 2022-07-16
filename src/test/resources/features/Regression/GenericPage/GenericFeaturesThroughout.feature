@@ -125,3 +125,35 @@ Feature: Generic Features Regression scripts
     When User should be able to hover on top nav menu of gear
     And Verify whether the Sub categories of gear are displayed and validate the navigation
       | ACCESSORIES | EQUIPMENT | NUTRITION | PERSONAL CARE | category/accessories/gloves | RUNNING GLOVES |
+
+  @Regression_RK_022
+  Scenario: Verify the Brand top nav menu and  the application response when user clicks on any of the brand link in  BEST SELLING and FEATURED major categories.
+    Given User Land on the RRS home page
+    When User should be able to hover on top nav menu of brand
+    And Verify whether the Sub categories of brand are displayed and validate the navigation
+      | BEST SELLING | FEATURED | brands/nike | NIKE |
+
+  @Regression_RK_023
+  Scenario: Verify the Fit Finder menu in top navigation
+    Given User Land on the RRS home page
+    When User should be able to hover on top nav menu of fit finder
+    And Verify the banner and its navigation
+      | shoefinder | PERFECT FIT | FINDER |
+
+  @Regression_RK_024
+  Scenario: Verify Back to top functionality
+    Given User Land on the RRS home page
+    When Verify whether the back to top upward arrow icon is displayed
+    And Verify whether the application response when the users click on back to top upward arrow icon
+
+  @Regression_RK_025
+  Scenario: Verify the Email Sign up CTA button in the Footer section
+    Given User Land on the RRS home page
+    When Verify Email Sign up CTA button is displayed in Footer section and validates its navigation with valid email address
+      | Sign Up | content/email-signup | YOU’RE ALL SIGNED UP! |
+
+  @Regression_RK_026
+  Scenario: Verify saucony banner and Shop now functionality
+    Given User Land on the RRS home page
+    When Verify Shop Now on Saucony banner and validates its navigation
+      | Saucony |

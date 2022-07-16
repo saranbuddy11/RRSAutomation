@@ -249,9 +249,56 @@ public class GenericFeatures_StepDefinition extends baseClass {
 	}
 
 	@When("Verify whether the Sub categories of gear are displayed and validate the navigation")
-	public void verify_whether_the_sub_categories_of_gear_are_displayed_and_validate_the_navigation(
-			DataTable table) throws InterruptedException {
+	public void verify_whether_the_sub_categories_of_gear_are_displayed_and_validate_the_navigation(DataTable table)
+			throws InterruptedException {
 		List<List<String>> expectedSubCat = table.asLists(String.class);
 		homePage.validateGearSubCategoriesAndItsNavigation(expectedSubCat);
+	}
+
+	@When("User should be able to hover on top nav menu of brand")
+	public void user_should_be_able_to_hover_on_top_nav_menu_of_brand() throws InterruptedException, AWTException {
+		homePage.verifyHoverOnTopNavOfBrands();
+	}
+
+	@When("Verify whether the Sub categories of brand are displayed and validate the navigation")
+	public void verify_whether_the_sub_categories_of_brand_are_displayed_and_validate_the_navigation(DataTable table)
+			throws InterruptedException {
+		List<List<String>> expectedSubCat = table.asLists(String.class);
+		homePage.validateBrandsSubCategoriesAndItsNavigation(expectedSubCat);
+	}
+
+	@When("User should be able to hover on top nav menu of fit finder")
+	public void user_should_be_able_to_hover_on_top_nav_menu_of_fit_finder() throws InterruptedException, AWTException {
+		homePage.verifyHoverOnTopNavOfFitFinder();
+	}
+
+	@When("Verify the banner and its navigation")
+	public void verify_the_banner_and_its_navigation(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		homePage.verifyFitFinderBannerAndNavigation(expectedData);
+	}
+
+	@When("Verify whether the back to top upward arrow icon is displayed")
+	public void verify_whether_the_back_to_top_upward_arrow_icon_is_displayed() throws AWTException {
+		homePage.verifyBackToTopUpwardIcon();
+	}
+
+	@When("Verify whether the application response when the users click on back to top upward arrow icon")
+	public void verify_whether_the_application_response_when_the_users_click_on_back_to_top_upward_arrow_icon() {
+		homePage.verifyApplicationResponseOnBackToTopIcon();
+	}
+
+	@When("Verify Email Sign up CTA button is displayed in Footer section and validates its navigation with valid email address")
+	public void verify_email_sign_up_cta_button_is_displayed_in_footer_section_and_validates_its_navigation_with_valid_email_address(
+			DataTable table) throws AWTException, InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		String RndEmail = RndGenerators.RndEmail();
+		homePage.verifyEmailSignUpButtonAndItsNavigation(expectedData, RndEmail);
+	}
+	
+	@When("Verify Shop Now on Saucony banner and validates its navigation")
+	public void verify_shop_now_on_saucony_banner_and_validates_its_navigation(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		homePage.verifyShopNowBannerAndNavigation(expectedData);
 	}
 }
