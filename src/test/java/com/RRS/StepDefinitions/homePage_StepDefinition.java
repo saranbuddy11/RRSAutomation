@@ -2,11 +2,14 @@ package com.RRS.StepDefinitions;
 
 import com.RRS.base.baseClass;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import net.thucydides.core.annotations.Steps;
 
 import java.awt.AWTException;
+import java.util.List;
 
 import com.RRS.Pages.*;
 
@@ -220,4 +223,18 @@ public class homePage_StepDefinition extends baseClass {
 		homePage.user_click_on_in_your_favorite_shops_section(string);
 	}
 
+	@Given("User Land on the RRS home page after login with VIP user")
+	public void user_land_on_the_rrs_home_page_after_login_with_vip_user(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		homePage.loginUser(expectedData);
+	}
+	
+	@Given("User should able to see three featured categories in home page")
+	public void user_should_able_to_see_three_featured_categories_in_home_page() {
+		homePage.verifyFeaturedCategories();
+	}
+	@When("Verify navigation of Clicking on feature in home page")
+	public void verify_navigation_of_clicking_on_feature_in_home_page() {
+	 
+	}
 }

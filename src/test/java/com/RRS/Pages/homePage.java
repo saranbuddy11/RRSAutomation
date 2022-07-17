@@ -870,7 +870,7 @@ public class homePage extends PageObject {
 	}
 
 	@Step
-	public void loginAsVipUser(List<List<String>> expectedData) {
+	public void loginUser(List<List<String>> expectedData) {
 		try {
 			homePage_Open();
 			Thread.sleep(5000);
@@ -886,5 +886,10 @@ public class homePage extends PageObject {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Step
+	public void verifyFeaturedCategories() {
+		
 	}
 }

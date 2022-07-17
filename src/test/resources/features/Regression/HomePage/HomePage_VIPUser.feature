@@ -1,5 +1,5 @@
 #Author: Sivaram
-@HomePage_Full @RegressionSuite_Full 
+@HomePage_Full @RegressionSuite_Full
 Feature: Home Page Regression scripts - VIP Login User
 
   @homePage_VipUser_001 @homePage_VipUser_002 @homePage_VipUser_003 @homePage_VipUser_004
@@ -105,3 +105,10 @@ Feature: Home Page Regression scripts - VIP Login User
     Examples: 
       | Email                     | Password |
       | testvipuser01@yopmail.com |   123456 |
+
+  @Regression_RK_009
+  Scenario: Verify whether the Home Page featured 3 Catagories at a time and categories are clickable or not
+    Given User Land on the RRS home page after login with VIP user
+      | testcucumbervip@gmail.com | 123456 |
+    And User should able to see three featured categories in home page
+    When Verify navigation of Clicking on feature in home page

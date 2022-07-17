@@ -320,7 +320,7 @@ public class GenericFeatures_StepDefinition extends baseClass {
 	@Given("User Land on the RRS home page after login with non VIP user")
 	public void user_land_on_the_rrs_home_page_after_login_with_non_vip_user(DataTable table) {
 		List<List<String>> expectedData = table.asLists(String.class);
-		homePage.loginAsVipUser(expectedData);
+		homePage.loginUser(expectedData);
 	}
 
 	@When("Verify the Pop up")
