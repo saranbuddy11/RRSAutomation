@@ -44,7 +44,7 @@ public class PLPPage extends PageObject {
 	@FindBy(xpath = "//input[@placeholder='What are you looking for?']")
 	WebElementFacade Plp_SearchBar_Txt;
 
-	@FindBy(css = "svg.icon-link--XANc9")
+	@FindBy(css = "svg.icon-link--XANc9>g")
 	WebElementFacade Plp_SearchIcon_SVG;
 
 	@FindBy(xpath = "//span[normalize-space()='Search Results']")

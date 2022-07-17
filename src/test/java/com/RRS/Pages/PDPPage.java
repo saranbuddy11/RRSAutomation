@@ -6,6 +6,7 @@ import java.awt.AWTException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -86,6 +87,15 @@ public class PDPPage extends PageObject {
 
 	@FindBy(css = "svg.icon-link--XANc9")
 	WebElementFacade Plp_SearchIcon_SVG;
+
+	@FindBy(id = "ftv_email_sign_form")
+	WebElementFacade hokaEmailSignForm;
+
+	@FindBy(css = "div.rrs-modal-wrapper--1uNw5")
+	WebElementFacade fTvPopUp;
+
+	@FindBy(css = "h1.subscription-form-head--3B4u2")
+	WebElementFacade subscriptionFormHead;
 
 	@Step
 	public void click_Add2Cart_PDP() throws InterruptedException, AWTException {
@@ -307,5 +317,15 @@ public class PDPPage extends PageObject {
 	public void clickOnContinueShopping() {
 		continue_Shopping_Btn.shouldBeVisible();
 		continue_Shopping_Btn.click();
+	}
+
+	@Step
+	public void navigateToHokaPageAndVerifyPopUp(String expectedData) throws InterruptedException {
+		element(hokaEmailSignForm).waitUntilVisible();
+		fTvPopUp.isVisible();
+		fTvPopUp.isPresent();
+		String text = subscriptionFormHead.getText();
+		System.out.println(text);
+		Assert.assertTrue(text.contains(expectedData));
 	}
 }

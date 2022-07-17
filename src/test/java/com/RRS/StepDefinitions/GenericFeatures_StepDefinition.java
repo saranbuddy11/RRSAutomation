@@ -6,8 +6,10 @@ import java.awt.AWTException;
 import java.util.List;
 
 import com.RRS.Pages.CartPage;
+import com.RRS.Pages.CommonPage;
 import com.RRS.Pages.GenericFeatures;
 import com.RRS.Pages.PDPPage;
+import com.RRS.Pages.PLPPage;
 import com.RRS.Pages.homePage;
 import com.RRS.Pages.loginPage;
 import com.RRS.base.baseClass;
@@ -34,6 +36,12 @@ public class GenericFeatures_StepDefinition extends baseClass {
 
 	@Steps
 	PDPPage pdpPage;
+
+	@Steps
+	CommonPage Commonpage;
+
+	@Steps
+	PLPPage plpPage;
 
 	@Given("User Clicks on Expert Advice link at top right corner of the header")
 	public void user_clicks_on_expert_advice_link_at_top_right_corner_of_the_header() throws InterruptedException {
@@ -304,13 +312,31 @@ public class GenericFeatures_StepDefinition extends baseClass {
 	}
 
 	@Given("User Lauch RRS application and navigate to home page")
-	public void user_lauch_rrs_application_and_navigate_to_home_page() throws InterruptedException {
+	public void user_lauch_rrs_application_and_navigate_to_home_page()
+			throws InterruptedException {
 		homePage.homePage_Open();
+	}
+	
+	@Given("User Land on the RRS home page after login with non VIP user")
+	public void user_land_on_the_rrs_home_page_after_login_with_non_vip_user(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		homePage.loginAsVipUser(expectedData);
 	}
 
 	@When("Verify the Pop up")
 	public void verify_the_pop_up(DataTable table) {
 		List<List<String>> expectedData = table.asLists(String.class);
 		homePage.verifyFTvPopUp(expectedData);
+	}
+
+	@When("Navigate to Page and Verify the Pop up")
+	public void navigate_to_page_and_verify_the_pop_up(DataTable table) throws AWTException, InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		Commonpage.pageZoomOut();
+		Commonpage.pageZoomOut();
+		plpPage.Type_SearchKeyword(expectedData.get(0).get(0));
+		plpPage.Click_SearchIcon_PDP();
+		Thread.sleep(30000);
+		// pdpPage.navigateToHokaPageAndVerifyPopUp(expectedData.get(0).get(1));
 	}
 }

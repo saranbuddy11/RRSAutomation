@@ -247,6 +247,21 @@ public class homePage extends PageObject {
 	@FindBy(css = "a[href*='Saucony%20Price']")
 	WebElementFacade shopNowBtn;
 
+	@FindBy(css = "div.section-account--3E2hg")
+	WebElementFacade Login_SVG;
+
+	@FindBy(css = "div.modal-header--JbrIa>h2.tag_h2--2y8Ae")
+	WebElementFacade myAccountLogin_Lbl;
+
+	@FindBy(id = "login_emailAddress")
+	WebElementFacade Enter_EmailAddress;
+
+	@FindBy(id = "login_password")
+	WebElementFacade Enter_Password;
+
+	@FindBy(xpath = "//button[normalize-space()='Log In']")
+	WebElementFacade Login_Btn;
+
 	@Step
 	public void ClickWomensRunningSubMenu() throws InterruptedException {
 		MoveMouse.to(SubMenu_WomensRunning_Lnk);
@@ -847,9 +862,29 @@ public class homePage extends PageObject {
 	}
 
 	public void verifyFTvPopUp(List<List<String>> expectedData) {
+		element(EmailCapturePopUp).waitUntilVisible();
 		fTvPopUp.isVisible();
 		fTvPopUp.isPresent();
 		String text = subscriptionFormHead.getText();
 		Assert.assertTrue(text.contains(expectedData.get(0).get(0)));
+	}
+
+	@Step
+	public void loginAsVipUser(List<List<String>> expectedData) {
+		try {
+			homePage_Open();
+			Thread.sleep(5000);
+			homepage_PopUpClose();
+			Actions a = new Actions(getDriver());
+			a.moveToElement(Login_SVG).click().build().perform();
+			waitFor(myAccountLogin_Lbl);
+			myAccountLogin_Lbl.shouldBeVisible();
+			typeInto(Enter_EmailAddress, expectedData.get(0).get(0));
+			typeInto(Enter_Password, expectedData.get(0).get(1));
+			Login_Btn.click();
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }
