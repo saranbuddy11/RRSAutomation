@@ -166,8 +166,7 @@ Feature: Generic Features Regression scripts
 
   @Regression_RK_028
   Scenario: Verify FTV pop up for first time guest non VIP user in Hoka pages
-    Given User Land on the RRS home page after login with non VIP user
-      | testcucumber@gmail.com | 123456 |
+    Given User Lauch RRS application and navigate to home page
     When Navigate to Page and Verify the Pop up
       | 42339 | EARN 10% BACK IN REWARDS CASH |
 

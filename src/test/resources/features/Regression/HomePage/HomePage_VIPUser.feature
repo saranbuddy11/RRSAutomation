@@ -112,3 +112,30 @@ Feature: Home Page Regression scripts - VIP Login User
       | testcucumbervip@gmail.com | 123456 |
     And User should able to see three featured categories in home page
     When Verify navigation of Clicking on feature in home page
+      | HOKA BONDI 8 |
+
+  @Regression_RK_012
+  Scenario: Verify the Shop by Category section displayed  for a VIP user
+    Given User Land on the RRS home page after login with VIP user
+      | testcucumbervip@gmail.com | 123456 |
+    And Verify the Shop by Category section displayed for a VIP user
+      | Men’s KORSA Premier Run SS | Women’s KORSA Tempo Sleeveless | Men’s KORSA Pack Leader 7” Short | Women’s KORSA Challenge 5” Short |
+    When Verify the application response when user clicks on any categories
+      | Men’s KORSA Premier Run SS |
+
+  @Regression_RK_013
+  Scenario: Verify the Shop by Brand section with  Shop All Brands for a VIP user
+    Given User Land on the RRS home page after login with VIP user
+      | testcucumbervip@gmail.com | 123456 |
+    And Verify the Shop by Brand section displayed for a VIP user
+    When Verify the application response when user clicks on any brand
+      | KORSA |
+
+  @Regression_RK_014
+  Scenario: Verify This Weeks Most-Asked-For-Shoes section with Shop All CTA button for a VIP user
+    Given User Land on the RRS home page after login with VIP user
+      | testcucumbervip@gmail.com | 123456 |
+    And Verify the Top Seller section displayed for a VIP user
+    | Brooks Adrenaline GTS 22 | Saucony Ride 15 |
+    When Verify the application response when user clicks on any product
+      | Brooks Adrenaline GTS 22 |
