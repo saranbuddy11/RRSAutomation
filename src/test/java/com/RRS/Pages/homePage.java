@@ -346,7 +346,7 @@ public class homePage extends PageObject {
 
 		log.debug("Browser launched with the URL");
 		Thread.sleep(5000);
-		// element(EmailCapturePopUp).waitUntilVisible();
+		//element(EmailCapturePopUp).waitUntilVisible();
 		/*
 		 * while(EmailCapturePopUp.isDisplayed()==true) { Thread.sleep(1000);
 		 * System.out.println("Waiting for popup");
@@ -914,7 +914,7 @@ public class homePage extends PageObject {
 		try {
 			homePage_Open();
 			Thread.sleep(5000);
-			// homepage_PopUpClose();
+			homepage_PopUpClose();
 			Actions a = new Actions(getDriver());
 			a.moveToElement(Login_SVG).click().build().perform();
 			waitFor(myAccountLogin_Lbl);

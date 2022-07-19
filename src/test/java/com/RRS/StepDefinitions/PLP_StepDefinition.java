@@ -2,10 +2,14 @@ package com.RRS.StepDefinitions;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.awt.AWTException;
+import java.util.List;
+
 import com.RRS.Pages.PLPPage;
 import com.RRS.Pages.homePage;
 import com.RRS.base.baseClass;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import net.thucydides.core.annotations.Steps;
@@ -38,7 +42,6 @@ public class PLP_StepDefinition extends baseClass {
 		/* homePage.click_RRSHomeLogo_SVG_Button(); */
 		PLPpage.Type_SearchKeyword(Keyword);
 		PLPpage.Click_SearchIcon();
-
 	}
 
 	@Then("Assert user is direceted to appropriate PLP page for the keyword used")
@@ -75,7 +78,6 @@ public class PLP_StepDefinition extends baseClass {
 		try {
 			PLPpage.applyFilter(Filter);
 		} catch (InterruptedException e) {
-
 			e.printStackTrace();
 		}
 	}
@@ -114,9 +116,7 @@ public class PLP_StepDefinition extends baseClass {
 			PLPpage.applyAnyFilter("Tennis & Volleyball");
 			Thread.sleep(1000);
 			PLPpage.clearAllFilters();
-
 		} catch (InterruptedException e) {
-
 			e.printStackTrace();
 		}
 	}
@@ -127,4 +127,60 @@ public class PLP_StepDefinition extends baseClass {
 		assertThat(SearchResult.contentEquals(UpdatedSearchResult_AfterClearFilter));
 	}
 
+	@Then("User applies filter on main category and categories")
+	public void user_applies_filter_on_main_category_and_categories(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PLPpage.applyFilterOnCategories(expectedData);
+	}
+
+	@Then("User validate the results page appropriate to the appplied filter or not")
+	public void user_validate_the_results_page_appropriate_to_the_appplied_filter_or_not(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PLPpage.verifyResultPageAfterFilterApplied(expectedData);
+	}
+
+	@Then("User should be able to see {int} products in the PLP page with page numbers, next and prev arrow icons")
+	public void user_should_be_able_to_see_products_in_the_plp_page_with_page_numbers_next_and_prev_arrow_icons(
+			int count) throws AWTException {
+		PLPpage.verifyPaginationInPLPPage(count);
+	}
+
+	@Then("Clicking on any of the home page category")
+	public void clicking_on_any_of_the_home_page_category(DataTable table) throws AWTException, InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PLPpage.clickHomePageCategory(expectedData);
+	}
+
+	@Then("User should be directed to PLP with the category bread crumb displayed in PLP page")
+	public void user_should_be_directed_to_plp_with_the_category_bread_crumb_displayed_in_plp_page(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PLPpage.verifyBreadCrumbInPLPPage(expectedData);
+	}
+
+	@Then("Verify filters and its functionality")
+	public void verify_filters_and_its_functionality(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PLPpage.verifyFiltersInPLPPage(expectedData);
+	}
+
+	@Given("Select a category from the top navigation menu {string}")
+	public void select_a_category_from_the_top_navigation_menu(String menu) throws InterruptedException, AWTException {
+		PLPpage.navigateToCategoryFromTopNavigationMenu(menu);
+	}
+
+	@Then("User should be able to see search bar with Magnifying icon to search brand in the filters present in LHN")
+	public void user_should_be_able_to_see_search_bar_with_magnifying_icon_to_search_brand_in_the_filters_present_in_lhn()
+			throws AWTException {
+		PLPpage.verifySearchBarOfBrands();
+	}
+
+	@Then("User should be able to see the default {int} Brands in the Brand section filter")
+	public void user_should_be_able_to_see_the_default_brands_in_the_brand_section_filter(int defaultCount) {
+		PLPpage.verifyDefaultsInBrandSection(defaultCount);
+	}
+
+	@Then("Verify the Links in Brand section and its functionality {int}")
+	public void verify_the_links_in_brand_section_and_its_functionality(int count) throws InterruptedException {
+		PLPpage.verifyLinksInBrandSection(count);
+	}
 }
