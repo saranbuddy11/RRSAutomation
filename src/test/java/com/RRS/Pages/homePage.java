@@ -55,7 +55,7 @@ public class homePage extends PageObject {
 	@FindBy(xpath = "//div[contains(@class,'banner-header-title')]/h1")
 	WebElementFacade topBannerVIPuser;
 
-	@FindBy(xpath = "//h1[text()='PERFECT FIT ']")
+	@FindBy(css = "h1.steps-nav-title--3eb_y")
 	WebElementFacade perfectFitLabel;
 
 	@FindBy(xpath = "//button[text()='Shop All Brands']")
@@ -67,7 +67,7 @@ public class homePage extends PageObject {
 	@FindBy(xpath = "//a[text()='Learn More']")
 	WebElementFacade learnMore_Lnk;
 
-	@FindBy(xpath = "//div[@class='pff-vid-copy']//h1[contains(text(),'Find Your Perfect Fitting Shoes Fast!')]")
+	@FindBy(css = "div.pff-vid-copy>h1.tag_h1--hWc2x")
 	WebElementFacade findYourPerfectFittingShoes_banner;
 
 	@FindBy(xpath = "//h2[contains(text(),'Most-Asked-For Shoes')]/following::div[1][contains(@class,'align-items-center')]")
@@ -79,10 +79,10 @@ public class homePage extends PageObject {
 	@FindBy(xpath = "//h2[contains(text(),'Most-Asked-For Shoes')]/..//button[text()='Shop All']")
 	WebElementFacade mostAskedForSectionShopAll;
 
-	@FindBy(xpath = "//h2[contains(text(),'Your Bestselling Performance Apparel')]/..//button[text()='Shop All']")
+	@FindBy(css = "a[href*='apparel']>button")
 	WebElementFacade yourBestSellingApparelSectionShopAll;
 
-	@FindBy(xpath = "//a[text()='Start Your Online Fitting']")
+	@FindBy(css = "div.pff-vid-cta>a")
 	WebElementFacade startYourOnlineFitting_Lnk;
 
 	@FindBy(xpath = "//div[contains(@class,'vip-promotion--')]")
@@ -130,19 +130,19 @@ public class homePage extends PageObject {
 	@FindBy(xpath = "//a[contains(@aria-label,'The Hottest Brands of Running shoes')]")
 	List<WebElementFacade> hottestBrands_Lnk;
 
-	@FindBy(xpath = "//a[contains(@aria-label,'The Hottest Brands of Running shoes') and contains(text(),'Shop Women')]")
-	WebElementFacade hottestBrandsWomen_Lnk;
+	@FindBy(css = "div.img__link>a[href*='womens']")
+	List<WebElementFacade> hottestBrandsWomen_Lnk;
 
 	@FindBy(xpath = "//a[contains(@aria-label,'The Best Running Apparel')]")
 	List<WebElementFacade> bestRunningApparel_Lnk;
 
-	@FindBy(xpath = "//a[contains(@aria-label,'Brooks Glycerin 20')]")
+	@FindBy(xpath = "//a[contains(@aria-label,'HOKA Bondi 8')]")
 	List<WebElementFacade> BrooksGlycerin_Lnk;
 
 	@FindBy(xpath = "//div[@id='card-two-link-root']/div")
 	List<WebElementFacade> featuredCategories_banner;
 
-	@FindBy(xpath = "//div[contains(@class,'product-listing-title')]/h1")
+	@FindBy(css = "h1.tag_h1--hWc2x")
 	WebElementFacade productListingTitle;
 
 	@FindBy(xpath = "//h1[contains(@class,'brand-content-title')]")
@@ -274,8 +274,8 @@ public class homePage extends PageObject {
 	@FindBy(css = "div.promo-banner-card--3DqIA>a[href*='HOKA']")
 	WebElementFacade Feature_Banner_Hoka;
 
-	@FindBy(css = "a[href*='HOKA']")
-	List<WebElementFacade> Feature_Hoka;
+	@FindBy(css = "h3.tag_h3--2baIm")
+	List<WebElementFacade> Feature_Headers;
 
 	@FindBy(css = "div.promo-banner-card--3DqIA>a[href*='Nike']")
 	WebElementFacade Feature_Banner_Nike;
@@ -346,7 +346,7 @@ public class homePage extends PageObject {
 
 		log.debug("Browser launched with the URL");
 		Thread.sleep(5000);
-		//element(EmailCapturePopUp).waitUntilVisible();
+		// element(EmailCapturePopUp).waitUntilVisible();
 		/*
 		 * while(EmailCapturePopUp.isDisplayed()==true) { Thread.sleep(1000);
 		 * System.out.println("Waiting for popup");
@@ -377,7 +377,8 @@ public class homePage extends PageObject {
 	}
 
 	@Step
-	public void assert_categories_banner_has_appropriate_categories_name() {
+	public void assert_categories_banner_has_appropriate_categories_name() throws AWTException {
+		CommonPage.pageScrollDown();
 		Assert.assertTrue(hottestBrands_Lnk.get(0).containsText("Shop Women's"));
 		Assert.assertTrue(hottestBrands_Lnk.get(1).containsText("Shop Men's"));
 		Assert.assertTrue(bestRunningApparel_Lnk.get(0).containsText("Shop Women's"));
@@ -392,8 +393,10 @@ public class homePage extends PageObject {
 	}
 
 	@Step
-	public void user_click_on_in_running_shoes_category(String text) throws InterruptedException {
-		CommonPage.javaScriptExecutor_Click(hottestBrandsWomen_Lnk);
+	public void user_click_on_in_running_shoes_category(String text) throws InterruptedException, AWTException {
+		hottestBrandsWomen_Lnk.get(0).click();
+		Thread.sleep(5000);
+		// CommonPage.javaScriptExecutor_Click(hottestBrandsWomen_Lnk);
 		waitFor(productListingTitle);
 	}
 
@@ -914,7 +917,7 @@ public class homePage extends PageObject {
 		try {
 			homePage_Open();
 			Thread.sleep(5000);
-			//homepage_PopUpClose();
+			// homepage_PopUpClose();
 			Actions a = new Actions(getDriver());
 			a.moveToElement(Login_SVG).click().build().perform();
 			waitFor(myAccountLogin_Lbl);
@@ -932,19 +935,17 @@ public class homePage extends PageObject {
 	public void verifyFeaturedCategories() throws AWTException {
 		CommonPage.pageZoomOut();
 		CommonPage.pageZoomOut();
-
 		Feature_Banner_Hoka.shouldBeCurrentlyVisible().isClickable();
 		Feature_Banner_Nike.shouldBeCurrentlyVisible().isClickable();
 		Feature_Banner_Adidas.shouldBeCurrentlyVisible().isClickable();
-		CommonPage.actions_UpArrow();
-		CommonPage.actions_UpArrow();
 	}
 
 	@Step
 	public void verifyHokaFeatureNavigation(List<List<String>> expectedData) throws InterruptedException, AWTException {
-		CommonPage.pageScrollUp();
-		Feature_Hoka.get(1).click();
+		CommonPage.pageScrolltwice();
 		Thread.sleep(5000);
+		Feature_Headers.get(0).click();
+		Thread.sleep(8000);
 		pageTitle.isDisplayed();
 		String title = pageTitle.getText();
 		System.out.println(title);
@@ -954,6 +955,7 @@ public class homePage extends PageObject {
 	@Step
 	public void verifyShopByCateoriesSection(List<List<String>> expectedData)
 			throws AWTException, InterruptedException {
+		CommonPage.pageZoomOut();
 		CommonPage.pageZoomOut();
 		CommonPage.pageZoomOut();
 		CommonPage.pageScrolltwice();
@@ -999,8 +1001,9 @@ public class homePage extends PageObject {
 	}
 
 	@Step
-	public void verifyShopByCateoriesNavigation(String category) throws InterruptedException {
+	public void verifyShopByCateoriesNavigation(String category) throws InterruptedException, AWTException {
 		String dynamicElement = "div>img[name*='" + category + "']";
+		CommonPage.pageScrollDown();
 		getDriver().findElement(By.cssSelector(dynamicElement)).click();
 		Thread.sleep(5000);
 		Ensure.thatTheCurrentPage().currentUrl().contains(category);

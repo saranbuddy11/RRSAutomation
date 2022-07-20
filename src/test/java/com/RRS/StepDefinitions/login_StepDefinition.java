@@ -74,7 +74,7 @@ public class login_StepDefinition extends baseClass {
 	}
 
 	@Given("User logout of the application")
-	public void user_logout_of_the_application() {
+	public void user_logout_of_the_application() throws InterruptedException {
 		loginPage.user_logout_application();
 	}
 

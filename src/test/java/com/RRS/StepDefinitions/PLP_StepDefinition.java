@@ -180,7 +180,8 @@ public class PLP_StepDefinition extends baseClass {
 	}
 
 	@Then("Verify the Links in Brand section and its functionality {int}")
-	public void verify_the_links_in_brand_section_and_its_functionality(int count) throws InterruptedException {
+	public void verify_the_links_in_brand_section_and_its_functionality(int count)
+			throws InterruptedException, AWTException {
 		PLPpage.verifyLinksInBrandSection(count);
 	}
 }

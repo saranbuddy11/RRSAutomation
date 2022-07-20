@@ -123,9 +123,9 @@ public class PDP_StepDefinition extends baseClass {
 	public void user_verify_the_step_what_s_your_size_in_pdp_allows_user_to_select_one_size_at_one_time_and_image_altered(
 			Integer int1) {
 		try {
-			PDPPage.clickkAnySizeVariant_PDP("L");
-			PDPPage.clickkAnySizeVariant_PDP("XL");
-			PDPPage.clickkAnySizeVariant_PDP("XXL");
+			PDPPage.clickAnySizeVariant_PDP("L");
+			PDPPage.clickAnySizeVariant_PDP("XL");
+			PDPPage.clickAnySizeVariant_PDP("XXL");
 		} catch (InterruptedException e) {
 
 			e.printStackTrace();
@@ -228,7 +228,7 @@ public class PDP_StepDefinition extends baseClass {
 	@Given("User Slect the size as {string}")
 	public void user_slect_the_size_as(String Size) throws IOException {
 		try {
-			PDPPage.clickkAnySizeVariant_PDP(Size);
+			PDPPage.clickAnySizeVariant_PDP(Size);
 			// PropertiesFileReader.setProperty("Size", Size);
 			propertyFileModifier.setProperty("Size", Size);
 		} catch (InterruptedException e) {

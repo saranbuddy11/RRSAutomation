@@ -206,7 +206,7 @@ public class PDPPage extends PageObject {
 	}
 
 	@Step
-	public void clickkAnySizeVariant_PDP(String Variant) throws InterruptedException {
+	public void clickAnySizeVariant_PDP(String Variant) throws InterruptedException {
 		String DynamicElement = "//p[contains(normalize-space(),'Size')]/../div/div/label/span[text()='" + Variant
 				+ "']";
 		System.out.println("Dynamic xpath created: " + DynamicElement);

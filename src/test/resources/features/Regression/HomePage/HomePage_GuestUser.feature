@@ -31,7 +31,7 @@ Feature: Home Page Regression scripts - Guest User/ Non-Logged-in User
     Then User click on "Brooks Brand" in SHOP BY BRAND
     And User Assert "BROOKS" page is displayed for SHOP BY BRAND
 
-  @homePage_009 
+  @homePage_009
   Scenario: Verify FIND YOUR PERFECT FITTING SHOES FAST! section in Home Page
     Given User Land on the RRS home page
   	And Assert FIND YOUR PERFECT FITTING SHOES FAST section is displayed
