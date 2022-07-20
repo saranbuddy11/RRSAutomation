@@ -20,7 +20,7 @@ public class login_StepDefinition extends baseClass {
 		try {
 			homePage.homePage_Open();
 			Thread.sleep(5000);
-			homePage.homepage_PopUpClose();
+			//homePage.homepage_PopUpClose();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

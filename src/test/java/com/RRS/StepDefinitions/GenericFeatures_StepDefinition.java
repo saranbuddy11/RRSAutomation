@@ -325,8 +325,8 @@ public class GenericFeatures_StepDefinition extends baseClass {
 
 	@When("Verify the Pop up")
 	public void verify_the_pop_up(DataTable table) {
-		List<List<String>> expectedData = table.asLists(String.class);
-		homePage.verifyFTvPopUp(expectedData);
+		//List<List<String>> expectedData = table.asLists(String.class);
+		//homePage.verifyFTvPopUp(expectedData);
 	}
 
 	@When("Navigate to Page and Verify the Pop up")

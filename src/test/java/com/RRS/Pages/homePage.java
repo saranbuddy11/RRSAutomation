@@ -914,7 +914,7 @@ public class homePage extends PageObject {
 		try {
 			homePage_Open();
 			Thread.sleep(5000);
-			homepage_PopUpClose();
+			//homepage_PopUpClose();
 			Actions a = new Actions(getDriver());
 			a.moveToElement(Login_SVG).click().build().perform();
 			waitFor(myAccountLogin_Lbl);
