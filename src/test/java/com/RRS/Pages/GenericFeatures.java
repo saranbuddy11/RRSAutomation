@@ -13,6 +13,7 @@ import org.openqa.selenium.support.FindBy;
 
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.serenitybdd.screenplay.ensure.Ensure;
 import net.thucydides.core.annotations.Step;
 
 public class GenericFeatures extends PageObject {
@@ -69,6 +70,12 @@ public class GenericFeatures extends PageObject {
 
 	@FindBy(xpath = "//button[contains(@class,'back-to-top--2iv3K')]")
 	WebElementFacade back_to_top;
+
+	@FindBy(css = ".section-cart-qty--2wAHy>span")
+	WebElementFacade blank_cart_count;
+
+	@FindBy(css = ".section-cart-qty--2wAHy")
+	WebElementFacade blank_cart_icon;
 
 	@Step
 	public void click_expert_advice() throws InterruptedException {
@@ -172,5 +179,24 @@ public class GenericFeatures extends PageObject {
 		waitABit(5000);
 		CommonPage.javaScriptExecutor_Click(getDriver()
 				.findElement(By.xpath("//div[contains(@class,'dropdown-content')]//a[text()='" + option + "']")));
+	}
+
+	@Step
+	public String check_blank_cart() {
+		blank_cart_count.shouldBeVisible();
+		String count = blank_cart_count.getText();
+		return count;
+	}
+
+	@Step
+	public void click_blank_cart() throws InterruptedException {
+		blank_cart_icon.shouldBeVisible();
+		blank_cart_icon.click();
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void assertHomePageDisplayed() {
+		Ensure.thatTheCurrentPage().currentUrl().not().contains("/");
 	}
 }

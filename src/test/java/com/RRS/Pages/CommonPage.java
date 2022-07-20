@@ -132,6 +132,13 @@ public class CommonPage extends PageObject {
 	}
 
 	@Step
+	public void pageScrollUp() throws AWTException {
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_PAGE_UP);
+		robot.keyRelease(KeyEvent.VK_PAGE_UP);
+	}
+
+	@Step
 	public void pageZoomOut() throws AWTException {
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_CONTROL);

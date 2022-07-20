@@ -58,7 +58,7 @@ public class PDP_StepDefinition extends baseClass {
 		Commonpage.pageZoomOut();
 		PLPpage.Type_SearchKeyword(ProductNumber);
 		PLPpage.Click_SearchIcon_PDP();
-		Thread.sleep(8000);
+		Thread.sleep(10000);
 		PDPPage.waitForAdd2Cart();
 		Thread.sleep(5000);
 	}

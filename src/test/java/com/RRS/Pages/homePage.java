@@ -13,9 +13,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import net.serenitybdd.core.exceptions.SerenityManagedException;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.screenplay.actions.MoveMouse;
+import net.serenitybdd.screenplay.ensure.Ensure;
 import net.thucydides.core.annotations.Step;
 
 public class homePage extends PageObject {
@@ -28,6 +30,12 @@ public class homePage extends PageObject {
 
 	@FindBy(xpath = "//body/div[@id='rrs-modal']/div//*[name()='svg']")
 	WebElementFacade EmailCapturePopUp_Close;
+
+	@FindBy(css = "div.rrs-modal-wrapper--1uNw5")
+	WebElementFacade fTvPopUp;
+
+	@FindBy(css = "h1.subscription-form-head--3B4u2")
+	WebElementFacade subscriptionFormHead;
 
 	@FindBy(xpath = "//a[@aria-label='Road Runner Sports Logo']//*[name()='svg']")
 	WebElementFacade RRSHomeLogo_SVG;
@@ -167,6 +175,129 @@ public class homePage extends PageObject {
 	@FindBy(xpath = "//h2[contains(text(),'VIP Family Bestselling Performance Apparel')]/following::div[contains(@class,'slider-inner')][1]/div//small")
 	List<WebElementFacade> vipFamilyBestsellingApparelSection;
 
+	@FindBy(css = "li.menu-item--3cZEn>a")
+	List<WebElementFacade> navigationMenus;
+
+	@FindBy(css = ".expandable-block--1BXyp")
+	List<WebElementFacade> menuSubCategories;
+
+	@FindBy(css = "div.category--3WjBw>h4>a")
+	List<WebElementFacade> menuSubCategoriesType;
+
+	@FindBy(css = "div.categoryKids--1jGpl>h4>a")
+	List<WebElementFacade> kidsSubCategories;
+
+	@FindBy(css = "li.items-category-link--12dlE>a[href*='womens/shoes']")
+	List<WebElementFacade> womenShoeType;
+
+	@FindBy(css = "li.items-category-link--12dlE>a[href*='gloves']")
+	WebElementFacade gearSubCategoryGloves;
+
+	@FindBy(css = "a[href*='womens/shoes']>h5.tag_h5--15p8m")
+	List<WebElementFacade> womenShoeSpecialType;
+
+	@FindBy(css = "a[href*='calendar']>h5")
+	List<WebElementFacade> shoeCalendar;
+
+	@FindBy(css = "div.product-listing-title--3NhpO>.tag_h1--hWc2x")
+	WebElementFacade pLPTitle;
+
+	@FindBy(css = ".tag_h1--hWc2x")
+	WebElementFacade pageTitle;
+
+	@FindBy(css = "h1.steps-nav-title--3eb_y")
+	WebElementFacade fitFinderPageTitle;
+
+	@FindBy(css = ".brand-content-title--3-TvC")
+	WebElementFacade brandPageTitle;
+
+	@FindBy(css = "a[href*='catalog/kids']>img")
+	WebElementFacade kidsCatalogImage;
+
+	@FindBy(css = "h1.brand-content-title--3-TvC")
+	WebElementFacade kidsBrandContentTitle;
+
+	@FindBy(xpath = "(//a[contains(text(),'Nike')])[1]")
+	WebElementFacade nikeBrandSubCat;
+
+	@FindBy(css = "a[href*='shoefinder']>img[src*='main']")
+	WebElementFacade fitFinderBanner;
+
+	@FindBy(css = "button.back-to-top--2iv3K")
+	WebElementFacade backToTopBtn;
+
+	@FindBy(css = "div.text-align-left--1c_kk>a")
+	WebElementFacade topNavLinks;
+
+	@FindBy(css = "input[aria-label='Email Signup']")
+	WebElementFacade emailSignUpInput;
+
+	@FindBy(css = "div.justify-flex-end--1pK1_+button[type='submit']")
+	WebElementFacade emailSignUpBtn;
+
+	@FindBy(css = "div.logo-section-logo--37woN")
+	WebElementFacade home_Page_Logo;
+
+	@FindBy(css = "div.banner_hp_saucony_content")
+	WebElementFacade saucoyBanner;
+
+	@FindBy(css = "div.banner_hp_korsa_text")
+	WebElementFacade korsaBanner;
+
+	@FindBy(css = "div.banner_hp_saucony_logo")
+	WebElementFacade saucoyLogo;
+
+	@FindBy(css = "div.banner_hp_korsa_logo")
+	WebElementFacade korsaLogo;
+
+	@FindBy(css = "a[href*='korsa-spring']")
+	WebElementFacade shopKorsaBtn;
+
+	@FindBy(css = "a[href*='Saucony%20Price']")
+	WebElementFacade shopNowBtn;
+
+	@FindBy(css = "div.section-account--3E2hg")
+	WebElementFacade Login_SVG;
+
+	@FindBy(css = "div.modal-header--JbrIa>h2.tag_h2--2y8Ae")
+	WebElementFacade myAccountLogin_Lbl;
+
+	@FindBy(id = "login_emailAddress")
+	WebElementFacade Enter_EmailAddress;
+
+	@FindBy(id = "login_password")
+	WebElementFacade Enter_Password;
+
+	@FindBy(xpath = "//button[normalize-space()='Log In']")
+	WebElementFacade Login_Btn;
+
+	@FindBy(css = "div.promo-banner-card--3DqIA>a[href*='HOKA']")
+	WebElementFacade Feature_Banner_Hoka;
+
+	@FindBy(css = "a[href*='HOKA']")
+	List<WebElementFacade> Feature_Hoka;
+
+	@FindBy(css = "div.promo-banner-card--3DqIA>a[href*='Nike']")
+	WebElementFacade Feature_Banner_Nike;
+
+	@FindBy(css = "div.promo-banner-card--3DqIA>a[href*='adidas']")
+	WebElementFacade Feature_Banner_Adidas;
+
+	@FindBy(css = "h2.carousel-head-title--1u1O8")
+	List<WebElementFacade> Shop_By_Cat_Title;
+
+	@FindBy(css = ".promo-banner-title--2LyS2")
+	WebElementFacade Promo_Banner_Title;
+
+	@FindBy(css = "img[name*='Favorite Shops']")
+	List<WebElementFacade> Shop_By_Brands;
+
+	@FindBy(css = "h2.carousel-head-title--1u1O8+a[aria-label*='Apparel']")
+	WebElementFacade Shop_By_Cat_Btn;
+
+	@FindBy(css = "button[aria-label*='Top Sellers']")
+	WebElementFacade Shop_All_Top_Seller_Btn;
+
 	@Step
 	public void ClickWomensRunningSubMenu() throws InterruptedException {
 		MoveMouse.to(SubMenu_WomensRunning_Lnk);
@@ -215,7 +346,7 @@ public class homePage extends PageObject {
 
 		log.debug("Browser launched with the URL");
 		Thread.sleep(5000);
-		element(EmailCapturePopUp).waitUntilVisible();
+		//element(EmailCapturePopUp).waitUntilVisible();
 		/*
 		 * while(EmailCapturePopUp.isDisplayed()==true) { Thread.sleep(1000);
 		 * System.out.println("Waiting for popup");
@@ -543,5 +674,351 @@ public class homePage extends PageObject {
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_PAGE_DOWN);
 		robot.keyRelease(KeyEvent.VK_PAGE_DOWN);
+	}
+
+	@Step
+	public void verifyNavigationMenus(List<List<String>> menu) {
+		int i = 0;
+		for (WebElementFacade ele : navigationMenus) {
+			ele.shouldBeVisible();
+			String actualMenu = ele.getText();
+			actualMenu.equalsIgnoreCase(menu.get(0).get(i));
+			i++;
+		}
+	}
+
+	@Step
+	public void verifyNavigationMenuCategoriesByHoverOnTopOfMenus() throws InterruptedException {
+		for (WebElementFacade menu : navigationMenus) {
+			for (WebElementFacade categories : menuSubCategories) {
+				Actions a = new Actions(getDriver());
+				a.moveToElement(menu).perform();
+				Assert.assertTrue(categories.isPresent());
+			}
+		}
+	}
+
+	@Step
+	public void verifyHoverOnTopNavOfWomen() throws InterruptedException, AWTException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(navigationMenus.get(0)).perform();
+		Assert.assertTrue(menuSubCategories.get(0).isPresent());
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void verifyHoverOnTopNavOfkids() throws InterruptedException, AWTException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(navigationMenus.get(2)).perform();
+		Assert.assertTrue(menuSubCategories.get(2).isPresent());
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void verifyHoverOnTopNavOfGear() throws InterruptedException, AWTException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(navigationMenus.get(3)).perform();
+		Assert.assertTrue(menuSubCategories.get(3).isPresent());
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void verifyHoverOnTopNavOfBrands() throws InterruptedException, AWTException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(navigationMenus.get(4)).perform();
+		Assert.assertTrue(menuSubCategories.get(4).isPresent());
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void verifyHoverOnTopNavOfFitFinder() throws InterruptedException, AWTException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(navigationMenus.get(7)).perform();
+		Assert.assertTrue(menuSubCategories.get(7).isPresent());
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void verifyNavigationToPLPPageFromCategory(String menu, String category)
+			throws InterruptedException, AWTException {
+		String dynamicElement = "li.menu-item--3cZEn>a[href*='" + menu + "']";
+		Actions a = new Actions(getDriver());
+		a.moveToElement(getDriver().findElement(By.cssSelector(dynamicElement))).perform();
+		Thread.sleep(5000);
+		String element = "//a[contains(@href,'" + menu + "') and contains(text(),'" + category + "')]";
+		a.moveToElement(getDriver().findElement(By.xpath(element))).click().build().perform();
+		Thread.sleep(5000);
+		pageScrollDown();
+		Ensure.thatTheCurrentPage().currentUrl().contains(menu);
+		Ensure.thatTheCurrentPage().currentUrl().contains(category);
+	}
+
+	@Step
+	public void validateWomenSubCategories(List<List<String>> subCat) {
+		for (int i = 0; i < 3; i++) {
+			String s = menuSubCategoriesType.get(i).getText();
+			Assert.assertTrue(s.equalsIgnoreCase(subCat.get(0).get(i)));
+		}
+	}
+
+	@Step
+	public void validatekidsSubCategoriesAndItsNavigation(List<List<String>> subCat) throws InterruptedException {
+		for (int i = 0; i < 2; i++) {
+			String s = kidsSubCategories.get(i).getText();
+			Assert.assertTrue(s.equalsIgnoreCase(subCat.get(0).get(i)));
+		}
+		kidsCatalogImage.isPresent();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(kidsCatalogImage).click().build().perform();
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(subCat.get(0).get(2));
+		Ensure.thatTheCurrentPage().currentUrl().contains(subCat.get(0).get(3));
+		kidsBrandContentTitle.isPresent();
+	}
+
+	@Step
+	public void validateGearSubCategoriesAndItsNavigation(List<List<String>> subCat) throws InterruptedException {
+		int j = 0;
+		for (int i = 6; i < 10; i++) {
+			String s = menuSubCategoriesType.get(i).getText();
+			Assert.assertTrue(s.equalsIgnoreCase(subCat.get(0).get(j)));
+			j++;
+		}
+		Actions a = new Actions(getDriver());
+		a.moveToElement(gearSubCategoryGloves).click().build().perform();
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(subCat.get(0).get(4));
+		pLPTitle.isPresent();
+		String title = pLPTitle.getText();
+		Assert.assertTrue(title.contains(subCat.get(0).get(5)));
+	}
+
+	@Step
+	public void validateBrandsSubCategoriesAndItsNavigation(List<List<String>> subCat) throws InterruptedException {
+		int j = 0;
+		for (int i = 10; i < 12; i++) {
+			String s = menuSubCategoriesType.get(i).getText();
+			Assert.assertTrue(s.equalsIgnoreCase(subCat.get(0).get(j)));
+			j++;
+		}
+		Actions a = new Actions(getDriver());
+		a.moveToElement(nikeBrandSubCat).click().build().perform();
+		Thread.sleep(15000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(subCat.get(0).get(2));
+		brandPageTitle.isPresent();
+		String title = brandPageTitle.getText();
+		Assert.assertTrue(title.contains(subCat.get(0).get(3)));
+	}
+
+	@Step
+	public void verifyWomenShoeCategories(List<List<String>> type) {
+		int j = 11;
+		for (int i = 0; i < womenShoeType.size() - 1; i++) {
+			String s = womenShoeType.get(i).getText();
+			Assert.assertTrue(s.equalsIgnoreCase(type.get(0).get(i)));
+		}
+		for (int i = 0; i < womenShoeSpecialType.size() - 1; i++) {
+			String s = womenShoeSpecialType.get(i).getText();
+			Assert.assertTrue(s.equalsIgnoreCase(type.get(0).get(j)));
+			j++;
+		}
+		for (int i = 0; i < shoeCalendar.size() - 1; i++) {
+			String s = shoeCalendar.get(i).getText();
+			Assert.assertTrue(s.equalsIgnoreCase(type.get(0).get(14)));
+		}
+	}
+
+	@Step
+	public void verifyFitFinderBannerAndNavigation(List<List<String>> expectedData) throws InterruptedException {
+		fitFinderBanner.isVisible();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(fitFinderBanner).click().build().perform();
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
+		fitFinderPageTitle.isPresent();
+		String title = fitFinderPageTitle.getText();
+		Assert.assertTrue(title.contains(expectedData.get(0).get(1)));
+		Assert.assertTrue(title.contains(expectedData.get(0).get(2)));
+	}
+
+	@Step
+	public void verifyBackToTopUpwardIcon() throws AWTException {
+		CommonPage.pageScrolltwice();
+		backToTopBtn.isVisible();
+	}
+
+	@Step
+	public void verifyApplicationResponseOnBackToTopIcon() {
+		backToTopBtn.click();
+		topNavLinks.isDisplayed();
+	}
+
+	@Step
+	public void verifyEmailSignUpButtonAndItsNavigation(List<List<String>> expectedData, String email)
+			throws AWTException, InterruptedException {
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrollDown();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(home_Page_Logo).perform();
+		Thread.sleep(5000);
+		emailSignUpInput.isDisplayed();
+		String text = emailSignUpBtn.getText();
+		Assert.assertTrue(text.contains(expectedData.get(0).get(0)));
+		typeInto(emailSignUpInput, email);
+		emailSignUpBtn.click();
+		Thread.sleep(10000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(1));
+		text = pageTitle.getText();
+		Assert.assertTrue(text.contains(expectedData.get(0).get(2)));
+	}
+
+	public void verifyShopNowBannerAndNavigation(List<List<String>> expectedData)
+			throws SerenityManagedException, InterruptedException {
+//		saucoyBanner.isVisible();
+//		saucoyLogo.isVisible();
+//		shopNowBtn.isClickable();
+
+		korsaBanner.isVisible();
+		korsaLogo.isVisible();
+		shopKorsaBtn.isClickable();
+//		shopNowBtn.click();
+//		Thread.sleep(5000);
+//		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
+//		String text = pageTitle.getText();
+//		Assert.assertTrue(text.contains(expectedData.get(0).get(0)));
+	}
+
+	public void verifyFTvPopUp(List<List<String>> expectedData) {
+		element(EmailCapturePopUp).waitUntilVisible();
+		fTvPopUp.isVisible();
+		fTvPopUp.isPresent();
+		String text = subscriptionFormHead.getText();
+		Assert.assertTrue(text.contains(expectedData.get(0).get(0)));
+	}
+
+	@Step
+	public void loginUser(List<List<String>> expectedData) {
+		try {
+			homePage_Open();
+			Thread.sleep(5000);
+			//homepage_PopUpClose();
+			Actions a = new Actions(getDriver());
+			a.moveToElement(Login_SVG).click().build().perform();
+			waitFor(myAccountLogin_Lbl);
+			myAccountLogin_Lbl.shouldBeVisible();
+			typeInto(Enter_EmailAddress, expectedData.get(0).get(0));
+			typeInto(Enter_Password, expectedData.get(0).get(1));
+			Login_Btn.click();
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Step
+	public void verifyFeaturedCategories() throws AWTException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+
+		Feature_Banner_Hoka.shouldBeCurrentlyVisible().isClickable();
+		Feature_Banner_Nike.shouldBeCurrentlyVisible().isClickable();
+		Feature_Banner_Adidas.shouldBeCurrentlyVisible().isClickable();
+		CommonPage.actions_UpArrow();
+		CommonPage.actions_UpArrow();
+	}
+
+	@Step
+	public void verifyHokaFeatureNavigation(List<List<String>> expectedData) throws InterruptedException, AWTException {
+		CommonPage.pageScrollUp();
+		Feature_Hoka.get(1).click();
+		Thread.sleep(5000);
+		pageTitle.isDisplayed();
+		String title = pageTitle.getText();
+		System.out.println(title);
+		Assert.assertTrue(title.contains(expectedData.get(0).get(0)));
+	}
+
+	@Step
+	public void verifyShopByCateoriesSection(List<List<String>> expectedData)
+			throws AWTException, InterruptedException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrolltwice();
+		Shop_By_Cat_Title.get(2).isDisplayed();
+		Shop_By_Cat_Btn.shouldBeCurrentlyVisible().isClickable();
+		for (int i = 0; i < expectedData.size(); i++) {
+			verifyVisibilityofCategory(expectedData.get(0).get(i));
+		}
+	}
+
+	@Step
+	public void verifyShopByBrandSection() throws AWTException, InterruptedException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrolltwice();
+		CommonPage.actions_DownArrow();
+		Promo_Banner_Title.isDisplayed();
+		for (int i = 0; i < Shop_By_Brands.size(); i++) {
+			Shop_By_Brands.get(i).shouldBeCurrentlyVisible().isClickable();
+		}
+	}
+
+	@Step
+	public void verifyTopSellerSection(List<List<String>> expectedData) throws AWTException, InterruptedException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		CommonPage.pageScrolltwice();
+		CommonPage.actions_DownArrow();
+		Shop_By_Cat_Title.get(0).isDisplayed();
+		Shop_All_Top_Seller_Btn.shouldBeCurrentlyVisible().isClickable();
+		for (int i = 0; i < expectedData.size(); i++) {
+			verifyVisibilityofCategory(expectedData.get(0).get(i));
+		}
+	}
+
+	@Step
+	public void verifyVisibilityofCategory(String category) throws InterruptedException {
+		String dynamicElement = "div>img[name*='" + category + "']";
+		getDriver().findElement(By.cssSelector(dynamicElement)).isDisplayed();
+		Thread.sleep(2000);
+	}
+
+	@Step
+	public void verifyShopByCateoriesNavigation(String category) throws InterruptedException {
+		String dynamicElement = "div>img[name*='" + category + "']";
+		getDriver().findElement(By.cssSelector(dynamicElement)).click();
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(category);
+	}
+
+	@Step
+	public void verifyShopByBrandNavigation(String category) throws InterruptedException {
+		String dynamicElement = "img[name*='Favorite Shops - " + category + "']";
+		getDriver().findElement(By.cssSelector(dynamicElement)).click();
+		Thread.sleep(8000);
+		Ensure.thatTheCurrentPage().currentUrl().isEqualToIgnoringCase(category);
+	}
+
+	@Step
+	public void verifyTopSellerNavigation(String category) throws InterruptedException {
+		String dynamicElement = "img[name*='" + category + "']";
+		getDriver().findElement(By.cssSelector(dynamicElement)).click();
+		Thread.sleep(8000);
+		Ensure.thatTheCurrentPage().currentUrl().isEqualToIgnoringCase(category);
 	}
 }

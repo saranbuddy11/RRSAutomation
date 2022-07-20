@@ -1,5 +1,6 @@
 package com.RRS.Pages;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.AWTException;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.FindBy;
 
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.serenitybdd.screenplay.ensure.Ensure;
 import net.thucydides.core.annotations.Step;
 
 public class CartPage extends PageObject {
@@ -73,6 +75,15 @@ public class CartPage extends PageObject {
 
 	@FindBy(xpath = "//button[text()='UPGRADE AND CHECKOUT']")
 	WebElementFacade Checkout_UpgradetoRewardPlus_Btn;
+
+	@FindBy(css = ".tag_h1--hWc2x")
+	WebElementFacade Display_Msg;
+
+	@FindBy(css = ".section-button--2_acT")
+	WebElementFacade Continue_Shoppig_Btn;
+
+	@FindBy(css = ".flex-row--D783L > h2.tag_h2--2y8Ae")
+	WebElementFacade My_Cart_Icon;
 
 	@Step
 	public void clickCheckoutButtonAsVIPUser() throws InterruptedException {
@@ -202,5 +213,26 @@ public class CartPage extends PageObject {
 		waitFor(Order_Summary_lbl);
 		Order_Summary_lbl.shouldBeVisible();
 		Cart_Checkout_Btn.shouldBeVisible();
+	}
+
+	@Step
+	public void assertCartPageDisplayedAndValidateMessage() {
+		Ensure.thatTheCurrentPage().currentUrl().contains("cart");
+		String text = Display_Msg.getText();
+		assertEquals(text, "Your shopping cart is empty");
+	}
+
+	@Step
+	public void clickOnContinueShopping() throws InterruptedException {
+		Continue_Shoppig_Btn.shouldBeCurrentlyVisible();
+		Continue_Shoppig_Btn.click();
+	}
+
+	@Step
+	public void assertCartPageDisplayedAndValidateItemDisplayed() throws InterruptedException {
+		Ensure.thatTheCurrentPage().currentUrl().contains("cart");
+		String value = My_Cart_Icon.getTextContent();
+		assertTrue(value.contains("1"));
+		Thread.sleep(5000);
 	}
 }

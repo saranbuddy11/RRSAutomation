@@ -28,6 +28,7 @@ public class DataInputProvider {
 	private Iterator<Row> categoryIterator;
 	private Iterator<Row> couponsIterator;
 	private Iterator<Row> paymentsIterator;
+	private Iterator<Row> homePageIterator;
 
 	public DataInputProvider() {
 
@@ -61,7 +62,8 @@ public class DataInputProvider {
 
 			e.printStackTrace();
 		}
-		Sheet readerUsers, readerProducts, readerAddress, readerSearch, readerCategory, readerCoupon, readerPayments;
+		Sheet readerUsers, readerProducts, readerAddress, readerSearch, readerCategory, readerCoupon, readerPayments,
+				readerHomePage;
 
 		readerUsers = workbook.getSheet("users");
 		readerProducts = workbook.getSheet("products");
@@ -70,6 +72,7 @@ public class DataInputProvider {
 		readerCategory = workbook.getSheet("category");
 		readerCoupon = workbook.getSheet("coupons");
 		readerPayments = workbook.getSheet("payments");
+		readerHomePage = workbook.getSheet("HomePage");
 
 		usersIterator = readerUsers.iterator();
 		productsIterator = readerProducts.iterator();
@@ -78,6 +81,7 @@ public class DataInputProvider {
 		categoryIterator = readerCategory.iterator();
 		couponsIterator = readerCoupon.iterator();
 		paymentsIterator = readerPayments.iterator();
+		homePageIterator = readerHomePage.iterator();
 	}
 
 	public String getUserInfo(String userInfo) {
@@ -120,6 +124,12 @@ public class DataInputProvider {
 		String paymentInfo_Excel = readExcel(paymentsIterator, paymentInfo);
 		System.out.println("Final Payment Info details: " + paymentInfo_Excel);
 		return paymentInfo_Excel;
+	}
+
+	public String getHomePageInfo(String homePageInfo) {
+		String homePageInfo_Excel = readExcel(homePageIterator, homePageInfo);
+		System.out.println("Home Page Info details: " + homePageInfo_Excel);
+		return homePageInfo_Excel;
 	}
 
 	public String readExcel(Iterator<Row> Iterator, String Pattern) {

@@ -1,10 +1,12 @@
 package com.RRS.Pages;
 
+import java.awt.AWTException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
@@ -13,11 +15,13 @@ import org.openqa.selenium.support.FindBy;
 
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.serenitybdd.screenplay.ensure.Ensure;
 import net.thucydides.core.annotations.Step;
 
 public class PLPPage extends PageObject {
 
 	CommonPage CommonPage = new CommonPage();
+	homePage homePage = new homePage();
 
 	private List<String> AllLinks;
 
@@ -44,7 +48,7 @@ public class PLPPage extends PageObject {
 	@FindBy(xpath = "//input[@placeholder='What are you looking for?']")
 	WebElementFacade Plp_SearchBar_Txt;
 
-	@FindBy(xpath = "//div[contains(@class,'searchbox-input--')]//div[contains(@class,'input-group--')]//*[name()='svg']")
+	@FindBy(css = "svg.icon-link--XANc9>g")
 	WebElementFacade Plp_SearchIcon_SVG;
 
 	@FindBy(xpath = "//span[normalize-space()='Search Results']")
@@ -88,6 +92,54 @@ public class PLPPage extends PageObject {
 
 	@FindBy(xpath = "//button[@aria-label='Click to Top']")
 	WebElementFacade Plp_GoToTop_Btn;
+
+	@FindBy(css = ".product-listing-links-clear--ryzdI>a.clickable-text--2XYI6")
+	WebElementFacade clearFilterLink;
+
+	@FindBy(css = "div.direction-row--1VSm6>a.clickable-text--2XYI6")
+	WebElementFacade hideFilterLink;
+
+	@FindBy(css = "button[aria-label*='Close']>svg")
+	WebElementFacade filterCloseLink;
+
+	@FindBy(css = "div.product-listing-tiles--3UvUN")
+	WebElementFacade productListingTitle;
+
+	@FindBy(css = "div.product-listing-block--phojA>div.flex-row--D783L>div.col-breakpoints--3guui")
+	List<WebElementFacade> productList;
+
+	@FindBy(css = "div.product-listing-filters-open--CPXxi")
+	WebElementFacade productListFilter;
+
+	@FindBy(css = "button.pagination-prev--3gUXs")
+	WebElementFacade previousPageBtn;
+
+	@FindBy(css = "button.pagination-next--3sdUN")
+	WebElementFacade nextPageBtn;
+
+	@FindBy(css = "a[class*='pagination-item']")
+	List<WebElementFacade> pageNumbers;
+
+	@FindBy(id = "logo_svg__a")
+	WebElementFacade logoBtn;
+
+	@FindBy(css = "div.breadcrumb-theme-dark--37Ydz")
+	WebElementFacade breadCrumb;
+
+	@FindBy(css = "div.col--3RkFe>span")
+	List<WebElementFacade> filterHeaders;
+
+	@FindBy(css = "input[placeholder='Search']")
+	WebElementFacade brandSearchBar;
+
+	@FindBy(css = "div.textbox--1Ccx3+svg.icon-link--XANc9>g")
+	List<WebElementFacade> brandSearchIcon;
+
+	@FindBy(css = "div.brand-checkbox--30xb9>label>input.checkbox-input--3yXDV")
+	List<WebElementFacade> brandsCheckBox;
+
+	@FindBy(css = "a.brand-see-all-link--u6agD")
+	WebElementFacade allBrandsLink;
 
 	@Step
 	public void clearAllFilters() throws InterruptedException {
@@ -231,6 +283,7 @@ public class PLPPage extends PageObject {
 	@Step
 	public void Click_SearchIcon_PDP() {
 		waitFor(Plp_SearchIcon_SVG);
+		// Plp_SearchIcon_SVG.click();
 		Actions a = new Actions(getDriver());
 		a.moveToElement(Plp_SearchIcon_SVG).click().build().perform();
 		// Plp_SearchResults_BC.waitUntilVisible();
@@ -285,5 +338,125 @@ public class PLPPage extends PageObject {
 		 */
 		Thread.sleep(5000);
 		// Women_RunningShoe_H1_Lbl.shouldBeVisible();
+	}
+
+	@Step
+	public void applyFilterOnCategories(List<List<String>> expectedData) throws InterruptedException {
+		String DynamicCategoryFilterElement = "input[value*='" + expectedData.get(0).get(0) + "']";
+		getDriver().findElement(By.cssSelector(DynamicCategoryFilterElement)).click();
+		Thread.sleep(5000);
+		String DynamicCategoriesFilterElement = "input[value*='" + expectedData.get(0).get(1) + "']";
+		getDriver().findElement(By.cssSelector(DynamicCategoriesFilterElement)).click();
+		Thread.sleep(5000);
+		breadCrumb.isPresent();
+	}
+
+	@Step
+	public void verifyResultPageAfterFilterApplied(List<List<String>> expectedData) {
+		clearFilterLink.shouldBeCurrentlyVisible().isClickable();
+		productListingTitle.isVisible();
+		String categoryList = productListingTitle.getText();
+		Assert.assertTrue(categoryList.contains(expectedData.get(0).get(0)));
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(1) + expectedData.get(0).get(0));
+	}
+
+	@Step
+	public void verifyPaginationInPLPPage(int expectedCount) throws AWTException {
+		int actualCount = productList.size();
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrolltwice();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(logoBtn).perform();
+		Assert.assertEquals(actualCount, expectedCount);
+		previousPageBtn.isPresent();
+		nextPageBtn.isPresent();
+		for (int i = 0; i < pageNumbers.size(); i++) {
+			String text = pageNumbers.get(i).getText();
+			Assert.assertEquals(Integer.parseInt(text), i + 1);
+		}
+	}
+
+	@Step
+	public void clickHomePageCategory(List<List<String>> category) throws AWTException, InterruptedException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		Thread.sleep(5000);
+		homePage.verifyNavigationToPLPPageFromCategory(category.get(0).get(0), category.get(0).get(1));
+		Actions a = new Actions(getDriver());
+		a.moveToElement(logoBtn).perform();
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void verifyBreadCrumbInPLPPage(List<List<String>> breadCrumbs) {
+		breadCrumb.isVisible();
+		String subCat = breadCrumb.getText();
+		for (int i = 0; i < breadCrumbs.size(); i++) {
+			Assert.assertTrue(subCat.contains(breadCrumbs.get(0).get(i)));
+		}
+	}
+
+	@Step
+	public void verifyFiltersInPLPPage(List<List<String>> expectedData) throws InterruptedException {
+		clearFilterLink.shouldBeCurrentlyVisible().isClickable();
+		hideFilterLink.shouldBeCurrentlyVisible().isClickable();
+		filterCloseLink.shouldBeCurrentlyVisible().isClickable();
+		productListFilter.isDisplayed();
+		hideFilterLink.click();
+		Thread.sleep(4000);
+		Assert.assertFalse(productListFilter.isPresent());
+		hideFilterLink.click();
+		clearFilterLink.click();
+		Thread.sleep(5000);
+		Assert.assertFalse(filterCloseLink.isPresent());
+		Assert.assertFalse(clearFilterLink.isPresent());
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(2) + expectedData.get(0).get(3));
+		Ensure.thatTheCurrentPage().currentUrl().not()
+				.contains(expectedData.get(0).get(0) + expectedData.get(0).get(1));
+	}
+
+	@Step
+	public void navigateToCategoryFromTopNavigationMenu(String menu) throws InterruptedException, AWTException {
+		String dynamicElement = "li.menu-item--3cZEn>a[href*='" + menu + "']";
+		Actions a = new Actions(getDriver());
+		a.moveToElement(getDriver().findElement(By.cssSelector(dynamicElement))).click().build().perform();
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(menu);
+		a.moveToElement(logoBtn).perform();
+		CommonPage.pageZoomOut();
+		a.moveToElement(logoBtn).perform();
+		CommonPage.pageZoomOut();
+		a.moveToElement(logoBtn).perform();
+		CommonPage.pageZoomOut();
+	}
+
+	@Step
+	public void verifySearchBarOfBrands() throws AWTException {
+		filterHeaders.get(3).isDisplayed();
+		brandSearchBar.shouldBeCurrentlyVisible().isEnabled();
+		brandSearchIcon.get(1).shouldBeCurrentlyVisible().isClickable();
+	}
+
+	@Step
+	public void verifyDefaultsInBrandSection(int count) {
+		Assert.assertEquals(brandsCheckBox.size(), count);
+		for (int i = 0; i < brandsCheckBox.size(); i++) {
+			brandsCheckBox.get(i).shouldBeVisible().isClickable();
+		}
+	}
+
+	@Step
+	public void verifyLinksInBrandSection(int expectedCount) throws InterruptedException {
+		allBrandsLink.shouldBeVisible().isClickable();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(allBrandsLink).click().build().perform();
+		Thread.sleep(5000);
+		int actualCount = brandsCheckBox.size();
+		Assert.assertNotEquals(actualCount, expectedCount);
+		allBrandsLink.click();
+		Thread.sleep(5000);
+		Assert.assertEquals(brandsCheckBox.size(), expectedCount);
 	}
 }

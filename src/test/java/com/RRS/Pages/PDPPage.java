@@ -6,6 +6,7 @@ import java.awt.AWTException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -21,7 +22,7 @@ public class PDPPage extends PageObject {
 
 	public static Logger log = LogManager.getLogger(PDPPage.class);
 
-	@FindBy(xpath = "//button[normalize-space()='Add to Cart']")
+	@FindBy(css = ".product-wrapper-info-add-to-cart-btn--3RcjN")
 	WebElementFacade PDP_Add2Cart_Btn;
 
 	@FindBy(xpath = "//h2[contains(normalize-space(),'Item #')]")
@@ -78,11 +79,30 @@ public class PDPPage extends PageObject {
 	@FindBy(xpath = "//h3[normalize-space()='GREAT CHOICE! YOUR ITEM IS NOW ADDED TO YOUR CART']")
 	WebElementFacade PDP_A2C_Title_Lbl;
 
+	@FindBy(css = "div.logo-section-logo--37woN")
+	WebElementFacade home_Page_Logo;
+
+	@FindBy(css = ".mini-cart-body-summary-btn-continue--3fwgT")
+	WebElementFacade continue_Shopping_Btn;
+
+	@FindBy(css = "svg.icon-link--XANc9")
+	WebElementFacade Plp_SearchIcon_SVG;
+
+	@FindBy(id = "ftv_email_sign_form")
+	WebElementFacade hokaEmailSignForm;
+
+	@FindBy(css = "div.rrs-modal-wrapper--1uNw5")
+	WebElementFacade fTvPopUp;
+
+	@FindBy(css = "h1.subscription-form-head--3B4u2")
+	WebElementFacade subscriptionFormHead;
+
 	@Step
 	public void click_Add2Cart_PDP() throws InterruptedException, AWTException {
 //		CommonPage.javaScriptExecutor_Scroll(PDP_Add2Cart_Btn);
 //		CommonPage.javaScriptExecutor_Click(PDP_Add2Cart_Btn);
 		CommonPage.pageScrollDown();
+		Thread.sleep(5000);
 		waitFor(PDP_Add2Cart_Btn);
 		PDP_Add2Cart_Btn.click();
 		waitFor(PDP_A2C_Title_Lbl);
@@ -282,7 +302,30 @@ public class PDPPage extends PageObject {
 
 	@Step
 	public void waitForAdd2Cart() throws InterruptedException {
-		waitFor(PDP_Add2Cart_Btn);
 		PDP_Add2Cart_Btn.shouldBeVisible();
+	}
+
+	@Step
+	public void navigate_BackTo_HomePage() throws InterruptedException {
+		waitFor(home_Page_Logo);
+		home_Page_Logo.isCurrentlyVisible();
+		home_Page_Logo.click();
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void clickOnContinueShopping() {
+		continue_Shopping_Btn.shouldBeVisible();
+		continue_Shopping_Btn.click();
+	}
+
+	@Step
+	public void navigateToHokaPageAndVerifyPopUp(String expectedData) throws InterruptedException {
+		element(hokaEmailSignForm).waitUntilVisible();
+		fTvPopUp.isVisible();
+		fTvPopUp.isPresent();
+		String text = subscriptionFormHead.getText();
+		System.out.println(text);
+		Assert.assertTrue(text.contains(expectedData));
 	}
 }
