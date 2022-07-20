@@ -141,6 +141,9 @@ public class PLPPage extends PageObject {
 	@FindBy(css = "a.brand-see-all-link--u6agD")
 	WebElementFacade allBrandsLink;
 
+	@FindBy(css = "button.back-to-top--2iv3K")
+	WebElementFacade backToTopBtn;
+
 	@Step
 	public void clearAllFilters() throws InterruptedException {
 		CommonPage.javaScriptExecutor_Click(Plp_ClearFilter_Lnk);
@@ -448,11 +451,13 @@ public class PLPPage extends PageObject {
 	}
 
 	@Step
-	public void verifyLinksInBrandSection(int expectedCount) throws InterruptedException {
+	public void verifyLinksInBrandSection(int expectedCount) throws InterruptedException, AWTException {
 		allBrandsLink.shouldBeVisible().isClickable();
-		Actions a = new Actions(getDriver());
-		a.moveToElement(allBrandsLink).click().build().perform();
+		CommonPage.pageScrollDown();
 		Thread.sleep(5000);
+		Actions a = new Actions(getDriver());
+		a.moveToElement(backToTopBtn).perform();
+		allBrandsLink.click();
 		int actualCount = brandsCheckBox.size();
 		Assert.assertNotEquals(actualCount, expectedCount);
 		allBrandsLink.click();

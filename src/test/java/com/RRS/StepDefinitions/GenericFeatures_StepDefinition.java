@@ -174,7 +174,7 @@ public class GenericFeatures_StepDefinition extends baseClass {
 			throws InterruptedException, AWTException {
 		pdpPage.clickkAnyColorvariant_PDP(color);
 		Thread.sleep(5000);
-		pdpPage.clickkAnySizeVariant_PDP(size);
+		pdpPage.clickAnySizeVariant_PDP(size);
 	}
 
 	@When("User click on Add to Cart button and Click Continue Shopping")

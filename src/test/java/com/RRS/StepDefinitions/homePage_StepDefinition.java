@@ -34,7 +34,7 @@ public class homePage_StepDefinition extends baseClass {
 	}
 
 	@Given("Assert Categories banner has appropriate categories name")
-	public void assert_categories_banner_has_appropriate_categories_name() {
+	public void assert_categories_banner_has_appropriate_categories_name() throws AWTException {
 		homePage.assert_categories_banner_has_appropriate_categories_name();
 	}
 
@@ -44,7 +44,7 @@ public class homePage_StepDefinition extends baseClass {
 	}
 
 	@Then("User click on {string} in Running shoes category")
-	public void user_click_on_in_running_shoes_category(String text) throws InterruptedException {
+	public void user_click_on_in_running_shoes_category(String text) throws InterruptedException, AWTException {
 		homePage.user_click_on_in_running_shoes_category(text);
 	}
 
@@ -228,48 +228,55 @@ public class homePage_StepDefinition extends baseClass {
 		List<List<String>> expectedData = table.asLists(String.class);
 		homePage.loginUser(expectedData);
 	}
-	
+
 	@Given("User should able to see three featured categories in home page")
 	public void user_should_able_to_see_three_featured_categories_in_home_page() throws AWTException {
 		homePage.verifyFeaturedCategories();
 	}
-	
+
 	@When("Verify navigation of Clicking on feature in home page")
-	public void verify_navigation_of_clicking_on_feature_in_home_page(DataTable table) throws InterruptedException, AWTException {
+	public void verify_navigation_of_clicking_on_feature_in_home_page(DataTable table)
+			throws InterruptedException, AWTException {
 		List<List<String>> expectedData = table.asLists(String.class);
 		homePage.verifyHokaFeatureNavigation(expectedData);
 	}
-	
+
 	@Given("Verify the Shop by Category section displayed for a VIP user")
 	public void verify_the_shop_by_category_section_displayed_for_a_vip_user(DataTable table)
 			throws AWTException, InterruptedException {
 		List<List<String>> expectedData = table.asLists(String.class);
 		homePage.verifyShopByCateoriesSection(expectedData);
 	}
-	
+
 	@When("Verify the application response when user clicks on any categories")
-	public void verify_the_application_response_when_user_clicks_on_any_categories(DataTable table) throws InterruptedException {
+	public void verify_the_application_response_when_user_clicks_on_any_categories(DataTable table)
+			throws InterruptedException, AWTException {
 		List<List<String>> expectedData = table.asLists(String.class);
 		homePage.verifyShopByCateoriesNavigation(expectedData.get(0).get(0));
 	}
-	
+
 	@Given("Verify the Shop by Brand section displayed for a VIP user")
 	public void verify_the_shop_by_brand_section_displayed_for_a_vip_user() throws AWTException, InterruptedException {
 		homePage.verifyShopByBrandSection();
 	}
+
 	@When("Verify the application response when user clicks on any brand")
-	public void verify_the_application_response_when_user_clicks_on_any_brand(DataTable table) throws InterruptedException {
+	public void verify_the_application_response_when_user_clicks_on_any_brand(DataTable table)
+			throws InterruptedException {
 		List<List<String>> expectedData = table.asLists(String.class);
 		homePage.verifyShopByBrandNavigation(expectedData.get(0).get(0));
 	}
-	
+
 	@Given("Verify the Top Seller section displayed for a VIP user")
-	public void verify_the_top_seller_section_displayed_for_a_vip_user(DataTable table) throws AWTException, InterruptedException {
+	public void verify_the_top_seller_section_displayed_for_a_vip_user(DataTable table)
+			throws AWTException, InterruptedException {
 		List<List<String>> expectedData = table.asLists(String.class);
 		homePage.verifyTopSellerSection(expectedData);
 	}
+
 	@When("Verify the application response when user clicks on any product")
-	public void verify_the_application_response_when_user_clicks_on_any_product(DataTable table) throws InterruptedException {
+	public void verify_the_application_response_when_user_clicks_on_any_product(DataTable table)
+			throws InterruptedException {
 		List<List<String>> expectedData = table.asLists(String.class);
 		homePage.verifyTopSellerNavigation(expectedData.get(0).get(0));
 	}
