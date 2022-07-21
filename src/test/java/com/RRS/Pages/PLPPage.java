@@ -144,6 +144,27 @@ public class PLPPage extends PageObject {
 	@FindBy(css = "button.back-to-top--2iv3K")
 	WebElementFacade backToTopBtn;
 
+	@FindBy(css = "input[name='emailAddress']")
+	WebElementFacade emailCapturePopUp;
+
+	@FindBy(css = "svg[aria-label='close']")
+	WebElementFacade popUpClose;
+
+	@FindBy(css = "h1.tag_h1--hWc2x")
+	WebElementFacade pageTitle;
+
+	@FindBy(css = "div.pr-rating-stars")
+	List<WebElementFacade> ratingStars;
+
+	@FindBy(css = "div.pr-category-snippet__total")
+	List<WebElementFacade> reviews;
+
+	@FindBy(css = "span.price-original--1VaFr")
+	List<WebElementFacade> prices;
+
+	@FindBy(css = "span.price-sales--qsiW6")
+	List<WebElementFacade> salePrice;
+
 	@Step
 	public void clearAllFilters() throws InterruptedException {
 		CommonPage.javaScriptExecutor_Click(Plp_ClearFilter_Lnk);
@@ -427,11 +448,8 @@ public class PLPPage extends PageObject {
 		a.moveToElement(getDriver().findElement(By.cssSelector(dynamicElement))).click().build().perform();
 		Thread.sleep(5000);
 		Ensure.thatTheCurrentPage().currentUrl().contains(menu);
-		a.moveToElement(logoBtn).perform();
 		CommonPage.pageZoomOut();
-		a.moveToElement(logoBtn).perform();
 		CommonPage.pageZoomOut();
-		a.moveToElement(logoBtn).perform();
 		CommonPage.pageZoomOut();
 	}
 
@@ -453,15 +471,49 @@ public class PLPPage extends PageObject {
 	@Step
 	public void verifyLinksInBrandSection(int expectedCount) throws InterruptedException, AWTException {
 		allBrandsLink.shouldBeVisible().isClickable();
-		CommonPage.pageScrollDown();
-		Thread.sleep(5000);
-		Actions a = new Actions(getDriver());
-		a.moveToElement(backToTopBtn).perform();
+		element(emailCapturePopUp).waitUntilVisible();
+		popUpClose.click();
 		allBrandsLink.click();
 		int actualCount = brandsCheckBox.size();
 		Assert.assertNotEquals(actualCount, expectedCount);
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrolltwice();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(pageTitle).perform();
+		CommonPage.pageScrollDown();
+		Thread.sleep(3000);
 		allBrandsLink.click();
 		Thread.sleep(5000);
 		Assert.assertEquals(brandsCheckBox.size(), expectedCount);
+	}
+
+	@Step
+	public void verifyReviewCountWithStarRating() throws InterruptedException {
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		Thread.sleep(5000);
+		Assert.assertTrue(ratingStars.size() == 48);
+		Assert.assertTrue(reviews.size() == 48);
+		Assert.assertTrue(reviews.get(1).getText().matches(".*[0-9].*"));
+	}
+
+	@Step
+	public void verifyPriceFieldOfProducts(List<List<String>> expectedData) throws InterruptedException {
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		Thread.sleep(5000);
+		Assert.assertTrue(prices.size() <= 48);
+		for (int i = 0; i < prices.size(); i++) {
+			Assert.assertTrue(prices.get(i).getText().contains(expectedData.get(0).get(1)));
+		}
+		if (salePrice.size() > 0) {
+			for (int i = 0; i < salePrice.size(); i++) {
+				Assert.assertTrue(salePrice.get(i).getText().contains(expectedData.get(0).get(0)));
+				Assert.assertTrue(salePrice.get(i).getText().contains(expectedData.get(0).get(1)));
+			}
+		}
 	}
 }

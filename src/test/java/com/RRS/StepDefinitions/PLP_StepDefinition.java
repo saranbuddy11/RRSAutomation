@@ -184,4 +184,15 @@ public class PLP_StepDefinition extends baseClass {
 			throws InterruptedException, AWTException {
 		PLPpage.verifyLinksInBrandSection(count);
 	}
+
+	@Then("User should be able to see the Reviews count along with the star rating")
+	public void user_should_be_able_to_see_the_reviews_count_along_with_the_star_rating() throws InterruptedException {
+		PLPpage.verifyReviewCountWithStarRating();
+	}
+
+	@Then("User should be able to see the Prices for the product")
+	public void user_should_be_able_to_see_the_prices_for_the_product(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PLPpage.verifyPriceFieldOfProducts(expectedData);
+	}
 }
