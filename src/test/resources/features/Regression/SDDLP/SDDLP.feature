@@ -27,3 +27,31 @@ Feature: SDDLP Regression Scripts
       | shoe | value |
     Then Verify Navigation of Page to PDP Page
       | product | mens |
+
+  @Regression_RK_005
+  Scenario: Verify users direction to No search results page
+    Given User Lauch RRS application and navigate to home page
+    Then Verify No Search Results page
+      | pen | value | search |
+
+  @Regression_RK_006
+  Scenario: Verify Bread Crumb in the Search listing page
+    Given User Lauch RRS application and navigate to home page
+    Then Verify Search Results page
+      | shoe | value | search |
+    And Verify Navigation Back to Home Page
+      | WELCOME TO YOUR PERFECT FIT |
+
+  @Regression_RK_007
+  Scenario: Verify the search results page
+    Given User Lauch RRS application and navigate to home page
+    Then Verify Search Results page and its results
+      | shoe | value | search |
+
+  @Regression_RK_008
+  Scenario: Verify filters applied in Search results page
+    Given User Lauch RRS application and navigate to home page
+    Then Verify Search Results page
+      | shoe | value | search |
+    And Verify applied filters result
+      | Walking |

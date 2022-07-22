@@ -44,4 +44,34 @@ public class SDDLP_StepDefinition extends baseClass {
 		List<List<String>> expectedData = table.asLists(String.class);
 		sddlpPage.verifySearchKeywordNavigation(expectedData);
 	}
+
+	@Then("Verify No Search Results page")
+	public void verify_no_search_results_page(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		sddlpPage.verifyNoSearchResultsPage(expectedData);
+	}
+
+	@Then("Verify Search Results page")
+	public void verify_search_results_page(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		sddlpPage.verifySearchResultsPage(expectedData);
+	}
+
+	@Then("Verify Navigation Back to Home Page")
+	public void verify_navigation_back_to_home_page(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		sddlpPage.verifyNavigationBackToHome(expectedData);
+	}
+
+	@Then("Verify Search Results page and its results")
+	public void verify_search_results_page_and_its_results(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		sddlpPage.verifySearchResultsPageResults(expectedData);
+	}
+
+	@Then("Verify applied filters result")
+	public void verify_applied_filters_result(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		sddlpPage.verifyAppliedFilterResults(expectedData);
+	}
 }
