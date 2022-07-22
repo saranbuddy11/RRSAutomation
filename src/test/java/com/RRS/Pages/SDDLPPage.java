@@ -1,5 +1,6 @@
 package com.RRS.Pages;
 
+import java.awt.AWTException;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -59,7 +60,7 @@ public class SDDLPPage extends PageObject {
 	public void clickCheckBox(String options) throws InterruptedException {
 		String dynamicElement = "input[value*='" + options + "']";
 		getDriver().findElement(By.cssSelector(dynamicElement)).click();
-		Thread.sleep(5000);
+		Thread.sleep(8000);
 	}
 
 	@Step
@@ -169,6 +170,15 @@ public class SDDLPPage extends PageObject {
 	}
 
 	@Step
+	public void verifySearchResultsPageForBrand(List<List<String>> expectedData) throws InterruptedException {
+		searchBar.sendKeys(expectedData.get(0).get(0));
+		String text = searchBar.getAttribute(expectedData.get(0).get(1));
+		Assert.assertEquals(text, expectedData.get(0).get(0));
+		manifyigIcon.click();
+		Thread.sleep(5000);
+	}
+
+	@Step
 	public void verifyNavigationBackToHome(List<List<String>> expectedData) throws InterruptedException {
 		breadCrumbContent.shouldBeCurrentlyVisible().isClickable();
 		breadCrumbContent.click();
@@ -186,7 +196,25 @@ public class SDDLPPage extends PageObject {
 	}
 
 	@Step
-	public void verifyAppliedFilterResults(List<List<String>> expectedData) {
+	public void verifyAppliedFilterResults(List<List<String>> expectedData) throws InterruptedException, AWTException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		Thread.sleep(5000);
+		CommonPage.actions_DownArrow();
+		clickCheckBox(expectedData.get(0).get(0));
+		plpPage.clearFilterLink.isPresent();
+		plpPage.hideFilterLink.isPresent();
+		plpPage.filterCloseLink.isPresent();
+		String title = plpPage.productListingTitle.getText();
+		Assert.assertTrue(title.contains(expectedData.get(0).get(0)));
+	}
 
+	@Step
+	public void verifyNavigationOfBrandPage(List<List<String>> expectedData) {
+		String title = productTitle.getText();
+		Assert.assertEquals(title, expectedData.get(0).get(0));
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0).toLowerCase());
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(1));
 	}
 }

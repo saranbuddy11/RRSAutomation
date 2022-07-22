@@ -1,5 +1,6 @@
 package com.RRS.StepDefinitions;
 
+import java.awt.AWTException;
 import java.util.List;
 
 import com.RRS.Pages.SDDLPPage;
@@ -57,6 +58,12 @@ public class SDDLP_StepDefinition extends baseClass {
 		sddlpPage.verifySearchResultsPage(expectedData);
 	}
 
+	@Then("Verify Search Results for brand page")
+	public void verify_search_results_for_brand_page(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		sddlpPage.verifySearchResultsPageForBrand(expectedData);
+	}
+
 	@Then("Verify Navigation Back to Home Page")
 	public void verify_navigation_back_to_home_page(DataTable table) throws InterruptedException {
 		List<List<String>> expectedData = table.asLists(String.class);
@@ -70,8 +77,14 @@ public class SDDLP_StepDefinition extends baseClass {
 	}
 
 	@Then("Verify applied filters result")
-	public void verify_applied_filters_result(DataTable table) throws InterruptedException {
+	public void verify_applied_filters_result(DataTable table) throws InterruptedException, AWTException {
 		List<List<String>> expectedData = table.asLists(String.class);
 		sddlpPage.verifyAppliedFilterResults(expectedData);
+	}
+
+	@Then("Verify navigation of brand page")
+	public void verify_navigation_of_brad_page(DataTable table) throws AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		sddlpPage.verifyNavigationOfBrandPage(expectedData);
 	}
 }

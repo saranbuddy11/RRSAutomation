@@ -139,11 +139,14 @@ public class homePage extends PageObject {
 	@FindBy(xpath = "//a[contains(@aria-label,'HOKA Bondi 8')]")
 	List<WebElementFacade> BrooksGlycerin_Lnk;
 
-	@FindBy(xpath = "//div[@id='card-two-link-root']/div")
+	@FindBy(css = "div.img-wrapper>img")
 	List<WebElementFacade> featuredCategories_banner;
 
 	@FindBy(css = "h1.tag_h1--hWc2x")
 	WebElementFacade productListingTitle;
+
+	@FindBy(css = "h1.tag_h1--hWc2x")
+	List<WebElementFacade> contentTitle;
 
 	@FindBy(xpath = "//h1[contains(@class,'brand-content-title')]")
 	WebElementFacade brandContentTitle;
@@ -401,13 +404,22 @@ public class homePage extends PageObject {
 	}
 
 	@Step
-	public void user_assert_page_is_displayed(String text) {
+	public void user_assert_page_is_displayed(String text) throws InterruptedException {
+		Thread.sleep(5000);
 		Assert.assertTrue(productListingTitle.getText().toLowerCase().contains(text.toLowerCase()));
 	}
 
 	@Step
-	public void user_assert_page_is_displayedforShopByBrand(String text) {
-		Assert.assertTrue(brandContentTitle.getText().toLowerCase().contains(text.toLowerCase()));
+	public void user_assert_page_is_displayed_for_women(List<List<String>> expectedData) throws InterruptedException {
+		Thread.sleep(5000);
+		Assert.assertTrue(contentTitle.get(0).getText().toLowerCase().contains(expectedData.get(0).get(0)));
+		Assert.assertTrue(contentTitle.get(0).getText().toLowerCase().contains(expectedData.get(0).get(1)));
+	}
+
+	@Step
+	public void user_assert_page_is_displayedforShopByBrand(String text) throws InterruptedException {
+		Thread.sleep(5000);
+		Assert.assertTrue(productListingTitle.getText().toLowerCase().contains(text.toLowerCase()));
 	}
 
 	@Step
@@ -925,7 +937,7 @@ public class homePage extends PageObject {
 			typeInto(Enter_EmailAddress, expectedData.get(0).get(0));
 			typeInto(Enter_Password, expectedData.get(0).get(1));
 			Login_Btn.click();
-			Thread.sleep(5000);
+			Thread.sleep(10000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -935,6 +947,7 @@ public class homePage extends PageObject {
 	public void verifyFeaturedCategories() throws AWTException {
 		CommonPage.pageZoomOut();
 		CommonPage.pageZoomOut();
+		CommonPage.pageScrolltwice();
 		Feature_Banner_Hoka.shouldBeCurrentlyVisible().isClickable();
 		Feature_Banner_Nike.shouldBeCurrentlyVisible().isClickable();
 		Feature_Banner_Adidas.shouldBeCurrentlyVisible().isClickable();
@@ -942,10 +955,9 @@ public class homePage extends PageObject {
 
 	@Step
 	public void verifyHokaFeatureNavigation(List<List<String>> expectedData) throws InterruptedException, AWTException {
-		CommonPage.pageScrolltwice();
 		Thread.sleep(5000);
 		Feature_Headers.get(0).click();
-		Thread.sleep(8000);
+		Thread.sleep(5000);
 		pageTitle.isDisplayed();
 		String title = pageTitle.getText();
 		System.out.println(title);

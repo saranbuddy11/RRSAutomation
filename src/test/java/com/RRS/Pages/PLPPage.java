@@ -51,13 +51,13 @@ public class PLPPage extends PageObject {
 	@FindBy(css = "svg.icon-link--XANc9>g")
 	WebElementFacade Plp_SearchIcon_SVG;
 
-	@FindBy(xpath = "//span[normalize-space()='Search Results']")
+	@FindBy(css = "span.breadcrumb-line---rKHZ+span")
 	WebElementFacade Plp_SearchResults_BC;
 
-	@FindBy(xpath = "//h1[contains(text(),'RESULTS FOR')]")
+	@FindBy(css = "h1.tag_h1--hWc2x")
 	WebElementFacade Plp_SearchResultsCount_Lbl;
 
-	@FindBy(xpath = "//ul[contains(@aria-label,'Sort by')]")
+	@FindBy(css = "ul[aria-label='Sort by']")
 	WebElementFacade Plp_SortBy_Sel;
 
 	@FindBy(xpath = "//a[contains(@href,'/product/')]")

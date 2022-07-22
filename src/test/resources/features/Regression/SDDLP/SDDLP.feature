@@ -55,3 +55,11 @@ Feature: SDDLP Regression Scripts
       | shoe | value | search |
     And Verify applied filters result
       | Walking |
+
+  @Regression_RK_009
+  Scenario: Verfiy search with brand name and product name
+    Given User Lauch RRS application and navigate to home page
+    Then Verify Search Results for brand page
+      | korsa | value | search |
+    And Verify navigation of brand page
+      | KORSA | brands |

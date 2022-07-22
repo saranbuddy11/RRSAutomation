@@ -68,7 +68,7 @@ public class GenericFeatures extends PageObject {
 	@FindBy(xpath = "//h1[contains(@class,'steps-nav-title--3eb_y')]")
 	WebElementFacade fit_finder_page;
 
-	@FindBy(xpath = "//button[contains(@class,'back-to-top--2iv3K')]")
+	@FindBy(css = "button.back-to-top--2iv3K")
 	WebElementFacade back_to_top;
 
 	@FindBy(css = ".section-cart-qty--2wAHy>span")
@@ -99,7 +99,6 @@ public class GenericFeatures extends PageObject {
 
 	@Step
 	public void hover_vip_program() throws InterruptedException {
-		Actions a = new Actions(getDriver());
 		mouseHover(vip_program);
 	}
 
