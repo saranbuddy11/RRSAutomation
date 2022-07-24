@@ -25,6 +25,9 @@ public class BLPPage extends PageObject {
 	@Steps
 	SDDLPPage sddlpPage;
 
+	@Steps
+	PLPPage plpPage;
+
 	@FindBy(css = "h1+h2.tag_h2--2y8Ae")
 	WebElementFacade subTitle;
 
@@ -60,6 +63,15 @@ public class BLPPage extends PageObject {
 
 	@FindBy(css = "div.react-player__preview")
 	List<WebElementFacade> brand_video;
+
+	@FindBy(css = "div.column-gutter-15--evqE1>div.col-lg-2--3FNzb")
+	List<WebElementFacade> categories;
+
+	@FindBy(css = "h1.tag_h1--hWc2x")
+	List<WebElementFacade> productTitle;
+
+	@FindBy(css = "div.product-card--1gUX4")
+	List<WebElementFacade> productCards;
 
 	@Step
 	public void validateBrandsSubCategories(List<List<String>> subCat) throws InterruptedException, AWTException {
@@ -148,6 +160,8 @@ public class BLPPage extends PageObject {
 	@Step
 	public void navigateToBrandPage(String brand) throws InterruptedException {
 		Thread.sleep(5000);
+		Actions a = new Actions(getDriver());
+		a.moveToElement(rewardsText).perform();
 		String dynamicElement = "img[alt='" + brand + " Brand']";
 		getDriver().findElement(By.cssSelector(dynamicElement)).click();
 		Thread.sleep(10000);
@@ -156,7 +170,8 @@ public class BLPPage extends PageObject {
 	}
 
 	@Step
-	public void verifyNavigationOfLargeBrand(List<List<String>> expectedData) throws InterruptedException {
+	public void verifyNavigationOfLargeBrand(List<List<String>> expectedData)
+			throws InterruptedException, AWTException {
 		navigateToBrandPage(expectedData.get(0).get(0));
 		sddlpPage.productTitle.shouldBeCurrentlyVisible();
 		String title = sddlpPage.productTitle.getText().toLowerCase();
@@ -166,7 +181,7 @@ public class BLPPage extends PageObject {
 		Assert.assertTrue(mainCategories.get(2).getText().contains(expectedData.get(0).get(3)));
 		Assert.assertTrue(mainCategories.get(3).getText().contains(expectedData.get(0).get(3)));
 		for (int i = 0; i < subCategories.size(); i++) {
-			subCategories.get(i).shouldBeCurrentlyVisible();
+			subCategories.get(i).isPresent();
 		}
 		for (int i = 0; i < features.size(); i++) {
 			features.get(i).isPresent();
@@ -175,15 +190,64 @@ public class BLPPage extends PageObject {
 			rating.get(i).isPresent();
 		}
 		review.isPresent();
+		for (int i = 0; i < brand_video.size(); i++) {
+			brand_video.get(i).isPresent();
+		}
+		Actions a = new Actions(getDriver());
+		a.moveToElement(homePage.navigationMenus.get(4)).click().build().perform();
+		Thread.sleep(5000);
 	}
 
 	@Step
-	public void verifyNavigationOfMediumBrand(List<List<String>> brand) {
-
+	public void verifyNavigationOfMediumBrand(List<List<String>> expectedData) throws InterruptedException {
+		navigateToBrandPage(expectedData.get(0).get(0));
+		productTitle.get(0).shouldBeCurrentlyVisible();
+		for (int i = 0; i < productTitle.size(); i++) {
+			String title = productTitle.get(i).getText().toLowerCase();
+			Assert.assertTrue(title.contains(expectedData.get(0).get(0).toLowerCase()));
+		}
+		for (int i = 0; i < brandsTab.size(); i++) {
+			brandsTab.get(i).isPresent();
+		}
+		for (int i = 0; i < categories.size(); i++) {
+			categories.get(i).isPresent();
+		}
+		Assert.assertTrue(productCards.size() == 48);
+		Actions a = new Actions(getDriver());
+		a.moveToElement(homePage.navigationMenus.get(4)).click().build().perform();
+		Thread.sleep(5000);
 	}
 
 	@Step
-	public void verifyNavigationOfSmallBrand(List<List<String>> brand) {
+	public void verifyNavigationOfSmallBrand(List<List<String>> expectedData)
+			throws InterruptedException, AWTException {
+		commonPage.pageScrollDown();
+		Thread.sleep(5000);
+		navigateToBrandPage(expectedData.get(0).get(0));
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		String title = sddlpPage.productTitle.getText().toLowerCase();
+		Assert.assertTrue(title.contains(expectedData.get(0).get(0).toLowerCase()));
+		plpPage.productListFilter.isPresent();
+		Assert.assertTrue(productCards.size() == 16);
+		Actions a = new Actions(getDriver());
+		a.moveToElement(homePage.navigationMenus.get(4)).click().build().perform();
+		Thread.sleep(5000);
+	}
 
+	@Step
+	public void verifyNavigationOfCategoryPage(List<List<String>> category) throws AWTException, InterruptedException {
+		commonPage.pageScrollDown();
+		subCategories.get(0).click();
+		Thread.sleep(10000);
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		String title = sddlpPage.productTitle.getText().toLowerCase();
+		Assert.assertTrue(title.contains(category.get(0).get(0).toLowerCase()));
+		Assert.assertTrue(title.contains(category.get(0).get(1).toLowerCase()));
+		Ensure.thatTheCurrentPage().currentUrl().contains(category.get(0).get(0).toLowerCase());
+		Ensure.thatTheCurrentPage().currentUrl().contains(category.get(0).get(1).toLowerCase());
+		plpPage.breadCrumb.isVisible();
+		String subCat = plpPage.breadCrumb.getText().toLowerCase();
+		Assert.assertTrue(subCat.contains(category.get(0).get(0).toLowerCase()));
+		Assert.assertTrue(subCat.contains(category.get(0).get(1).toLowerCase()));
 	}
 }

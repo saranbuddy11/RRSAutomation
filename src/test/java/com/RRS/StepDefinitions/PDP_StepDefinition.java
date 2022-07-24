@@ -9,12 +9,14 @@ import com.RRS.Pages.PDPPage;
 import com.RRS.Pages.CommonPage;
 import com.RRS.base.baseClass;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.*;
 import net.thucydides.core.annotations.Steps;
 import static org.assertj.core.api.Assertions.*;
 
 import java.awt.AWTException;
 import java.io.IOException;
+import java.util.List;
 
 public class PDP_StepDefinition extends baseClass {
 	public static Logger log = LogManager.getLogger(PDP_StepDefinition.class);
@@ -24,6 +26,8 @@ public class PDP_StepDefinition extends baseClass {
 
 	public String VIP_Str = null;
 	public float VIP_Float;
+
+	public String productName = null;
 
 	@Steps
 	PLPPage PLPpage;
@@ -102,7 +106,6 @@ public class PDP_StepDefinition extends baseClass {
 				log.info("Item Numner is displayed");
 			}
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -258,5 +261,33 @@ public class PDP_StepDefinition extends baseClass {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Then("Verify User Navigation to PDP page on clicking of Product")
+	public void verify_user_navigation_to_pdp_page_on_clicking_of_product() throws InterruptedException, AWTException {
+		PDPPage.verifyUserNavigationToPDP_Page();
+	}
+
+	@Then("Verify User Navigation to PDP page")
+	public void verify_user_navigation_to_pdp_page() throws InterruptedException, AWTException {
+		productName = PDPPage.verifyUserNavigation();
+	}
+
+	@Then("Verify Bread Crumb and its navigation")
+	public void verify_bread_crumb_and_its_navigation() throws InterruptedException {
+		PDPPage.verifyBreadCrumbAndItsNavigation(productName);
+		productName = null;
+	}
+
+	@Then("Verify Product name is Displayed or not")
+	public void verify_product_name_is_displayed_or_not() throws InterruptedException {
+		PDPPage.verifyProductName(productName);
+		productName = null;
+	}
+
+	@Then("Verify color SKUs are sorted alphabetically or not")
+	public void verify_color_skus_are_sorted_alphabetically_or_not(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifyColorSkus(expectedData);
 	}
 }

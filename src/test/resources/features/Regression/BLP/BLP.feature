@@ -30,6 +30,15 @@ Feature: BLP Regression Scripts
     And Verify clicking on Large Brand
       | Brooks | Women's | Men's | Apparel |
     And Verify clicking on Medium Brand
-      | Merrell | 
+      | Merrell |
     And Verify clicking on Small Brand
       | GU |
+
+  @Regression_RK_005
+  Scenario: Verify user's direction to Category products from Brand landing page
+    Given User Lauch RRS application and navigate to home page
+    Then Verify navigation of Brands
+      | brands |
+    And Validate Navigation of Particular Brand Page "Adidas"
+    And Validate Navigation of Particular Gender Category Page
+      | Adidas | Women's |

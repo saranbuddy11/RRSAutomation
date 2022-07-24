@@ -3,6 +3,9 @@ package com.RRS.Pages;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.awt.AWTException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,10 +16,21 @@ import org.openqa.selenium.support.FindBy;
 
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.serenitybdd.screenplay.ensure.Ensure;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.Steps;
 
 public class PDPPage extends PageObject {
 	CommonPage CommonPage = new CommonPage();
+
+	@Steps
+	BLPPage blpPage;
+
+	@Steps
+	SDDLPPage sddlpPage;
+
+	@Steps
+	PLPPage plpPage;
 
 	public String ProductDescription = null;
 
@@ -96,6 +110,18 @@ public class PDPPage extends PageObject {
 
 	@FindBy(css = "h1.subscription-form-head--3B4u2")
 	WebElementFacade subscriptionFormHead;
+
+	@FindBy(css = "h2.product-card-name--9ffy7")
+	List<WebElementFacade> productName;
+
+	@FindBy(css = "button.product-wrapper-info-add-to-cart-btn--3RcjN")
+	WebElementFacade addToCartBtn;
+
+	@FindBy(css = "div.breadcrumb-theme-dark--37Ydz>a[href='/']")
+	WebElementFacade breadCrumb_Home;
+
+	@FindBy(css = "span.variant-color--2KSXc>img")
+	List<WebElementFacade> colorSKUs;
 
 	@Step
 	public void click_Add2Cart_PDP() throws InterruptedException, AWTException {
@@ -327,5 +353,68 @@ public class PDPPage extends PageObject {
 		String text = subscriptionFormHead.getText();
 		System.out.println(text);
 		Assert.assertTrue(text.contains(expectedData));
+	}
+
+	@Step
+	public void verifyUserNavigationToPDP_Page() throws InterruptedException, AWTException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		String name = productName.get(0).getText().toLowerCase();
+		blpPage.productCards.get(0).click();
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(name);
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		String title = sddlpPage.productTitle.getText().toLowerCase();
+		Assert.assertTrue(title.contains(name.toLowerCase()));
+		plpPage.breadCrumb.shouldBeCurrentlyVisible();
+		String bread_crumb = plpPage.breadCrumb.getText().toLowerCase();
+		Assert.assertTrue(bread_crumb.contains(name));
+		CommonPage.pageScrollDown();
+		addToCartBtn.shouldBeCurrentlyVisible();
+	}
+
+	@Step
+	public String verifyUserNavigation() throws InterruptedException, AWTException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		String name = productName.get(0).getText().toLowerCase();
+		blpPage.productCards.get(0).click();
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(name);
+		return name;
+	}
+
+	@Step
+	public void verifyBreadCrumbAndItsNavigation(String productName) throws InterruptedException {
+		plpPage.breadCrumb.shouldBeCurrentlyVisible();
+		String bread_crumb = plpPage.breadCrumb.getText().toLowerCase();
+		Assert.assertTrue(bread_crumb.contains(productName));
+		breadCrumb_Home.click();
+		Thread.sleep(5000);
+		sddlpPage.homePageHeader.shouldBeCurrentlyVisible();
+	}
+
+	@Step
+	public void verifyProductName(String productName) {
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		String title = sddlpPage.productTitle.getText().toLowerCase();
+		Assert.assertTrue(title.contains(productName.toLowerCase()));
+	}
+
+	@Step
+	public void verifyColorSkus(List<List<String>> expectedData) {
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		CommonPage.actions_PageDown();
+		List<String> color = new ArrayList<String>();
+		for (int i = 0; i < colorSKUs.size(); i++) {
+			colorSKUs.get(i).isDisplayed();
+			String value = colorSKUs.get(i).getAttribute(expectedData.get(0).get(0).toLowerCase());
+			value = value.substring(30);
+			color.add(value);
+		}
+		List<String> actualColor = new ArrayList<String>();
+		actualColor.addAll(color);
+		Collections.sort(actualColor);
+		Assert.assertEquals(actualColor, color);
 	}
 }

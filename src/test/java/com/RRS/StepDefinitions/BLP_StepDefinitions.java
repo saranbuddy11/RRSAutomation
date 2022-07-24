@@ -46,20 +46,27 @@ public class BLP_StepDefinitions extends baseClass {
 	}
 
 	@Then("Verify clicking on Large Brand")
-	public void verify_clicking_on_large_brand(DataTable table) throws InterruptedException {
+	public void verify_clicking_on_large_brand(DataTable table) throws InterruptedException, AWTException {
 		List<List<String>> expectedData = table.asLists(String.class);
 		blpPage.verifyNavigationOfLargeBrand(expectedData);
 	}
 
 	@Then("Verify clicking on Medium Brand")
-	public void verify_clicking_on_medium_brand(DataTable table) {
+	public void verify_clicking_on_medium_brand(DataTable table) throws InterruptedException {
 		List<List<String>> brand = table.asLists(String.class);
 		blpPage.verifyNavigationOfMediumBrand(brand);
 	}
 
 	@Then("Verify clicking on Small Brand")
-	public void verify_clicking_on_small_brand(DataTable table) {
+	public void verify_clicking_on_small_brand(DataTable table) throws InterruptedException, AWTException {
 		List<List<String>> brand = table.asLists(String.class);
 		blpPage.verifyNavigationOfSmallBrand(brand);
+	}
+
+	@Then("Validate Navigation of Particular Gender Category Page")
+	public void validate_navigation_of_particular_gender_category_page(DataTable table)
+			throws AWTException, InterruptedException {
+		List<List<String>> category = table.asLists(String.class);
+		blpPage.verifyNavigationOfCategoryPage(category);
 	}
 }
