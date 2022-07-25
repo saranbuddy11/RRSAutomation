@@ -417,4 +417,21 @@ public class PDPPage extends PageObject {
 		Collections.sort(actualColor);
 		Assert.assertEquals(actualColor, color);
 	}
+	
+	@Step
+	public void verifySizeSkus(List<List<String>> expectedData) {
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		CommonPage.actions_PageDown();
+		List<String> color = new ArrayList<String>();
+		for (int i = 0; i < colorSKUs.size(); i++) {
+			colorSKUs.get(i).isDisplayed();
+			String value = colorSKUs.get(i).getAttribute(expectedData.get(0).get(0).toLowerCase());
+			value = value.substring(30);
+			color.add(value);
+		}
+		List<String> actualColor = new ArrayList<String>();
+		actualColor.addAll(color);
+		Collections.sort(actualColor);
+		Assert.assertEquals(actualColor, color);
+	}
 }

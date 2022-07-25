@@ -33,3 +33,12 @@ Feature: PDP Regression Scripts
     And Verify User Navigation to PDP page
     And Verify color SKUs are sorted alphabetically or not
     | alt |
+    
+ @Regression_RK_005
+  Scenario: Verify whether Size SKUs are orderly sorted  or not
+    Given User Lauch RRS application and navigate to home page
+    And User Search for a product with some keywords "WOMEN ASCIS" and click on search button
+    Then Assert user is direceted to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    And Verify size SKUs are sorted orderly or not
+    | alt |

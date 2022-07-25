@@ -290,4 +290,10 @@ public class PDP_StepDefinition extends baseClass {
 		List<List<String>> expectedData = table.asLists(String.class);
 		PDPPage.verifyColorSkus(expectedData);
 	}
+
+	@Then("Verify size SKUs are sorted orderly or not")
+	public void verify_size_skus_are_sorted_orderly_or_not(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifySizeSkus(expectedData);
+	}
 }
