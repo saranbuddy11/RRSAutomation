@@ -41,4 +41,4 @@ Feature: PDP Regression Scripts
     Then Assert user is direceted to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     And Verify size SKUs are sorted orderly or not
-    | alt |
+    | aria-label |

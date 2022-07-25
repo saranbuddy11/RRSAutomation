@@ -123,6 +123,9 @@ public class PDPPage extends PageObject {
 	@FindBy(css = "span.variant-color--2KSXc>img")
 	List<WebElementFacade> colorSKUs;
 
+	@FindBy(css = "div.variant-button--1ydkx>label")
+	List<WebElementFacade> sizeSKUs;
+
 	@Step
 	public void click_Add2Cart_PDP() throws InterruptedException, AWTException {
 //		CommonPage.javaScriptExecutor_Scroll(PDP_Add2Cart_Btn);
@@ -417,21 +420,21 @@ public class PDPPage extends PageObject {
 		Collections.sort(actualColor);
 		Assert.assertEquals(actualColor, color);
 	}
-	
+
 	@Step
 	public void verifySizeSkus(List<List<String>> expectedData) {
 		sddlpPage.productTitle.shouldBeCurrentlyVisible();
 		CommonPage.actions_PageDown();
-		List<String> color = new ArrayList<String>();
-		for (int i = 0; i < colorSKUs.size(); i++) {
-			colorSKUs.get(i).isDisplayed();
-			String value = colorSKUs.get(i).getAttribute(expectedData.get(0).get(0).toLowerCase());
-			value = value.substring(30);
-			color.add(value);
+		List<Integer> size = new ArrayList<Integer>();
+		for (int i = 0; i < sizeSKUs.size()-2; i++) {
+			sizeSKUs.get(i).isDisplayed();
+			String value = sizeSKUs.get(i).getAttribute(expectedData.get(0).get(0).toLowerCase());
+			size.add(Integer.parseInt(value));
 		}
-		List<String> actualColor = new ArrayList<String>();
-		actualColor.addAll(color);
-		Collections.sort(actualColor);
-		Assert.assertEquals(actualColor, color);
+		List<Integer> actualSize = new ArrayList<Integer>();
+		actualSize.addAll(size);
+		Collections.sort(actualSize);
+		System.out.println(size + "-" + actualSize);
+		Assert.assertEquals(actualSize, size);
 	}
 }
