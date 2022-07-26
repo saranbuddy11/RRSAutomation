@@ -295,19 +295,19 @@ public class PDP_StepDefinition extends baseClass {
 	}
 
 	@Then("Verify Product name is Displayed or not")
-	public void verify_product_name_is_displayed_or_not() throws InterruptedException {
+	public void verify_product_name_is_displayed_or_not() {
 		PDPPage.verifyProductName(actual);
 		actual = null;
 	}
 
 	@Then("Verify color SKUs are sorted alphabetically or not")
-	public void verify_color_skus_are_sorted_alphabetically_or_not(DataTable table) throws InterruptedException {
+	public void verify_color_skus_are_sorted_alphabetically_or_not(DataTable table) {
 		List<List<String>> expectedData = table.asLists(String.class);
 		PDPPage.verifyColorSkus(expectedData);
 	}
 
 	@Then("Verify size SKUs are sorted orderly or not")
-	public void verify_size_skus_are_sorted_orderly_or_not(DataTable table) throws InterruptedException {
+	public void verify_size_skus_are_sorted_orderly_or_not(DataTable table) {
 		List<List<String>> expectedData = table.asLists(String.class);
 		PDPPage.verifySizeSkus(expectedData);
 	}
@@ -333,8 +333,25 @@ public class PDP_StepDefinition extends baseClass {
 	}
 
 	@Then("Verify the product and its prices")
-	public void verify_the_product_and_its_prices(DataTable table) throws InterruptedException {
+	public void verify_the_product_and_its_prices(DataTable table) {
 		List<List<String>> expectedData = table.asLists(String.class);
 		PDPPage.verifyProductPrices(expectedData);
+	}
+
+	@Then("Verify SKUs of the product")
+	public void verify_skus_of_the_product(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifySkusOfProduct(expectedData);
+	}
+
+	@Then("Verify thumbnail images and videos")
+	public void verify_thumbnail_images_and_videos() throws InterruptedException {
+		PDPPage.verifyThumbnails(actual);
+	}
+
+	@Then("Verify Product image")
+	public void verify_product_image(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifyProductImage(expectedData);
 	}
 }
