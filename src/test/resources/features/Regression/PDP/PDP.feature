@@ -32,13 +32,42 @@ Feature: PDP Regression Scripts
     Then Assert user is direceted to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     And Verify color SKUs are sorted alphabetically or not
-    | alt |
-    
- @Regression_RK_005
+      | alt |
+
+  @Regression_RK_005
   Scenario: Verify whether Size SKUs are orderly sorted  or not
     Given User Lauch RRS application and navigate to home page
     And User Search for a product with some keywords "WOMEN ASCIS" and click on search button
     Then Assert user is direceted to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     And Verify size SKUs are sorted orderly or not
-    | aria-label |
+      | aria-label |
+
+  @Regression_RK_006
+  Scenario: Verify Review star and review links in PDP
+    Given User Lauch RRS application and navigate to home page
+    And User Search for a product with some keywords "WOMEN ASCIS" and click on search button
+    Then Assert user is direceted to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page of selecting particular item
+      | Women's ASICS GEL-Kayano 28 |
+    And Verify number of reviews and star ratings
+      | reviews |
+    And Verify navigation when clicks on Reviews
+      | Review Snapshot |
+
+  @Regression_RK_007
+  Scenario: Verify Review counts displayed in the PDP are matching from PLP or not
+    Given User Lauch RRS application and navigate to home page
+    And User Search for a product with some keywords "WOMEN ASCIS" and click on search button
+    Then Assert user is direceted to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page with review count
+      | Women's ASICS GEL-Kayano 28 |
+    And Verify number of reviews count
+      | reviews |
+
+  @Regression_RK_008
+  Scenario: Verify Outlet Products in PDP
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "41654" and click on search button
+    Then Verify the product and its prices
+      | Women's KORSA Performer Ventilated Crop Bra | SALE | $ | When you join our VIP Family |

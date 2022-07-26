@@ -114,6 +114,9 @@ public class PDPPage extends PageObject {
 	@FindBy(css = "h2.product-card-name--9ffy7")
 	List<WebElementFacade> productName;
 
+	@FindBy(css = "div.pr-category-snippet__total")
+	List<WebElementFacade> review;
+
 	@FindBy(css = "button.product-wrapper-info-add-to-cart-btn--3RcjN")
 	WebElementFacade addToCartBtn;
 
@@ -125,6 +128,33 @@ public class PDPPage extends PageObject {
 
 	@FindBy(css = "div.variant-button--1ydkx>label")
 	List<WebElementFacade> sizeSKUs;
+
+	@FindBy(css = "div.rating-star-img--1jnzS")
+	WebElementFacade starRating;
+
+	@FindBy(css = "div.rating-reviews-big--27Pa->span")
+	List<WebElementFacade> reviews;
+
+	@FindBy(css = "h1.pr-headline")
+	WebElementFacade reviewHeadLine;
+
+	@FindBy(css = "h1.pr-review-snapshot-snippets-headline")
+	WebElementFacade reviewSnippets;
+
+	@FindBy(css = "span.pr-snippet-review-count")
+	WebElementFacade reviewCount;
+
+	@FindBy(css = "svg.icon--3lrU->image")
+	WebElementFacade logoIcon;
+
+	@FindBy(css = "div.price-striked--3WXpF")
+	WebElementFacade msrp;
+
+	@FindBy(css = "div.pdp-sale--ImILa")
+	WebElementFacade outletPrice;
+
+	@FindBy(css = "div.price-vip--2xw2A")
+	WebElementFacade vipPrice;
 
 	@Step
 	public void click_Add2Cart_PDP() throws InterruptedException, AWTException {
@@ -354,7 +384,6 @@ public class PDPPage extends PageObject {
 		fTvPopUp.isVisible();
 		fTvPopUp.isPresent();
 		String text = subscriptionFormHead.getText();
-		System.out.println(text);
 		Assert.assertTrue(text.contains(expectedData));
 	}
 
@@ -385,6 +414,36 @@ public class PDPPage extends PageObject {
 		Thread.sleep(5000);
 		Ensure.thatTheCurrentPage().currentUrl().contains(name);
 		return name;
+	}
+
+	@Step
+	public String verifyUserNavigationOnParticularItem(List<List<String>> expectedData)
+			throws InterruptedException, AWTException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		String name = productName.get(1).getText().toLowerCase();
+		blpPage.productCards.get(1).click();
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(name);
+		Assert.assertEquals(name.toLowerCase(), expectedData.get(0).get(0).toLowerCase());
+		return name;
+	}
+
+	@Step
+	public List<String> verifyUserNavigationOnParticularItemWithReviewCount(List<List<String>> expectedData)
+			throws InterruptedException, AWTException {
+		List<String> actuals = new ArrayList<String>();
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		String name = productName.get(1).getText().toLowerCase();
+		actuals.add(name);
+		name = review.get(1).getText();
+		actuals.add(name);
+		blpPage.productCards.get(1).click();
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(name);
+		Assert.assertEquals(actuals.get(0).toLowerCase(), expectedData.get(0).get(0).toLowerCase());
+		return actuals;
 	}
 
 	@Step
@@ -425,16 +484,70 @@ public class PDPPage extends PageObject {
 	public void verifySizeSkus(List<List<String>> expectedData) {
 		sddlpPage.productTitle.shouldBeCurrentlyVisible();
 		CommonPage.actions_PageDown();
-		List<Integer> size = new ArrayList<Integer>();
-		for (int i = 0; i < sizeSKUs.size()-2; i++) {
+		List<Double> size = new ArrayList<Double>();
+		for (int i = 0; i < sizeSKUs.size() - 2; i++) {
 			sizeSKUs.get(i).isDisplayed();
 			String value = sizeSKUs.get(i).getAttribute(expectedData.get(0).get(0).toLowerCase());
-			size.add(Integer.parseInt(value));
+			size.add(Double.valueOf(value));
 		}
-		List<Integer> actualSize = new ArrayList<Integer>();
+		List<Double> actualSize = new ArrayList<Double>();
 		actualSize.addAll(size);
 		Collections.sort(actualSize);
-		System.out.println(size + "-" + actualSize);
 		Assert.assertEquals(actualSize, size);
+	}
+
+	@Step
+	public List<String> verifyReviewsAndStarRatings(List<List<String>> expectedData) {
+		List<String> actuals = new ArrayList<String>();
+		starRating.shouldBeCurrentlyVisible();
+		String value = reviews.get(0).getText();
+		actuals.add(value);
+		Assert.assertTrue(Double.valueOf(value) <= 5);
+		value = reviews.get(2).getText();
+		Assert.assertTrue(value.contains(expectedData.get(0).get(0)));
+		Assert.assertTrue(value.matches(".*[0-9].*"));
+		actuals.add(value);
+		reviews.get(2).isClickable();
+		return actuals;
+	}
+
+	@Step
+	public void verifyReviewsCount(List<List<String>> expectedData, List<String> actuals) {
+		starRating.shouldBeCurrentlyVisible();
+		String value = reviews.get(0).getText();
+		Assert.assertTrue(Double.valueOf(value) <= 5);
+		value = reviews.get(2).getText();
+		Assert.assertTrue(value.contains(expectedData.get(0).get(0)));
+		Assert.assertTrue(value.matches(".*[0-9].*"));
+		Assert.assertEquals(value, actuals.get(1).toLowerCase());
+	}
+
+	@Step
+	public void verifyNavigationOfReviews(List<List<String>> expectedData, List<String> values)
+			throws InterruptedException {
+		reviews.get(2).click();
+		Thread.sleep(5000);
+		String title = reviewHeadLine.getText();
+		Assert.assertEquals(title, expectedData.get(0).get(0));
+		title = reviewSnippets.getText();
+		Assert.assertEquals(title, values.get(0));
+		title = reviewCount.getText();
+		Assert.assertEquals(title.toLowerCase(), values.get(1));
+	}
+
+	@Step
+	public void verifyProductPrices(List<List<String>> expectedData) {
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		String title = sddlpPage.productTitle.getText().toLowerCase();
+		Assert.assertEquals(title, expectedData.get(0).get(0).toLowerCase());
+		logoIcon.shouldBeCurrentlyVisible();
+		msrp.shouldBeCurrentlyVisible();
+		Assert.assertTrue(msrp.getText().contains(expectedData.get(0).get(2)));
+		outletPrice.shouldBeCurrentlyVisible();
+		Assert.assertTrue(outletPrice.getText().contains(expectedData.get(0).get(1)));
+		Assert.assertTrue(outletPrice.getText().contains(expectedData.get(0).get(2)));
+		vipPrice.shouldBeCurrentlyVisible();
+		Assert.assertTrue(vipPrice.getText().contains(expectedData.get(0).get(2)));
+		Assert.assertTrue(vipPrice.getText().contains(expectedData.get(0).get(3)));
 	}
 }

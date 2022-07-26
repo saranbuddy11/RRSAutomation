@@ -27,7 +27,8 @@ public class PDP_StepDefinition extends baseClass {
 	public String VIP_Str = null;
 	public float VIP_Float;
 
-	public String productName = null;
+	public String actual = null;
+	public List<String> actualData = null;
 
 	@Steps
 	PLPPage PLPpage;
@@ -270,19 +271,33 @@ public class PDP_StepDefinition extends baseClass {
 
 	@Then("Verify User Navigation to PDP page")
 	public void verify_user_navigation_to_pdp_page() throws InterruptedException, AWTException {
-		productName = PDPPage.verifyUserNavigation();
+		actual = PDPPage.verifyUserNavigation();
+	}
+
+	@Then("Verify User Navigation to PDP page of selecting particular item")
+	public void verify_user_navigation_to_pdp_page_of_selecting_particular_item(DataTable table)
+			throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		actual = PDPPage.verifyUserNavigationOnParticularItem(expectedData);
+	}
+
+	@Then("Verify User Navigation to PDP page with review count")
+	public void verify_user_navigation_to_pdp_page_with_review_count(DataTable table)
+			throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		actualData = PDPPage.verifyUserNavigationOnParticularItemWithReviewCount(expectedData);
 	}
 
 	@Then("Verify Bread Crumb and its navigation")
 	public void verify_bread_crumb_and_its_navigation() throws InterruptedException {
-		PDPPage.verifyBreadCrumbAndItsNavigation(productName);
-		productName = null;
+		PDPPage.verifyBreadCrumbAndItsNavigation(actual);
+		actual = null;
 	}
 
 	@Then("Verify Product name is Displayed or not")
 	public void verify_product_name_is_displayed_or_not() throws InterruptedException {
-		PDPPage.verifyProductName(productName);
-		productName = null;
+		PDPPage.verifyProductName(actual);
+		actual = null;
 	}
 
 	@Then("Verify color SKUs are sorted alphabetically or not")
@@ -295,5 +310,31 @@ public class PDP_StepDefinition extends baseClass {
 	public void verify_size_skus_are_sorted_orderly_or_not(DataTable table) throws InterruptedException {
 		List<List<String>> expectedData = table.asLists(String.class);
 		PDPPage.verifySizeSkus(expectedData);
+	}
+
+	@Then("Verify number of reviews and star ratings")
+	public void verify_number_of_reviews_and_star_ratings(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		actualData = PDPPage.verifyReviewsAndStarRatings(expectedData);
+	}
+
+	@Then("Verify number of reviews count")
+	public void verify_number_of_reviews_count(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifyReviewsCount(expectedData, actualData);
+		actualData = null;
+	}
+
+	@Then("Verify navigation when clicks on Reviews")
+	public void verify_navigation_when_clicks_on_reviews(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifyNavigationOfReviews(expectedData, actualData);
+		actualData = null;
+	}
+
+	@Then("Verify the product and its prices")
+	public void verify_the_product_and_its_prices(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifyProductPrices(expectedData);
 	}
 }
