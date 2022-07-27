@@ -138,6 +138,9 @@ public class PDPPage extends PageObject {
 	@FindBy(css = "h1.pr-headline")
 	WebElementFacade reviewHeadLine;
 
+	@FindBy(css = "pr-review-display-39642")
+	WebElementFacade reviewSection;
+
 	@FindBy(css = "h1.pr-review-snapshot-snippets-headline")
 	WebElementFacade reviewSnippets;
 
@@ -179,6 +182,36 @@ public class PDPPage extends PageObject {
 
 	@FindBy(css = "div>img.iiz__img")
 	List<WebElementFacade> imageZoom;
+
+	@FindBy(css = "div.variant-button--1ydkx>label")
+	List<WebElementFacade> variantSize;
+
+	@FindBy(css = "span.variant-color--2KSXc>img")
+	List<WebElementFacade> variantColor;
+
+	@FindBy(css = "p.variant-title--A62V5>strong")
+	List<WebElementFacade> variantTitle;
+
+	@FindBy(css = "button[aria-label='Increase Quantity']")
+	WebElementFacade increaseQuantity;
+
+	@FindBy(css = "button[aria-label='Decrease Quantity']")
+	WebElementFacade decreaseQuantity;
+
+	@FindBy(css = "span.quantity-val--WXPDK")
+	WebElementFacade quantity;
+
+	@FindBy(css = "h3.mini-cart-head-title--2g-X3")
+	WebElementFacade cartTitle;
+
+	@FindBy(css = "klarna-placement[data-key='credit-promotion-badge']")
+	WebElementFacade klarna;
+
+	@FindBy(css = "div.product-detail-shoe-cushion-text--3EFQ9")
+	List<WebElementFacade> productDetail;
+
+	@FindBy(css = "div.product-detail-specs-feature--1OO98")
+	WebElementFacade productDetailSpec;
 
 	@Step
 	public void click_Add2Cart_PDP() throws InterruptedException, AWTException {
@@ -633,5 +666,67 @@ public class PDPPage extends PageObject {
 		Thread.sleep(3000);
 		actuals = imageZoom.get(0).getAttribute(expectedData.get(0).get(3));
 		Assert.assertFalse(actuals.contains(expectedData.get(0).get(4)));
+	}
+
+	@Step
+	public void verifyAddToCartButton(List<List<String>> expectedData) throws InterruptedException, AWTException {
+		Thread.sleep(5000);
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		Assert.assertTrue(variantSize.size() == Integer.parseInt(expectedData.get(0).get(1)));
+		Actions a = new Actions(getDriver());
+		a.moveToElement(variantColor.get(1)).perform();
+		variantColor.get(1).click();
+		String s = variantTitle.get(0).getText();
+		Assert.assertEquals(s, expectedData.get(0).get(3));
+		a.moveToElement(variantSize.get(2)).perform();
+		variantSize.get(2).click();
+		s = variantTitle.get(1).getText();
+		Assert.assertEquals(s, expectedData.get(0).get(0));
+		CommonPage.pageScrollDown();
+		Thread.sleep(5000);
+		a.moveToElement(increaseQuantity).perform();
+		increaseQuantity.click();
+		s = quantity.getText();
+		Assert.assertEquals(s, expectedData.get(0).get(5));
+		a.moveToElement(decreaseQuantity).perform();
+		decreaseQuantity.click();
+		s = quantity.getText();
+		Assert.assertEquals(s, expectedData.get(0).get(4));
+		addToCartBtn.shouldBeCurrentlyVisible();
+		a.moveToElement(addToCartBtn).perform();
+		addToCartBtn.click();
+		element(cartTitle).waitUntilVisible();
+		cartTitle.shouldBeCurrentlyVisible();
+	}
+
+	@Step
+	public void verifyKlarnaText() throws InterruptedException, AWTException {
+		Thread.sleep(5000);
+		CommonPage.pageScrollDown();
+		klarna.shouldBeCurrentlyVisible().isClickable();
+		klarna.isPresent();
+		klarna.isEnabled();
+	}
+
+	@Step
+	public void verifyProductDescriptionWithExpertReview(List<List<String>> expectedData)
+			throws InterruptedException, AWTException {
+		Thread.sleep(5000);
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		CommonPage.pageScrollDown();
+		Thread.sleep(5000);
+		List<String> details = new ArrayList<String>();
+		for (int i = 0; i < productDetail.size(); i++) {
+			details.add(productDetail.get(i).getText());
+			String s = details.get(i).replace("\n", " ");
+			Assert.assertEquals(s, expectedData.get(0).get(i));
+		}
+		CommonPage.pageScrollDown();
+		productDetailSpec.shouldBeCurrentlyVisible();
+		CommonPage.pageScrollDown();
+		reviewHeadLine.shouldBeCurrentlyVisible();
+		reviewSection.isPresent();
 	}
 }

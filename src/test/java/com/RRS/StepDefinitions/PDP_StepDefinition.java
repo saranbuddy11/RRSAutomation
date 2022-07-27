@@ -354,4 +354,22 @@ public class PDP_StepDefinition extends baseClass {
 		List<List<String>> expectedData = table.asLists(String.class);
 		PDPPage.verifyProductImage(expectedData);
 	}
+
+	@Then("Verify Add to Cart Button")
+	public void verify_add_to_cart_button(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifyAddToCartButton(expectedData);
+	}
+
+	@Then("Verify Klarna text with learn more link")
+	public void verify_klarna_text_with_learn_more_link() throws InterruptedException, AWTException {
+		PDPPage.verifyKlarnaText();
+	}
+
+	@Then("Verify product description and expert review")
+	public void verify_product_description_and_expert_review(DataTable table)
+			throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifyProductDescriptionWithExpertReview(expectedData);
+	}
 }

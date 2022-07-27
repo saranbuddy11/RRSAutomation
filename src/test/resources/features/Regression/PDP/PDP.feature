@@ -96,3 +96,23 @@ Feature: PDP Regression Scripts
     When User Search for a product with some keywords "41654" and click on search button
     Then Verify Product image
       | aria-label | Previous | Next | class | hidden |
+
+  @Regression_RK_012
+  Scenario: Verify add to Cart from PDP
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "41654" and click on search button
+    Then Verify Add to Cart Button
+      | M | 5 | aria-label | Dark Aqua Sprint | 1 | 2 |
+
+  @Regression_RK_013
+  Scenario: Verify Klarna text with learn more link
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "41654" and click on search button
+    Then Verify Klarna text with learn more link
+
+  @Regression_RK_014
+  Scenario: Verify expert review under product description
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "39642" and click on search button
+    Then Verify product description and expert review
+      | SHOE CATEGORY What is this? | CUSHION LEVEL Learn More |
