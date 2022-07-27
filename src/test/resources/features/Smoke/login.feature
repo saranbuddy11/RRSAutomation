@@ -14,7 +14,7 @@ Feature: login Smoke scripts
     Then User logout of the application
 
 
-  @login_2.2 @login_2.5 
+  @login_2.2
   Scenario Outline: Verify user is able to login to an existing account
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page

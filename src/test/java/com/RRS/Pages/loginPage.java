@@ -35,7 +35,7 @@ public class loginPage extends PageObject {
 	@FindBy(css = "div.flex-row--D783L>button.btn--1PWSW")
 	List<WebElementFacade> Login_Btn;
 
-	@FindBy(xpath = "//span[contains(normalize-space(),'Hi,')]")
+	@FindBy(xpath = "//span[contains(text(),'Hi,')]")
 	WebElementFacade LoggedInUser_Hi;
 
 	@FindBy(css = "small.tag_small--3bmao>strong")
@@ -44,7 +44,7 @@ public class loginPage extends PageObject {
 	@FindBy(xpath = "//div[normalize-space()='Log Out']")
 	WebElementFacade Logout_Lnk;
 
-	@FindBy(css = "div.dropdown-item--3Kiul>a[href*='account']")
+	@FindBy(css = "div.dropdown-item--3Kiul>a[href*='/account']")
 	List<WebElementFacade> MyAccount_Header_Lbl;
 
 	@FindBy(xpath = "//p[contains(@class,'account-user')]")
@@ -237,8 +237,8 @@ public class loginPage extends PageObject {
 	public void user_Assert_Success_Login() throws InterruptedException {
 		boolean isHi = LoggedInUser_Hi.isDisplayed();
 		System.out.println("Is Hi present: " + isHi);
-		// MyAccount_Lnk.click();
 		click_Profile_SVG_Button();
+		MyAccount_Lnk.click();
 		CommonPage.javaScriptExecutor_Click(MyAccount_Lnk);
 		Thread.sleep(5000);
 		MyAccount_Header_Lbl.get(1).shouldBeVisible();
