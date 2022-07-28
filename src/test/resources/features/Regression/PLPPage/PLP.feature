@@ -54,8 +54,8 @@ Feature: PLP Regression Scripts
     And User applies filter on main category and categories
       | Shoes | Casual |
     And Verify filters and its functionality
-    | Shoes | Casual | ASCIS | WOMEN |
-    
+      | Shoes | Casual | ASCIS | WOMEN |
+
   @Regression_RK_007
   Scenario: Verify Brands click response in LHN Filters
     Given User Lauch RRS application and navigate to home page
@@ -63,3 +63,16 @@ Feature: PLP Regression Scripts
     Then User should be able to see search bar with Magnifying icon to search brand in the filters present in LHN
     And User should be able to see the default 8 Brands in the Brand section filter
     And Verify the Links in Brand section and its functionality 8
+
+  @Regression_RK_008
+  Scenario: Verify Reviews star and count in PLP
+    Given User Lauch RRS application and navigate to home page
+    And Select a category from the top navigation menu "women"
+    Then User should be able to see the Reviews count along with the star rating
+
+  @Regression_RK_009
+  Scenario: Verify Pricing displayed in PLP
+    Given User Lauch RRS application and navigate to home page
+    And Select a category from the top navigation menu "women"
+    Then User should be able to see the Prices for the product
+    | SALE | $ |

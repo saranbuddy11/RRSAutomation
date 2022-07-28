@@ -9,12 +9,14 @@ import com.RRS.Pages.PDPPage;
 import com.RRS.Pages.CommonPage;
 import com.RRS.base.baseClass;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.*;
 import net.thucydides.core.annotations.Steps;
 import static org.assertj.core.api.Assertions.*;
 
 import java.awt.AWTException;
 import java.io.IOException;
+import java.util.List;
 
 public class PDP_StepDefinition extends baseClass {
 	public static Logger log = LogManager.getLogger(PDP_StepDefinition.class);
@@ -24,6 +26,9 @@ public class PDP_StepDefinition extends baseClass {
 
 	public String VIP_Str = null;
 	public float VIP_Float;
+
+	public String actual = null;
+	public List<String> actualData = null;
 
 	@Steps
 	PLPPage PLPpage;
@@ -102,7 +107,6 @@ public class PDP_StepDefinition extends baseClass {
 				log.info("Item Numner is displayed");
 			}
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -258,5 +262,114 @@ public class PDP_StepDefinition extends baseClass {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Then("Verify User Navigation to PDP page on clicking of Product")
+	public void verify_user_navigation_to_pdp_page_on_clicking_of_product() throws InterruptedException, AWTException {
+		PDPPage.verifyUserNavigationToPDP_Page();
+	}
+
+	@Then("Verify User Navigation to PDP page")
+	public void verify_user_navigation_to_pdp_page() throws InterruptedException, AWTException {
+		actual = PDPPage.verifyUserNavigation();
+	}
+
+	@Then("Verify User Navigation to PDP page of selecting particular item")
+	public void verify_user_navigation_to_pdp_page_of_selecting_particular_item(DataTable table)
+			throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		actual = PDPPage.verifyUserNavigationOnParticularItem(expectedData);
+	}
+
+	@Then("Verify User Navigation to PDP page with review count")
+	public void verify_user_navigation_to_pdp_page_with_review_count(DataTable table)
+			throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		actualData = PDPPage.verifyUserNavigationOnParticularItemWithReviewCount(expectedData);
+	}
+
+	@Then("Verify Bread Crumb and its navigation")
+	public void verify_bread_crumb_and_its_navigation() throws InterruptedException {
+		PDPPage.verifyBreadCrumbAndItsNavigation(actual);
+		actual = null;
+	}
+
+	@Then("Verify Product name is Displayed or not")
+	public void verify_product_name_is_displayed_or_not() {
+		PDPPage.verifyProductName(actual);
+		actual = null;
+	}
+
+	@Then("Verify color SKUs are sorted alphabetically or not")
+	public void verify_color_skus_are_sorted_alphabetically_or_not(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifyColorSkus(expectedData);
+	}
+
+	@Then("Verify size SKUs are sorted orderly or not")
+	public void verify_size_skus_are_sorted_orderly_or_not(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifySizeSkus(expectedData);
+	}
+
+	@Then("Verify number of reviews and star ratings")
+	public void verify_number_of_reviews_and_star_ratings(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		actualData = PDPPage.verifyReviewsAndStarRatings(expectedData);
+	}
+
+	@Then("Verify number of reviews count")
+	public void verify_number_of_reviews_count(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifyReviewsCount(expectedData, actualData);
+		actualData = null;
+	}
+
+	@Then("Verify navigation when clicks on Reviews")
+	public void verify_navigation_when_clicks_on_reviews(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifyNavigationOfReviews(expectedData, actualData);
+		actualData = null;
+	}
+
+	@Then("Verify the product and its prices")
+	public void verify_the_product_and_its_prices(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifyProductPrices(expectedData);
+	}
+
+	@Then("Verify SKUs of the product")
+	public void verify_skus_of_the_product(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifySkusOfProduct(expectedData);
+	}
+
+	@Then("Verify thumbnail images and videos")
+	public void verify_thumbnail_images_and_videos() throws InterruptedException {
+		PDPPage.verifyThumbnails(actual);
+	}
+
+	@Then("Verify Product image")
+	public void verify_product_image(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifyProductImage(expectedData);
+	}
+
+	@Then("Verify Add to Cart Button")
+	public void verify_add_to_cart_button(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifyAddToCartButton(expectedData);
+	}
+
+	@Then("Verify Klarna text with learn more link")
+	public void verify_klarna_text_with_learn_more_link() throws InterruptedException, AWTException {
+		PDPPage.verifyKlarnaText();
+	}
+
+	@Then("Verify product description and expert review")
+	public void verify_product_description_and_expert_review(DataTable table)
+			throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifyProductDescriptionWithExpertReview(expectedData);
 	}
 }

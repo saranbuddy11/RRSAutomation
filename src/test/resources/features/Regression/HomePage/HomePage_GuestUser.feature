@@ -1,5 +1,5 @@
 #Author: Sivaram
-@HomePage_Full @RegressionSuite_Full  @Siva
+@HomePage_Full @RegressionSuite_Full @Siva
 Feature: Home Page Regression scripts - Guest User/ Non-Logged-in User
 
   @homePage_001 @homePage_002
@@ -8,15 +8,16 @@ Feature: Home Page Regression scripts - Guest User/ Non-Logged-in User
     And Assert Top banner is displayed for Guest user
     And Assert Start My Fitting Now button is clickable
 
-  @homePage_004 @homePage_005 
+  @homePage_004 @homePage_005
   Scenario: Verify Home page featured Categories
     Given User Land on the RRS home page
     And Assert Categories banner has appropriate categories name
     And Assert 3 categories are displayed
     Then User click on "Shop Women" in Running shoes category
-    And User Assert "women's running shoes" page is displayed
+    And User Assert page is displayed
+      | women | running shoes |
 
-  @homePage_006 
+  @homePage_006
   Scenario: Verify Home page Sub Categories - SHOP BY CATEGORY
     Given User Land on the RRS home page
     And Assert 6 sub Categories are displayed under SHOP BY CATEGORY
@@ -34,32 +35,29 @@ Feature: Home Page Regression scripts - Guest User/ Non-Logged-in User
   @homePage_009
   Scenario: Verify FIND YOUR PERFECT FITTING SHOES FAST! section in Home Page
     Given User Land on the RRS home page
-  	And Assert FIND YOUR PERFECT FITTING SHOES FAST section is displayed
-  	And Assert Start Your Online Fitting button is clickable
-  	
+    And Assert FIND YOUR PERFECT FITTING SHOES FAST section is displayed
+    And Assert Start Your Online Fitting button is clickable
+
   @homePage_010
   Scenario: Verify VIP Program Banner in Home Page
     Given User Land on the RRS home page
-  	And Assert VIP Program Banner is displayed
-  	And Assert Become a VIP button is clickable
-  	
-  @homePage_013 
+    And Assert VIP Program Banner is displayed
+    And Assert Become a VIP button is clickable
+
+  @homePage_013
   Scenario: Verify VIP Program Banner in Home Page
     Given User Land on the RRS home page
-  	And Assert VIP Program Banner is displayed
-  	And Assert Learn More button is clickable
-  	
-  @homePage_011 
+    And Assert VIP Program Banner is displayed
+    And Assert Learn More button is clickable
+
+  @homePage_011
   Scenario: Verify THIS WEEKS MOST-ASKED-FOR SHOE section in Home Page
     Given User Land on the RRS home page
-  	And Assert THIS WEEKS MOST-ASKED-FOR SHOES section is displayed
-  	And Assert Shop All button is clickable in THIS WEEKS MOST-ASKED-FOR SHOE section
-  
+    And Assert THIS WEEKS MOST-ASKED-FOR SHOES section is displayed
+    And Assert Shop All button is clickable in THIS WEEKS MOST-ASKED-FOR SHOE section
+
   @homePage_012
   Scenario: Verify YOUR BESTSELLING PERFORMANCE APPAREL section in Home Page
     Given User Land on the RRS home page
-  	And Assert YOUR BESTSELLING PERFORMANCE APPAREL section is displayed
-  	And Assert Shop All button is clickable in YOUR BESTSELLING PERFORMANCE APPAREL section
-  
-  	
-  	
+    And Assert YOUR BESTSELLING PERFORMANCE APPAREL section is displayed
+    And Assert Shop All button is clickable in YOUR BESTSELLING PERFORMANCE APPAREL section

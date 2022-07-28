@@ -3,6 +3,9 @@ package com.RRS.Pages;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.awt.AWTException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,10 +16,21 @@ import org.openqa.selenium.support.FindBy;
 
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.serenitybdd.screenplay.ensure.Ensure;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.Steps;
 
 public class PDPPage extends PageObject {
 	CommonPage CommonPage = new CommonPage();
+
+	@Steps
+	BLPPage blpPage;
+
+	@Steps
+	SDDLPPage sddlpPage;
+
+	@Steps
+	PLPPage plpPage;
 
 	public String ProductDescription = null;
 
@@ -96,6 +110,108 @@ public class PDPPage extends PageObject {
 
 	@FindBy(css = "h1.subscription-form-head--3B4u2")
 	WebElementFacade subscriptionFormHead;
+
+	@FindBy(css = "h2.product-card-name--9ffy7")
+	List<WebElementFacade> productName;
+
+	@FindBy(css = "div.pr-category-snippet__total")
+	List<WebElementFacade> review;
+
+	@FindBy(css = "button.product-wrapper-info-add-to-cart-btn--3RcjN")
+	WebElementFacade addToCartBtn;
+
+	@FindBy(css = "div.breadcrumb-theme-dark--37Ydz>a[href='/']")
+	WebElementFacade breadCrumb_Home;
+
+	@FindBy(css = "span.variant-color--2KSXc>img")
+	List<WebElementFacade> colorSKUs;
+
+	@FindBy(css = "div.variant-button--1ydkx>label")
+	List<WebElementFacade> sizeSKUs;
+
+	@FindBy(css = "div.rating-star-img--1jnzS")
+	WebElementFacade starRating;
+
+	@FindBy(css = "div.rating-reviews-big--27Pa->span")
+	List<WebElementFacade> reviews;
+
+	@FindBy(css = "h1.pr-headline")
+	WebElementFacade reviewHeadLine;
+
+	@FindBy(css = "pr-review-display-39642")
+	WebElementFacade reviewSection;
+
+	@FindBy(css = "h1.pr-review-snapshot-snippets-headline")
+	WebElementFacade reviewSnippets;
+
+	@FindBy(css = "span.pr-snippet-review-count")
+	WebElementFacade reviewCount;
+
+	@FindBy(css = "svg.icon--3lrU->image")
+	WebElementFacade logoIcon;
+
+	@FindBy(css = "div.price-striked--3WXpF")
+	WebElementFacade msrp;
+
+	@FindBy(css = "div.pdp-sale--ImILa")
+	WebElementFacade outletPrice;
+
+	@FindBy(css = "div.price-vip--2xw2A")
+	WebElementFacade vipPrice;
+
+	@FindBy(css = "div.variant--11-cG>p")
+	List<WebElementFacade> skuVariants;
+
+	@FindBy(css = "span.image-gallery-thumbnail-inner>img")
+	List<WebElementFacade> thumbnailImage;
+
+	@FindBy(id = "pdp-widget-holder")
+	WebElementFacade thumbnailVideo;
+
+	@FindBy(css = "button.carousel-arrow-left--3V8wa>svg")
+	WebElementFacade leftArrowClick;
+
+	@FindBy(css = "button.carousel-arrow-left--3V8wa")
+	WebElementFacade leftArrow;
+
+	@FindBy(css = "button.carousel-arrow-right--xb4ZC")
+	WebElementFacade rightArrow;
+
+	@FindBy(css = "button.carousel-arrow-right--xb4ZC>svg")
+	WebElementFacade rightArrowClick;
+
+	@FindBy(css = "div>img.iiz__img")
+	List<WebElementFacade> imageZoom;
+
+	@FindBy(css = "div.variant-button--1ydkx>label")
+	List<WebElementFacade> variantSize;
+
+	@FindBy(css = "span.variant-color--2KSXc>img")
+	List<WebElementFacade> variantColor;
+
+	@FindBy(css = "p.variant-title--A62V5>strong")
+	List<WebElementFacade> variantTitle;
+
+	@FindBy(css = "button[aria-label='Increase Quantity']")
+	WebElementFacade increaseQuantity;
+
+	@FindBy(css = "button[aria-label='Decrease Quantity']")
+	WebElementFacade decreaseQuantity;
+
+	@FindBy(css = "span.quantity-val--WXPDK")
+	WebElementFacade quantity;
+
+	@FindBy(css = "h3.mini-cart-head-title--2g-X3")
+	WebElementFacade cartTitle;
+
+	@FindBy(css = "klarna-placement[data-key='credit-promotion-badge']")
+	WebElementFacade klarna;
+
+	@FindBy(css = "div.product-detail-shoe-cushion-text--3EFQ9")
+	List<WebElementFacade> productDetail;
+
+	@FindBy(css = "div.product-detail-specs-feature--1OO98")
+	WebElementFacade productDetailSpec;
 
 	@Step
 	public void click_Add2Cart_PDP() throws InterruptedException, AWTException {
@@ -325,7 +441,292 @@ public class PDPPage extends PageObject {
 		fTvPopUp.isVisible();
 		fTvPopUp.isPresent();
 		String text = subscriptionFormHead.getText();
-		System.out.println(text);
 		Assert.assertTrue(text.contains(expectedData));
+	}
+
+	@Step
+	public void verifyUserNavigationToPDP_Page() throws InterruptedException, AWTException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		String name = productName.get(0).getText().toLowerCase();
+		blpPage.productCards.get(0).click();
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(name);
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		String title = sddlpPage.productTitle.getText().toLowerCase();
+		Assert.assertTrue(title.contains(name.toLowerCase()));
+		plpPage.breadCrumb.shouldBeCurrentlyVisible();
+		String bread_crumb = plpPage.breadCrumb.getText().toLowerCase();
+		Assert.assertTrue(bread_crumb.contains(name));
+		CommonPage.pageScrollDown();
+		addToCartBtn.shouldBeCurrentlyVisible();
+	}
+
+	@Step
+	public String verifyUserNavigation() throws InterruptedException, AWTException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		String name = productName.get(0).getText().toLowerCase();
+		blpPage.productCards.get(0).click();
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(name);
+		return name;
+	}
+
+	@Step
+	public String verifyUserNavigationOnParticularItem(List<List<String>> expectedData)
+			throws InterruptedException, AWTException {
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		String name = productName.get(1).getText().toLowerCase();
+		blpPage.productCards.get(1).click();
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(name);
+		Assert.assertEquals(name.toLowerCase(), expectedData.get(0).get(0).toLowerCase());
+		return name;
+	}
+
+	@Step
+	public List<String> verifyUserNavigationOnParticularItemWithReviewCount(List<List<String>> expectedData)
+			throws InterruptedException, AWTException {
+		List<String> actuals = new ArrayList<String>();
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		String name = productName.get(1).getText().toLowerCase();
+		actuals.add(name);
+		name = review.get(1).getText();
+		actuals.add(name);
+		blpPage.productCards.get(1).click();
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(name);
+		Assert.assertEquals(actuals.get(0).toLowerCase(), expectedData.get(0).get(0).toLowerCase());
+		return actuals;
+	}
+
+	@Step
+	public void verifyBreadCrumbAndItsNavigation(String productName) throws InterruptedException {
+		plpPage.breadCrumb.shouldBeCurrentlyVisible();
+		String bread_crumb = plpPage.breadCrumb.getText().toLowerCase();
+		Assert.assertTrue(bread_crumb.contains(productName));
+		breadCrumb_Home.click();
+		Thread.sleep(5000);
+		sddlpPage.homePageHeader.shouldBeCurrentlyVisible();
+	}
+
+	@Step
+	public void verifyProductName(String productName) {
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		String title = sddlpPage.productTitle.getText().toLowerCase();
+		Assert.assertTrue(title.contains(productName.toLowerCase()));
+	}
+
+	@Step
+	public void verifyColorSkus(List<List<String>> expectedData) {
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		CommonPage.actions_PageDown();
+		List<String> color = new ArrayList<String>();
+		for (int i = 0; i < colorSKUs.size(); i++) {
+			colorSKUs.get(i).isDisplayed();
+			String value = colorSKUs.get(i).getAttribute(expectedData.get(0).get(0).toLowerCase());
+			value = value.substring(30);
+			color.add(value);
+		}
+		List<String> actualColor = new ArrayList<String>();
+		actualColor.addAll(color);
+		Collections.sort(actualColor);
+		Assert.assertEquals(actualColor, color);
+	}
+
+	@Step
+	public void verifySizeSkus(List<List<String>> expectedData) {
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		CommonPage.actions_PageDown();
+		List<Double> size = new ArrayList<Double>();
+		for (int i = 0; i < sizeSKUs.size() - 2; i++) {
+			sizeSKUs.get(i).isDisplayed();
+			String value = sizeSKUs.get(i).getAttribute(expectedData.get(0).get(0).toLowerCase());
+			size.add(Double.valueOf(value));
+		}
+		List<Double> actualSize = new ArrayList<Double>();
+		actualSize.addAll(size);
+		Collections.sort(actualSize);
+		Assert.assertEquals(actualSize, size);
+	}
+
+	@Step
+	public List<String> verifyReviewsAndStarRatings(List<List<String>> expectedData) {
+		List<String> actuals = new ArrayList<String>();
+		starRating.shouldBeCurrentlyVisible();
+		String value = reviews.get(0).getText();
+		actuals.add(value);
+		Assert.assertTrue(Double.valueOf(value) <= 5);
+		value = reviews.get(2).getText();
+		Assert.assertTrue(value.contains(expectedData.get(0).get(0)));
+		Assert.assertTrue(value.matches(".*[0-9].*"));
+		actuals.add(value);
+		reviews.get(2).isClickable();
+		return actuals;
+	}
+
+	@Step
+	public void verifyReviewsCount(List<List<String>> expectedData, List<String> actuals) {
+		starRating.shouldBeCurrentlyVisible();
+		String value = reviews.get(0).getText();
+		Assert.assertTrue(Double.valueOf(value) <= 5);
+		value = reviews.get(2).getText();
+		Assert.assertTrue(value.contains(expectedData.get(0).get(0)));
+		Assert.assertTrue(value.matches(".*[0-9].*"));
+		Assert.assertEquals(value, actuals.get(1).toLowerCase());
+	}
+
+	@Step
+	public void verifyNavigationOfReviews(List<List<String>> expectedData, List<String> values)
+			throws InterruptedException {
+		reviews.get(2).click();
+		Thread.sleep(5000);
+		String title = reviewHeadLine.getText();
+		Assert.assertEquals(title, expectedData.get(0).get(0));
+		title = reviewSnippets.getText();
+		Assert.assertEquals(title, values.get(0));
+		title = reviewCount.getText();
+		Assert.assertEquals(title.toLowerCase(), values.get(1));
+	}
+
+	@Step
+	public void verifyProductPrices(List<List<String>> expectedData) {
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		String title = sddlpPage.productTitle.getText().toLowerCase();
+		Assert.assertEquals(title, expectedData.get(0).get(0).toLowerCase());
+		logoIcon.shouldBeCurrentlyVisible();
+		msrp.shouldBeCurrentlyVisible();
+		Assert.assertTrue(msrp.getText().contains(expectedData.get(0).get(2)));
+		outletPrice.shouldBeCurrentlyVisible();
+		Assert.assertTrue(outletPrice.getText().contains(expectedData.get(0).get(1)));
+		Assert.assertTrue(outletPrice.getText().contains(expectedData.get(0).get(2)));
+		vipPrice.shouldBeCurrentlyVisible();
+		Assert.assertTrue(vipPrice.getText().contains(expectedData.get(0).get(2)));
+		Assert.assertTrue(vipPrice.getText().contains(expectedData.get(0).get(3)));
+	}
+
+	@Step
+	public void verifySkusOfProduct(List<List<String>> expectedData) {
+		CommonPage.actions_DownArrow();
+		List<String> variant = new ArrayList<String>();
+		for (int i = 0; i < skuVariants.size(); i++) {
+			skuVariants.get(i).shouldBeCurrentlyVisible();
+			variant.add(skuVariants.get(i).getText());
+		}
+		String[] value = variant.get(0).split("\\s+");
+		Assert.assertEquals(value[0], expectedData.get(0).get(0));
+		Assert.assertEquals(variant.get(1), expectedData.get(0).get(1));
+		Assert.assertEquals(variant.get(2), expectedData.get(0).get(2));
+	}
+
+	@Step
+	public void verifyThumbnails(String title) throws InterruptedException {
+		Thread.sleep(5000);
+		CommonPage.actions_DownArrow();
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		String actualTitle = sddlpPage.productTitle.getText().toLowerCase();
+		Assert.assertEquals(actualTitle, title.toLowerCase());
+		thumbnailVideo.shouldBeCurrentlyVisible();
+		Actions a = new Actions(getDriver());
+		for (int i = 0; i < thumbnailImage.size(); i++) {
+			a.moveToElement(thumbnailImage.get(i)).perform();
+			thumbnailImage.get(i).shouldBeCurrentlyVisible();
+		}
+	}
+
+	@Step
+	public void verifyProductImage(List<List<String>> expectedData) throws InterruptedException, AWTException {
+		Thread.sleep(5000);
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		leftArrowClick.shouldBeCurrentlyVisible().isClickable();
+		rightArrowClick.shouldBeCurrentlyVisible().isClickable();
+		String actuals = leftArrow.getAttribute(expectedData.get(0).get(0));
+		Assert.assertEquals(actuals, expectedData.get(0).get(1));
+		actuals = rightArrow.getAttribute(expectedData.get(0).get(0));
+		Assert.assertEquals(actuals, expectedData.get(0).get(2));
+		rightArrowClick.click();
+		Thread.sleep(3000);
+		rightArrowClick.click();
+		Thread.sleep(3000);
+		leftArrowClick.click();
+		Thread.sleep(3000);
+		leftArrowClick.click();
+		Thread.sleep(3000);
+		imageZoom.get(0).shouldBeCurrentlyVisible();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(imageZoom.get(0)).perform();
+		Thread.sleep(3000);
+		actuals = imageZoom.get(0).getAttribute(expectedData.get(0).get(3));
+		Assert.assertTrue(actuals.contains(expectedData.get(0).get(4)));
+		a.moveToElement(imageZoom.get(0)).click().build().perform();
+		Thread.sleep(3000);
+		actuals = imageZoom.get(0).getAttribute(expectedData.get(0).get(3));
+		Assert.assertFalse(actuals.contains(expectedData.get(0).get(4)));
+	}
+
+	@Step
+	public void verifyAddToCartButton(List<List<String>> expectedData) throws InterruptedException, AWTException {
+		Thread.sleep(5000);
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		Assert.assertTrue(variantSize.size() == Integer.parseInt(expectedData.get(0).get(1)));
+		Actions a = new Actions(getDriver());
+		a.moveToElement(variantColor.get(1)).perform();
+		variantColor.get(1).click();
+		String s = variantTitle.get(0).getText();
+		Assert.assertEquals(s, expectedData.get(0).get(3));
+		a.moveToElement(variantSize.get(2)).perform();
+		variantSize.get(2).click();
+		s = variantTitle.get(1).getText();
+		Assert.assertEquals(s, expectedData.get(0).get(0));
+		CommonPage.pageScrollDown();
+		Thread.sleep(5000);
+		a.moveToElement(increaseQuantity).perform();
+		increaseQuantity.click();
+		s = quantity.getText();
+		Assert.assertEquals(s, expectedData.get(0).get(5));
+		a.moveToElement(decreaseQuantity).perform();
+		decreaseQuantity.click();
+		s = quantity.getText();
+		Assert.assertEquals(s, expectedData.get(0).get(4));
+		addToCartBtn.shouldBeCurrentlyVisible();
+		a.moveToElement(addToCartBtn).perform();
+		addToCartBtn.click();
+		element(cartTitle).waitUntilVisible();
+		cartTitle.shouldBeCurrentlyVisible();
+	}
+
+	@Step
+	public void verifyKlarnaText() throws InterruptedException, AWTException {
+		Thread.sleep(5000);
+		CommonPage.pageScrollDown();
+		klarna.shouldBeCurrentlyVisible().isClickable();
+		klarna.isPresent();
+		klarna.isEnabled();
+	}
+
+	@Step
+	public void verifyProductDescriptionWithExpertReview(List<List<String>> expectedData)
+			throws InterruptedException, AWTException {
+		Thread.sleep(5000);
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		CommonPage.pageScrollDown();
+		Thread.sleep(5000);
+		List<String> details = new ArrayList<String>();
+		for (int i = 0; i < productDetail.size(); i++) {
+			details.add(productDetail.get(i).getText());
+			String s = details.get(i).replace("\n", " ");
+			Assert.assertEquals(s, expectedData.get(0).get(i));
+		}
+		CommonPage.pageScrollDown();
+		productDetailSpec.shouldBeCurrentlyVisible();
+		CommonPage.pageScrollDown();
+		reviewHeadLine.shouldBeCurrentlyVisible();
+		reviewSection.isPresent();
 	}
 }

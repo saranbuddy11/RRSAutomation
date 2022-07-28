@@ -49,12 +49,18 @@ public class homePage_StepDefinition extends baseClass {
 	}
 
 	@Then("User Assert {string} page is displayed")
-	public void user_assert_page_is_displayed(String string) {
+	public void user_assert_page_is_displayed(String string) throws InterruptedException {
 		homePage.user_assert_page_is_displayed(string);
 	}
 
+	@Then("User Assert page is displayed")
+	public void user_assert_page_is_displayed(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		homePage.user_assert_page_is_displayed_for_women(expectedData);
+	}
+
 	@Then("User Assert {string} page is displayed for SHOP BY BRAND")
-	public void user_assert_page_is_displayedforShopByBrand(String string) {
+	public void user_assert_page_is_displayedforShopByBrand(String string) throws InterruptedException {
 		homePage.user_assert_page_is_displayedforShopByBrand(string);
 	}
 

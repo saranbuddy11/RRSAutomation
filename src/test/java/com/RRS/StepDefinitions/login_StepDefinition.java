@@ -20,7 +20,7 @@ public class login_StepDefinition extends baseClass {
 		try {
 			homePage.homePage_Open();
 			Thread.sleep(5000);
-			//homePage.homepage_PopUpClose();
+			// homePage.homepage_PopUpClose();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -145,6 +145,11 @@ public class login_StepDefinition extends baseClass {
 	@Given("User click on {string} link in footer")
 	public void user_click_on_link_in_footer(String link) throws InterruptedException {
 		loginPage.user_click_on_link_in_footer(link);
+	}
+
+	@Given("User click on {string} link in footer section")
+	public void user_click_on_link_in_footer_section(String link) throws InterruptedException {
+		loginPage.user_click_on_my_account_link_in_footer(link);
 	}
 
 	@Given("Assert Contact US is displayed")

@@ -38,7 +38,7 @@ public class loginPage extends PageObject {
 	@FindBy(xpath = "//span[contains(text(),'Hi,')]")
 	WebElementFacade LoggedInUser_Hi;
 
-	@FindBy(css = "small.tag_small--3bmao>strong")
+	@FindBy(css = "div[aria-label*='Hi, test']")
 	WebElementFacade MyAccount_Lnk;
 
 	@FindBy(xpath = "//div[normalize-space()='Log Out']")
@@ -110,7 +110,7 @@ public class loginPage extends PageObject {
 	@FindBy(xpath = "//h1[contains(@class,'section-title') and text()='Contact Us']")
 	WebElementFacade contactUs_Lbl;
 
-	@FindBy(xpath = "//div[@class='contact-top']//b[text()='FAQS']")
+	@FindBy(css = "h1.tag_h1--hWc2x>b")
 	WebElementFacade faqs_Lbl;
 
 	@FindBy(css = ".contact-block__btnholder>a.button")
@@ -248,7 +248,7 @@ public class loginPage extends PageObject {
 
 	@Step
 	public void user_logout_application() throws InterruptedException {
-		click_Profile_SVG_Button();
+		// click_Profile_SVG_Button();
 		Logout_Lnk.click();
 		Thread.sleep(5000);
 		element(Login_SVG).waitUntilVisible();
@@ -283,8 +283,17 @@ public class loginPage extends PageObject {
 		// String DynamicXPATH =
 		// "//div[contains(@class,'footer-menu-links-blocks')]//a[text()='" + link +
 		// "']";
-		String DynamicXPATH = "li>a[href*='contact-us']";
+		String DynamicXPATH = "li>a[href*='" + link + "']";
 		WebElement ele = getDriver().findElement(By.cssSelector(DynamicXPATH));
+		CommonPage.javaScriptExecutor_Scroll(ele);
+		CommonPage.javaScriptExecutor_Click(ele);
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void user_click_on_my_account_link_in_footer(String link) throws InterruptedException {
+		WebElement ele = getDriver().findElement(By.linkText(link));
+		System.out.println(ele);
 		CommonPage.javaScriptExecutor_Scroll(ele);
 		CommonPage.javaScriptExecutor_Click(ele);
 		Thread.sleep(5000);
