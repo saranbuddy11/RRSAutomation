@@ -298,9 +298,10 @@ public class PLPPage extends PageObject {
 	}
 
 	@Step
-	public void Click_SearchIcon() {
+	public void Click_SearchIcon() throws InterruptedException {
 		Actions a = new Actions(getDriver());
 		a.moveToElement(Plp_SearchIcon_SVG).click().build().perform();
+		Thread.sleep(5000);
 		Plp_SearchResults_BC.waitUntilVisible();
 	}
 
