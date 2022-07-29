@@ -360,7 +360,6 @@ public class PDPPage extends PageObject {
 	public void clickAnySizeVariant_PDP(String Variant) throws InterruptedException {
 		String DynamicElement = "//p[contains(normalize-space(),'Size')]/../div/div/label/span[text()='" + Variant
 				+ "']";
-		System.out.println("Dynamic xpath created: " + DynamicElement);
 		getDriver().findElement(By.xpath(DynamicElement)).click();
 		Thread.sleep(5000);
 		PDP_InStock_Lbl.shouldBeVisible();
@@ -375,7 +374,6 @@ public class PDPPage extends PageObject {
 	@Step
 	public void clickkAnyColorvariant_PDP(String ColorVariant) throws InterruptedException, AWTException {
 		String DynamicElement = "//span[contains(@class,'variant-color')]/img[contains(@alt,'" + ColorVariant + "')]";
-		System.out.println("Dynamic xpath created: " + DynamicElement);
 		getDriver().findElement(By.xpath(DynamicElement)).click();
 		Thread.sleep(1000);
 	}
@@ -431,8 +429,6 @@ public class PDPPage extends PageObject {
 	public float getMSRP_Float_PDP(String MSRP_Str) throws InterruptedException {
 		float MSRP_float = CommonPage.convertStrFloat(MSRP_Str);
 		// TestParams.setReference(TestReference.MSRP, MSRP_float);
-		// System.out.println("MSRP from enum:
-		// "+TestParams.getReference(TestReference.MSRP));
 		return MSRP_float;
 	}
 
@@ -839,7 +835,6 @@ public class PDPPage extends PageObject {
 		List<WebElement> element = recommendationList.get(0)
 				.findElements(By.cssSelector("span.product-card-name--1B6G4"));
 		int num = element.size();
-		System.out.println(num + "-" + Integer.parseInt(count));
 		Assert.assertEquals(num, Integer.parseInt(count));
 	}
 

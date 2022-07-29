@@ -86,7 +86,6 @@ public class PLP_StepDefinition extends baseClass {
 	@Then("User validate the page results based on the filter applied")
 	public void user_validate_the_page_results_based_on_the_filter_applied() {
 		String UpdatedSearchResult = PLPpage.getCountofSearchResults();
-		System.out.println("Filter Applied Search results: " + UpdatedSearchResult);
 		assertThat(!SearchResult.contentEquals(UpdatedSearchResult));
 	}
 

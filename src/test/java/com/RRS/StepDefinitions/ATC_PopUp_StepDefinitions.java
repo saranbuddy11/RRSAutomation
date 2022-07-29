@@ -3,18 +3,24 @@ package com.RRS.StepDefinitions;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.awt.AWTException;
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.RRS.Pages.ATC_PopupPage;
 import com.RRS.base.baseClass;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import net.thucydides.core.annotations.Steps;
 
 public class ATC_PopUp_StepDefinitions extends baseClass {
 	public static Logger log = LogManager.getLogger(ATC_PopUp_StepDefinitions.class);
+
+	public List<String> actualData = null;
 
 	@Steps
 	ATC_PopupPage ATC_PopupPage;
@@ -73,5 +79,30 @@ public class ATC_PopUp_StepDefinitions extends baseClass {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Then("Verify Add to Cart Popup")
+	public void verify_add_to_cart_popup(DataTable table) throws AWTException, InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		actualData = ATC_PopupPage.verifyAddToCartPopup(expectedData);
+	}
+
+	@Then("Validate ATC Popup")
+	public void validate_atc_popup() throws InterruptedException {
+		ATC_PopupPage.validateATCPopup(actualData);
+	}
+
+	@Then("Verify Pickup in Store for selected products")
+	public void verify_pickup_in_store_for_selected_products(DataTable table)
+			throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		ATC_PopupPage.verifyPickupInStore(expectedData);
+	}
+
+	@Then("Verify Pickup in Store name for selected products")
+	public void verify_pickup_in_store_name_for_selected_products(DataTable table)
+			throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		ATC_PopupPage.verifyPickupInStoreName(expectedData);
 	}
 }
