@@ -29,7 +29,7 @@ Feature: PLP Smoke Scripts
     Then User validate the page results based on the filter applied
     #Then User validate review stars for the product are displayed if available
     Then User validate color variations for the product are displayed if available
-    And User scroll down to load 96 products to display Load More button
+    And User scroll down to load 48 products to display pagination link
     And User go back to the top of the page
-    And User clear the applied filters
-    Then User validate the serach results are modified once the filters are cleared
+    #And User clear the applied filters
+    #Then User validate the serach results are modified once the filters are cleared

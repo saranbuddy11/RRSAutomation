@@ -101,7 +101,7 @@ public class login_StepDefinition extends baseClass {
 	}
 
 	@Then("User validate successful account creation")
-	public void user_validate_successful_account_creation() {
+	public void user_validate_successful_account_creation() throws InterruptedException {
 		loginPage.click_Profile_SVG_Button();
 		loginPage.user_Assert_NewAccountCreation();
 	}

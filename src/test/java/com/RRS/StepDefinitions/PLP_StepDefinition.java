@@ -99,8 +99,8 @@ public class PLP_StepDefinition extends baseClass {
 		PLPpage.ColorVariantDisplayed_PLP();
 	}
 
-	@Given("User scroll down to load {int} products to display Load More button")
-	public void user_scroll_down_to_load_products_to_display_load_more_button(Integer MaxProducts)
+	@Given("User scroll down to load {int} products to display pagination link")
+	public void user_scroll_down_to_load_products_to_display_pagination_link(Integer MaxProducts)
 			throws InterruptedException {
 		PLPpage.isMaxProductsDisplayed_PLP();
 	}
@@ -113,7 +113,7 @@ public class PLP_StepDefinition extends baseClass {
 	@Given("User clear the applied filters")
 	public void user_clear_the_applied_filters() {
 		try {
-			PLPpage.applyAnyFilter("Tennis & Volleyball");
+			PLPpage.applyAnyFilter("Running");
 			Thread.sleep(1000);
 			PLPpage.clearAllFilters();
 		} catch (InterruptedException e) {

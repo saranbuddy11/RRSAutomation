@@ -46,7 +46,7 @@ public class PDP_StepDefinition extends baseClass {
 		PDPPage.waitForAdd2Cart();
 	}
 
-	@Then("Assert user is direceted to appropriate PDP page based on the selection")
+	@Then("Assert user is directed to appropriate PDP page based on the selection")
 	public void assert_user_is_direceted_to_appropriate_pdp_page_based_on_the_selection() {
 		try {
 			PDPPage.assertPDPPage();
@@ -68,7 +68,7 @@ public class PDP_StepDefinition extends baseClass {
 		Thread.sleep(5000);
 	}
 
-	@Then("Assert user is direceted to appropriate PDP page")
+	@Then("Assert user is directed to appropriate PDP page")
 	public void assert_user_is_direceted_to_appropriate_pdp_page() {
 		try {
 			PDPPage.assertPDPPage();
@@ -229,7 +229,7 @@ public class PDP_StepDefinition extends baseClass {
 		}
 	}
 
-	@Given("User Slect the size as {string}")
+	@Given("User Select the size as {string}")
 	public void user_slect_the_size_as(String Size) throws IOException {
 		try {
 			PDPPage.clickAnySizeVariant_PDP(Size);

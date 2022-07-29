@@ -9,7 +9,14 @@ Feature: Search smoke scripts
     And User Search with a Brand name "Adidas"
     And User click on Search button
     Then User lands on Brand "Adidas" page
-    And User clicks on Womens filter section 
+    
+    
+    @search_2.0 @SmokeSuite
+  Scenario Outline: Verify user lands on SLP page
+    Given User Land on the RRS home page
+    And User clicks on search text box
+    And User Search with some keyword "WOMEN ASICS" 
+    And User click on Search button
     And User clicks on Shoes filter section 
     And User clicks on Hide filter
     And User click on Sort by
@@ -17,7 +24,7 @@ Feature: Search smoke scripts
     
 
     
- @search_2.0 @SmokeSuite
+ @search_3.0 @SmokeSuite
   Scenario Outline: Verify search with a Product name
     Given User Land on the RRS home page
     And User clicks on search text box
