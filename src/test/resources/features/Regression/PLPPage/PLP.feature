@@ -6,13 +6,13 @@ Feature: PLP Regression Scripts
   Scenario: Verify user direction to PLP Page
     Given User Land on the RRS home page
     And User Search for a product with some keywords "WOMEN ASICS" and click on search button
-    Then Assert user is direceted to appropriate PLP page for the keyword used
+    Then Assert user is directed to appropriate PLP page for the keyword used
 
   @PLP_3.2
   Scenario: Verify the page results by clicking on any of the options under "Sort By"
     Given User Land on the RRS home page
     And User Search for a product with some keywords "WOMEN ASICS" and click on search button
-    Then Assert user is direceted to appropriate PLP page for the keyword used
+    Then Assert user is directed to appropriate PLP page for the keyword used
     And User store the number of search results to a variable
     And User select "Price: Low to High" Sort by value from the dropdown
     Then User validate the results count not modified but the sorting is modified
@@ -21,7 +21,7 @@ Feature: PLP Regression Scripts
   Scenario: Verify applying filter in PLP
     Given User Lauch RRS application and navigate to home page
     And User Search for a product with some keywords "WOMEN ASICS" and click on search button
-    Then Assert user is direceted to appropriate PLP page for the keyword used
+    Then Assert user is directed to appropriate PLP page for the keyword used
     And User applies filter on main category and categories
       | Shoes | Casual |
     Then User validate the results page appropriate to the appplied filter or not
@@ -31,14 +31,14 @@ Feature: PLP Regression Scripts
   Scenario: Verify pagination in PLP
     Given User Lauch RRS application and navigate to home page
     And User Search for a product with some keywords "WOMEN ASICS" and click on search button
-    Then Assert user is direceted to appropriate PLP page for the keyword used
+    Then Assert user is directed to appropriate PLP page for the keyword used
     And User should be able to see 48 products in the PLP page with page numbers, next and prev arrow icons
 
   @Regression_RK_005
   Scenario: Verify Bread Crumb response in PLP
     Given User Lauch RRS application and navigate to home page
     And User Search for a product with some keywords "WOMEN ASICS" and click on search button
-    Then Assert user is direceted to appropriate PLP page for the keyword used
+    Then Assert user is directed to appropriate PLP page for the keyword used
     And User applies filter on main category and categories
       | Shoes | Casual |
     And Clicking on any of the home page category
@@ -50,7 +50,7 @@ Feature: PLP Regression Scripts
   Scenario: Verify Clear filters and Hide filters response
     Given User Lauch RRS application and navigate to home page
     And User Search for a product with some keywords "WOMEN ASICS" and click on search button
-    Then Assert user is direceted to appropriate PLP page for the keyword used
+    Then Assert user is directed to appropriate PLP page for the keyword used
     And User applies filter on main category and categories
       | Shoes | Casual |
     And Verify filters and its functionality

@@ -38,7 +38,7 @@ public class loginPage extends PageObject {
 	@FindBy(xpath = "//span[contains(text(),'Hi,')]")
 	WebElementFacade LoggedInUser_Hi;
 
-	@FindBy(css = "div[aria-label*='Hi, test']")
+	@FindBy(xpath = "//span[contains(normalize-space(),'Hi,')]")
 	WebElementFacade MyAccount_Lnk;
 
 	@FindBy(xpath = "//div[normalize-space()='Log Out']")
@@ -65,7 +65,7 @@ public class loginPage extends PageObject {
 	@FindBy(xpath = "//button[normalize-space()='Create Account']")
 	WebElementFacade CreateAccount_Btn;
 
-	@FindBy(xpath = "//span[contains(normalize-space(),'There')]")
+	@FindBy(xpath = "//span[normalize-space()='Hi, There']")
 	WebElementFacade HiThere_Lbl;
 
 	@FindBy(xpath = "//p[normalize-space()=\"YOU'RE MISSING OUT!\"]")
@@ -226,10 +226,10 @@ public class loginPage extends PageObject {
 	}
 
 	@Step
-	public void user_Assert_NewAccountCreation() {
+	public void user_Assert_NewAccountCreation() throws InterruptedException {
 		HiThere_Lbl.shouldBeVisible();
 		MyAccount_Lnk.click();
-		MyAccount_Header_Lbl.get(1).shouldBeVisible();
+		//MyAccount_Header_Lbl.get(1).shouldBeVisible();
 		// assertThat(YoureMissingOut_Lbl.containsText("YOU'RE MISSING OUT!"));
 	}
 
@@ -248,7 +248,7 @@ public class loginPage extends PageObject {
 
 	@Step
 	public void user_logout_application() throws InterruptedException {
-		// click_Profile_SVG_Button();
+		click_Profile_SVG_Button();
 		Logout_Lnk.click();
 		Thread.sleep(5000);
 		element(Login_SVG).waitUntilVisible();

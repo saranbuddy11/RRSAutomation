@@ -27,10 +27,10 @@ public class PLPPage extends PageObject {
 
 	public static Logger log = LogManager.getLogger(PLPPage.class);
 
-	@FindBy(xpath = "//a[@aria-label=\"Shop Women's The Hottest Brands of Running shoes\"]")
+	@FindBy(css = "a[aria-label=\"Shop Women's The Hottest Brands of Running shoes\"]")
 	WebElementFacade ShopNow_Women;
 
-	@FindBy(xpath = "//h1[contains(text(),\"women's running shoes\")]")
+	@FindBy(css = "h1[class='tag_h1--hWc2x']")
 	WebElementFacade Women_RunningShoe_H1_Lbl;
 
 	@FindBy(xpath = "//div[contains(@class,'selectbox-header--')]")
@@ -39,22 +39,22 @@ public class PLPPage extends PageObject {
 	@FindBy(xpath = "//a[normalize-space()='Hide Filter']")
 	WebElementFacade Plp_HideFilter_Lnk;
 
-	@FindBy(xpath = "//a[contains(normalize-space(),'Clear Filters')]")
+	@FindBy(xpath = "//a[contains(normalize-space()='Clear Filters')]")
 	WebElementFacade Plp_ClearFilter_Lnk;
 
 	@FindBy(xpath = "//span[normalize-space()='categories']")
 	WebElementFacade Plp_Categories_Header_Lbl;
 
-	@FindBy(xpath = "//input[@placeholder='What are you looking for?']")
+	@FindBy(css = "input[placeholder='What are you looking for?']")
 	WebElementFacade Plp_SearchBar_Txt;
 
-	@FindBy(css = "svg.icon-link--XANc9>g")
+	@FindBy(css = "svg.icon--3lrU-.icon-link--XANc9")
 	WebElementFacade Plp_SearchIcon_SVG;
 
-	@FindBy(css = "span.breadcrumb-line---rKHZ+span")
+	@FindBy(css = "span.breadcrumb-line---rKHZ")
 	WebElementFacade Plp_SearchResults_BC;
 
-	@FindBy(css = "h1.tag_h1--hWc2x")
+	@FindBy(xpath = "//h1[contains(text(),'RESULTS FOR')]")
 	WebElementFacade Plp_SearchResultsCount_Lbl;
 
 	@FindBy(css = "ul[aria-label='Sort by']")
@@ -81,10 +81,10 @@ public class PLPPage extends PageObject {
 	@FindBy(xpath = "//div[contains(normalize-space(),'Reviews')]")
 	WebElementFacade Plp_ReviewDisplayed;
 
-	@FindBy(xpath = "//span[contains(@aria-label,'Color variant Coral/Mist')]")
+	@FindBy(css = "span[aria-label='Color variant grey/purple']")
 	WebElementFacade Plp_ColorVariantDisplayed;
 
-	@FindBy(xpath = "//span[contains(@class,'product-listing-footer-info')]")
+	@FindBy(css = ".pagination-item-active--RnLLf")
 	WebElementFacade Plp_MaxProductsDisplayed_Lbl;
 
 	@FindBy(xpath = "//button[normalize-space()='Load More']")
@@ -174,7 +174,7 @@ public class PLPPage extends PageObject {
 
 	@Step
 	public void applyAnyFilter(String Filter) throws InterruptedException {
-		String DynamicFilterElement = "//label[contains(normalize-space(),'" + Filter + "')]";
+		String DynamicFilterElement = "//label[contains(normalize-space(),'" + Filter + "&p=48" + "')]";
 		System.out.println("Dynamic xpath created: " + DynamicFilterElement);
 		getDriver().findElement(By.xpath(DynamicFilterElement)).click();
 		Thread.sleep(2000);
@@ -194,15 +194,15 @@ public class PLPPage extends PageObject {
 		String MaxProductDispalyed = Plp_MaxProductsDisplayed_Lbl.getText();
 		System.out.println("Product displayed so far: " + MaxProductDispalyed);
 		int counter = 1;
-		while (!MaxProductDispalyed.contains("viewed 96")) {
+		while (!MaxProductDispalyed.contains("viewed 48")) {
 			CommonPage.javaScriptExecutor_Scroll(Plp_MaxProductsDisplayed_Lbl);
 			// CommonPage.actions_PageDown();
 			// CommonPage.actions_PageDown();
 			Thread.sleep(2000);
 			MaxProductDispalyed = Plp_MaxProductsDisplayed_Lbl.getText();
 			System.out.println("Product displayed so far: " + MaxProductDispalyed);
-			if (MaxProductDispalyed.contains("viewed 96")) {
-				System.out.println("Application loaded 96 products");
+			if (MaxProductDispalyed.contains("viewed 48")) {
+				System.out.println("Application loaded 48 products");
 				break;
 			}
 			if (counter == 20) {
@@ -210,8 +210,8 @@ public class PLPPage extends PageObject {
 			}
 			counter++;
 		}
-		Plp_LoadMore_Btn.shouldBeVisible();
-		CommonPage.javaScriptExecutor_Click(Plp_LoadMore_Btn);
+		// Plp_LoadMore_Btn.shouldBeVisible();
+		// CommonPage.javaScriptExecutor_Click(Plp_LoadMore_Btn);
 		Thread.sleep(2000);
 		CommonPage.javaScriptExecutor_Scroll(Plp_MaxProductsDisplayed_Lbl);
 	}
@@ -240,7 +240,7 @@ public class PLPPage extends PageObject {
 
 	@Step
 	public void applyFilter(String Filter) throws InterruptedException {
-		String DynamicFilterElement = "//input[@value='r=webPgc%3A" + Filter + "']";
+		String DynamicFilterElement = "//input[@value='r=webPgc%3A" + Filter + "&p=48" + "']";
 		// input[@value='r=webPgc%3AShoes']
 		System.out.println("Dynamic xpath created: " + DynamicFilterElement);
 		getDriver().findElement(By.xpath(DynamicFilterElement)).click();
@@ -302,7 +302,7 @@ public class PLPPage extends PageObject {
 		Actions a = new Actions(getDriver());
 		a.moveToElement(Plp_SearchIcon_SVG).click().build().perform();
 		Thread.sleep(5000);
-		Plp_SearchResults_BC.waitUntilVisible();
+		// Plp_SearchResults_BC.waitUntilVisible();
 	}
 
 	@Step

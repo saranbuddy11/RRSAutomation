@@ -9,19 +9,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 
 public class search extends PageObject {
 
-	@FindBy(xpath = "//input[@placeholder='What are you looking for?']")
+	@FindBy(css = "input[placeholder='What are you looking for?']")
 	WebElement search_SVG;
 
-	@FindBy(xpath = "//h1[contains(text(),'RESULTS FOR')]")
+	@FindBy(xpath = "//p[contains(@class,'searchbox-suggestions-results-title--NwoKr')]")
 	WebElement brand_SVG;
 
-	@FindBy(xpath = "//h1[@class='tag_h1--hWc2x  product-wrapper-title--1mSzK']")
+	@FindBy(css = ".product-wrapper-title--1mSzK")
 	WebElement product_SVG;
 
 	@Step
@@ -36,14 +37,24 @@ public class search extends PageObject {
 		typeInto(search_SVG, Value);
 
 	}
+	
+	@Step
+	public void user_Enter_SearchKeyword(String Value) {
+		typeInto(search_SVG, Value);
+	}
 
 	@Step
 	public void user_Click_Search_Button() {
 		search_SVG.sendKeys(Keys.ENTER);
 		element(brand_SVG).waitUntilVisible();
-
+		try {
+			Thread.sleep(8000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 	}
-
+	
 	@Step
 	public void user_lands_BrandPage(String Value) {
 		containsText(Value);
@@ -73,10 +84,10 @@ public class search extends PageObject {
 	@FindBy(xpath = "//*[@id='rrs-main']/div/div[5]/div[1]/div/div/div[1]/div[2]/ul/li[1]/div/span/input")
 	WebElementFacade womens_SVG;
 
-	@FindBy(xpath = "//*[@id='rrs-main']/div/div[5]/div[1]/div/div/div[2]/div[2]/ul/li[1]/div/span/input")
+	@FindBy(css = "//span[contains(normalize-space(),'Shoes']")
 	WebElementFacade category_SVG;
 
-	@FindBy(xpath = "//*[@id='rrs-main']/div/div[4]/div[2]/div/a")
+	@FindBy(xpath = "a[normalize-space()='Hide Filter']")
 	WebElementFacade hide_filters;
 
 	@FindBy(xpath = "//div[contains(@aria-label,'Sort by listbox')]")
@@ -159,7 +170,5 @@ public class search extends PageObject {
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_PAGE_UP);
 		robot.keyRelease(KeyEvent.VK_PAGE_UP);
-
 	}
-
 }

@@ -8,6 +8,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
+
+import com.RRS.Pages.PLPPage;
 import com.RRS.Pages.homePage;
 
 public class search_StepDefinitions extends baseClass {
@@ -17,6 +19,9 @@ public class search_StepDefinitions extends baseClass {
 
 	@Steps
 	homePage homePage;
+	
+	@Steps
+	PLPPage PLPpage;
 
 	@And("User clicks on search text box")
 	public void user_clicks_on_search_text_box() {
@@ -26,6 +31,11 @@ public class search_StepDefinitions extends baseClass {
 	@And("User Search with a Brand name {string}")
 	public void user_search_with_a_brand_name(String brandName) {
 		search.user_Enter_BrandName(brandName);
+	}
+	
+	@And("User Search with some keyword {string}")
+	public void user_search_with_some_keyword(String searchKeyword) {
+		search.user_Enter_SearchKeyword(searchKeyword);   
 	}
 
 	@And("User click on Search button")
@@ -38,7 +48,7 @@ public class search_StepDefinitions extends baseClass {
 		search.user_lands_BrandPage(brandPage);
 		System.out.println("Working");
 	}
-
+	
 	@Given("User Search with a Product name {string}")
 	public void user_search_with_a_Product_name(String productName) {
 		search.user_Enter_ProductName(productName);

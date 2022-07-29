@@ -3,21 +3,21 @@
 @PDP_Full @SmokeSuite_Full
 Feature: PDP Smoke Scripts
 
-  @PLP_4.1
+  @PDP_4.1
  Scenario: Verify user direction to PDP Page
  		Given User Land on the RRS home page
     And User Click on shop now link in any of the home page banner
 		Then User Click on any one of the product from PLP Page
-    Then Assert user is direceted to appropriate PDP page based on the selection
+    Then Assert user is directed to appropriate PDP page based on the selection
     And User click on the RRS home page logo
 		And User Search for a particular product "40135" and click on search button
-    Then Assert user is direceted to appropriate PDP page
+    Then Assert user is directed to appropriate PDP page
   
-  @PLP_4.2_4.19 
+  @PDP_4.2_4.19 
  Scenario: Verify All the required details of the product displayed in PDP page
     Given User Land on the RRS home page
 		And User Search for a particular product "40135" and click on search button
-    Then Assert user is direceted to appropriate PDP page
+    Then Assert user is directed to appropriate PDP page
     Then User Verify MSRP and VIP price of the product is displayed in PDP
     Then User Verify item id of the product is displayed in PDP
     Then User Verify the step 1 your color in PDP - allows user to select one color at one time and image altered
