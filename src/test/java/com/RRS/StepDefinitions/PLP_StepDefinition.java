@@ -32,7 +32,7 @@ public class PLP_StepDefinition extends baseClass {
 		Thread.sleep(1000);
 	}
 
-	@Then("Assert user is direceted to appropriate PLP page")
+	@Then("Assert user is directed to appropriate PLP page")
 	public void assert_user_is_direceted_to_appropriate_plp_page() {
 		PLPpage.Assert_PLPpage();
 	}

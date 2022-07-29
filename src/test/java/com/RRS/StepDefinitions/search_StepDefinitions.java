@@ -34,8 +34,8 @@ public class search_StepDefinitions extends baseClass {
 	}
 	
 	@And("User Search with some keyword {string}")
-	public void user_search_with_some__keyword(String searchKeyword) {
-		search.user_Enter_SearchKeyword(searchKeyword);
+	public void user_search_with_some_keyword(String searchKeyword) {
+		search.user_Enter_SearchKeyword(searchKeyword);   
 	}
 
 	@And("User click on Search button")
@@ -48,7 +48,7 @@ public class search_StepDefinitions extends baseClass {
 		search.user_lands_BrandPage(brandPage);
 		System.out.println("Working");
 	}
-
+	
 	@Given("User Search with a Product name {string}")
 	public void user_search_with_a_Product_name(String productName) {
 		search.user_Enter_ProductName(productName);

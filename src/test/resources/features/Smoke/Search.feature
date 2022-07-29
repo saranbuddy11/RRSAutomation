@@ -28,6 +28,6 @@ Feature: Search smoke scripts
   Scenario Outline: Verify search with a Product name
     Given User Land on the RRS home page
     And User clicks on search text box
-    And User Search with a Product name "39790"
-    And User click on Enter
+    And User Search for a particular product "39790" and click on search button
+    Then Assert user is directed to appropriate PDP page
     

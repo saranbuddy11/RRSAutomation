@@ -6,7 +6,7 @@ Feature: PLP Smoke Scripts
   Scenario: Verify user direction to PLP Page
     Given User Land on the RRS home page
     And User Click on shop now link in any of the home page banner
-    Then Assert user is direceted to appropriate PLP page
+    Then Assert user is directed to appropriate PLP page
     And User Search for a product with some keywords "WOMEN ASICS" and click on search button
     Then Assert user is directed to appropriate PLP page for the keyword used
 
