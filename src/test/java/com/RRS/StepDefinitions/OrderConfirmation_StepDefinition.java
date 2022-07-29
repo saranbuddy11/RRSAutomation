@@ -98,6 +98,7 @@ public class OrderConfirmation_StepDefinition extends baseClass {
 
 	@Then("Assert Upgrade to VIP Plus details is displayed")
 	public void assert_upgrade_to_vip_plus_details_is_displayed() {
+		OCPage.assertBubblebannerDetails();
 
 	}
 

@@ -33,4 +33,4 @@ Feature: Order Confirmation Page Smoke scripts
   	
 		Examples: 
       |User|FirstName|
-      |VIP2|SAI|
+      |VIP2|TEST|
