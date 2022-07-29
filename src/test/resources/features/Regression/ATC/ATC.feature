@@ -6,7 +6,7 @@ Feature: ATC Regression Scripts
   Scenario: Verify ATC popup is displayed in PDP
     Given User Lauch RRS application and navigate to home page
     When User Search for a product with some keywords "WOMEN ASICS" and click on search button
-    Then Assert user is direceted to appropriate PLP page for the keyword used
+    Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
       | M | 7 | aria-label | Black/White | 1 | 2 |
@@ -15,7 +15,7 @@ Feature: ATC Regression Scripts
   Scenario: Verify whether selected product image(Color SKU), product quantity, product name, size, width, MSRP and VIP price are displayed in ATC popup
     Given User Lauch RRS application and navigate to home page
     When User Search for a product with some keywords "WOMEN ASICS" and click on search button
-    Then Assert user is direceted to appropriate PLP page for the keyword used
+    Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
       | M | 7 | aria-label | Black/White | 1 | 2 |

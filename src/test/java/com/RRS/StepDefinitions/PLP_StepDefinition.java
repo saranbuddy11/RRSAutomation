@@ -46,7 +46,7 @@ public class PLP_StepDefinition extends baseClass {
 	}
 
 	@Then("Assert user is directed to appropriate PLP page for the keyword used")
-	public void assert_user_is_direceted_to_appropriate_plp_page_for_the_keyword_used() {
+	public void assert_user_is_directed_to_appropriate_plp_page_for_the_keyword_used() {
 		PLPpage.Assert_PLPpage_SearchKeyword();
 	}
 
