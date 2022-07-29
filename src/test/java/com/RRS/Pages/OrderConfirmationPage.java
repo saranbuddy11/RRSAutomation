@@ -21,16 +21,16 @@ public class OrderConfirmationPage extends PageObject {
 	@FindBy(css = ".vip-saving-title--2zmcw")
 	WebElementFacade OC_JoinVIP_Lbl;
 
-	@FindBy(xpath = "//h3[normalize-space()='ORDER SUMMARY']")
+	@FindBy(xpath = "//h3[normalize-space()='Order Summary']")
 	WebElementFacade OC_OrderSummary_Lbl;
 
-	@FindBy(xpath = "(//div[contains(@class,'line-item--')])[1]")
+	@FindBy(xpath = "//p[normalize-space()='Order Subtotal']")
 	WebElementFacade OC_OrderSubTotal_Lbl;
 
-	@FindBy(xpath = "(//div[contains(@class,'line-item--')])[2]")
+	@FindBy(xpath = "//p[normalize-space()='Shipping']")
 	WebElementFacade OC_OrderShipping_Lbl;
 
-	@FindBy(xpath = "(//div[contains(@class,'line-item--')])[3]")
+	@FindBy(xpath = "//p[normalize-space()='Tax']")
 	WebElementFacade OC_OrderTax_Lbl;
 
 	@FindBy(xpath = "(//div[contains(@class,'line-item--')])[4]")
