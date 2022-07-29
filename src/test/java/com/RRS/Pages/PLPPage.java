@@ -51,10 +51,10 @@ public class PLPPage extends PageObject {
 	@FindBy(css = "svg.icon--3lrU-.icon-link--XANc9")
 	WebElementFacade Plp_SearchIcon_SVG;
 
-	@FindBy(css = "span.breadcrumb-line---rKHZ+span")
+	@FindBy(css = "span.breadcrumb-line---rKHZ")
 	WebElementFacade Plp_SearchResults_BC;
 
-	@FindBy(css = ".tag_h1--hWc2x")
+	@FindBy(xpath = "//h1[contains(text(),'RESULTS FOR')]")
 	WebElementFacade Plp_SearchResultsCount_Lbl;
 
 	@FindBy(css = "ul[aria-label='Sort by']")
@@ -194,7 +194,7 @@ public class PLPPage extends PageObject {
 		String MaxProductDispalyed = Plp_MaxProductsDisplayed_Lbl.getText();
 		System.out.println("Product displayed so far: " + MaxProductDispalyed);
 		int counter = 1;
-		while (!MaxProductDispalyed.contains("viewed 96")) {
+		while (!MaxProductDispalyed.contains("viewed 48")) {
 			CommonPage.javaScriptExecutor_Scroll(Plp_MaxProductsDisplayed_Lbl);
 			// CommonPage.actions_PageDown();
 			// CommonPage.actions_PageDown();

@@ -12,9 +12,9 @@ Feature: Order Confirmation Page Smoke scripts
 		#Then user validate the successful login
 		#And User click on the RRS home page logo
 		And User Search for a particular product "40135" and click on search button
-    Then Assert user is direceted to appropriate PDP page
+    Then Assert user is directed to appropriate PDP page
  	  And User Select the color variant "Pale Grey"
-    And User Slect the size as "L"
+    And User Select the size as "L"
   	And User note down MSPR and VIP price of the product displayed
   	And User click on Add to Cart button
   	Then Assert Add to Cart popup got displayed

@@ -1,0 +1,60 @@
+[DEBUG] 2022-07-29 16:10:20.381 com.RRS.Pages.homePage - Browser launched with the URL
+[INFO ] 2022-07-29 16:11:03.856 com.RRS.Pages.PDPPage - VIP Prince is: $134.99When you join our VIP Family
+[INFO ] 2022-07-29 16:11:03.856 com.RRS.Pages.PDPPage - VIP Price without $ and other string: 134.99
+[INFO ] 2022-07-29 16:11:14.929 com.RRS.Pages.ATC_PopupPage - MSRP Displayed in Popup: $149.99
+[INFO ] 2022-07-29 16:11:14.929 com.RRS.Pages.ATC_PopupPage - MSRP without $: 149.99
+[INFO ] 2022-07-29 16:11:14.987 com.RRS.Pages.ATC_PopupPage - VIP price Displayed: $134.99 VIP Price
+[INFO ] 2022-07-29 16:11:14.988 com.RRS.Pages.ATC_PopupPage - VIP price without $: 134.99 VIP Price
+[INFO ] 2022-07-29 16:11:14.988 com.RRS.Pages.ATC_PopupPage - VIP price Only Amount: 134.99 
+[INFO ] 2022-07-29 16:11:15.029 com.RRS.Pages.ATC_PopupPage - Correct Color variant Displayed in the Pop Up
+[INFO ] 2022-07-29 16:11:15.057 com.RRS.Pages.ATC_PopupPage - Correct Size variant NOT Displayed in the Pop Up
+[DEBUG] 2022-07-29 16:11:22.895 com.RRS.Pages.homePage - Browser launched with the URL
+[INFO ] 2022-07-29 16:12:05.758 com.RRS.Pages.PDPPage - VIP Prince is: $134.99When you join our VIP Family
+[INFO ] 2022-07-29 16:12:05.758 com.RRS.Pages.PDPPage - VIP Price without $ and other string: 134.99
+[INFO ] 2022-07-29 16:12:25.023 com.RRS.StepDefinitions.Cart_StepDefinitions - Original MSRP price for 1 Product is: 149.99
+[INFO ] 2022-07-29 16:12:26.242 com.RRS.Pages.CartPage - Doubled Original price in string: 299.98
+[INFO ] 2022-07-29 16:12:26.242 com.RRS.Pages.CartPage - Doubled Original price in float: 299.98
+[INFO ] 2022-07-29 16:12:27.429 com.RRS.Pages.CartPage - Reduced Original price in string: 149.99
+[INFO ] 2022-07-29 16:12:27.429 com.RRS.Pages.CartPage - Reduced Original price in float: 149.99
+[INFO ] 2022-07-29 16:12:27.636 com.RRS.Pages.CartPage - PayPal payment method button got displayed
+[INFO ] 2022-07-29 16:12:28.837 com.RRS.StepDefinitions.Cart_StepDefinitions - Valid source code is accepted and offers are appllied
+[INFO ] 2022-07-29 16:12:28.842 com.RRS.StepDefinitions.Cart_StepDefinitions - Top Picks section dispalyed successfully
+[INFO ] 2022-07-29 16:12:40.128 com.RRS.Pages.CartPage - Total VIP Savings Amount displayed before getting VIP membership: 
+121.98
+[INFO ] 2022-07-29 16:12:41.824 com.RRS.Pages.CartPage - Total Estimated Amount without anything: 
+121.98
+[INFO ] 2022-07-29 16:12:41.825 com.RRS.StepDefinitions.Cart_StepDefinitions - Modified Estimated total amount is: 
+121.98
+[INFO ] 2022-07-29 16:12:41.930 com.RRS.Pages.CartPage - Total Estimated Amount without anything: 
+121.98
+[INFO ] 2022-07-29 16:12:41.987 com.RRS.Pages.CartPage - VIP Price displayed in cart page is: 134.99
+[DEBUG] 2022-07-29 16:12:49.721 com.RRS.Pages.homePage - Browser launched with the URL
+[DEBUG] 2022-07-29 16:13:21.386 com.RRS.Pages.homePage - Browser launched with the URL
+[DEBUG] 2022-07-29 16:13:49.259 com.RRS.Pages.homePage - Browser launched with the URL
+[DEBUG] 2022-07-29 16:14:25.996 com.RRS.Pages.homePage - Browser launched with the URL
+[DEBUG] 2022-07-29 16:15:06.504 com.RRS.Pages.homePage - Browser launched with the URL
+[DEBUG] 2022-07-29 16:16:07.642 com.RRS.Pages.homePage - Browser launched with the URL
+[INFO ] 2022-07-29 16:16:38.852 com.RRS.StepDefinitions.PDP_StepDefinition - MSRP Price without $: 149.99
+[INFO ] 2022-07-29 16:16:38.860 com.RRS.StepDefinitions.PDP_StepDefinition - MSRP Price in Float without $: 149.99
+[INFO ] 2022-07-29 16:16:38.905 com.RRS.Pages.PDPPage - VIP Prince is: $134.99When you join our VIP Family
+[INFO ] 2022-07-29 16:16:38.905 com.RRS.Pages.PDPPage - VIP Price without $ and other string: 134.99
+[INFO ] 2022-07-29 16:16:38.906 com.RRS.StepDefinitions.PDP_StepDefinition - VIP Price without $: 134.99
+[INFO ] 2022-07-29 16:16:38.910 com.RRS.StepDefinitions.PDP_StepDefinition - VIP Price in Float without $: 134.99
+[INFO ] 2022-07-29 16:16:39.009 com.RRS.StepDefinitions.PDP_StepDefinition - Item Numner is displayed
+[INFO ] 2022-07-29 16:17:20.147 com.RRS.Pages.PDPPage - Add to cart button is enabled since all steps are completed
+[INFO ] 2022-07-29 16:17:20.181 com.RRS.Pages.PDPPage - Product Description displayed correctly
+[INFO ] 2022-07-29 16:17:20.209 com.RRS.Pages.PDPPage - Stored Product descriotion: MEN'S KORSA FIELDTECH RUN JACKET
+[INFO ] 2022-07-29 16:17:20.274 com.RRS.Pages.PDPPage - Product review star is displayed
+[INFO ] 2022-07-29 16:17:20.325 com.RRS.Pages.PDPPage - Write Review link is displayed
+[INFO ] 2022-07-29 16:17:21.416 com.RRS.Pages.PDPPage - Outfit your run is displayed
+[INFO ] 2022-07-29 16:17:22.518 com.RRS.Pages.PDPPage - You May Also Like section is displayed
+[DEBUG] 2022-07-29 16:17:31.160 com.RRS.Pages.homePage - Browser launched with the URL
+[DEBUG] 2022-07-29 16:18:14.576 com.RRS.Pages.homePage - Browser launched with the URL
+[DEBUG] 2022-07-29 16:18:42.631 com.RRS.Pages.homePage - Browser launched with the URL
+[DEBUG] 2022-07-29 16:20:24.465 com.RRS.Pages.homePage - Browser launched with the URL
+[DEBUG] 2022-07-29 16:21:13.248 com.RRS.Pages.homePage - Browser launched with the URL
+[DEBUG] 2022-07-29 16:22:01.172 com.RRS.Pages.homePage - Browser launched with the URL
+[DEBUG] 2022-07-29 16:22:47.896 com.RRS.Pages.homePage - Browser launched with the URL
+[INFO ] 2022-07-29 16:22:58.988 com.RRS.Utilities.RndGenerators - Random Generated Email is: Vhyctxkc@gmail.com
+[DEBUG] 2022-07-29 16:23:16.182 com.RRS.Pages.homePage - Browser launched with the URL
+[DEBUG] 2022-07-29 16:23:35.960 com.RRS.Pages.homePage - Browser launched with the URL
