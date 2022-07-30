@@ -90,6 +90,7 @@ public class ATC_PopUp_StepDefinitions extends baseClass {
 	@Then("Validate ATC Popup")
 	public void validate_atc_popup() throws InterruptedException {
 		ATC_PopupPage.validateATCPopup(actualData);
+		actualData = null;
 	}
 
 	@Then("Verify Pickup in Store for selected products")
@@ -104,5 +105,75 @@ public class ATC_PopUp_StepDefinitions extends baseClass {
 			throws InterruptedException, AWTException {
 		List<List<String>> expectedData = table.asLists(String.class);
 		ATC_PopupPage.verifyPickupInStoreName(expectedData);
+	}
+
+	@Then("Read Quantity and price of product")
+	public void read_quantity_and_price_of_product(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		actualData = ATC_PopupPage.readQuantityAndPrice(expectedData);
+	}
+
+	@Then("Read product price and its quantity")
+	public void read_product_price_and_its_quantity(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		actualData = ATC_PopupPage.readProductPriceAndItsQuantity(expectedData);
+	}
+
+	@Then("Verify product price and Quantity at ATC popup")
+	public void verify_product_price_and_quantity_at_atc_popup() throws InterruptedException {
+		ATC_PopupPage.verifyPriceAndQuantity(actualData);
+		actualData = null;
+	}
+
+	@Then("Verify Quantity and its price calculation at ATC popup")
+	public void verify_quantity_and_its_price_calculation_at_atc_popup() throws InterruptedException {
+		ATC_PopupPage.verifyQuantityAndPriceCalculation(actualData);
+		actualData = null;
+	}
+
+	@Then("choosing SKU's and Navigate to ATC")
+	public void choosing_skus_and_navigate_to_atc(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		ATC_PopupPage.choosingSkuAndNavigateToAtc(expectedData);
+	}
+
+	@Then("choosing SKU's and Navigate to ATC to verify Checkout Button")
+	public void choosing_skus_and_navigate_to_atc_to_verify_checkout_button(DataTable table)
+			throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		ATC_PopupPage.choosingSkuAndNavigateToAtcToVerifyCheckOutButton(expectedData);
+	}
+
+	@Then("Verify VIP price in Cart Summary Section")
+	public void verify_vip_price_in_cart_summary_section(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		ATC_PopupPage.verifyVipPriceInCartSummarySection(expectedData);
+	}
+
+	@Then("Verify VIP Total and price in Cart Summary Section {string}")
+	public void verify_vip_total_and_price_in_cart_summary_section(String value) throws InterruptedException {
+		ATC_PopupPage.verifyVipTotalAndPriceInCartSummarySection(value);
+	}
+
+	@Then("Verify VIP Total and price calculation in Cart Summary Section {string}")
+	public void verify_vip_total_and_price_calculation_in_cart_summary_section(String value)
+			throws InterruptedException {
+		ATC_PopupPage.verifyVipTotalAndPriceCalculationInCartSummarySection(value, actualData);
+	}
+
+	@Then("Verify View Cart Page {string}")
+	public void verify_view_cart_page(String value) throws InterruptedException {
+		ATC_PopupPage.verifyViewCartPage(value);
+	}
+
+	@Then("Verify Checkout Page {string}")
+	public void verify_checkout_page(String value) throws InterruptedException {
+		ATC_PopupPage.verifyCheckOutPage(value);
+	}
+
+	@Then("Verify VIP rewards cash calculation")
+	public void verify_vip_rewards_cash_calculation() throws InterruptedException {
+		ATC_PopupPage.verifyVipRewardsCashCalculation(actualData);
+		actualData = null;
 	}
 }
