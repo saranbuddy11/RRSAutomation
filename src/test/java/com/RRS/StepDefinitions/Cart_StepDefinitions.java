@@ -196,4 +196,16 @@ public class Cart_StepDefinitions extends baseClass {
 	public void verify_view_cart_page_and_remove_functionality(String value, String text) throws InterruptedException {
 		CartPage.verifyViewCartPageAndRemoveFunctionality(value, text);
 	}
+
+	@Then("Verify View Cart Page and Checkout button response")
+	public void verify_view_cart_page_and_checkout_button_response(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CartPage.verifyViewCartPageAndCheckoutButtonResponse(expectedData);
+	}
+
+	@Then("Verify Login and Checkout button response")
+	public void verify_login_and_checkout_button_response(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CartPage.verifyLoginAndCheckoutButtonResponse(expectedData);
+	}
 }

@@ -95,3 +95,35 @@ Feature: Cart Regression Scripts
     Then Verify Add to Cart Popup
       | M | 7 | aria-label | Black/White | 1 | 2 |
     And Verify View Cart Page and Remove Functionality "cart" "Your shopping cart is empty"
+
+  @Regression_RK_010
+  Scenario: Verify Order Subtotal under Order Summary section
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And Verify View Cart Page and Order Subtotal "cart"
+
+  @Regression_RK_011
+  Scenario: Verify the Checkout button response
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And Verify View Cart Page and Checkout button response
+      | cart | checkout |
+
+  @Regression_RK_012
+  Scenario: Verify Login and Checkout button response
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And Verify Login and Checkout button response
+      | cart | Login & Checkout | MY ACCOUNT |

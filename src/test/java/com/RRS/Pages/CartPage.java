@@ -23,6 +23,7 @@ public class CartPage extends PageObject {
 	ATC_PopupPage atcPopupPage = new ATC_PopupPage();
 	PDPPage pdpPage = new PDPPage();
 	PLPPage plpPage = new PLPPage();
+	homePage homePage = new homePage();
 
 	@FindBy(xpath = "//h3[normalize-space()='ORDER SUMMARY']")
 	WebElementFacade Order_Summary_lbl;
@@ -104,6 +105,12 @@ public class CartPage extends PageObject {
 
 	@FindBy(css = "h5.cart-item-info-action-remove--2Yi-H")
 	WebElementFacade remove;
+
+	@FindBy(css = "a.cart-order-summary-check--2VEfI")
+	WebElementFacade checkOut;
+
+	@FindBy(css = "button.cart-order-summary-login--LF5YT")
+	WebElementFacade loginAndCheckOut;
 
 	@Step
 	public void clickCheckoutButtonAsVIPUser() throws InterruptedException {
@@ -332,5 +339,47 @@ public class CartPage extends PageObject {
 		Thread.sleep(5000);
 		plpPage.pageTitle.shouldBeCurrentlyVisible();
 		Assert.assertEquals(text.toLowerCase(), plpPage.pageTitle.getText().toLowerCase());
+	}
+
+	@Step
+	public void verifyViewCartPageAndCheckoutButtonResponse(List<List<String>> expectedData)
+			throws InterruptedException {
+		waitFor(atcPopupPage.A2CPP_ViewCart_Btn);
+		atcPopupPage.A2CPP_ViewCart_Btn.click();
+		waitFor(Order_Summary_lbl);
+		Thread.sleep(5000);
+		CommonPage.actions_DownArrow();
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
+		atcPopupPage.vipSection.shouldBeCurrentlyVisible();
+		atcPopupPage.productName.shouldBeCurrentlyVisible().isClickable();
+		checkOut.shouldBeCurrentlyVisible().isClickable();
+		checkOut.click();
+		Thread.sleep(10000);
+		plpPage.pageTitle.waitUntilVisible();
+		plpPage.pageTitle.shouldBeCurrentlyVisible();
+		Assert.assertTrue(plpPage.pageTitle.getText().toLowerCase().contains(expectedData.get(0).get(1)));
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(1));
+	}
+
+	@Step
+	public void verifyLoginAndCheckoutButtonResponse(List<List<String>> expectedData) throws InterruptedException {
+		waitFor(atcPopupPage.A2CPP_ViewCart_Btn);
+		atcPopupPage.A2CPP_ViewCart_Btn.click();
+		waitFor(Order_Summary_lbl);
+		Thread.sleep(5000);
+		CommonPage.actions_DownArrow();
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
+		atcPopupPage.vipSection.shouldBeCurrentlyVisible();
+		atcPopupPage.productName.shouldBeCurrentlyVisible().isClickable();
+		loginAndCheckOut.shouldBeCurrentlyVisible().isClickable();
+		Assert.assertEquals(loginAndCheckOut.getText(), expectedData.get(0).get(1));
+		loginAndCheckOut.click();
+		Thread.sleep(5000);
+		homePage.myAccountLogin_Lbl.waitUntilVisible();
+		homePage.myAccountLogin_Lbl.shouldBeCurrentlyVisible();
+		Assert.assertEquals(homePage.myAccountLogin_Lbl.getText(), expectedData.get(0).get(2));
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
+		homePage.Enter_EmailAddress.shouldBeCurrentlyVisible().isEnabled();
+		homePage.Enter_Password.shouldBeCurrentlyVisible().isEnabled();
 	}
 }

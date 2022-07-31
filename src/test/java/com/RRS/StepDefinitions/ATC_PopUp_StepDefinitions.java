@@ -204,4 +204,9 @@ public class ATC_PopUp_StepDefinitions extends baseClass {
 			throws InterruptedException {
 		ATC_PopupPage.verifyViewCartPageAndProduct(value, actualData);
 	}
+
+	@Then("Verify View Cart Page and Order Subtotal {string}")
+	public void verify_view_cart_page_and_order_subtotal(String value) throws InterruptedException {
+		ATC_PopupPage.verifyViewCartPageAndOrderSubtotal(value, actualData);
+	}
 }

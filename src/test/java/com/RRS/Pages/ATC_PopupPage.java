@@ -157,6 +157,15 @@ public class ATC_PopupPage extends PageObject {
 	@FindBy(css = "span.price-vip-red--3PRtb")
 	List<WebElementFacade> vipPrice;
 
+	@FindBy(css = "div.order-summary--CpaK4>h3.tag_h3--2baIm")
+	WebElementFacade orderSummary;
+
+	@FindBy(css = "div.order-summary--CpaK4>div.line-item--1TTzZ>p")
+	List<WebElementFacade> orderSubtotal;
+
+	@FindBy(css = "h4.line-item--1TTzZh4")
+	List<WebElementFacade> estimatedTotal;
+
 	@Step
 	public void clickViewCartBtn_A2CPopUp() throws InterruptedException {
 		waitFor(A2CPP_ViewCart_Btn);
@@ -711,5 +720,27 @@ public class ATC_PopupPage extends PageObject {
 		sddlpPage.productTitle.shouldBeCurrentlyVisible();
 		s = sddlpPage.productTitle.getText().toLowerCase();
 		Assert.assertEquals(s, expectedData.get(0).toLowerCase());
+	}
+
+	@Step
+	public void verifyViewCartPageAndOrderSubtotal(String value, List<String> expectedData)
+			throws InterruptedException {
+		waitFor(A2CPP_ViewCart_Btn);
+		A2CPP_ViewCart_Btn.click();
+		waitFor(Order_Summary_lbl);
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(value);
+		productName.shouldBeCurrentlyVisible().isClickable();
+		String s = productName.getText().toLowerCase();
+		Assert.assertEquals(s, expectedData.get(0).toLowerCase());
+		orderSummary.shouldBeCurrentlyVisible();
+		for (int i = 0; i < orderSubtotal.size(); i++) {
+			orderSubtotal.get(i).shouldBeCurrentlyVisible();
+			estimatedTotal.get(i).shouldBeCurrentlyVisible();
+		}
+		String total = orderSubtotal.get(1).getText();
+		Assert.assertEquals(total, expectedData.get(1));
+		total = estimatedTotal.get(1).getText();
+		Assert.assertEquals(total, expectedData.get(1));
 	}
 }
