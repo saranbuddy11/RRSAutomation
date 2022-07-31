@@ -21,6 +21,9 @@ public class OrderConfirmationPage extends PageObject {
 	@FindBy(css = ".vip-saving-title--2zmcw")
 	WebElementFacade OC_JoinVIP_Lbl;
 
+	@FindBy(xpath = "//h3[normalize-space()='ORDER SUMMARY']")
+	WebElementFacade CH3_OrderSummary_Lbl;
+	
 	@FindBy(xpath = "//h3[normalize-space()='Order Summary']")
 	WebElementFacade OC_OrderSummary_Lbl;
 
@@ -71,7 +74,7 @@ public class OrderConfirmationPage extends PageObject {
 	@Step
 	public void assertCheckoutS3displayed() throws InterruptedException {
 		Thread.sleep(5000);
-		OC_OrderSummary_Lbl.shouldBeVisible();
+		CH3_OrderSummary_Lbl.shouldBeVisible();
 	}
 
 	@Step

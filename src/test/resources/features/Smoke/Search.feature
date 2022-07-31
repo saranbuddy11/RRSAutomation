@@ -17,7 +17,9 @@ Feature: Search smoke scripts
     And User clicks on search text box
     And User Search with some keyword "WOMEN ASICS" 
     And User click on Search button
-    And User clicks on Shoes filter section 
+    #And User clicks on Shoes filter section 
+    And User apply the filter "Shoes" in the SLP page
+    #Then User validate the page results based on the filter applied
     And User clicks on Hide filter
     And User click on Sort by
     And User selects Top Rated 

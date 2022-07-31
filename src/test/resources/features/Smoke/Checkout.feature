@@ -48,4 +48,4 @@ Feature: Checkout Page Smoke scripts
 
   	Examples:
   	|FirstName|LastName|USAddress|PaymentMethod|
-  	|Mohanraj|Murugesan|USAddress1|CC1|
+  	|Lavanya|Balu|USAddress1|CC1|

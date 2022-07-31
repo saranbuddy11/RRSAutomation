@@ -84,10 +84,11 @@ public class search extends PageObject {
 	@FindBy(xpath = "//*[@id='rrs-main']/div/div[5]/div[1]/div/div/div[1]/div[2]/ul/li[1]/div/span/input")
 	WebElementFacade womens_SVG;
 
-	@FindBy(css = "//span[contains(normalize-space(),'Shoes']")
+	@FindBy(xpath = "//span[contains(normalize-space(),'Shoes']")
 	WebElementFacade category_SVG;
 
-	@FindBy(xpath = "a[normalize-space()='Hide Filter']")
+	@FindBy(xpath = "a[class='clickable-text--2XYI6']")
+	//a[normalize-space()='Hide Filter']
 	WebElementFacade hide_filters;
 
 	@FindBy(xpath = "//div[contains(@aria-label,'Sort by listbox')]")
@@ -170,5 +171,14 @@ public class search extends PageObject {
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_PAGE_UP);
 		robot.keyRelease(KeyEvent.VK_PAGE_UP);
+	}
+
+	public void applyFilter(String filter) throws InterruptedException {
+		String DynamicFilterElement = "//input[@value='r=webPgc%3A" + filter + "&p=48"+ "']";
+		// input[@value='r=webPgc%3AShoes']
+		System.out.println("Dynamic xpath created: " + DynamicFilterElement);
+		getDriver().findElement(By.xpath(DynamicFilterElement)).click();
+		Thread.sleep(2000);
+		
 	}
 }
