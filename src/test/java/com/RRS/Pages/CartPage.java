@@ -4,9 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.AWTException;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
@@ -18,6 +20,9 @@ import net.thucydides.core.annotations.Step;
 public class CartPage extends PageObject {
 	public static Logger log = LogManager.getLogger(CartPage.class);
 	CommonPage CommonPage = new CommonPage();
+	ATC_PopupPage atcPopupPage = new ATC_PopupPage();
+	PDPPage pdpPage = new PDPPage();
+	PLPPage plpPage = new PLPPage();
 
 	@FindBy(xpath = "//h3[normalize-space()='ORDER SUMMARY']")
 	WebElementFacade Order_Summary_lbl;
@@ -84,6 +89,21 @@ public class CartPage extends PageObject {
 
 	@FindBy(css = ".flex-row--D783L > h2.tag_h2--2y8Ae")
 	WebElementFacade My_Cart_Icon;
+
+	@FindBy(css = "img[alt='save_20.svg']")
+	WebElementFacade PercetLogo;
+
+	@FindBy(css = "button.vip-saving-line-item-button--3L6D6")
+	WebElementFacade joinVipBtn;
+
+	@FindBy(css = "a.cart-item-info-add-vip--14NyX")
+	WebElementFacade addVipLink;
+
+	@FindBy(css = "div.mini-cart-body-summary-vip-total--36HMW")
+	WebElementFacade vipTotal;
+
+	@FindBy(css = "h5.cart-item-info-action-remove--2Yi-H")
+	WebElementFacade remove;
 
 	@Step
 	public void clickCheckoutButtonAsVIPUser() throws InterruptedException {
@@ -234,5 +254,83 @@ public class CartPage extends PageObject {
 		String value = My_Cart_Icon.getTextContent();
 		assertTrue(value.contains("1"));
 		Thread.sleep(5000);
+	}
+
+	@Step
+	public void verifyViewCartPageAndBanner(String value) throws InterruptedException {
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(value);
+		atcPopupPage.vipSection.shouldBeCurrentlyVisible();
+		atcPopupPage.vipSavingLineItem.isPresent();
+		atcPopupPage.cartPageHeader.shouldBeCurrentlyVisible();
+		for (int i = 0; i < atcPopupPage.summary.size(); i++) {
+			atcPopupPage.summary.get(i).shouldBeCurrentlyVisible();
+		}
+		PercetLogo.shouldBeCurrentlyVisible();
+	}
+
+	@Step
+	public void verifyViewCartPageAndVipMembership(List<List<String>> expectedData) throws InterruptedException {
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
+		atcPopupPage.vipSection.shouldBeCurrentlyVisible();
+		PercetLogo.shouldBeCurrentlyVisible();
+		for (int i = 0; i < atcPopupPage.summary.size(); i++) {
+			atcPopupPage.summary.get(i).shouldBeCurrentlyVisible();
+		}
+		joinVipBtn.shouldBeCurrentlyVisible().isClickable();
+		String s = joinVipBtn.getText();
+		Assert.assertEquals(expectedData.get(0).get(1), s);
+	}
+
+	@Step
+	public void verifyViewCartPageAndQuantity(String value) throws InterruptedException {
+		waitFor(atcPopupPage.A2CPP_ViewCart_Btn);
+		atcPopupPage.A2CPP_ViewCart_Btn.click();
+		waitFor(Order_Summary_lbl);
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(value);
+		atcPopupPage.vipSection.shouldBeCurrentlyVisible();
+		atcPopupPage.productName.shouldBeCurrentlyVisible().isClickable();
+		pdpPage.increaseQuantity.click();
+		String s = pdpPage.quantity.getText();
+		Assert.assertEquals(s, "2");
+		pdpPage.decreaseQuantity.click();
+		s = pdpPage.quantity.getText();
+		Assert.assertEquals(s, "1");
+	}
+
+	@Step
+	public void verifyViewCartPageAndVipLink(String value) throws InterruptedException {
+		waitFor(atcPopupPage.A2CPP_ViewCart_Btn);
+		atcPopupPage.A2CPP_ViewCart_Btn.click();
+		waitFor(Order_Summary_lbl);
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(value);
+		atcPopupPage.vipSection.shouldBeCurrentlyVisible();
+		atcPopupPage.productName.shouldBeCurrentlyVisible().isClickable();
+		addVipLink.shouldBeCurrentlyVisible().isClickable();
+		addVipLink.click();
+		Thread.sleep(5000);
+		element(pdpPage.cartTitle).waitUntilVisible();
+		vipTotal.shouldBeCurrentlyVisible();
+		Assert.assertTrue((vipTotal.getText()).contains("$"));
+	}
+
+	@Step
+	public void verifyViewCartPageAndRemoveFunctionality(String value, String text) throws InterruptedException {
+		waitFor(atcPopupPage.A2CPP_ViewCart_Btn);
+		atcPopupPage.A2CPP_ViewCart_Btn.click();
+		waitFor(Order_Summary_lbl);
+		Thread.sleep(5000);
+		CommonPage.actions_DownArrow();
+		Ensure.thatTheCurrentPage().currentUrl().contains(value);
+		atcPopupPage.vipSection.shouldBeCurrentlyVisible();
+		atcPopupPage.productName.shouldBeCurrentlyVisible().isClickable();
+		remove.shouldBeCurrentlyVisible().isClickable();
+		remove.click();
+		Thread.sleep(5000);
+		plpPage.pageTitle.shouldBeCurrentlyVisible();
+		Assert.assertEquals(text.toLowerCase(), plpPage.pageTitle.getText().toLowerCase());
 	}
 }

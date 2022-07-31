@@ -137,6 +137,12 @@ public class ATC_PopUp_StepDefinitions extends baseClass {
 		ATC_PopupPage.choosingSkuAndNavigateToAtc(expectedData);
 	}
 
+	@Then("choosing SKU's and Navigate to ATC for brand")
+	public void choosing_skus_and_navigate_to_atc_for_brand(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		actualData = ATC_PopupPage.choosingSkuAndNavigateToAtcForBrand(expectedData);
+	}
+
 	@Then("choosing SKU's and Navigate to ATC to verify Checkout Button")
 	public void choosing_skus_and_navigate_to_atc_to_verify_checkout_button(DataTable table)
 			throws InterruptedException, AWTException {
@@ -175,5 +181,27 @@ public class ATC_PopUp_StepDefinitions extends baseClass {
 	public void verify_vip_rewards_cash_calculation() throws InterruptedException {
 		ATC_PopupPage.verifyVipRewardsCashCalculation(actualData);
 		actualData = null;
+	}
+
+	@Then("Verify ATC toggle and VIP rewards cash calculation")
+	public void verify_atc_toggle_and_vip_rewards_cash_calculation() throws InterruptedException {
+		ATC_PopupPage.verifyAtcToggleVipRewardsCashCalculation(actualData);
+		actualData = null;
+	}
+
+	@Then("Verify View Cart Page with number of Items {string}")
+	public void verify_view_cart_page_with_number_of_items(String value) throws InterruptedException {
+		ATC_PopupPage.verifyViewCartPageAndItems(value, actualData);
+	}
+
+	@Then("Verify View Cart Page and its content {string}")
+	public void verify_view_cart_page_and_its_content(String value) throws InterruptedException {
+		ATC_PopupPage.verifyViewCartPageAndContent(value, actualData);
+	}
+
+	@Then("Verify View Cart Page and product name with its functionality {string}")
+	public void verify_view_cart_page_and_product_name_with_its_functionality(String value)
+			throws InterruptedException {
+		ATC_PopupPage.verifyViewCartPageAndProduct(value, actualData);
 	}
 }

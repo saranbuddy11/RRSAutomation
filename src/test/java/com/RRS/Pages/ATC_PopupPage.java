@@ -85,6 +85,9 @@ public class ATC_PopupPage extends PageObject {
 	@FindBy(css = "div.pdp-sale--ImILa")
 	WebElementFacade salePrice;
 
+	@FindBy(css = "div.pdp--2QsMa>div")
+	WebElementFacade price;
+
 	@FindBy(css = "a.mini-cart-body-summary-btn-cart--1rEBK")
 	WebElementFacade viewCart;
 
@@ -123,6 +126,36 @@ public class ATC_PopupPage extends PageObject {
 
 	@FindBy(css = "div.mini-cart-body-toggle--2VTtF>p.tag_p--3xrVF>strong")
 	WebElementFacade rewardsSection;
+
+	@FindBy(css = "div.mini-cart-body-toggle--2VTtF>div>label.toggle-switch--d50wQ")
+	WebElementFacade atcToggleSwitch;
+
+	@FindBy(css = "p.mini-cart-body-summary-vip-reward--30drd>span")
+	WebElementFacade rewardsCash;
+
+	@FindBy(css = "h4.mini-cart-body-item-title--3deJ1")
+	List<WebElementFacade> title;
+
+	@FindBy(css = "p.line-item--1TTzZp")
+	List<WebElementFacade> summary;
+
+	@FindBy(css = "p+small.tag_small--3bmao")
+	WebElementFacade skuId;
+
+	@FindBy(css = "div.col-sm-7--1jA8A>h2.tag_h2--2y8Ae")
+	WebElementFacade inventoryMessage;
+
+	@FindBy(css = "div.cart-item-info-price--3CpSA>span.price-original--1VaFr")
+	WebElementFacade msrPrice;
+
+	@FindBy(css = "h4.cart-item-info-name--2Y01F")
+	WebElementFacade productName;
+
+	@FindBy(css = "p.cart-item-info-details--3ETm5")
+	List<WebElementFacade> itemDetails;
+
+	@FindBy(css = "span.price-vip-red--3PRtb")
+	List<WebElementFacade> vipPrice;
 
 	@Step
 	public void clickViewCartBtn_A2CPopUp() throws InterruptedException {
@@ -200,6 +233,7 @@ public class ATC_PopupPage extends PageObject {
 		Assert.assertEquals(s, expectedData.get(0).get(3));
 		CommonPage.actions_DownArrow();
 		Thread.sleep(5000);
+		pdpPage.variantSize.get(2).waitUntilVisible();
 		a.moveToElement(pdpPage.variantSize.get(2)).perform();
 		pdpPage.variantSize.get(2).click();
 		s = pdpPage.variantTitle.get(1).getText();
@@ -395,6 +429,34 @@ public class ATC_PopupPage extends PageObject {
 	}
 
 	@Step
+	public List<String> choosingSkuAndNavigateToAtcForBrand(List<List<String>> expectedData)
+			throws InterruptedException, AWTException {
+		List<String> data = new ArrayList<String>();
+		Thread.sleep(5000);
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		Actions a = new Actions(getDriver());
+		String s = sddlpPage.productTitle.getText();
+		Assert.assertEquals(s.toLowerCase(), expectedData.get(0).get(2).toLowerCase());
+		s = price.getText();
+		data.add(s);
+		a.moveToElement(pdpPage.variantColor.get(0)).perform();
+		pdpPage.variantColor.get(0).click();
+		CommonPage.actions_DownArrow();
+		Thread.sleep(3000);
+		a.moveToElement(pdpPage.variantSize.get(2)).perform();
+		pdpPage.variantSize.get(2).click();
+		CommonPage.pageScrollDown();
+		CommonPage.actions_DownArrow();
+		s = pdpPage.quantity.getText();
+		data.add(s);
+		pdpPage.addToCartBtn.shouldBeCurrentlyVisible();
+		pdpPage.addToCartBtn.click();
+		element(pdpPage.cartTitle).waitUntilVisible();
+		return data;
+	}
+
+	@Step
 	public void choosingSkuAndNavigateToAtcToVerifyCheckOutButton(List<List<String>> expectedData)
 			throws InterruptedException, AWTException {
 		Thread.sleep(5000);
@@ -531,7 +593,6 @@ public class ATC_PopupPage extends PageObject {
 	public void verifyVipRewardsCashCalculation(List<String> actuals) throws InterruptedException {
 		Thread.sleep(5000);
 		popUpTitle.shouldBeCurrentlyVisible();
-		popUpTitle.shouldBeCurrentlyVisible();
 		String value = popUpTitle.getText();
 		Assert.assertEquals(value.toLowerCase(), actuals.get(0).toLowerCase());
 		value = atcPrice.getText();
@@ -559,5 +620,96 @@ public class ATC_PopupPage extends PageObject {
 		vipPrice = d - vipPrice;
 		vipPrice = (vipPrice * 0.1);
 		Assert.assertTrue(Double.parseDouble(df.format(actualReward)) == Double.parseDouble(df.format(vipPrice)));
+	}
+
+	@Step
+	public void verifyAtcToggleVipRewardsCashCalculation(List<String> actuals) throws InterruptedException {
+		Thread.sleep(5000);
+		popUpTitle.shouldBeCurrentlyVisible();
+		String value = atcPrice.getText();
+		Assert.assertEquals(value, actuals.get(0));
+		atcImage.shouldBeCurrentlyVisible();
+		value = atcQty.getText();
+		Assert.assertTrue(value.contains(actuals.get(1)));
+		checkOutBtn.shouldBeCurrentlyVisible().isClickable();
+		atcToggleSwitch.shouldBeCurrentlyVisible().isClickable();
+		List<WebElement> toggle = atcToggleSwitch.findElements(By.tagName("span"));
+		toggle.get(0).click();
+		Thread.sleep(5000);
+		title.get(1).shouldBeCurrentlyVisible();
+		value = rewardsCash.getText();
+		value = value.replace("$", "");
+		Double actualReward = Double.parseDouble(value);
+		String price = actuals.get(0).replace("$", "");
+		DecimalFormat df = new DecimalFormat("###.##");
+		Double d = Double.parseDouble(price);
+		Double vipPrice = (d * 0.2);
+		vipPrice = d - vipPrice;
+		vipPrice = (vipPrice * 0.1);
+		Assert.assertTrue(Double.parseDouble(df.format(actualReward)) == Double.parseDouble(df.format(vipPrice)));
+		d = d - (d * .2);
+		Double vip = d + 1.99;
+		price = summary.get(3).getText().replace("$", "");
+		Double vipTotal = Double.parseDouble(price);
+		Assert.assertTrue(Double.parseDouble(df.format(vip)) == Double.parseDouble(df.format(vipTotal)));
+	}
+
+	@Step
+	public void verifyViewCartPageAndItems(String value, List<String> expectedData) throws InterruptedException {
+		waitFor(A2CPP_ViewCart_Btn);
+		A2CPP_ViewCart_Btn.click();
+		waitFor(Order_Summary_lbl);
+		Thread.sleep(5000);
+		Order_Summary_lbl.shouldBeVisible();
+		Ensure.thatTheCurrentPage().currentUrl().contains(value);
+		vipSection.shouldBeCurrentlyVisible();
+		cartPageHeader.shouldBeCurrentlyVisible();
+		String s = cartPageHeader.getText();
+		Assert.assertTrue(s.contains("("));
+		Assert.assertTrue(s.contains(")"));
+		s = s.replaceAll("[^0-9.]", "");
+		Assert.assertEquals(s, expectedData.get(5));
+	}
+
+	@Step
+	public void verifyViewCartPageAndContent(String value, List<String> expectedData) throws InterruptedException {
+		waitFor(A2CPP_ViewCart_Btn);
+		A2CPP_ViewCart_Btn.click();
+		waitFor(Order_Summary_lbl);
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(value);
+		String s = expectedData.get(0).substring(18);
+		s = s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
+		String locator = "img[alt*='" + s + "']";
+		WebElement element = getDriver().findElement(By.cssSelector(locator));
+		element.isDisplayed();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(skuId).perform();
+		skuId.shouldBeCurrentlyVisible();
+		for (int i = 0; i < itemDetails.size(); i++) {
+			itemDetails.get(i).shouldBeCurrentlyVisible();
+		}
+		inventoryMessage.shouldBeCurrentlyVisible();
+		msrPrice.shouldBeCurrentlyVisible();
+		vipPrice.get(1).shouldBeCurrentlyVisible();
+		Assert.assertTrue(msrPrice.getText().contains("$"));
+		Assert.assertTrue(vipPrice.get(1).getText().contains("$"));
+	}
+
+	@Step
+	public void verifyViewCartPageAndProduct(String value, List<String> expectedData) throws InterruptedException {
+		waitFor(A2CPP_ViewCart_Btn);
+		A2CPP_ViewCart_Btn.click();
+		waitFor(Order_Summary_lbl);
+		Thread.sleep(5000);
+		Ensure.thatTheCurrentPage().currentUrl().contains(value);
+		productName.shouldBeCurrentlyVisible().isClickable();
+		String s = productName.getText().toLowerCase();
+		Assert.assertEquals(s, expectedData.get(0).toLowerCase());
+		productName.click();
+		Thread.sleep(5000);
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		s = sddlpPage.productTitle.getText().toLowerCase();
+		Assert.assertEquals(s, expectedData.get(0).toLowerCase());
 	}
 }

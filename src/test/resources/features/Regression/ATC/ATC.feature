@@ -104,3 +104,11 @@ Feature: ATC Regression Scripts
     Then Verify Add to Cart Popup
       | M | 7 | aria-label | Black/White | 1 | 2 |
     And Verify VIP rewards cash calculation
+
+  @Regression_RK_013
+  Scenario: Verify the ATC toggle for regular, Hoka, outlet, excluded items
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "41679" and click on search button
+    Then choosing SKU's and Navigate to ATC for brand
+      | Heather Black | M | Men's KORSA Accelerate Short Sleeve Tee | 1 |
+    And Verify ATC toggle and VIP rewards cash calculation
