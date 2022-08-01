@@ -208,4 +208,10 @@ public class Cart_StepDefinitions extends baseClass {
 		List<List<String>> expectedData = table.asLists(String.class);
 		CartPage.verifyLoginAndCheckoutButtonResponse(expectedData);
 	}
+
+	@Then("Verify Checkout with Paypal button response")
+	public void verify_checkout_with_paypal_button_response(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CartPage.verifyCheckoutWithPaypalButtonResponse(expectedData);
+	}
 }

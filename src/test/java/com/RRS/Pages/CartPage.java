@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.AWTException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -111,6 +112,9 @@ public class CartPage extends PageObject {
 
 	@FindBy(css = "button.cart-order-summary-login--LF5YT")
 	WebElementFacade loginAndCheckOut;
+
+	@FindBy(id = "buttons-container")
+	WebElementFacade paypalCheckOut;
 
 	@Step
 	public void clickCheckoutButtonAsVIPUser() throws InterruptedException {
@@ -381,5 +385,28 @@ public class CartPage extends PageObject {
 		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
 		homePage.Enter_EmailAddress.shouldBeCurrentlyVisible().isEnabled();
 		homePage.Enter_Password.shouldBeCurrentlyVisible().isEnabled();
+	}
+
+	@Step
+	public void verifyCheckoutWithPaypalButtonResponse(List<List<String>> expectedData) throws InterruptedException {
+		waitFor(atcPopupPage.A2CPP_ViewCart_Btn);
+		atcPopupPage.A2CPP_ViewCart_Btn.click();
+		waitFor(Order_Summary_lbl);
+		Thread.sleep(5000);
+		CommonPage.actions_DownArrow();
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
+		atcPopupPage.vipSection.shouldBeCurrentlyVisible();
+		atcPopupPage.productName.shouldBeCurrentlyVisible().isClickable();
+		getDriver().switchTo().frame("jsx-iframe-9f47cb21b7");
+		Thread.sleep(5000);
+		paypalCheckOut.shouldBeCurrentlyVisible().isClickable();
+		System.out.println(paypalCheckOut.getText());
+		Assert.assertEquals(paypalCheckOut.getText(), expectedData.get(0).get(1));
+		paypalCheckOut.click();
+		Thread.sleep(10000);
+		List<String> browserTabs = new ArrayList<String>(getDriver().getWindowHandles());
+		Assert.assertTrue(browserTabs.size() > 1);
+		getDriver().switchTo().window(browserTabs.get(1));
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(2));
 	}
 }

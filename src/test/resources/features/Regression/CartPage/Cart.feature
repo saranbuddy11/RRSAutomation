@@ -127,3 +127,14 @@ Feature: Cart Regression Scripts
       | M | 7 | aria-label | Black/White | 1 | 2 |
     And Verify Login and Checkout button response
       | cart | Login & Checkout | MY ACCOUNT |
+
+  @Regression_RK_013
+  Scenario: Verify checkout with Paypal and its response
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And Verify Checkout with Paypal button response
+      | cart | Checkout | paypal |
