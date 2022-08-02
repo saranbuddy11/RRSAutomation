@@ -138,3 +138,50 @@ Feature: Cart Regression Scripts
       | M | 7 | aria-label | Black/White | 1 | 2 |
     And Verify Checkout with Paypal button response
       | cart | Checkout | paypal |
+
+  @Regression_RK_014
+  Scenario: Verify Top picks for you section with recommended or Personalized products
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And Verify Top Picks for you section
+      | cart | KORSA | 24 |
+
+  @Regression_RK_015
+  Scenario: Verify the functionality and the products under Top picks for you section should have the Product name, Review Stars, MSRP Price, VIP Price and Swatch colors
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And Verify Top Picks for you section
+      | cart | KORSA | 24 |
+    And Verify Functionality of Product and its content "product"
+
+  @Regression_RK_016
+  Scenario: Verify the VIP Price with Your VIP Price Text
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And Verify VIP Price
+      | cart | Your VIP Price | $ |
+
+  @Regression_RK_017
+  Scenario: Verify VIP Savings under Order summary section
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And Verify VIP Price
+      | cart | Your VIP Price | $ |
+    And verify VIP savings
+      | VIP Savings | - |

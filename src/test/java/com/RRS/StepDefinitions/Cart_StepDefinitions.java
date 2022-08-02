@@ -24,6 +24,8 @@ public class Cart_StepDefinitions extends baseClass {
 	@Steps
 	ATC_PopUp_StepDefinitions atcPopup;
 
+	String actual = "";
+
 	@Then("User Assert Cart Page is displayed")
 	public void user_assert_cart_page_is_displayed() {
 		try {
@@ -213,5 +215,28 @@ public class Cart_StepDefinitions extends baseClass {
 	public void verify_checkout_with_paypal_button_response(DataTable table) throws InterruptedException {
 		List<List<String>> expectedData = table.asLists(String.class);
 		CartPage.verifyCheckoutWithPaypalButtonResponse(expectedData);
+	}
+
+	@Then("Verify Top Picks for you section")
+	public void verify_top_picks_for_you_section(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CartPage.verifyTopPicksSection(expectedData);
+	}
+
+	@Then("Verify Functionality of Product and its content {string}")
+	public void verify_functionality_of_product_and_its_content(String value) throws InterruptedException {
+		CartPage.verifyFunctionalityOfProductAndItsContent(value);
+	}
+
+	@Then("Verify VIP Price")
+	public void verify_vip_price(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		actual = CartPage.verifyVIPPrice(expectedData);
+	}
+
+	@Then("verify VIP savings")
+	public void verify_vip_savings(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CartPage.verifyVIPSavings(expectedData,actual);
 	}
 }
