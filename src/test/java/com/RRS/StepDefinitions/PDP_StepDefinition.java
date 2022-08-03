@@ -128,9 +128,13 @@ public class PDP_StepDefinition extends baseClass {
 	public void user_verify_the_step_what_s_your_size_in_pdp_allows_user_to_select_one_size_at_one_time_and_image_altered(
 			Integer int1) {
 		try {
+			PDPPage.clickAnySizeVariant_PDP("XS");
+			PDPPage.clickAnySizeVariant_PDP("S");
+			PDPPage.clickAnySizeVariant_PDP("M");
 			PDPPage.clickAnySizeVariant_PDP("L");
 			PDPPage.clickAnySizeVariant_PDP("XL");
 			PDPPage.clickAnySizeVariant_PDP("XXL");
+			
 		} catch (InterruptedException e) {
 
 			e.printStackTrace();

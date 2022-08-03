@@ -63,12 +63,13 @@ public class PLP_StepDefinition extends baseClass {
 	@Given("User select {string} Sort by value from the dropdown")
 	public void user_select_sort_by_value_from_the_dropdown(String SortByValue) throws InterruptedException {
 		PLPpage.selectSortBy(SortByValue);
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 	}
 
 	@Then("User validate the results count not modified but the sorting is modified")
 	public void user_validate_the_results_count_not_modified_but_the_sorting_is_modified() {
 		String UpdatedSearchResult = PLPpage.getCountofSearchResults();
+		if(SearchResult!= null)
 		assertThat(SearchResult.contentEquals(UpdatedSearchResult));
 		PLPpage.getAllProductLinks();
 	}
@@ -77,6 +78,7 @@ public class PLP_StepDefinition extends baseClass {
 	public void user_apply_the_filter_in_the_plp_page(String Filter) {
 		try {
 			PLPpage.applyFilter(Filter);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -86,7 +88,9 @@ public class PLP_StepDefinition extends baseClass {
 	public void user_validate_the_page_results_based_on_the_filter_applied() {
 		String UpdatedSearchResult = PLPpage.getCountofSearchResults();
 		System.out.println("Filter Applied Search results: " + UpdatedSearchResult);
+		if(SearchResult!= null) {
 		assertThat(!SearchResult.contentEquals(UpdatedSearchResult));
+		}
 	}
 
 	@Then("User validate review stars for the product are displayed if available")
