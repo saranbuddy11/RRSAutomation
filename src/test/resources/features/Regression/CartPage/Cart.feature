@@ -183,5 +183,57 @@ Feature: Cart Regression Scripts
       | M | 7 | aria-label | Black/White | 1 | 2 |
     And Verify VIP Price
       | cart | Your VIP Price | $ |
-    And verify VIP savings
+    And Verify VIP savings
       | VIP Savings | - |
+
+  @Regression_RK_018
+  Scenario: Verify Estimated Total under Order Summary section when the user is a VIP member
+    Given User Land on the RRS home page after login with VIP user
+      | testcucumbervip@gmail.com | 123456 |
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And Verify VIP Price when user is VIP member
+      | cart | Your VIP Price | $ |
+    And Verify Estimated Total
+      | Est. Total | $ |
+    Then User logout of the application
+
+  @Regression_RK_019
+  Scenario: Verify Whether the rewards cash earned is displayed or not
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And Verify VIP Price
+      | cart | Your VIP Price | $ |
+    And Verify rewards cash
+      | VIP Rewards Cash! | $ |
+
+  @Regression_RK_020
+  Scenario: Verify Save for later text and its Functionality
+    Given User Land on the RRS home page after login with VIP user
+      | testcucumbervip@gmail.com | 123456 |
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And Verify Save for later and its functionality
+      | cart | Save for Later | Your shopping cart is empty | 0 |
+    Then User logout of the application
+
+  @Regression_RK_021
+  Scenario: Verify checkout with Klarna and its response
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And Verify Checkout with Klarna button response
+      | cart | Express Checkout | Klarna. | aria-label |

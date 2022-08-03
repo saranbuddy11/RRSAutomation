@@ -299,6 +299,7 @@ public class PLPPage extends PageObject {
 
 	@Step
 	public void Click_SearchIcon() throws InterruptedException {
+		Plp_SearchIcon_SVG.isClickable();
 		Actions a = new Actions(getDriver());
 		a.moveToElement(Plp_SearchIcon_SVG).click().build().perform();
 		Thread.sleep(10000);
@@ -315,11 +316,12 @@ public class PLPPage extends PageObject {
 	}
 
 	@Step
-	public void Type_SearchKeyword(String Keyword) {
+	public void Type_SearchKeyword(String Keyword) throws InterruptedException {
 		waitFor(Plp_SearchBar_Txt);
 		Plp_SearchBar_Txt.click();
 		try {
 			typeInto(Plp_SearchBar_Txt, Keyword);
+			Thread.sleep(3000);
 		} catch (StaleElementReferenceException ex) {
 			typeInto(Plp_SearchBar_Txt, Keyword);
 			ex.printStackTrace();

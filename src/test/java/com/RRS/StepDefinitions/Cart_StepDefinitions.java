@@ -25,6 +25,7 @@ public class Cart_StepDefinitions extends baseClass {
 	ATC_PopUp_StepDefinitions atcPopup;
 
 	String actual = "";
+	List<String> actuals = null;
 
 	@Then("User Assert Cart Page is displayed")
 	public void user_assert_cart_page_is_displayed() {
@@ -234,9 +235,39 @@ public class Cart_StepDefinitions extends baseClass {
 		actual = CartPage.verifyVIPPrice(expectedData);
 	}
 
-	@Then("verify VIP savings")
+	@Then("Verify VIP Price when user is VIP member")
+	public void verify_vip_price_when_user_is_vip_member(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		actuals = CartPage.verifyVIPPriceWhenUserIsVIPMember(expectedData);
+	}
+
+	@Then("Verify VIP savings")
 	public void verify_vip_savings(DataTable table) throws InterruptedException {
 		List<List<String>> expectedData = table.asLists(String.class);
-		CartPage.verifyVIPSavings(expectedData,actual);
+		CartPage.verifyVIPSavings(expectedData, actual);
+	}
+
+	@Then("Verify Estimated Total")
+	public void verify_estimated_total(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CartPage.verifyEstimatedTotal(expectedData, actuals);
+	}
+
+	@Then("Verify rewards cash")
+	public void verify_rewards_cash(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CartPage.verifyRewardCash(expectedData);
+	}
+
+	@Then("Verify Save for later and its functionality")
+	public void verify_save_for_later_and_its_functionality(DataTable table) throws AWTException, InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CartPage.verifySaveForLaterAndItsFunctionality(expectedData);
+	}
+
+	@Then("Verify Checkout with Klarna button response")
+	public void verify_checkout_with_klarna_button_response(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CartPage.verifyCheckoutWithKlarnaButtonResponse(expectedData);
 	}
 }
