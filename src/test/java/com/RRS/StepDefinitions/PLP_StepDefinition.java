@@ -25,7 +25,7 @@ public class PLP_StepDefinition extends baseClass {
 	@Given("User Click on shop now link in any of the home page banner")
 	public void user_click_on_shop_now_link_in_any_of_the_home_page_banner() throws InterruptedException {
 		PLPpage.Click_ShopNow_Women();
-		// PLPpage.Click_ShopNow_HomePage();
+		//PLPpage.Click_ShopNow_HomePage();
 		// homePage.HoverOverAnyTopMenu("Women");
 		// homePage.ClickWomensRunningSubMenu();
 		// homePage.ClickAnyTopMenu("Women");
@@ -38,7 +38,7 @@ public class PLP_StepDefinition extends baseClass {
 	}
 
 	@Then("User Search for a product with some keywords {string} and click on search button")
-	public void user_search_for_a_product_with_some_keywords_and_click_on_search_button(String Keyword) {
+	public void user_search_for_a_product_with_some_keywords_and_click_on_search_button(String Keyword) throws InterruptedException {
 		/* homePage.click_RRSHomeLogo_SVG_Button(); */
 		PLPpage.Type_SearchKeyword(Keyword);
 		PLPpage.Click_SearchIcon();

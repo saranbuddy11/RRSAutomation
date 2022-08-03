@@ -116,8 +116,9 @@ public class PDP_StepDefinition extends baseClass {
 	public void user_verify_the_step_your_color_in_pdp_allows_user_to_select_one_color_at_one_time_and_image_altered(
 			Integer int1) throws AWTException {
 		try {
-			PDPPage.clickkAnyColorvariant_PDP("Pale Grey");
 			PDPPage.clickkAnyColorvariant_PDP("Black");
+			PDPPage.clickkAnyColorvariant_PDP("Seaglass");
+			PDPPage.clickkAnyColorvariant_PDP("White");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

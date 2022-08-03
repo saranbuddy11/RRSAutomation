@@ -5,9 +5,9 @@ Feature: Add to Cart Pop UP Smoke scripts
   @CART_5.1_5.8
  Scenario: Verify user direction to Cart page and validate the details in that page
  	  Given User Land on the RRS home page
-		And User Search for a particular product "40135" and click on search button
+		And User Search for a particular product "41716" and click on search button
     Then Assert user is directed to appropriate PDP page
- 	  And User Select the color variant "Pale Grey"
+ 	  And User Select the color variant "White"
     And User Select the size as "XL"
   	And User note down MSPR and VIP price of the product displayed
   	And User click on Add to Cart button

@@ -38,7 +38,7 @@ Feature: PDP Regression Scripts
   Scenario: Verify whether Size SKUs are orderly sorted  or not
     Given User Lauch RRS application and navigate to home page
     And User Search for a product with some keywords "WOMEN ASICS" and click on search button
-    Then Assert user is direceted to appropriate PLP page for the keyword used
+    Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     And Verify size SKUs are sorted orderly or not
       | aria-label |
@@ -47,7 +47,7 @@ Feature: PDP Regression Scripts
   Scenario: Verify Review star and review links in PDP
     Given User Lauch RRS application and navigate to home page
     And User Search for a product with some keywords "WOMEN ASICS" and click on search button
-    Then Assert user is direceted to appropriate PLP page for the keyword used
+    Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page of selecting particular item
       | Women's ASICS GEL-Kayano 28 |
     And Verify number of reviews and star ratings
@@ -59,7 +59,7 @@ Feature: PDP Regression Scripts
   Scenario: Verify Review counts displayed in the PDP are matching from PLP or not
     Given User Lauch RRS application and navigate to home page
     And User Search for a product with some keywords "WOMEN ASICS" and click on search button
-    Then Assert user is direceted to appropriate PLP page for the keyword used
+    Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page with review count
       | Women's ASICS GEL-Kayano 28 |
     And Verify number of reviews count

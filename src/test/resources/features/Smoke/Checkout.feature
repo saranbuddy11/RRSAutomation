@@ -6,9 +6,9 @@ Feature: Checkout Page Smoke scripts
   @OC_GuestuserFlow
  Scenario Outline: Verify user Direction to Checkout and Checkout as Guest user
   	Given User Land on the RRS home page
-		And User Search for a particular product "40135" and click on search button
+		And User Search for a particular product "41716" and click on search button
     Then Assert user is directed to appropriate PDP page
- 	  And User Select the color variant "Pale Grey"
+ 	  And User Select the color variant "White"
     And User Select the size as "XL"
   	And User note down MSPR and VIP price of the product displayed
   	And User click on Add to Cart button
