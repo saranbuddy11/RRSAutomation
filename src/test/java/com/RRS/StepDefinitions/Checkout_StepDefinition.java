@@ -379,4 +379,10 @@ public class Checkout_StepDefinition extends baseClass {
 		List<List<String>> expectedData = table.asLists(String.class);
 		CheckoutS1Page.verifyErrorMessageForWrongPassword(expectedData);
 	}
+
+	@Then("Verify Valid credentials Login")
+	public void verify_valid_credentials_login(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyValidCredentialsLogin(expectedData);
+	}
 }

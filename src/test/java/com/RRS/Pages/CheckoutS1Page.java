@@ -82,6 +82,15 @@ public class CheckoutS1Page extends PageObject {
 	@FindBy(css = "div.text-align-left--1c_kk>a[href='#']")
 	WebElementFacade forgetMyPasswordLink;
 
+	@FindBy(css = "div.Snackbar_snackbar__text__1Hx2a")
+	WebElementFacade errorMessage;
+
+	@FindBy(css = "span.domath-right-text--1tTOy")
+	WebElementFacade vipRewardPlus;
+
+	@FindBy(css = "button.domath-btn--2xTTj")
+	List<WebElementFacade> vipButtons;
+
 	@Step
 	public void clickContinueAsVIPButton() throws InterruptedException {
 		// CommonPage.javaScriptExecutor_Click(Checkout_ContinueAsVIP_Btn);
@@ -138,7 +147,7 @@ public class CheckoutS1Page extends PageObject {
 		String actual = atcPopupPage.lineItem.get(1).getText();
 		atcPopupPage.checkOut.shouldBeCurrentlyVisible().isClickable();
 		atcPopupPage.checkOut.click();
-		Thread.sleep(5000);
+		Thread.sleep(8000);
 		plpPage.pageTitle.waitUntilVisible();
 		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
 		plpPage.pageTitle.shouldBeCurrentlyVisible();
@@ -241,7 +250,33 @@ public class CheckoutS1Page extends PageObject {
 		typeInto(loginPage.Enter_EmailAddress, expectedData.get(0).get(0));
 		typeInto(loginPage.Enter_Password, expectedData.get(0).get(1));
 		checkOutButtons.get(1).click();
-		Thread.sleep(3000);
+		errorMessage.waitUntilVisible();
+		errorMessage.shouldBeCurrentlyVisible();
+		String text = errorMessage.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(2).toLowerCase(), text);
+	}
 
+	@Step
+	public void verifyValidCredentialsLogin(List<List<String>> expectedData) throws InterruptedException {
+		sectionHeader.get(1).shouldBeCurrentlyVisible();
+		checkOutButtons.get(1).shouldBeCurrentlyVisible().isClickable();
+		typeInto(loginPage.Enter_EmailAddress, expectedData.get(0).get(0));
+		typeInto(loginPage.Enter_Password, expectedData.get(0).get(1));
+		checkOutButtons.get(1).click();
+		Thread.sleep(10000);
+		plpPage.pageTitle.waitUntilVisible();
+		plpPage.pageTitle.shouldBeCurrentlyVisible();
+		vipRewardPlus.shouldBeCurrentlyVisible();
+		vipButtons.get(0).shouldBeCurrentlyVisible().isClickable();
+		String text = vipButtons.get(0).getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(3).toLowerCase(), text);
+		vipButtons.get(1).shouldBeCurrentlyVisible().isClickable();
+		text = vipButtons.get(1).getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(2).toLowerCase(), text);
+		editCartBtn.click();
+		Thread.sleep(5000);
+		atcPopupPage.vipSection.shouldBeCurrentlyVisible();
+		atcPopupPage.vipSavingLineItem.isPresent();
+		atcPopupPage.cartPageHeader.shouldBeCurrentlyVisible();
 	}
 }

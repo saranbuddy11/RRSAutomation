@@ -99,4 +99,18 @@ Feature: Checkout Regression Scripts
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
     And Verify Error Message for Wrong Password
-      | testcucumbervip@gmail.com | 1233444566677 |  |
+      | testcucumbervip@gmail.com | 1233444566677 | This combination of user name and password is invalid. |
+
+  @Regression_RK_009
+  Scenario: Verify the application response when the user enters valid email in the Email Address field and valid password in the password field and clicks on Login CTA Button.
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And User Click on Checkout Button and verify its navigation
+      | checkout | START CHECKOUT |
+    And Verify Valid credentials Login
+      | testcucumbervip@gmail.com | 123456 | UPGRADE AND CHECKOUT | CONTINUE AS A VIP |
+    Then User logout of the application
