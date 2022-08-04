@@ -1,6 +1,7 @@
 package com.RRS.StepDefinitions;
 
 import java.awt.AWTException;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,12 +13,14 @@ import com.RRS.Pages.CheckoutS3Page;
 import com.RRS.Pages.CommonPage;
 import com.RRS.base.baseClass;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import net.thucydides.core.annotations.Steps;
 
 public class Checkout_StepDefinition extends baseClass {
 	public static Logger log = LogManager.getLogger(Checkout_StepDefinition.class);
+	String actual = "";
 
 	@Steps
 	CommonPage CommonPage;
@@ -328,5 +331,52 @@ public class Checkout_StepDefinition extends baseClass {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Then("User Click on Checkout Button and verify its navigation")
+	public void user_click_on_checkout_button_and_verify_its_navigation(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		actual = CheckoutS1Page.verifyCheckOutButtonNavigation(expectedData);
+	}
+
+	@Then("Verify Header menus displayed or not")
+	public void verify_header_meus_displayed_or_not() throws InterruptedException {
+		CheckoutS1Page.verifyHeaderMenus();
+	}
+
+	@Then("Verify the functionality of RRS Logo")
+	public void verify_the_functionality_of_rrs_logo() throws InterruptedException {
+		CheckoutS1Page.verifyFunctionalityOfRRSLogo();
+	}
+
+	@Then("Verify the application response when the user clicks on Edit Cart CTA Button {string}")
+	public void verify_the_application_response_when_the_user_clicks_on_edit_cart_cta_button(String value)
+			throws InterruptedException {
+		CheckoutS1Page.verifyFunctionalityOfEditCartButton(value);
+	}
+
+	@Then("Verify different way of checkout is displayed or not")
+	public void verify_different_way_of_checkout_is_displayed_or_not(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyDifferentWayOfCheckOut(expectedData);
+	}
+
+	@Then("Verify Continue as Guest and its navigation")
+	public void verify_continue_as_guest_and_its_navigation(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyContinueAsGuest(expectedData, actual);
+		actual = null;
+	}
+
+	@Then("Verify login with online account section and its fields")
+	public void verify_login_with_online_account_section_and_its_fields(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyLoginWithOnlineAccountFields(expectedData);
+	}
+
+	@Then("Verify Error Message for Wrong Password")
+	public void verify_error_message_for_wrong_password(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyErrorMessageForWrongPassword(expectedData);
 	}
 }
