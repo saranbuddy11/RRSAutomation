@@ -1,11 +1,13 @@
 package com.RRS.Pages;
 
+import java.awt.AWTException;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import junit.framework.Assert;
@@ -13,6 +15,7 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.Steps;
 
 @SuppressWarnings("deprecation")
 public class CheckoutS1Page extends PageObject {
@@ -21,6 +24,11 @@ public class CheckoutS1Page extends PageObject {
 	ATC_PopupPage atcPopupPage = new ATC_PopupPage();
 	PLPPage plpPage = new PLPPage();
 	loginPage loginPage = new loginPage();
+	CartPage cartPage = new CartPage();
+	PDPPage pdpPage = new PDPPage();
+
+	@Steps
+	SDDLPPage sddlpPage;
 
 	@FindBy(xpath = "//button[normalize-space()='Continue as Guest']")
 	WebElementFacade CheckoutS1_ContinueAsGuest_Btn;
@@ -76,6 +84,9 @@ public class CheckoutS1Page extends PageObject {
 	@FindBy(css = "p.domath-left-price--2QHLH")
 	WebElementFacade domathFullPrice;
 
+	@FindBy(css = "p.domath-left-sub-text--1GR8_")
+	WebElementFacade domathSubText;
+
 	@FindBy(css = "p.domath-right-price--2rw4H")
 	WebElementFacade domathVIPPrice;
 
@@ -90,6 +101,18 @@ public class CheckoutS1Page extends PageObject {
 
 	@FindBy(css = "button.domath-btn--2xTTj")
 	List<WebElementFacade> vipButtons;
+
+	@FindBy(css = "h1.tag_h1--hWc2x+p")
+	WebElementFacade pageSubTitle;
+
+	@FindBy(css = "span.undefined")
+	WebElementFacade rewardCash;
+
+	@FindBy(css = "h2.address-title--1kd8k")
+	WebElementFacade addressTitle;
+
+	@FindBy(css = "p.domath-left-text--3shYg")
+	WebElementFacade subText;
 
 	@Step
 	public void clickContinueAsVIPButton() throws InterruptedException {
@@ -151,7 +174,7 @@ public class CheckoutS1Page extends PageObject {
 		plpPage.pageTitle.waitUntilVisible();
 		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
 		plpPage.pageTitle.shouldBeCurrentlyVisible();
-		Assert.assertEquals(expectedData.get(0).get(1).toLowerCase(), plpPage.pageTitle.getText().toLowerCase());
+		Assert.assertEquals(expectedData.get(0).get(1), plpPage.pageTitle.getText());
 		return actual;
 	}
 
@@ -226,6 +249,21 @@ public class CheckoutS1Page extends PageObject {
 	}
 
 	@Step
+	public void verifyContinueAsGuestForHokaBrand(List<List<String>> expectedData) throws InterruptedException {
+		checkOutButtons.get(0).shouldBeCurrentlyVisible().isClickable();
+		String text = checkOutButtons.get(0).getText();
+		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text.toLowerCase());
+		checkOutButtons.get(0).click();
+		Thread.sleep(5000);
+		plpPage.pageTitle.waitUntilVisible();
+		plpPage.pageTitle.shouldBeCurrentlyVisible();
+		text = plpPage.pageTitle.getText();
+		Assert.assertEquals(expectedData.get(0).get(1), text);
+		domathSubText.shouldBeCurrentlyVisible();
+		domathVIPPrice.shouldBeCurrentlyVisible();
+	}
+
+	@Step
 	public void verifyLoginWithOnlineAccountFields(List<List<String>> expectedData) throws InterruptedException {
 		sectionHeader.get(1).shouldBeCurrentlyVisible();
 		String text = sectionHeader.get(1).getText().toLowerCase();
@@ -278,5 +316,191 @@ public class CheckoutS1Page extends PageObject {
 		atcPopupPage.vipSection.shouldBeCurrentlyVisible();
 		atcPopupPage.vipSavingLineItem.isPresent();
 		atcPopupPage.cartPageHeader.shouldBeCurrentlyVisible();
+	}
+
+	@Step
+	public void verifyCheckoutMembershipPage(List<List<String>> expectedData) throws InterruptedException {
+		atcPopupPage.checkOut.shouldBeCurrentlyVisible().isClickable();
+		atcPopupPage.checkOut.click();
+		Thread.sleep(8000);
+		plpPage.pageTitle.waitUntilVisible();
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
+		plpPage.pageTitle.shouldBeCurrentlyVisible();
+		String text = plpPage.pageTitle.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text);
+		domathFullPrice.shouldBeCurrentlyVisible();
+		domathVIPPrice.shouldBeCurrentlyVisible();
+		editCartBtn.click();
+		Thread.sleep(5000);
+		atcPopupPage.vipSection.shouldBeCurrentlyVisible();
+		atcPopupPage.vipSavingLineItem.isPresent();
+		atcPopupPage.cartPageHeader.shouldBeCurrentlyVisible();
+		cartPage.remove.shouldBeCurrentlyVisible().isClickable();
+		cartPage.remove.click();
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void verifyAddToCartPopupForHokaBrand(List<List<String>> expectedData)
+			throws InterruptedException, AWTException {
+		Actions a = new Actions(getDriver());
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		a.moveToElement(pdpPage.variantColor.get(1)).perform();
+		pdpPage.variantColor.get(1).click();
+		String s = pdpPage.variantTitle.get(0).getText();
+		Assert.assertEquals(s, expectedData.get(0).get(2));
+		CommonPage.actions_DownArrow();
+		Thread.sleep(5000);
+		pdpPage.variantSize.get(2).waitUntilVisible();
+		a.moveToElement(pdpPage.variantSize.get(2)).perform();
+		pdpPage.variantSize.get(2).click();
+		s = pdpPage.variantTitle.get(1).getText();
+		Assert.assertEquals(s, expectedData.get(0).get(1));
+		a.moveToElement(pdpPage.variantSize.get(12)).perform();
+		pdpPage.variantSize.get(12).click();
+		s = pdpPage.variantTitle.get(2).getText();
+		Assert.assertEquals(s, expectedData.get(0).get(0));
+		CommonPage.pageScrollDown();
+		Thread.sleep(5000);
+		s = pdpPage.quantity.getText();
+		Assert.assertEquals(s, expectedData.get(0).get(3));
+		pdpPage.addToCartBtn.shouldBeCurrentlyVisible();
+		a.moveToElement(pdpPage.addToCartBtn).perform();
+		pdpPage.addToCartBtn.click();
+		element(pdpPage.cartTitle).waitUntilVisible();
+		pdpPage.cartTitle.shouldBeCurrentlyVisible();
+	}
+
+	@Step
+	public void verifyContinueAsGuestUser(List<List<String>> expectedData) throws InterruptedException {
+		checkOutButtons.get(0).shouldBeCurrentlyVisible().isClickable();
+		String text = checkOutButtons.get(0).getText();
+		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text.toLowerCase());
+		checkOutButtons.get(0).click();
+		Thread.sleep(5000);
+		plpPage.pageTitle.waitUntilVisible();
+		plpPage.pageTitle.shouldBeCurrentlyVisible();
+		text = plpPage.pageTitle.getText();
+		Assert.assertEquals(expectedData.get(0).get(1), text);
+		pageSubTitle.shouldBeCurrentlyVisible();
+		text = pageSubTitle.getText();
+		Assert.assertEquals(expectedData.get(0).get(2), text);
+		domathFullPrice.shouldBeCurrentlyVisible();
+		domathVIPPrice.shouldBeCurrentlyVisible();
+	}
+
+	@Step
+	public void verifyContinueAsGuestAndRewardCash(List<List<String>> expectedData, String expected)
+			throws InterruptedException {
+		DecimalFormat df = new DecimalFormat("###.##");
+		checkOutButtons.get(0).shouldBeCurrentlyVisible().isClickable();
+		String text = checkOutButtons.get(0).getText();
+		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text.toLowerCase());
+		checkOutButtons.get(0).click();
+		Thread.sleep(5000);
+		plpPage.pageTitle.shouldBeCurrentlyVisible();
+		text = plpPage.pageTitle.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(1).toLowerCase(), text);
+		domathFullPrice.shouldBeCurrentlyVisible();
+		text = domathFullPrice.getText().replace("$", "");
+		Double actualPrice = Double.parseDouble(text);
+		Double expectedPrice = Double.parseDouble(expected.replace("$", ""));
+		Assert.assertTrue(Double.parseDouble(df.format(expectedPrice)) == Double.parseDouble(df.format(actualPrice)));
+		domathVIPPrice.shouldBeCurrentlyVisible();
+		text = domathVIPPrice.getText().replace("$", "");
+		actualPrice = Double.parseDouble(text);
+		Double vipPrice = expectedPrice * 0.2;
+		vipPrice = expectedPrice - vipPrice;
+		vipPrice = vipPrice + 1.99;
+		df.setRoundingMode(RoundingMode.UP);
+		Assert.assertTrue(Double.parseDouble(df.format(vipPrice)) == actualPrice);
+		vipPrice = (vipPrice - 1.99) * 0.1;
+		text = rewardCash.getText().replace("$", "");
+		actualPrice = Double.parseDouble(text);
+		Assert.assertTrue(Double.parseDouble(df.format(vipPrice)) == actualPrice);
+	}
+
+	@Step
+	public void verifyJoinVIPNavigation(List<List<String>> expectedData) throws InterruptedException {
+		vipButtons.get(1).shouldBeCurrentlyVisible().isClickable();
+		String text = vipButtons.get(1).getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text);
+		vipButtons.get(1).click();
+		Thread.sleep(5000);
+		element(pdpPage.cartTitle).waitUntilVisible();
+		pdpPage.cartTitle.shouldBeCurrentlyVisible();
+		atcPopupPage.checkOut.shouldBeCurrentlyVisible().isClickable();
+		atcPopupPage.checkOut.click();
+		Thread.sleep(5000);
+		addressTitle.shouldBeCurrentlyVisible();
+		text = addressTitle.getText();
+		Assert.assertEquals(expectedData.get(0).get(1), text);
+		atcPopupPage.orderSummary.shouldBeCurrentlyVisible();
+		text = atcPopupPage.orderSummary.getText();
+		Assert.assertEquals(expectedData.get(0).get(2), text);
+	}
+
+	@Step
+	public void verifyWithoutVIPNavigation(List<List<String>> expectedData) throws InterruptedException {
+		subText.shouldBeCurrentlyVisible();
+		String text = subText.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(1).toLowerCase(), text);
+		vipButtons.get(0).shouldBeCurrentlyVisible().isClickable();
+		text = vipButtons.get(0).getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text);
+		vipButtons.get(0).click();
+		Thread.sleep(5000);
+		addressTitle.shouldBeCurrentlyVisible();
+		text = addressTitle.getText();
+		Assert.assertEquals(expectedData.get(0).get(2), text);
+		atcPopupPage.orderSummary.shouldBeCurrentlyVisible();
+		text = atcPopupPage.orderSummary.getText();
+		Assert.assertEquals(expectedData.get(0).get(3), text);
+		atcPopupPage.vipSection.shouldBeCurrentlyVisible();
+	}
+
+	@Step
+	public void verifyCheckOutNavigation(List<List<String>> expectedData) throws InterruptedException {
+		Thread.sleep(5000);
+		plpPage.pageTitle.waitUntilVisible();
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
+		plpPage.pageTitle.shouldBeCurrentlyVisible();
+		Assert.assertEquals(expectedData.get(0).get(1), plpPage.pageTitle.getText());
+	}
+
+	@Step
+	public void clickContinueAsGuest(List<List<String>> expectedData) throws InterruptedException {
+		checkOutButtons.get(0).shouldBeCurrentlyVisible().isClickable();
+		String text = checkOutButtons.get(0).getText();
+		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text.toLowerCase());
+		checkOutButtons.get(0).click();
+		Thread.sleep(5000);
+		plpPage.pageTitle.shouldBeCurrentlyVisible();
+		text = plpPage.pageTitle.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(1).toLowerCase(), text);
+		domathFullPrice.shouldBeCurrentlyVisible();
+		domathVIPPrice.shouldBeCurrentlyVisible();
+	}
+
+	@Step
+	public void navigateBackToCheckoutPageAndVerifyFunctionalityOfRRSLogo() throws InterruptedException {
+		cartPage.checkOut.shouldBeCurrentlyVisible().isClickable();
+		cartPage.checkOut.click();
+		Thread.sleep(10000);
+		rrsLogo.shouldBeCurrentlyVisible().isClickable();
+		rrsLogo.click();
+		Thread.sleep(5000);
+		navigationHeader.shouldBeCurrentlyVisible();
+		loginPage.Login_SVG.isDisplayed();
+	}
+
+	@Step
+	public void verifyTheTextDisplayedInBanner() {
+		for (int i = 0; i < atcPopupPage.lineItem.size(); i++) {
+			atcPopupPage.lineItem.get(i).shouldBeCurrentlyVisible();
+		}
+		for (int i = 0; i < atcPopupPage.vipTotal.size(); i++) {
+			atcPopupPage.vipTotal.get(i).shouldBeCurrentlyVisible();
+		}
 	}
 }

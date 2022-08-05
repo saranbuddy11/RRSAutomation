@@ -368,6 +368,12 @@ public class Checkout_StepDefinition extends baseClass {
 		actual = null;
 	}
 
+	@Then("Verify Continue as Guest for HOKA brand")
+	public void verify_continue_as_guest_for_hoka_brand(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyContinueAsGuestForHokaBrand(expectedData);
+	}
+
 	@Then("Verify login with online account section and its fields")
 	public void verify_login_with_online_account_section_and_its_fields(DataTable table) throws InterruptedException {
 		List<List<String>> expectedData = table.asLists(String.class);
@@ -384,5 +390,64 @@ public class Checkout_StepDefinition extends baseClass {
 	public void verify_valid_credentials_login(DataTable table) throws InterruptedException {
 		List<List<String>> expectedData = table.asLists(String.class);
 		CheckoutS1Page.verifyValidCredentialsLogin(expectedData);
+	}
+
+	@Then("Verify Checkout Page")
+	public void verify_checkout_page(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyCheckoutMembershipPage(expectedData);
+	}
+
+	@Then("Verify Add to Cart Popup for HOKA brand")
+	public void verify_add_to_cart_popup_for_hoka_brand(DataTable table) throws AWTException, InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyAddToCartPopupForHokaBrand(expectedData);
+	}
+
+	@Then("Verify Continue as Guest")
+	public void verify_continue_as_guest(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyContinueAsGuestUser(expectedData);
+	}
+
+	@Then("Verify Continue as Guest and Reward cash")
+	public void verify_continue_as_guest_and_reward_cash(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyContinueAsGuestAndRewardCash(expectedData, actual);
+		actual = null;
+	}
+
+	@Then("verify Join VIP Navigation")
+	public void verify_join_vip_navigation(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyJoinVIPNavigation(expectedData);
+	}
+
+	@Then("verify Continue Without VIP Navigation")
+	public void verify_continue_without_vip_navigation(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyWithoutVIPNavigation(expectedData);
+	}
+
+	@Then("Verify Checkout navigation")
+	public void verify_checkout_navigation(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyCheckOutNavigation(expectedData);
+	}
+
+	@Then("Click Continue as Guest")
+	public void click_continue_as_guest(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.clickContinueAsGuest(expectedData);
+	}
+
+	@Then("Navigate Back to Checkout page and Verify the functionality of RRS Logo")
+	public void navigate_back_to_checkout_page_and_verify_the_functionality_of_rrs_logo() throws InterruptedException {
+		CheckoutS1Page.navigateBackToCheckoutPageAndVerifyFunctionalityOfRRSLogo();
+	}
+
+	@Then("Verify the text displayed in 20% banner")
+	public void verify_the_text_displayed_in_20percent_banner() throws InterruptedException {
+		CheckoutS1Page.verifyTheTextDisplayedInBanner();
 	}
 }
