@@ -450,4 +450,57 @@ public class Checkout_StepDefinition extends baseClass {
 	public void verify_the_text_displayed_in_20percent_banner() throws InterruptedException {
 		CheckoutS1Page.verifyTheTextDisplayedInBanner();
 	}
+
+	@Then("Verify $1.99 CTA button and Learn more link")
+	public void verify_cta_button_and_learn_more_link(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyCTAButtonAndLearnMoreLink(expectedData);
+	}
+
+	@Then("Verify Shipping section fields")
+	public void verify_shipping_section_fields(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyShippingSectionFields(expectedData);
+	}
+
+	@Then("Verify Shipping Method fields")
+	public void verify_shipping_method_fields(DataTable table) throws AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyShippingMethodFields(expectedData);
+	}
+
+	@Then("Verify Order Summary Section")
+	public void verify_order_summary_section(DataTable table) throws AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyOrderSummarySection(expectedData);
+	}
+
+	@Then("User Click on Add to Cart Button")
+	public void user_click_on_add_to_cart_button() {
+		CheckoutS1Page.userClickOnAddToCartButton();
+	}
+
+	@Then("Verify Pickup at store Section")
+	public void verify_pickup_at_store_section(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyPickupAtStoreSection(expectedData);
+	}
+
+	@Then("Verify Payment Section")
+	public void verify_payment_section(DataTable table) throws AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyPaymentSection(expectedData);
+	}
+
+	@Then("Verify Gift Card Fields")
+	public void verify_gift_card_fields(DataTable table) throws AWTException, InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyGiftCardField(expectedData);
+	}
+
+	@Then("Verify Credit Card Fields")
+	public void verify_credit_card_fields(DataTable table) throws AWTException, InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyCreditCardField(expectedData);
+	}
 }

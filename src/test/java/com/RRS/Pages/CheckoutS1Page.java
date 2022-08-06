@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
@@ -26,6 +28,7 @@ public class CheckoutS1Page extends PageObject {
 	loginPage loginPage = new loginPage();
 	CartPage cartPage = new CartPage();
 	PDPPage pdpPage = new PDPPage();
+	homePage homePage = new homePage();
 
 	@Steps
 	SDDLPPage sddlpPage;
@@ -113,6 +116,138 @@ public class CheckoutS1Page extends PageObject {
 
 	@FindBy(css = "p.domath-left-text--3shYg")
 	WebElementFacade subText;
+
+	@FindBy(css = "a.vip-saving-link--3hP8e>h5")
+	WebElementFacade learnMore;
+
+	@FindBy(css = "h1.vip-modal-offer-title--2ZWkn")
+	WebElementFacade offerTitle;
+
+	@FindBy(css = "svg.close-icon--23DDL")
+	WebElementFacade closeIcon;
+
+	@FindBy(css = "input.textbox-input-toggle--JuT3T")
+	List<WebElementFacade> shippingInputFields;
+
+	@FindBy(css = "input.textbox-input--1p_rz")
+	List<WebElement> shippingFields;
+
+	@FindBy(css = "svg.selectbox-header-icon--DjJzM")
+	List<WebElementFacade> selectBoxHeaderIcon;
+
+	@FindBy(css = "div[aria-expanded='true']>ul")
+	WebElementFacade stateDropDown;
+
+	@FindBy(css = "span.selectbox-field-active--3r-9F")
+	List<WebElementFacade> activeSelection;
+
+	@FindBy(css = "label[aria-label*='Sign up']>input.checkbox-input--3yXDV")
+	WebElementFacade signUpCheckBox;
+
+	@FindBy(css = "h4.shipping-method-title--2PmDk")
+	WebElementFacade shippingMethodTitle;
+
+	@FindBy(id = "Regular Delivery")
+	WebElementFacade regularDelivery;
+
+	@FindBy(id = "Upgraded Delivery")
+	WebElementFacade upgradedDelivery;
+
+	@FindBy(id = "Express Delivery")
+	WebElementFacade expressDelivery;
+
+	@FindBy(id = "sourceCode")
+	WebElementFacade sourceCode;
+
+	@FindBy(css = "h5.shipping-method-item-name--1nFoM")
+	List<WebElementFacade> deliveryMethod;
+
+	@FindBy(css = "h4.tag_h4--3v2ny")
+	List<WebElementFacade> subTitles;
+
+	@FindBy(css = "h5.cart-body-title--1GKVa")
+	WebElementFacade cartTitle;
+
+	@FindBy(css = "span.payment-title-text--1eJug")
+	WebElementFacade paymentSection;
+
+	@FindBy(css = "label[aria-label='I have a gift card']>input.checkbox-input--3yXDV")
+	WebElementFacade giftCardCheckBox;
+
+	@FindBy(css = "input[name='giftCardNumber']")
+	WebElementFacade giftCardNumberInput;
+
+	@FindBy(css = "input[name='creditCardNumber']")
+	WebElementFacade creditCardNumberInput;
+
+	@FindBy(css = "input[name='creditCardNumber']+label")
+	WebElementFacade creditCardNumberLabel;
+
+	@FindBy(id = "name")
+	WebElementFacade creditCardName;
+
+	@FindBy(css = "#name+label")
+	WebElementFacade creditCardNameLabel;
+
+	@FindBy(css = "p.credit-card-info-tag--1Gnev")
+	WebElementFacade creditCardExpirationLabel;
+
+	@FindBy(css = "input[name='expirationMonth']")
+	WebElementFacade expirationMonthInput;
+
+	@FindBy(css = "input[name='expirationMonth']+label")
+	WebElementFacade expirationMonthLabel;
+
+	@FindBy(css = "input[name='expirationYear']")
+	WebElementFacade expirationYearInput;
+
+	@FindBy(css = "input[name='CVN']")
+	WebElementFacade cvnInput;
+
+	@FindBy(css = "div.credit-card-info-tag--1Gnev>p.tag_p--3xrVF")
+	WebElementFacade cvnLabel;
+
+	@FindBy(css = "p+a.clickable-text--2XYI6")
+	WebElementFacade clickableLink;
+
+	@FindBy(css = "input[value='billingSameAsShipping']")
+	List<WebElementFacade> billingAddressCheckBox;
+
+	@FindBy(css = "input[value='billingSameAsShipping']+span.checkbox-label-text--1agH2")
+	List<WebElementFacade> billingAddressLabel;
+
+	@FindBy(css = "input[name='expirationYear']+label")
+	WebElementFacade expirationYearLabel;
+
+	@FindBy(css = "input[name='giftCardCVNNumber']")
+	WebElementFacade giftCardCVNNumberInput;
+
+	@FindBy(css = "input[name='giftCardCVNNumber']+label.textbox-label--13ceX")
+	WebElementFacade giftCardCVNNumberLabel;
+
+	@FindBy(css = "input[name='giftCardNumber']+label.textbox-label--13ceX")
+	WebElementFacade giftCardNumberLabel;
+
+	@FindBy(css = "input[value='giftCard']+span.checkbox-label-text--1agH2")
+	WebElementFacade giftCardLabel;
+
+	@FindBy(css = "button.giftCard-btn--1Ard6")
+	WebElementFacade giftCardApplyBtn;
+
+	@FindBy(css = "p.gift-payment-link--1cFHh")
+	WebElementFacade addGiftCardLink;
+
+	@FindBy(css = "input.radio-button-input--ZSuL-")
+	List<WebElementFacade> radioBtn;
+
+	@FindBy(css = "div.radio-button--3nU-U+span")
+	List<WebElementFacade> radioBtnLabel;
+
+	@FindBy(css = "div.col-lg-6--1OeXl>button.btn-placeorder--3I1pX")
+	WebElementFacade paymentPlaceOrderBtn;
+
+	@FindBy(css = "a.card-btn-add--xg1Mr")
+	WebElementFacade addNewCreditCard;
 
 	@Step
 	public void clickContinueAsVIPButton() throws InterruptedException {
@@ -502,5 +637,256 @@ public class CheckoutS1Page extends PageObject {
 		for (int i = 0; i < atcPopupPage.vipTotal.size(); i++) {
 			atcPopupPage.vipTotal.get(i).shouldBeCurrentlyVisible();
 		}
+	}
+
+	@Step
+	public void verifyCTAButtonAndLearnMoreLink(List<List<String>> expectedData) throws InterruptedException {
+		learnMore.shouldBeCurrentlyVisible().isClickable();
+		String text = learnMore.getText();
+		Assert.assertEquals(expectedData.get(0).get(1), text);
+		learnMore.click();
+		Thread.sleep(5000);
+		offerTitle.shouldBeCurrentlyVisible();
+		text = offerTitle.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(2).toLowerCase(), text);
+		closeIcon.click();
+		cartPage.joinVipBtn.shouldBeCurrentlyVisible().isClickable();
+		text = cartPage.joinVipBtn.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text);
+		cartPage.joinVipBtn.click();
+		Thread.sleep(5000);
+		element(pdpPage.cartTitle).waitUntilVisible();
+		pdpPage.cartTitle.shouldBeCurrentlyVisible();
+		atcPopupPage.checkOut.shouldBeCurrentlyVisible().isClickable();
+		atcPopupPage.checkOut.click();
+		Thread.sleep(5000);
+		addressTitle.shouldBeCurrentlyVisible();
+	}
+
+	@Step
+	public void verifyShippingSectionFields(List<List<String>> expectedData) throws AWTException {
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		for (int i = 0; i < shippingFields.size() - 11; i++) {
+			System.out.println(i);
+			shippingFields.get(i).isDisplayed();
+			shippingFields.get(i).isEnabled();
+		}
+		typeInto(shippingFields.get(0), expectedData.get(0).get(0));
+		String text = shippingInputFields.get(0).getAttribute("value");
+		Assert.assertEquals(expectedData.get(0).get(0), text);
+		typeInto(shippingFields.get(1), expectedData.get(0).get(1));
+		text = shippingInputFields.get(1).getAttribute("value");
+		Assert.assertEquals(expectedData.get(0).get(1), text);
+		typeInto(shippingFields.get(2), expectedData.get(0).get(2));
+		text = shippingInputFields.get(2).getAttribute("value");
+		Assert.assertEquals(expectedData.get(0).get(2), text);
+		typeInto(shippingFields.get(3), expectedData.get(0).get(3));
+		text = shippingInputFields.get(3).getAttribute("value");
+		Assert.assertEquals(expectedData.get(0).get(3), text);
+		typeInto(shippingFields.get(4), expectedData.get(0).get(4));
+		text = shippingInputFields.get(4).getAttribute("value");
+		Assert.assertEquals(expectedData.get(0).get(4), text);
+		typeInto(shippingFields.get(5), expectedData.get(0).get(5));
+		text = shippingInputFields.get(5).getAttribute("value");
+		Assert.assertEquals(expectedData.get(0).get(5), text);
+		typeInto(shippingFields.get(6), expectedData.get(0).get(6));
+		text = shippingInputFields.get(6).getAttribute("value");
+		Assert.assertEquals(expectedData.get(0).get(6), text);
+		shippingFields.get(8).click();
+		for (int i = 0; i < expectedData.get(0).get(7).length(); i++) {
+			char c = expectedData.get(0).get(7).charAt(i);
+			CommonPage.number(Integer.parseInt(String.valueOf(c)));
+		}
+		text = shippingInputFields.get(8).getAttribute("value");
+		Assert.assertEquals(expectedData.get(0).get(7).replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3"), text);
+		selectBoxHeaderIcon.get(0).click();
+		String dynamicElement = "//li[contains(text(),'" + expectedData.get(0).get(8) + "')]";
+		stateDropDown.findElement(By.xpath(dynamicElement)).click();
+		text = activeSelection.get(0).getText();
+		Assert.assertEquals(expectedData.get(0).get(8), text);
+		text = activeSelection.get(1).getText();
+		Assert.assertEquals(expectedData.get(0).get(9), text);
+		signUpCheckBox.shouldBeCurrentlyVisible().isEnabled();
+		signUpCheckBox.click();
+		signUpCheckBox.isSelected();
+	}
+
+	@Step
+	public void verifyShippingMethodFields(List<List<String>> expectedData) throws AWTException {
+		CommonPage.pageScrollDown();
+		CommonPage.actions_DownArrow();
+		shippingMethodTitle.shouldBeCurrentlyVisible();
+		String text = shippingMethodTitle.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text);
+		regularDelivery.shouldBeCurrentlyVisible();
+		upgradedDelivery.shouldBeCurrentlyVisible().isClickable();
+		upgradedDelivery.click();
+		expressDelivery.shouldBeCurrentlyVisible().isClickable();
+		expressDelivery.click();
+		deliveryMethod.get(0).shouldBeCurrentlyVisible();
+		text = deliveryMethod.get(0).getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(1).toLowerCase(), text);
+		deliveryMethod.get(1).shouldBeCurrentlyVisible();
+		text = deliveryMethod.get(1).getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(2).toLowerCase(), text);
+		deliveryMethod.get(2).shouldBeCurrentlyVisible();
+		text = deliveryMethod.get(2).getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(3).toLowerCase(), text);
+	}
+
+	@Step
+	public void verifyOrderSummarySection(List<List<String>> expectedData) {
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		homePage.Feature_Headers.get(0).shouldBeCurrentlyVisible();
+		String text = homePage.Feature_Headers.get(0).getText();
+		Assert.assertEquals(expectedData.get(0).get(0), text);
+		for (int i = 6; i < atcPopupPage.lineItem.size(); i++) {
+			atcPopupPage.lineItem.get(i).shouldBeCurrentlyVisible();
+		}
+		text = atcPopupPage.lineItem.get(6).getText();
+		Assert.assertEquals(expectedData.get(0).get(1), text);
+		text = atcPopupPage.lineItem.get(8).getText();
+		Assert.assertEquals(expectedData.get(0).get(2), text);
+		text = atcPopupPage.lineItem.get(10).getText();
+		Assert.assertEquals(expectedData.get(0).get(3), text);
+		atcPopupPage.estimatedTotal.get(0).shouldBeCurrentlyVisible();
+		atcPopupPage.estimatedTotal.get(1).shouldBeCurrentlyVisible();
+		text = atcPopupPage.estimatedTotal.get(0).getText();
+		Assert.assertEquals(expectedData.get(0).get(4), text);
+		sourceCode.shouldBeCurrentlyVisible().isClickable();
+		text = sourceCode.getText();
+		Assert.assertEquals(expectedData.get(0).get(5), text);
+	}
+
+	@Step
+	public void userClickOnAddToCartButton() {
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		Actions a = new Actions(getDriver());
+		a.moveToElement(pdpPage.addToCartBtn).perform();
+		pdpPage.addToCartBtn.click();
+		element(pdpPage.cartTitle).waitUntilVisible();
+		pdpPage.cartTitle.shouldBeCurrentlyVisible();
+	}
+
+	@Step
+	public void verifyPickupAtStoreSection(List<List<String>> expectedData) {
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		subTitles.get(4).shouldBeCurrentlyVisible();
+		String text = subTitles.get(4).getText();
+		Assert.assertEquals(expectedData.get(0).get(0), text);
+		cartTitle.shouldBeCurrentlyVisible();
+		text = cartTitle.getText();
+		Assert.assertEquals(expectedData.get(0).get(1), text);
+	}
+
+	@Step
+	public void verifyPaymentSection(List<List<String>> expectedData) throws AWTException {
+		CommonPage.pageScrollDown();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		paymentSection.shouldBeCurrentlyVisible();
+		String text = paymentSection.getText();
+		Assert.assertEquals(expectedData.get(0).get(0), text);
+		giftCardCheckBox.shouldBeCurrentlyVisible().isClickable();
+		text = giftCardLabel.getText();
+		Assert.assertEquals(expectedData.get(0).get(1), text);
+		radioBtn.get(1).shouldBeCurrentlyVisible().isClickable();
+		radioBtn.get(2).shouldBeCurrentlyVisible().isClickable();
+		radioBtn.get(3).shouldBeCurrentlyVisible().isClickable();
+		text = radioBtnLabel.get(0).getText();
+		Assert.assertEquals(expectedData.get(0).get(2), text);
+		text = radioBtnLabel.get(1).getText();
+		Assert.assertEquals(expectedData.get(0).get(3), text);
+		text = radioBtnLabel.get(2).getText();
+		Assert.assertEquals(expectedData.get(0).get(4), text);
+		paymentPlaceOrderBtn.shouldBeCurrentlyVisible().isClickable();
+		text = paymentPlaceOrderBtn.getText();
+		Assert.assertEquals(expectedData.get(0).get(5), text);
+	}
+
+	@Step
+	public void verifyGiftCardField(List<List<String>> expectedData) throws AWTException, InterruptedException {
+		CommonPage.pageScrollDown();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		paymentSection.shouldBeCurrentlyVisible();
+		giftCardCheckBox.shouldBeCurrentlyVisible().isClickable();
+		giftCardCheckBox.click();
+		Thread.sleep(3000);
+		giftCardNumberInput.shouldBeCurrentlyVisible().isEnabled();
+		giftCardNumberLabel.shouldBeCurrentlyVisible();
+		String text = giftCardNumberLabel.getText();
+		Assert.assertEquals(expectedData.get(0).get(0), text);
+		giftCardCVNNumberInput.shouldBeCurrentlyVisible().isEnabled();
+		giftCardCVNNumberLabel.shouldBeCurrentlyVisible();
+		text = giftCardCVNNumberLabel.getText();
+		Assert.assertEquals(expectedData.get(0).get(1), text);
+		giftCardApplyBtn.shouldBeCurrentlyVisible().isClickable();
+		text = giftCardApplyBtn.getText();
+		Assert.assertEquals(expectedData.get(0).get(2), text);
+		addGiftCardLink.shouldBeCurrentlyVisible().isClickable();
+		text = addGiftCardLink.getText();
+		Assert.assertEquals(expectedData.get(0).get(3), text);
+	}
+
+	@Step
+	public void verifyCreditCardField(List<List<String>> expectedData) throws AWTException, InterruptedException {
+		CommonPage.pageScrollDown();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		paymentSection.shouldBeCurrentlyVisible();
+		radioBtn.get(1).shouldBeCurrentlyVisible().isClickable();
+		String text = addNewCreditCard.getText();
+		Assert.assertEquals(expectedData.get(0).get(0), text);
+		creditCardNumberInput.shouldBeCurrentlyVisible().isEnabled();
+		text = creditCardNumberLabel.getText();
+		Assert.assertEquals(expectedData.get(0).get(1), text);
+		creditCardName.shouldBeCurrentlyVisible().isEnabled();
+		text = creditCardNameLabel.getText();
+		Assert.assertEquals(expectedData.get(0).get(2), text);
+		creditCardExpirationLabel.shouldBeCurrentlyVisible();
+		text = creditCardExpirationLabel.getText();
+		Assert.assertEquals(expectedData.get(0).get(3), text);
+		expirationMonthInput.shouldBeCurrentlyVisible().isEnabled();
+		text = expirationMonthLabel.getText();
+		Assert.assertEquals(expectedData.get(0).get(4), text);
+		expirationYearInput.shouldBeCurrentlyVisible().isEnabled();
+		text = expirationYearLabel.getText();
+		Assert.assertEquals(expectedData.get(0).get(5), text);
+		cvnInput.shouldBeCurrentlyVisible().isEnabled();
+		text = cvnLabel.getText();
+		Assert.assertEquals(expectedData.get(0).get(6), text);
+		clickableLink.shouldBeCurrentlyVisible().isClickable();
+		text = clickableLink.getText();
+		Assert.assertEquals(expectedData.get(0).get(7), text);
+		billingAddressCheckBox.get(0).shouldBeCurrentlyVisible().isSelected();
+		billingAddressLabel.get(0).shouldBeCurrentlyVisible();
+		text = billingAddressLabel.get(0).getText();
+		Assert.assertEquals(expectedData.get(0).get(8), text);
 	}
 }
