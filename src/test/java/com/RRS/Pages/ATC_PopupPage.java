@@ -77,7 +77,7 @@ public class ATC_PopupPage extends PageObject {
 	WebElementFacade searchInput;
 
 	@FindBy(css = "div.col-md-8--1ENvw+button.btn--1PWSW")
-	WebElementFacade selectStore;
+	List<WebElementFacade> selectStore;
 
 	@FindBy(css = "div.price-striked--3WXpF")
 	WebElementFacade strikedPrice;
@@ -341,8 +341,8 @@ public class ATC_PopupPage extends PageObject {
 		Thread.sleep(3000);
 		modalHeader.shouldBeCurrentlyVisible();
 		searchInput.sendKeys(expectedData.get(0).get(0));
-		Thread.sleep(3000);
-		selectStore.click();
+		Thread.sleep(5000);
+		selectStore.get(0).click();
 		Thread.sleep(3000);
 		String s = pickingPlace.get(1).getText();
 		Assert.assertTrue(s.contains(expectedData.get(0).get(1)));

@@ -398,6 +398,12 @@ public class Checkout_StepDefinition extends baseClass {
 		CheckoutS1Page.verifyCheckoutMembershipPage(expectedData);
 	}
 
+	@Then("Verify Checkout Page and 2x Cash banner")
+	public void verify_checkout_page_and_2x_cash_banner(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verify2xCashBanner(expectedData);
+	}
+
 	@Then("Verify Add to Cart Popup for HOKA brand")
 	public void verify_add_to_cart_popup_for_hoka_brand(DataTable table) throws AWTException, InterruptedException {
 		List<List<String>> expectedData = table.asLists(String.class);
@@ -463,6 +469,18 @@ public class Checkout_StepDefinition extends baseClass {
 		CheckoutS1Page.verifyShippingSectionFields(expectedData);
 	}
 
+	@Then("Verify Add new Shipping section fields")
+	public void verify_add_new_shipping_section_fields(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyAddNewShippingSectionFields(expectedData);
+	}
+
+	@Then("Verify Add new Address button")
+	public void verify_add_new_address_button(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyAddNewAddressButton(expectedData);
+	}
+
 	@Then("Verify Shipping Method fields")
 	public void verify_shipping_method_fields(DataTable table) throws AWTException {
 		List<List<String>> expectedData = table.asLists(String.class);
@@ -502,5 +520,48 @@ public class Checkout_StepDefinition extends baseClass {
 	public void verify_credit_card_fields(DataTable table) throws AWTException, InterruptedException {
 		List<List<String>> expectedData = table.asLists(String.class);
 		CheckoutS1Page.verifyCreditCardField(expectedData);
+	}
+
+	@Then("Verify Paypal Payment method")
+	public void verify_paypal_payment_method(DataTable table) throws AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyPaypalPaymentMethod(expectedData);
+	}
+
+	@Then("Verify Klarna Payment method")
+	public void verify_klarna_payment_method(DataTable table) throws AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyKlarnaPaymentMethod(expectedData);
+	}
+
+	@Then("Click Place Order Button and validate Error message")
+	public void click_place_order_button_and_validate_error_message(DataTable table)
+			throws AWTException, InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.clickPlaceOrderButtonAndValidateErrorMessage(expectedData);
+	}
+
+	@Then("Enter Credit Card details")
+	public void enter_credit_card_details(DataTable table) throws AWTException, InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.enterCreditCardDetails(expectedData);
+	}
+
+	@Then("Verify Order Confirmation Page")
+	public void verify_order_confirmation_page(DataTable table) throws AWTException, InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyOrderConfirmationPage(expectedData);
+	}
+
+	@Then("Verify Upgrade CTA button in  2x Cash banner")
+	public void verify_upgrade_cta_button_in_2x_cash_banner(DataTable table) throws AWTException, InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyUpgradeCTAButton(expectedData);
+	}
+
+	@Then("User Click on Checkout Button")
+	public void user_click_on_checkout_button(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.userClickOnCheckoutButton(expectedData);
 	}
 }

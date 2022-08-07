@@ -93,6 +93,15 @@ public class CheckoutS1Page extends PageObject {
 	@FindBy(css = "p.domath-right-price--2rw4H")
 	WebElementFacade domathVIPPrice;
 
+	@FindBy(css = "p.domath-head-subtext--GVDWP")
+	WebElementFacade domathSubHeader;
+
+	@FindBy(css = "p.domath-right-price--2rw4H+button.domath-btn--2xTTj")
+	WebElementFacade upgradeBtn;
+
+	@FindBy(css = "div>span.domath-vip-text-teal--1OTER")
+	WebElementFacade domathVIPPlusText;
+
 	@FindBy(css = "div.text-align-left--1c_kk>a[href='#']")
 	WebElementFacade forgetMyPasswordLink;
 
@@ -143,6 +152,9 @@ public class CheckoutS1Page extends PageObject {
 
 	@FindBy(css = "label[aria-label*='Sign up']>input.checkbox-input--3yXDV")
 	WebElementFacade signUpCheckBox;
+
+	@FindBy(css = "input.checkbox-input--3yXDV")
+	List<WebElementFacade> signUpCheckBoxes;
 
 	@FindBy(css = "h4.shipping-method-title--2PmDk")
 	WebElementFacade shippingMethodTitle;
@@ -248,6 +260,39 @@ public class CheckoutS1Page extends PageObject {
 
 	@FindBy(css = "a.card-btn-add--xg1Mr")
 	WebElementFacade addNewCreditCard;
+
+	@FindBy(css = "h4.order-confirm-alert--33yex")
+	WebElementFacade orderID;
+
+	@FindBy(css = "h1.order-confirm-title--esJZL")
+	WebElementFacade orderTitle;
+
+	@FindBy(css = "button.address-btn-add--3aOAi")
+	WebElementFacade addNewAddressBtn;
+
+	@FindBy(css = "div.address-modal-head--Nx-Mo>h3")
+	WebElementFacade addNewAddressHeader;
+
+	@FindBy(css = "button.address-form-btn-modal--2RNnb")
+	WebElementFacade addAddressBtn;
+
+	@FindBy(css = "div.address-card--13j7A")
+	List<WebElementFacade> addressCard;
+
+	@FindBy(css = "div>h5.tag_h5--15p8m")
+	List<WebElementFacade> headerDetails;
+
+	@FindBy(css = "a[href*='addresses']")
+	WebElementFacade addressesSubTab;
+
+	@FindBy(css = "h3.confirm-modal-title--1GJQ_")
+	WebElementFacade confirmModalTitle;
+
+	@FindBy(css = "button.confirm-modal-accept--8cFRH")
+	WebElementFacade confirmModalAccept;
+
+	@FindBy(css = "a.address-bar--1f64m")
+	List<WebElementFacade> addressesAction;
 
 	@Step
 	public void clickContinueAsVIPButton() throws InterruptedException {
@@ -471,6 +516,64 @@ public class CheckoutS1Page extends PageObject {
 		atcPopupPage.vipSavingLineItem.isPresent();
 		atcPopupPage.cartPageHeader.shouldBeCurrentlyVisible();
 		cartPage.remove.shouldBeCurrentlyVisible().isClickable();
+		cartPage.remove.click();
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void verify2xCashBanner(List<List<String>> expectedData) throws InterruptedException {
+		atcPopupPage.checkOut.shouldBeCurrentlyVisible().isClickable();
+		atcPopupPage.checkOut.click();
+		Thread.sleep(8000);
+		plpPage.pageTitle.waitUntilVisible();
+		plpPage.pageTitle.shouldBeCurrentlyVisible();
+		String text = plpPage.pageTitle.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text);
+		domathFullPrice.shouldBeCurrentlyVisible();
+		domathVIPPrice.shouldBeCurrentlyVisible();
+		domathSubHeader.shouldBeCurrentlyVisible();
+		text = domathSubHeader.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(1).toLowerCase(), text);
+		domathVIPPlusText.shouldBeCurrentlyVisible();
+		text = domathVIPPlusText.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(2).toLowerCase(), text);
+		subText.shouldBeCurrentlyVisible();
+		text = subText.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(3).toLowerCase(), text);
+		editCartBtn.click();
+		Thread.sleep(5000);
+		atcPopupPage.vipSection.shouldBeCurrentlyVisible();
+		atcPopupPage.vipSavingLineItem.isPresent();
+		atcPopupPage.cartPageHeader.shouldBeCurrentlyVisible();
+		cartPage.remove.shouldBeCurrentlyVisible().isClickable();
+		cartPage.remove.click();
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void verifyUpgradeCTAButton(List<List<String>> expectedData) throws InterruptedException {
+		atcPopupPage.checkOut.shouldBeCurrentlyVisible().isClickable();
+		atcPopupPage.checkOut.click();
+		Thread.sleep(8000);
+		plpPage.pageTitle.waitUntilVisible();
+		plpPage.pageTitle.shouldBeCurrentlyVisible();
+		String text = plpPage.pageTitle.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text);
+		domathFullPrice.shouldBeCurrentlyVisible();
+		domathVIPPrice.shouldBeCurrentlyVisible();
+		domathSubHeader.shouldBeCurrentlyVisible();
+		upgradeBtn.shouldBeCurrentlyVisible().isClickable();
+		upgradeBtn.click();
+		Thread.sleep(5000);
+		element(pdpPage.cartTitle).waitUntilVisible();
+		pdpPage.cartTitle.shouldBeCurrentlyVisible();
+		atcPopupPage.viewCart.shouldBeCurrentlyVisible().isClickable();
+		atcPopupPage.viewCart.click();
+		Thread.sleep(5000);
+		atcPopupPage.cartPageHeader.shouldBeCurrentlyVisible();
+		cartPage.remove.shouldBeCurrentlyVisible().isClickable();
+		cartPage.remove.click();
+		Thread.sleep(5000);
 		cartPage.remove.click();
 		Thread.sleep(5000);
 	}
@@ -716,6 +819,58 @@ public class CheckoutS1Page extends PageObject {
 	}
 
 	@Step
+	public void verifyAddNewShippingSectionFields(List<List<String>> expectedData) throws AWTException {
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		for (int i = 0; i < shippingFields.size() - 11; i++) {
+			System.out.println(i);
+			shippingFields.get(i).isDisplayed();
+			shippingFields.get(i).isEnabled();
+		}
+		typeInto(shippingFields.get(0), expectedData.get(0).get(0));
+		String text = shippingInputFields.get(0).getAttribute("value");
+		Assert.assertEquals(expectedData.get(0).get(0), text);
+		typeInto(shippingFields.get(1), expectedData.get(0).get(1));
+		text = shippingInputFields.get(1).getAttribute("value");
+		Assert.assertEquals(expectedData.get(0).get(1), text);
+		typeInto(shippingFields.get(2), expectedData.get(0).get(2));
+		text = shippingInputFields.get(2).getAttribute("value");
+		Assert.assertEquals(expectedData.get(0).get(2), text);
+		typeInto(shippingFields.get(3), expectedData.get(0).get(3));
+		text = shippingInputFields.get(3).getAttribute("value");
+		Assert.assertEquals(expectedData.get(0).get(3), text);
+		typeInto(shippingFields.get(4), expectedData.get(0).get(4));
+		text = shippingInputFields.get(4).getAttribute("value");
+		Assert.assertEquals(expectedData.get(0).get(4), text);
+		typeInto(shippingFields.get(5), expectedData.get(0).get(5));
+		text = shippingInputFields.get(5).getAttribute("value");
+		Assert.assertEquals(expectedData.get(0).get(5), text);
+		typeInto(shippingFields.get(6), expectedData.get(0).get(6));
+		text = shippingInputFields.get(6).getAttribute("value");
+		Assert.assertEquals(expectedData.get(0).get(6), text);
+		shippingFields.get(8).click();
+		for (int i = 0; i < expectedData.get(0).get(7).length(); i++) {
+			char c = expectedData.get(0).get(7).charAt(i);
+			CommonPage.number(Integer.parseInt(String.valueOf(c)));
+		}
+		text = shippingInputFields.get(8).getAttribute("value");
+		Assert.assertEquals(expectedData.get(0).get(7).replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3"), text);
+		selectBoxHeaderIcon.get(0).click();
+		String dynamicElement = "//li[contains(text(),'" + expectedData.get(0).get(8) + "')]";
+		stateDropDown.findElement(By.xpath(dynamicElement)).click();
+		text = activeSelection.get(0).getText();
+		Assert.assertEquals(expectedData.get(0).get(8), text);
+		text = activeSelection.get(1).getText();
+		Assert.assertEquals(expectedData.get(0).get(9), text);
+		signUpCheckBox.shouldBeCurrentlyVisible().isEnabled();
+		signUpCheckBox.click();
+		signUpCheckBox.isSelected();
+	}
+
+	@Step
 	public void verifyShippingMethodFields(List<List<String>> expectedData) throws AWTException {
 		CommonPage.pageScrollDown();
 		CommonPage.actions_DownArrow();
@@ -888,5 +1043,150 @@ public class CheckoutS1Page extends PageObject {
 		billingAddressLabel.get(0).shouldBeCurrentlyVisible();
 		text = billingAddressLabel.get(0).getText();
 		Assert.assertEquals(expectedData.get(0).get(8), text);
+	}
+
+	@Step
+	public void verifyPaypalPaymentMethod(List<List<String>> expectedData) throws AWTException {
+		CommonPage.pageScrollDown();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		paymentSection.shouldBeCurrentlyVisible();
+		radioBtn.get(3).shouldBeCurrentlyVisible().isClickable();
+		String text = radioBtnLabel.get(2).getText();
+		Assert.assertEquals(expectedData.get(0).get(0), text);
+		radioBtn.get(3).click();
+		radioBtn.get(3).isSelected();
+	}
+
+	@Step
+	public void verifyKlarnaPaymentMethod(List<List<String>> expectedData) throws AWTException {
+		CommonPage.pageScrollDown();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		paymentSection.shouldBeCurrentlyVisible();
+		radioBtn.get(2).shouldBeCurrentlyVisible().isClickable();
+		String text = radioBtnLabel.get(1).getText();
+		Assert.assertEquals(expectedData.get(0).get(0), text);
+		radioBtn.get(2).click();
+		radioBtn.get(2).isSelected();
+	}
+
+	@Step
+	public void clickPlaceOrderButtonAndValidateErrorMessage(List<List<String>> expectedData)
+			throws AWTException, InterruptedException {
+		CommonPage.pageScrollDown();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		Thread.sleep(5000);
+		paymentPlaceOrderBtn.shouldBeCurrentlyVisible().isClickable();
+		paymentPlaceOrderBtn.click();
+		errorMessage.waitUntilVisible();
+		errorMessage.shouldBeCurrentlyVisible();
+		String text = errorMessage.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text);
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void enterCreditCardDetails(List<List<String>> expectedData) throws InterruptedException, AWTException {
+		typeInto(creditCardNumberInput, expectedData.get(0).get(0));
+		typeInto(creditCardName, expectedData.get(0).get(1));
+		typeInto(expirationMonthInput, expectedData.get(0).get(2));
+		typeInto(expirationYearInput, expectedData.get(0).get(3));
+		typeInto(cvnInput, expectedData.get(0).get(4));
+		if (!billingAddressCheckBox.get(0).isSelected())
+			billingAddressCheckBox.get(0).click();
+		CommonPage.pageScrollDown();
+		Thread.sleep(5000);
+		CommonPage.javaScriptExecutor_Click(paymentPlaceOrderBtn);
+		Thread.sleep(10000);
+	}
+
+	@Step
+	public void verifyOrderConfirmationPage(List<List<String>> expectedData) {
+		orderID.waitUntilVisible();
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
+		orderID.shouldBeCurrentlyVisible();
+		orderTitle.shouldBeCurrentlyVisible();
+		String text = orderTitle.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(1).toLowerCase(), text);
+	}
+
+	@Step
+	public void userClickOnCheckoutButton(List<List<String>> expectedData) throws InterruptedException {
+		atcPopupPage.checkOut.shouldBeCurrentlyVisible().isClickable();
+		atcPopupPage.checkOut.click();
+		Thread.sleep(8000);
+		plpPage.pageTitle.waitUntilVisible();
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
+	}
+
+	@Step
+	public void verifyAddNewAddressButton(List<List<String>> expectedData)
+			throws InterruptedException, NumberFormatException, AWTException {
+		Actions a = new Actions(getDriver());
+		addNewAddressBtn.shouldBeCurrentlyVisible().isClickable();
+		addNewAddressBtn.click();
+		Thread.sleep(5000);
+		addNewAddressHeader.shouldBeCurrentlyVisible();
+		typeInto(shippingFields.get(7), expectedData.get(0).get(0));
+		typeInto(shippingFields.get(8), expectedData.get(0).get(1));
+		typeInto(shippingFields.get(9), expectedData.get(0).get(2));
+		typeInto(shippingFields.get(10), expectedData.get(0).get(3));
+		typeInto(shippingFields.get(11), expectedData.get(0).get(4));
+		typeInto(shippingFields.get(12), expectedData.get(0).get(5));
+		shippingFields.get(14).click();
+		for (int i = 0; i < expectedData.get(0).get(6).length(); i++) {
+			char c = expectedData.get(0).get(6).charAt(i);
+			CommonPage.number(Integer.parseInt(String.valueOf(c)));
+		}
+		selectBoxHeaderIcon.get(2).click();
+		Thread.sleep(5000);
+		String dynamicElement = "//li[contains(text(),'" + expectedData.get(0).get(7) + "')]";
+		List<WebElement> element = getDriver().findElements(By.xpath(dynamicElement));
+		a.moveToElement(element.get(1)).click().build().perform();
+		String text = activeSelection.get(1).getText();
+		Assert.assertEquals(expectedData.get(0).get(7), text);
+		text = activeSelection.get(2).getText();
+		Assert.assertEquals(expectedData.get(0).get(8), text);
+		signUpCheckBoxes.get(2).shouldBeCurrentlyVisible().isEnabled();
+		signUpCheckBoxes.get(2).click();
+		signUpCheckBoxes.get(2).isSelected();
+		signUpCheckBoxes.get(3).shouldBeCurrentlyVisible().isEnabled();
+		signUpCheckBoxes.get(3).click();
+		signUpCheckBoxes.get(3).isSelected();
+		addAddressBtn.shouldBeCurrentlyVisible().isClickable();
+		addAddressBtn.click();
+		Thread.sleep(10000);
+		addressCard.get(0).shouldBeCurrentlyVisible();
+		text = headerDetails.get(3).getText();
+		Assert.assertTrue(text.contains(expectedData.get(0).get(0)));
+		Assert.assertTrue(text.contains(expectedData.get(0).get(1)));
+		editCartBtn.click();
+		Thread.sleep(5000);
+		atcPopupPage.vipSection.shouldBeCurrentlyVisible();
+		cartPage.remove.click();
+		Thread.sleep(5000);
+		a.moveToElement(loginPage.Profile_SVG_Btn).click().build().perform();
+		addressesSubTab.click();
+		Thread.sleep(5000);
+		addressesAction.get(1).click();
+		confirmModalTitle.shouldBeCurrentlyVisible();
+		confirmModalAccept.shouldBeCurrentlyVisible().isClickable();
+		confirmModalAccept.click();
+		Thread.sleep(5000);
 	}
 }

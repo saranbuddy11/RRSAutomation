@@ -117,7 +117,7 @@ Feature: Checkout Regression Scripts
 
   @Regression_RK_010
   Scenario: Verify whether the Logged in NONVIP user is able to navigates to the Checkout Membership page or not.
-    Given User Land on the RRS home page after login with non VIP user
+    Given User Land on the RRS home page after login with user
       | testcucumber@gmail.com | 123456 |
     When User Search for a product with some keywords "WOMEN ASICS" and click on search button
     Then Assert user is directed to appropriate PLP page for the keyword used
@@ -130,7 +130,7 @@ Feature: Checkout Regression Scripts
 
   @Regression_RK_011
   Scenario: Verify whether the Logged in VIP user with VIP Plus in cart/Logged in VIP plus user is able to navigates to the Checkout Membership page or not.
-    Given User Land on the RRS home page after login with non VIP user
+    Given User Land on the RRS home page after login with user
       | testcucumbervip@gmail.com | 123456 |
     When User Search for a product with some keywords "WOMEN ASICS" and click on search button
     Then Assert user is directed to appropriate PLP page for the keyword used
@@ -344,7 +344,7 @@ Feature: Checkout Regression Scripts
     Then Verify Pickup in Store for selected products
       | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
     Then Verify Pickup in Store name for selected products
-      | Arizona | Tempe |
+      | California | Solana Beach |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -362,7 +362,7 @@ Feature: Checkout Regression Scripts
     Then Verify Pickup in Store for selected products
       | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
     Then Verify Pickup in Store name for selected products
-      | Arizona | Tempe |
+      | California | Solana Beach |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -380,7 +380,7 @@ Feature: Checkout Regression Scripts
     Then Verify Pickup in Store for selected products
       | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
     Then Verify Pickup in Store name for selected products
-      | Arizona | Tempe |
+      |  | California | Solana Beach |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -398,7 +398,7 @@ Feature: Checkout Regression Scripts
     Then Verify Pickup in Store for selected products
       | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
     Then Verify Pickup in Store name for selected products
-      | Arizona | Tempe |
+      | California | Solana Beach |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -408,3 +408,138 @@ Feature: Checkout Regression Scripts
       | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
     And Verify Credit Card Fields
       | Add New Card | Card Number | Name As It Appears On Card | Expiration Date | Month | Year | CVN | What's this? | My billing address is same as shipping address |
+
+  @Regression_RK_029
+  Scenario: Verify Paypal Payment method
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "38190" and click on search button
+    Then Verify Pickup in Store for selected products
+      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+    Then Verify Pickup in Store name for selected products
+      | California | Solana Beach |
+    And User Click on Add to Cart Button
+    And User Click on Checkout Button and verify its navigation
+      | checkout | START CHECKOUT |
+    And Click Continue as Guest
+      | Continue as Guest | SAVE 20% TODAY |
+    And verify Continue Without VIP Navigation
+      | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
+    And Verify Paypal Payment method
+      | PayPal |
+
+  @Regression_RK_030
+  Scenario: Verify Klarna Payment method
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "38190" and click on search button
+    Then Verify Pickup in Store for selected products
+      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+    Then Verify Pickup in Store name for selected products
+      | California | Solana Beach |
+    And User Click on Add to Cart Button
+    And User Click on Checkout Button and verify its navigation
+      | checkout | START CHECKOUT |
+    And Click Continue as Guest
+      | Continue as Guest | SAVE 20% TODAY |
+    And verify Continue Without VIP Navigation
+      | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
+    And Verify Klarna Payment method
+      | Klarna |
+
+  @Regression_RK_032
+  Scenario: Verify Place order CTA button
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "38190" and click on search button
+    Then Verify Pickup in Store for selected products
+      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+    Then Verify Pickup in Store name for selected products
+      | California | Solana Beach |
+    And User Click on Add to Cart Button
+    And User Click on Checkout Button and verify its navigation
+      | checkout | START CHECKOUT |
+    And Click Continue as Guest
+      | Continue as Guest | SAVE 20% TODAY |
+    And verify Continue Without VIP Navigation
+      | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
+    And Verify Shipping section fields
+      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+    And Click Place Order Button and validate Error message
+      | Please fill in all the required fields |
+    And Enter Credit Card details
+      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+    And Verify Order Confirmation Page
+      | order-confirmation | Thank YOU abcd! |
+
+  @Regression_RK_033
+  Scenario: Verify the text displayed in 2x cash banner( VIP PLUS) for VIP User
+    Given User Land on the RRS home page after login with user
+      | testcucumbervip@gmail.com | 123456 |
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And Verify Checkout Page and 2x Cash banner
+      | JOIN THE MOST REWARDING FAMILY IN RUNNING | EARN 2X REWARDS CASH ON THIS ORDER WHEN YOU UPGRADE FOR FREE | join vip rewards plus & earn 5 10% in rewards cash: | No Thanks, I’ll Stick With 5% Rewards Cash: |
+    Then User logout of the application
+
+  @Regression_RK_034
+  Scenario: Verify Upgrade for free CTA button in 2x Cash banner for VIP user
+    Given User Land on the RRS home page after login with user
+      | testcucumbervip@gmail.com | 123456 |
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And Verify Upgrade CTA button in  2x Cash banner
+      | JOIN THE MOST REWARDING FAMILY IN RUNNING |
+    Then User logout of the application
+
+  @Regression_RK_035
+  Scenario: Verify add new shipping address functionality
+    Given User Land on the RRS home page after login with user
+      | testcucumber@gmail.com | 123456 |
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And User Click on Checkout Button
+      | checkout |
+    And verify Continue Without VIP Navigation
+      | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
+    And Verify Add new Address button
+      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | 9234567810 | AZ - Arizona | United States |
+
+  @Regression_RK_036
+  Scenario: Verify add Credit card in Credit card Payment method section
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "38190" and click on search button
+    Then Verify Pickup in Store for selected products
+      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+    And User Click on Add to Cart Button
+    And User Click on Checkout Button and verify its navigation
+      | checkout | START CHECKOUT |
+    And Click Continue as Guest
+      | Continue as Guest | SAVE 20% TODAY |
+    And verify Continue Without VIP Navigation
+      | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
+    And Verify Shipping section fields
+      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+    And Enter Credit Card details
+      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+    And Verify Order Confirmation Page
+      | order-confirmation | Thank YOU abcd! |
+
+  @Regression_RK_037
+  Scenario: Verify Redeem my VIP Rewards Cash link in order summary section
+    Given User Land on the RRS home page after login with user
+      | testcucumbervip@gmail.com | 123456 |
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And Verify Upgrade CTA button in  2x Cash banner
+      | JOIN THE MOST REWARDING FAMILY IN RUNNING |
+    Then User logout of the application
