@@ -534,12 +534,47 @@ Feature: Checkout Regression Scripts
   @Regression_RK_037
   Scenario: Verify Redeem my VIP Rewards Cash link in order summary section
     Given User Land on the RRS home page after login with user
+      | uatrewards1@yopmail.com | 123456 |
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And Verify Checkout from ATC Popup
+      | JOIN THE MOST REWARDING FAMILY IN RUNNING |
+    And verify Join VIP Navigation and redeem reward cash link
+      | SHIPPING | ORDER SUMMARY | Redeem my VIP Rewards Cash | Redeem |
+    Then User logout of the application
+
+  @Regression_RK_038
+  Scenario: Verify VIP acknowledgement checkbox when VIP is in cart
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | M | 7 | aria-label | Black/White | 1 | 2 |
+    And User Click on Checkout Button and verify its navigation
+      | checkout | START CHECKOUT |
+    And Click Continue as Guest
+      | Continue as Guest | SAVE 20% TODAY |
+    And verify Join VIP Navigation
+      | ADD VIP FOR $1.99 & CONTINUE | SHIPPING | ORDER SUMMARY |
+    And Verify VIP Acknowledgement checkbox
+      | YES, I WANT TO JOIN VIP FAMILY REWARDS TO GET ALL THE GREAT SAVINGS OF THE VIP FAMILY REWARDS MEMBERSHIP! | Place Order | #757575 | #325a17 | *Please check box above to acknowledge VIP membership terms and conditions |
+
+  @Regression_RK_039
+  Scenario: Verify VIP Plus acknowledgement checkbox when VIP plus is in cart
+    Given User Land on the RRS home page after login with user
       | testcucumbervip@gmail.com | 123456 |
     When User Search for a product with some keywords "WOMEN ASICS" and click on search button
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
       | M | 7 | aria-label | Black/White | 1 | 2 |
-    And Verify Upgrade CTA button in  2x Cash banner
+    And verify Join VIP Plus Navigation
       | JOIN THE MOST REWARDING FAMILY IN RUNNING |
+    And Verify VIP Acknowledgement checkbox
+      | YES, I WANT TO JOIN VIP REWARDS PLUS TO GET ALL THE GREAT SAVINGS OF THE VIP REWARDS PLUS MEMBERSHIP! | Place Order | #757575 | #325a17 | *Please check box above to acknowledge VIP membership terms and conditions |
+    And Remove the Item from Cart
     Then User logout of the application

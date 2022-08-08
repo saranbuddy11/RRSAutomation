@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 
 import junit.framework.Assert;
@@ -294,6 +295,27 @@ public class CheckoutS1Page extends PageObject {
 	@FindBy(css = "a.address-bar--1f64m")
 	List<WebElementFacade> addressesAction;
 
+	@FindBy(css = "p.reward-link--2kcOd")
+	List<WebElementFacade> rewardLink;
+
+	@FindBy(css = "button.redeem-button--15she")
+	List<WebElementFacade> redeemBtn;
+
+	@FindBy(css = "input.textbox-input-toggle-off--S7FMz")
+	List<WebElementFacade> redeemInput;
+
+	@FindBy(css = "p.cart-item-vip-ack-text--n2-c4")
+	WebElementFacade vipAcknowledgementText;
+
+	@FindBy(css = "div.cart--3krME+button.btn-placeorder--3I1pX")
+	WebElementFacade placeOrderBtn;
+
+	@FindBy(css = "label.checkout-vip-ack-error--1Dew3")
+	WebElementFacade errorLabel;
+
+	@FindBy(css = "input[value='vipAcknowledgement']")
+	WebElementFacade vipAcknowledgementCheckBox;
+
 	@Step
 	public void clickContinueAsVIPButton() throws InterruptedException {
 		// CommonPage.javaScriptExecutor_Click(Checkout_ContinueAsVIP_Btn);
@@ -521,6 +543,17 @@ public class CheckoutS1Page extends PageObject {
 	}
 
 	@Step
+	public void verifyCheckoutPage(List<List<String>> expectedData) throws InterruptedException {
+		atcPopupPage.checkOut.shouldBeCurrentlyVisible().isClickable();
+		atcPopupPage.checkOut.click();
+		Thread.sleep(8000);
+		plpPage.pageTitle.waitUntilVisible();
+		plpPage.pageTitle.shouldBeCurrentlyVisible();
+		String text = plpPage.pageTitle.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text);
+	}
+
+	@Step
 	public void verify2xCashBanner(List<List<String>> expectedData) throws InterruptedException {
 		atcPopupPage.checkOut.shouldBeCurrentlyVisible().isClickable();
 		atcPopupPage.checkOut.click();
@@ -575,6 +608,27 @@ public class CheckoutS1Page extends PageObject {
 		cartPage.remove.click();
 		Thread.sleep(5000);
 		cartPage.remove.click();
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void verifyJoinVIPPlus(List<List<String>> expectedData) throws InterruptedException {
+		atcPopupPage.checkOut.shouldBeCurrentlyVisible().isClickable();
+		atcPopupPage.checkOut.click();
+		Thread.sleep(8000);
+		plpPage.pageTitle.waitUntilVisible();
+		plpPage.pageTitle.shouldBeCurrentlyVisible();
+		String text = plpPage.pageTitle.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text);
+		domathFullPrice.shouldBeCurrentlyVisible();
+		domathVIPPrice.shouldBeCurrentlyVisible();
+		domathSubHeader.shouldBeCurrentlyVisible();
+		upgradeBtn.shouldBeCurrentlyVisible().isClickable();
+		upgradeBtn.click();
+		Thread.sleep(5000);
+		element(pdpPage.cartTitle).waitUntilVisible();
+		pdpPage.cartTitle.shouldBeCurrentlyVisible();
+		atcPopupPage.checkOut.click();
 		Thread.sleep(5000);
 	}
 
@@ -676,6 +730,41 @@ public class CheckoutS1Page extends PageObject {
 		atcPopupPage.orderSummary.shouldBeCurrentlyVisible();
 		text = atcPopupPage.orderSummary.getText();
 		Assert.assertEquals(expectedData.get(0).get(2), text);
+	}
+
+	@Step
+	public void verifyRewardCashLink(List<List<String>> expectedData) throws InterruptedException {
+		CommonPage.actions_DownArrow();
+		vipButtons.get(0).shouldBeCurrentlyVisible().isClickable();
+		vipButtons.get(0).click();
+		Thread.sleep(5000);
+		addressTitle.shouldBeCurrentlyVisible();
+		String text = addressTitle.getText();
+		Assert.assertEquals(expectedData.get(0).get(0), text);
+		atcPopupPage.orderSummary.shouldBeCurrentlyVisible();
+		text = atcPopupPage.orderSummary.getText();
+		Assert.assertEquals(expectedData.get(0).get(1), text);
+		rewardLink.get(0).shouldBeCurrentlyVisible().isClickable();
+		text = rewardLink.get(0).getText();
+		Assert.assertEquals(expectedData.get(0).get(2), text);
+		rewardLink.get(0).click();
+		Thread.sleep(5000);
+		homePage.Feature_Headers.get(3).shouldBeCurrentlyVisible();
+		for (int i = 0; i < redeemBtn.size(); i++) {
+			redeemBtn.get(i).shouldBeCurrentlyVisible().isClickable();
+			text = redeemBtn.get(i).getText();
+			Assert.assertEquals(expectedData.get(0).get(3), text);
+		}
+		for (int i = 0; i < redeemInput.size(); i++) {
+			redeemInput.get(i).shouldBeCurrentlyVisible().isEnabled();
+		}
+		closeIcon.shouldBeCurrentlyVisible();
+		closeIcon.click();
+		editCartBtn.click();
+		Thread.sleep(10000);
+		atcPopupPage.vipSection.shouldBeCurrentlyVisible();
+		cartPage.remove.click();
+		Thread.sleep(5000);
 	}
 
 	@Step
@@ -1187,6 +1276,47 @@ public class CheckoutS1Page extends PageObject {
 		confirmModalTitle.shouldBeCurrentlyVisible();
 		confirmModalAccept.shouldBeCurrentlyVisible().isClickable();
 		confirmModalAccept.click();
+		Thread.sleep(5000);
+	}
+
+	@Step
+	public void verifyVIPAcknowledgementCheckbox(List<List<String>> expectedData)
+			throws AWTException, InterruptedException {
+		CommonPage.pageScrollDown();
+		vipAcknowledgementText.shouldBeCurrentlyVisible();
+		String text = vipAcknowledgementText.getText();
+		Assert.assertEquals(expectedData.get(0).get(0), text);
+		placeOrderBtn.shouldBeCurrentlyVisible().isClickable();
+		text = placeOrderBtn.getText();
+		Assert.assertEquals(expectedData.get(0).get(1), text);
+		text = placeOrderBtn.getCssValue("background-color");
+		String c = Color.fromString(text).asHex();
+		Assert.assertEquals(expectedData.get(0).get(2), c);
+		placeOrderBtn.click();
+		errorLabel.shouldBeCurrentlyVisible();
+		text = errorLabel.getText();
+		Assert.assertEquals(expectedData.get(0).get(4), text);
+		vipAcknowledgementCheckBox.shouldBeCurrentlyVisible().isEnabled();
+		vipAcknowledgementCheckBox.click();
+		vipAcknowledgementCheckBox.isSelected();
+		Thread.sleep(3000);
+		text = placeOrderBtn.getCssValue("background-color");
+		c = Color.fromString(text).asHex();
+		Assert.assertEquals(expectedData.get(0).get(3), c);
+	}
+
+	@Step
+	public void removeItem() throws AWTException, InterruptedException {
+		CommonPage.pageScrollUp();
+		Thread.sleep(5000);
+		editCartBtn.shouldBeCurrentlyVisible().isClickable();
+		editCartBtn.click();
+		Thread.sleep(5000);
+		atcPopupPage.cartPageHeader.shouldBeCurrentlyVisible();
+		cartPage.remove.shouldBeCurrentlyVisible().isClickable();
+		cartPage.remove.click();
+		Thread.sleep(5000);
+		cartPage.remove.click();
 		Thread.sleep(5000);
 	}
 }

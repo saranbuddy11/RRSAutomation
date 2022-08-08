@@ -398,6 +398,12 @@ public class Checkout_StepDefinition extends baseClass {
 		CheckoutS1Page.verifyCheckoutMembershipPage(expectedData);
 	}
 
+	@Then("Verify Checkout from ATC Popup")
+	public void verify_checkout_from_atc_popup(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyCheckoutPage(expectedData);
+	}
+
 	@Then("Verify Checkout Page and 2x Cash banner")
 	public void verify_checkout_page_and_2x_cash_banner(DataTable table) throws InterruptedException {
 		List<List<String>> expectedData = table.asLists(String.class);
@@ -559,9 +565,32 @@ public class Checkout_StepDefinition extends baseClass {
 		CheckoutS1Page.verifyUpgradeCTAButton(expectedData);
 	}
 
+	@Then("verify Join VIP Plus Navigation")
+	public void verify_join_vip_plus_navigation(DataTable table) throws AWTException, InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyJoinVIPPlus(expectedData);
+	}
+
 	@Then("User Click on Checkout Button")
 	public void user_click_on_checkout_button(DataTable table) throws InterruptedException {
 		List<List<String>> expectedData = table.asLists(String.class);
 		CheckoutS1Page.userClickOnCheckoutButton(expectedData);
+	}
+
+	@Then("verify Join VIP Navigation and redeem reward cash link")
+	public void verify_join_vip_navigation_and_redeem_reward_cash_link(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyRewardCashLink(expectedData);
+	}
+
+	@Then("Verify VIP Acknowledgement checkbox")
+	public void verify_vip_acknowledgement_checkbox(DataTable table) throws AWTException, InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		CheckoutS1Page.verifyVIPAcknowledgementCheckbox(expectedData);
+	}
+
+	@Then("Remove the Item from Cart")
+	public void remove_the_item_from_cart() throws AWTException, InterruptedException {
+		CheckoutS1Page.removeItem();
 	}
 }
