@@ -1,5 +1,7 @@
 package com.RRS.Pages;
 
+import java.awt.AWTException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.support.FindBy;
@@ -11,6 +13,8 @@ import net.thucydides.core.annotations.Step;
 public class OrderConfirmationPage extends PageObject {
 	public static Logger log = LogManager.getLogger(OrderConfirmationPage.class);
 	CommonPage CommonPage = new CommonPage();
+	CheckoutS1Page checkOutPage = new CheckoutS1Page();
+	loginPage loginPage = new loginPage();
 
 	@FindBy(xpath = "//h4[contains(normalize-space(),'Order #')]")
 	WebElementFacade OC_OrderNum_Lbl;
@@ -47,6 +51,12 @@ public class OrderConfirmationPage extends PageObject {
 
 	@FindBy(xpath = "//small[contains(text(),'Upgrade to VIP Rewards Plus for FREE and earn 10% ')]")
 	WebElementFacade OC_VIPPlusUpgrade_lbl;
+
+	@FindBy(css = "div.header-main--26ROe")
+	WebElementFacade header;
+
+	@FindBy(css = "div.footer--1LEZJ")
+	WebElementFacade footer;
 
 	@Step
 	public void assertVIPUpgradeDetails() throws InterruptedException {
@@ -100,5 +110,26 @@ public class OrderConfirmationPage extends PageObject {
 	public String getOrderNumber() throws InterruptedException {
 		String OrderNum = OC_OrderNum_Lbl.getText();
 		return OrderNum;
+	}
+
+	@Step
+	public void verifyHeaderAndFooter() throws AWTException, InterruptedException {
+		header.shouldBeCurrentlyVisible();
+		CommonPage.pageScrollDown();
+		CommonPage.pageScrollDown();
+		Thread.sleep(5000);
+		footer.shouldBeCurrentlyVisible();
+	}
+
+	@Step
+	public void verifyRRSLogoFunctionality() throws AWTException, InterruptedException {
+		CommonPage.pageScrollUp();
+		CommonPage.pageScrollUp();
+		Thread.sleep(5000);
+		checkOutPage.rrsLogo.shouldBeCurrentlyVisible().isClickable();
+		checkOutPage.rrsLogo.click();
+		Thread.sleep(5000);
+		checkOutPage.navigationHeader.shouldBeCurrentlyVisible();
+		loginPage.Login_SVG.isDisplayed();
 	}
 }

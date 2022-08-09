@@ -463,7 +463,7 @@ Feature: Checkout Regression Scripts
     And Verify Shipping section fields
       | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
     And Click Place Order Button and validate Error message
-      | Please fill in all the required fields |
+      | Please fill in these required fields: Card Number Card Holder Name Expiration Month Expiration Year CVN |
     And Enter Credit Card details
       | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
     And Verify Order Confirmation Page

@@ -2,6 +2,8 @@ package com.RRS.StepDefinitions;
 
 import static org.junit.Assert.assertTrue;
 
+import java.awt.AWTException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -101,4 +103,13 @@ public class OrderConfirmation_StepDefinition extends baseClass {
 
 	}
 
+	@Then("Verify Header and Footer")
+	public void verify_header_and_footer() throws AWTException, InterruptedException {
+		OCPage.verifyHeaderAndFooter();
+	}
+
+	@Then("Verify RRS Logo functionality")
+	public void verify_rrs_logo_functionality() throws AWTException, InterruptedException {
+		OCPage.verifyRRSLogoFunctionality();
+	}
 }

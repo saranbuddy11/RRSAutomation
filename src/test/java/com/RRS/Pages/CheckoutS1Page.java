@@ -863,7 +863,6 @@ public class CheckoutS1Page extends PageObject {
 		CommonPage.actions_DownArrow();
 		CommonPage.actions_DownArrow();
 		for (int i = 0; i < shippingFields.size() - 11; i++) {
-			System.out.println(i);
 			shippingFields.get(i).isDisplayed();
 			shippingFields.get(i).isEnabled();
 		}
@@ -1179,12 +1178,16 @@ public class CheckoutS1Page extends PageObject {
 		CommonPage.actions_DownArrow();
 		CommonPage.actions_DownArrow();
 		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
 		Thread.sleep(5000);
 		paymentPlaceOrderBtn.shouldBeCurrentlyVisible().isClickable();
-		paymentPlaceOrderBtn.click();
+		CommonPage.javaScriptExecutor_Click(paymentPlaceOrderBtn);
 		errorMessage.waitUntilVisible();
 		errorMessage.shouldBeCurrentlyVisible();
-		String text = errorMessage.getText().toLowerCase();
+		String text = errorMessage.getText().toLowerCase().replace("\n", " ");
+		System.out.println(expectedData.get(0).get(0).toLowerCase() + "-" + text);
 		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text);
 		Thread.sleep(5000);
 	}
