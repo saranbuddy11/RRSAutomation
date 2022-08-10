@@ -1187,7 +1187,6 @@ public class CheckoutS1Page extends PageObject {
 		errorMessage.waitUntilVisible();
 		errorMessage.shouldBeCurrentlyVisible();
 		String text = errorMessage.getText().toLowerCase().replace("\n", " ");
-		System.out.println(expectedData.get(0).get(0).toLowerCase() + "-" + text);
 		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text);
 		Thread.sleep(5000);
 	}
@@ -1222,7 +1221,7 @@ public class CheckoutS1Page extends PageObject {
 		atcPopupPage.checkOut.shouldBeCurrentlyVisible().isClickable();
 		atcPopupPage.checkOut.click();
 		Thread.sleep(8000);
-		plpPage.pageTitle.waitUntilVisible();
+		// plpPage.pageTitle.waitUntilVisible();
 		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
 	}
 

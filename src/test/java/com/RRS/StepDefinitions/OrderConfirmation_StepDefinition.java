@@ -3,6 +3,7 @@ package com.RRS.StepDefinitions;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.AWTException;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,6 +12,7 @@ import com.RRS.Pages.CommonPage;
 import com.RRS.Pages.OrderConfirmationPage;
 import com.RRS.base.baseClass;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.*;
 import net.thucydides.core.annotations.Steps;
 
@@ -111,5 +113,42 @@ public class OrderConfirmation_StepDefinition extends baseClass {
 	@Then("Verify RRS Logo functionality")
 	public void verify_rrs_logo_functionality() throws AWTException, InterruptedException {
 		OCPage.verifyRRSLogoFunctionality();
+	}
+
+	@Then("Verify Order Confirmation Page content")
+	public void verify_order_confirmation_page_content(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		OCPage.verifyOrderConfirmationPageContent(expectedData);
+	}
+
+	@Then("Verify VIP bubble blue banner")
+	public void verify_vip_bubble_blue_banner(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		OCPage.verifyVIPBubbleBlueBanner(expectedData);
+	}
+
+	@Then("Verify upgrade my order")
+	public void verify_upgrade_my_order(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		OCPage.verifyUpgradeMyOrder(expectedData);
+	}
+
+	@Then("Verify Checkout Faster section")
+	public void verify_checkout_faster_section(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		OCPage.verifyCheckoutFasterSection(expectedData);
+	}
+
+	@Then("Enter CVN number")
+	public void enter_cvn_number(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		OCPage.enterCVNNumber(expectedData);
+	}
+
+	@Then("Verify Email Address in Checkout Faster section")
+	public void verify_email_address_in_checkout_faster_section(DataTable table)
+			throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		OCPage.verifyEmailAddressInCheckoutFasterSection(expectedData);
 	}
 }
