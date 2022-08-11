@@ -151,4 +151,47 @@ public class OrderConfirmation_StepDefinition extends baseClass {
 		List<List<String>> expectedData = table.asLists(String.class);
 		OCPage.verifyEmailAddressInCheckoutFasterSection(expectedData);
 	}
+
+	@Then("Verify Create Account Button")
+	public void verify_create_account_button(DataTable table) throws InterruptedException, AWTException {
+		String RndEmail = RndGenerators.RndEmail();
+		List<List<String>> expectedData = table.asLists(String.class);
+		OCPage.verifyCreateAccountButton(expectedData, RndEmail);
+	}
+
+	@Then("Verify Shipping address field")
+	public void verify_shipping_address_field(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		OCPage.verifyShippingAddressFiels(expectedData);
+	}
+
+	@Then("Verify Contact Info")
+	public void verify_contact_info(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		OCPage.verifyContactInfo(expectedData);
+	}
+
+	@Then("Verify Payment Info")
+	public void verify_payment_info(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		OCPage.verifyPaymentInfo(expectedData);
+	}
+
+	@Then("Verify Order Summary field")
+	public void verify_order_summary_field(DataTable table) {
+		List<List<String>> expectedData = table.asLists(String.class);
+		OCPage.verifyOrderSummaryField(expectedData);
+	}
+
+	@Then("Verify Cart Option")
+	public void verify_cart_option(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		OCPage.verifyCartOption(expectedData);
+	}
+
+	@Then("Verify Item in Shipping Section")
+	public void verify_item_in_shipping_section(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		OCPage.verifyItemInShippingSection(expectedData);
+	}
 }

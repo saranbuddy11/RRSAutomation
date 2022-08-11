@@ -169,3 +169,132 @@ Feature: Order Confirmation Regression Scripts
       | order-confirmation | Thank YOU abcd! |
     And Verify Email Address in Checkout Faster section
       | abc123@gmail.com | value | xyz@gmail.com |
+
+  @Regression_RK_008
+  Scenario: Verify the application response when the user enters email address, password, confirm password and click on the Create Account CTA button.
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "38190" and click on search button
+    Then Verify Pickup in Store for selected products
+      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+    And User Click on Add to Cart Button
+    And User Click on Checkout Button and verify its navigation
+      | checkout | START CHECKOUT |
+    And Click Continue as Guest
+      | Continue as Guest | SAVE 20% TODAY |
+    And verify Continue Without VIP Navigation
+      | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
+    And Verify Shipping section fields
+      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+    And Click Place Order Button and validate Error message
+      | please fill in all the required fields |
+    # | please fill in these required fields: credit card: card number card holder name card expiration month card expiration year card cvn |
+    And Enter Credit Card details
+      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+    And Verify Order Confirmation Page
+      | order-confirmation | Thank YOU abcd! |
+    And Verify Create Account Button
+      | 123456 | Your account has been created successfully! GO TO YOUR ACCOUNT |
+
+  @Regression_RK_009
+  Scenario: Verify the fields in the shipping address, contact info and payment info of order details section.
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "38190" and click on search button
+    Then Verify Pickup in Store for selected products
+      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+    And User Click on Add to Cart Button
+    And User Click on Checkout Button and verify its navigation
+      | checkout | START CHECKOUT |
+    And Click Continue as Guest
+      | Continue as Guest | SAVE 20% TODAY |
+    And verify Continue Without VIP Navigation
+      | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
+    And Verify Shipping section fields
+      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+    And Click Place Order Button and validate Error message
+      #| please fill in all the required fields |
+      | please fill in these required fields: credit card: card number card holder name card expiration month card expiration year card cvn |
+    And Enter Credit Card details
+      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+    And Verify Order Confirmation Page
+      | order-confirmation | Thank YOU abcd! |
+    And Verify Shipping address field
+      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | AZ | United States | NON-VIP Standard Shipping | Guaranteed Delivery by |
+    And Verify Contact Info
+      | abc123@gmail.com | 9234567810 |
+    And Verify Payment Info
+      | Visa | ending in 1111 |
+
+  @Regression_RK_010
+  Scenario: Verify the fields in the order summary section.
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "38190" and click on search button
+    Then Verify Pickup in Store for selected products
+      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+    And User Click on Add to Cart Button
+    And User Click on Checkout Button and verify its navigation
+      | checkout | START CHECKOUT |
+    And Click Continue as Guest
+      | Continue as Guest | SAVE 20% TODAY |
+    And verify Continue Without VIP Navigation
+      | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
+    And Verify Shipping section fields
+      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+    And Click Place Order Button and validate Error message
+      #| please fill in all the required fields |
+      | please fill in these required fields: credit card: card number card holder name card expiration month card expiration year card cvn |
+    And Enter Credit Card details
+      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+    And Verify Order Confirmation Page
+      | order-confirmation | Thank YOU abcd! |
+    And Verify Order Summary field
+      | Order Summary | Order Total |
+
+  @Regression_RK_011
+  Scenario: Verify whether the Cart - Option is displayed in the OC page with the expand and collapse click
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "38190" and click on search button
+    Then Verify Pickup in Store for selected products
+      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+    And User Click on Add to Cart Button
+    And User Click on Checkout Button and verify its navigation
+      | checkout | START CHECKOUT |
+    And Click Continue as Guest
+      | Continue as Guest | SAVE 20% TODAY |
+    And verify Continue Without VIP Navigation
+      | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
+    And Verify Shipping section fields
+      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+    And Click Place Order Button and validate Error message
+      #| please fill in all the required fields |
+      | please fill in these required fields: credit card: card number card holder name card expiration month card expiration year card cvn |
+    And Enter Credit Card details
+      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+    And Verify Order Confirmation Page
+      | order-confirmation | Thank YOU abcd! |
+    And Verify Cart Option
+      | Cart | Shipping | Outlet Item - IN STOCK & Ready to ship to you. |
+
+  @Regression_RK_012
+  Scenario: Verify the items displayed in the shipping section.
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "38190" and click on search button
+    Then Verify Pickup in Store for selected products
+      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+    And User Click on Add to Cart Button
+    And User Click on Checkout Button and verify its navigation
+      | checkout | START CHECKOUT |
+    And Click Continue as Guest
+      | Continue as Guest | SAVE 20% TODAY |
+    And verify Continue Without VIP Navigation
+      | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
+    And Verify Shipping section fields
+      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+    And Click Place Order Button and validate Error message
+      #| please fill in all the required fields |
+      | please fill in these required fields: credit card: card number card holder name card expiration month card expiration year card cvn |
+    And Enter Credit Card details
+      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+    And Verify Order Confirmation Page
+      | order-confirmation | Thank YOU abcd! |
+    And Verify Item in Shipping Section
+      | Black/White | Size 9 | Width D | Men's adidas Solar Boost 3 | Quantity 1 |

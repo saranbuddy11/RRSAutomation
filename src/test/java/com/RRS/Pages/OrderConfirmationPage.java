@@ -20,6 +20,7 @@ public class OrderConfirmationPage extends PageObject {
 	CheckoutS1Page checkOutPage = new CheckoutS1Page();
 	loginPage loginPage = new loginPage();
 	homePage homePage = new homePage();
+	ATC_PopupPage atcPopupPage = new ATC_PopupPage();
 
 	@FindBy(xpath = "//h4[contains(normalize-space(),'Order #')]")
 	WebElementFacade OC_OrderNum_Lbl;
@@ -110,6 +111,45 @@ public class OrderConfirmationPage extends PageObject {
 
 	@FindBy(id = "account_emailAddress")
 	WebElementFacade email;
+
+	@FindBy(id = "account_password")
+	WebElementFacade acctPassword;
+
+	@FindBy(id = "account_confirmPassword")
+	WebElementFacade acctConfirmPassword;
+
+	@FindBy(id = "created_acount_section")
+	WebElementFacade createAccountSection;
+
+	@FindBy(css = "div.order-confirm-details-box--1thDC")
+	List<WebElementFacade> orderConfirmationSection;
+
+	@FindBy(css = "div.order-confirm-details-box--1thDC>div>p.tag_p--3xrVF")
+	List<WebElementFacade> shippingDetails;
+
+	@FindBy(css = "div.order-confirm-details-box--1thDC>p.tag_p--3xrVF")
+	List<WebElementFacade> contactDetails;
+
+	@FindBy(css = "div.cart-head--3iuWm")
+	WebElementFacade cartSection;
+
+	@FindBy(css = "div.cart-head--3iuWm>svg.icon--3lrU-")
+	WebElementFacade cartIcon;
+
+	@FindBy(id = "rrs_cart_body")
+	WebElementFacade cartBody;
+
+	@FindBy(css = "h2.cart-item-inventroy-bold--1O2l1")
+	WebElementFacade inventoryDetails;
+
+	@FindBy(css = "h5.cart-item-info-name--2Y01F")
+	WebElementFacade itemName;
+
+	@FindBy(css = "small.cart-item-info-details--3ETm5")
+	List<WebElementFacade> itemDetails;
+
+	@FindBy(css = "div.cart-item-info-line--2EHSe>small")
+	List<WebElementFacade> qtyDetails;
 
 	@Step
 	public void assertVIPUpgradeDetails() throws InterruptedException {
@@ -272,5 +312,147 @@ public class OrderConfirmationPage extends PageObject {
 		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text);
 		email.clear();
 		typeInto(email, expectedData.get(0).get(2));
+	}
+
+	@Step
+	public void verifyCreateAccountButton(List<List<String>> expectedData, String RndEmail)
+			throws AWTException, InterruptedException {
+		try {
+			CommonPage.actions_DownArrow();
+			CommonPage.actions_DownArrow();
+			CommonPage.actions_DownArrow();
+			CommonPage.actions_DownArrow();
+			CommonPage.actions_DownArrow();
+			Thread.sleep(3000);
+			checkoutFaster.shouldBeCurrentlyVisible();
+			createAccount.shouldBeCurrentlyVisible();
+			createAccountBtn.shouldBeCurrentlyVisible().isClickable();
+			email.shouldBeCurrentlyVisible().isEnabled();
+			typeInto(email, RndEmail);
+			acctPassword.shouldBeCurrentlyVisible().isEnabled();
+			typeInto(acctPassword, expectedData.get(0).get(0));
+			acctConfirmPassword.shouldBeCurrentlyVisible().isEnabled();
+			typeInto(acctConfirmPassword, expectedData.get(0).get(0));
+			createAccountBtn.click();
+			Thread.sleep(5000);
+			createAccountSection.shouldBeCurrentlyVisible();
+			String text = createAccountSection.getText().toLowerCase().replace("\n", " ");
+			System.out.println(expectedData.get(0).get(1).toLowerCase() + "-" + text);
+			Assert.assertEquals(expectedData.get(0).get(1).toLowerCase(), text);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Step
+	public void verifyShippingAddressFiels(List<List<String>> expectedData) throws AWTException, InterruptedException {
+		CommonPage.pageScrollDown();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		Thread.sleep(3000);
+		orderConfirmationSection.get(0).shouldBeCurrentlyVisible();
+		String text = shippingDetails.get(0).getText().toLowerCase();
+		Assert.assertTrue(text.contains(expectedData.get(0).get(0).toLowerCase()));
+		Assert.assertTrue(text.contains(expectedData.get(0).get(1).toLowerCase()));
+		text = shippingDetails.get(1).getText().toLowerCase();
+		Assert.assertTrue(text.contains(expectedData.get(0).get(2).toLowerCase()));
+		text = shippingDetails.get(2).getText().toLowerCase();
+		Assert.assertTrue(text.contains(expectedData.get(0).get(3).toLowerCase()));
+		text = shippingDetails.get(3).getText().toLowerCase();
+		System.out.println(text);
+		Assert.assertTrue(text.contains(expectedData.get(0).get(4).toLowerCase()));
+		Assert.assertTrue(text.contains(expectedData.get(0).get(5).toLowerCase()));
+		Assert.assertTrue(text.contains(expectedData.get(0).get(6).toLowerCase()));
+		text = shippingDetails.get(4).getText().toLowerCase();
+		Assert.assertTrue(text.contains(expectedData.get(0).get(7).toLowerCase()));
+		text = shippingDetails.get(5).getText().toLowerCase();
+		Assert.assertTrue(text.contains(expectedData.get(0).get(8).toLowerCase()));
+		text = shippingDetails.get(6).getText().toLowerCase();
+		Assert.assertTrue(text.contains(expectedData.get(0).get(9).toLowerCase()));
+	}
+
+	@Step
+	public void verifyContactInfo(List<List<String>> expectedData) {
+		orderConfirmationSection.get(1).shouldBeCurrentlyVisible();
+		String text = contactDetails.get(0).getText().toLowerCase();
+		Assert.assertTrue(text.contains(expectedData.get(0).get(0).toLowerCase()));
+		text = contactDetails.get(1).getText().toLowerCase();
+		Assert.assertTrue(text.contains(expectedData.get(0).get(1).toLowerCase()));
+	}
+
+	@Step
+	public void verifyPaymentInfo(List<List<String>> expectedData) {
+		orderConfirmationSection.get(2).shouldBeCurrentlyVisible();
+		String text = shippingDetails.get(7).getText().toLowerCase();
+		Assert.assertTrue(text.contains(expectedData.get(0).get(0).toLowerCase()));
+		text = shippingDetails.get(8).getText().toLowerCase();
+		Assert.assertTrue(text.contains(expectedData.get(0).get(1).toLowerCase()));
+	}
+
+	@Step
+	public void verifyOrderSummaryField(List<List<String>> expectedData) {
+		atcPopupPage.orderSummary.shouldBeCurrentlyVisible();
+		String text = atcPopupPage.orderSummary.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text);
+		for (int i = 0; i < atcPopupPage.summary.size(); i++) {
+			atcPopupPage.summary.get(i).shouldBeCurrentlyVisible();
+		}
+		atcPopupPage.estimatedTotal.get(0).shouldBeCurrentlyVisible();
+		text = atcPopupPage.estimatedTotal.get(0).getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(1).toLowerCase(), text);
+		atcPopupPage.estimatedTotal.get(1).shouldBeCurrentlyVisible();
+	}
+
+	@Step
+	public void verifyCartOption(List<List<String>> expectedData) throws InterruptedException {
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		cartSection.shouldBeCurrentlyVisible();
+		String text = cartSection.getText().toLowerCase();
+		Assert.assertTrue(text.contains(expectedData.get(0).get(0).toLowerCase()));
+		cartIcon.shouldBeCurrentlyVisible();
+		cartBody.shouldBeCurrentlyVisible();
+		cartIcon.click();
+		Thread.sleep(3000);
+		cartBody.shouldNotBeCurrentlyVisible();
+		cartIcon.click();
+		Thread.sleep(3000);
+		cartBody.shouldBeCurrentlyVisible();
+		checkOutPage.cartTitle.shouldBeCurrentlyVisible();
+		text = checkOutPage.cartTitle.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(1).toLowerCase(), text);
+		inventoryDetails.shouldBeCurrentlyVisible();
+		text = inventoryDetails.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(2).toLowerCase(), text);
+	}
+
+	@Step
+	public void verifyItemInShippingSection(List<List<String>> expectedData) throws InterruptedException {
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		cartSection.shouldBeCurrentlyVisible();
+		cartIcon.shouldBeCurrentlyVisible();
+		cartBody.shouldBeCurrentlyVisible();
+		itemName.shouldBeCurrentlyVisible();
+		String text = itemName.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(3).toLowerCase(), text);
+		for (int i = 0; i < itemDetails.size(); i++) {
+			itemDetails.get(i).shouldBeCurrentlyVisible();
+			text = itemDetails.get(i).getText().toLowerCase();
+			Assert.assertEquals(expectedData.get(0).get(i).toLowerCase(), text);
+		}
+		qtyDetails.get(3).shouldBeCurrentlyVisible();
+		text = qtyDetails.get(3).getText().toLowerCase().replace("\n", " ");
+		Assert.assertEquals(expectedData.get(0).get(4).toLowerCase(), text);
 	}
 }
