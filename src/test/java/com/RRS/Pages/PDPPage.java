@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
@@ -22,6 +23,7 @@ import net.thucydides.core.annotations.Steps;
 
 public class PDPPage extends PageObject {
 	CommonPage CommonPage = new CommonPage();
+	homePage homePage = new homePage();
 
 	@Steps
 	BLPPage blpPage;
@@ -138,14 +140,38 @@ public class PDPPage extends PageObject {
 	@FindBy(css = "h1.pr-headline")
 	WebElementFacade reviewHeadLine;
 
-	@FindBy(css = "pr-review-display-39642")
+	@FindBy(css = "section[id*='pr-review-display-']")
 	WebElementFacade reviewSection;
+
+	@FindBy(css = "div.pr-review")
+	List<WebElementFacade> expertReview;
+
+	@FindBy(css = "img[alt*='View Gallery Image #']")
+	List<WebElementFacade> reviewImage;
 
 	@FindBy(css = "h1.pr-review-snapshot-snippets-headline")
 	WebElementFacade reviewSnippets;
 
 	@FindBy(css = "span.pr-snippet-review-count")
 	WebElementFacade reviewCount;
+
+	@FindBy(css = "div.pr-snippet-stars-container>div")
+	WebElementFacade reviewStarRating;
+
+	@FindBy(css = "span.pr-reco-value")
+	WebElementFacade recoValue;
+
+	@FindBy(css = "span.pr-reco-to-friend-message")
+	WebElementFacade recoMessage;
+
+	@FindBy(css = "ul.pr-ratings-histogram")
+	WebElementFacade ratingHistogram;
+
+	@FindBy(css = "a.pr-snippet-write-review-link")
+	WebElementFacade reviewLink;
+
+	@FindBy(css = "h3.pr-header-title")
+	WebElementFacade headerTitle3;
 
 	@FindBy(css = "svg.icon--3lrU->image")
 	WebElementFacade logoIcon;
@@ -212,6 +238,15 @@ public class PDPPage extends PageObject {
 
 	@FindBy(css = "div.product-detail-specs-feature--1OO98")
 	WebElementFacade productDetailSpec;
+
+	@FindBy(css = "h3.recommendations-list-title--erltF")
+	List<WebElementFacade> recommendationListTitle;
+
+	@FindBy(css = "div.recommendations-list--3zybO")
+	List<WebElementFacade> recommendationList;
+
+	@FindBy(css = "button.slider-arrow-right--t4hN5")
+	List<WebElementFacade> sliderRight;
 
 	@Step
 	public void click_Add2Cart_PDP() throws InterruptedException, AWTException {
@@ -325,7 +360,6 @@ public class PDPPage extends PageObject {
 	public void clickAnySizeVariant_PDP(String Variant) throws InterruptedException {
 		String DynamicElement = "//p[contains(normalize-space(),'Size')]/../div/div/label/span[text()='" + Variant
 				+ "']";
-		System.out.println("Dynamic xpath created: " + DynamicElement);
 		getDriver().findElement(By.xpath(DynamicElement)).click();
 		Thread.sleep(5000);
 		//PDP_InStock_Lbl.shouldBeVisible();
@@ -340,7 +374,6 @@ public class PDPPage extends PageObject {
 	@Step
 	public void clickkAnyColorvariant_PDP(String ColorVariant) throws InterruptedException, AWTException {
 		String DynamicElement = "//span[contains(@class,'variant-color')]/img[contains(@alt,'" + ColorVariant + "')]";
-		System.out.println("Dynamic xpath created: " + DynamicElement);
 		getDriver().findElement(By.xpath(DynamicElement)).click();
 		Thread.sleep(1000);
 	}
@@ -396,8 +429,6 @@ public class PDPPage extends PageObject {
 	public float getMSRP_Float_PDP(String MSRP_Str) throws InterruptedException {
 		float MSRP_float = CommonPage.convertStrFloat(MSRP_Str);
 		// TestParams.setReference(TestReference.MSRP, MSRP_float);
-		// System.out.println("MSRP from enum:
-		// "+TestParams.getReference(TestReference.MSRP));
 		return MSRP_float;
 	}
 
@@ -728,5 +759,111 @@ public class PDPPage extends PageObject {
 		CommonPage.pageScrollDown();
 		reviewHeadLine.shouldBeCurrentlyVisible();
 		reviewSection.isPresent();
+		for (int i = 0; i < expertReview.size(); i++) {
+			expertReview.get(i).isPresent();
+		}
+	}
+
+	@Step
+	public void verifyReviewSection(List<List<String>> expectedData) throws InterruptedException, AWTException {
+		Thread.sleep(5000);
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		CommonPage.pageScrollDown();
+		Thread.sleep(3000);
+		CommonPage.pageScrollDown();
+		Thread.sleep(3000);
+		CommonPage.pageScrollDown();
+		Thread.sleep(3000);
+		CommonPage.pageScrollDown();
+		Thread.sleep(3000);
+		Actions a = new Actions(getDriver());
+		a.moveToElement(reviewSection).perform();
+		reviewSection.shouldBeCurrentlyVisible();
+		for (int i = 0; i < reviewImage.size(); i++) {
+			reviewImage.get(i).shouldBeCurrentlyVisible();
+		}
+		reviewHeadLine.isDisplayed();
+		String title = reviewCount.getText();
+		Assert.assertEquals(title, expectedData.get(0).get(0));
+		title = reviewStarRating.getAttribute(expectedData.get(0).get(2));
+		Assert.assertTrue(title.contains(expectedData.get(0).get(1)));
+		title = recoValue.getText();
+		Assert.assertEquals(title, expectedData.get(0).get(3));
+		recoMessage.shouldBeCurrentlyVisible();
+		ratingHistogram.shouldBePresent();
+	}
+
+	@Step
+	public void verifyWriteReview(List<List<String>> expectedData) throws InterruptedException, AWTException {
+		Thread.sleep(5000);
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		CommonPage.pageScrolltwice();
+		Thread.sleep(5000);
+		CommonPage.pageScrollDown();
+		Thread.sleep(5000);
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		Thread.sleep(5000);
+		reviewLink.shouldBeCurrentlyVisible().isClickable();
+		String text = reviewLink.getText();
+		Assert.assertEquals(text, expectedData.get(0).get(0));
+		reviewLink.click();
+		Thread.sleep(5000);
+		headerTitle3.shouldBeCurrentlyVisible();
+		text = headerTitle3.getText();
+		Assert.assertEquals(text, expectedData.get(0).get(0));
+		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(1) + expectedData.get(0).get(2));
+	}
+
+	@Step
+	public void verifyOutFitRunSection(List<List<String>> expectedData, String count)
+			throws InterruptedException, AWTException {
+		Thread.sleep(5000);
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrolltwice();
+		Thread.sleep(3000);
+		String actual = recommendationListTitle.get(0).getText();
+		Assert.assertEquals(actual, expectedData.get(0).get(0));
+		List<WebElement> element = recommendationList.get(0)
+				.findElements(By.cssSelector("span.product-card-name--1B6G4"));
+		int num = element.size();
+		Assert.assertEquals(num, Integer.parseInt(count));
+	}
+
+	@Step
+	public void verifyYouMayAlsoLikeSection(List<List<String>> expectedData) throws InterruptedException, AWTException {
+		Thread.sleep(5000);
+		sddlpPage.productTitle.shouldBeCurrentlyVisible();
+		String actual = sddlpPage.productTitle.getText();
+		Assert.assertEquals(actual, expectedData.get(0).get(0));
+		CommonPage.pageZoomOut();
+		CommonPage.pageZoomOut();
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrolltwice();
+		CommonPage.pageScrollDown();
+		Thread.sleep(3000);
+		actual = recommendationListTitle.get(1).getText();
+		Assert.assertEquals(actual, expectedData.get(0).get(1));
+		List<WebElement> element = recommendationList.get(1)
+				.findElements(By.cssSelector("span.product-card-name--1B6G4"));
+		int num = element.size();
+		Assert.assertEquals(num, Integer.parseInt(expectedData.get(0).get(2)));
+		for (int i = 1; i < num; i++) {
+			actual = element.get(i).getText();
+			Assert.assertTrue(actual.toLowerCase().contains(expectedData.get(0).get(3).toLowerCase()));
+			if (i >= 4) {
+				sliderRight.get(1).click();
+				Thread.sleep(3000);
+			}
+		}
 	}
 }

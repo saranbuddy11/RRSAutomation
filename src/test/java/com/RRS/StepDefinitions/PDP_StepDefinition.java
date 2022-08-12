@@ -372,4 +372,36 @@ public class PDP_StepDefinition extends baseClass {
 		List<List<String>> expectedData = table.asLists(String.class);
 		PDPPage.verifyProductDescriptionWithExpertReview(expectedData);
 	}
+
+	@Then("Verify Review Snapshot Section")
+	public void verify_review_snapshot_section(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifyReviewSection(expectedData);
+	}
+
+	@Then("Verify Write Review CTA Button")
+	public void verify_write_review_cta_button(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifyWriteReview(expectedData);
+	}
+
+	@When("User Search for a product with some keywords {word} and click on search button.")
+	public void user_search_for_a_product_with_some_keywords_and_click_on_search_button(String id)
+			throws InterruptedException {
+		PLPpage.Type_SearchKeyword(String.valueOf(id));
+		PLPpage.Click_SearchIcon();
+	}
+
+	@Then("Verify Outfit Your Run Section {word}")
+	public void verify_outfit_your_run_section(String count, DataTable table)
+			throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifyOutFitRunSection(expectedData, count);
+	}
+
+	@Then("Verify You may also like section")
+	public void verify_you_may_also_like_section(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		PDPPage.verifyYouMayAlsoLikeSection(expectedData);
+	}
 }

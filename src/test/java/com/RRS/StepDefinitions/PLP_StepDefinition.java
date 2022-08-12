@@ -38,14 +38,15 @@ public class PLP_StepDefinition extends baseClass {
 	}
 
 	@Then("User Search for a product with some keywords {string} and click on search button")
-	public void user_search_for_a_product_with_some_keywords_and_click_on_search_button(String Keyword) {
+	public void user_search_for_a_product_with_some_keywords_and_click_on_search_button(String Keyword)
+			throws InterruptedException {
 		/* homePage.click_RRSHomeLogo_SVG_Button(); */
 		PLPpage.Type_SearchKeyword(Keyword);
 		PLPpage.Click_SearchIcon();
 	}
 
 	@Then("Assert user is directed to appropriate PLP page for the keyword used")
-	public void assert_user_is_direceted_to_appropriate_plp_page_for_the_keyword_used() {
+	public void assert_user_is_directed_to_appropriate_plp_page_for_the_keyword_used() {
 		PLPpage.Assert_PLPpage_SearchKeyword();
 	}
 
@@ -85,7 +86,6 @@ public class PLP_StepDefinition extends baseClass {
 	@Then("User validate the page results based on the filter applied")
 	public void user_validate_the_page_results_based_on_the_filter_applied() {
 		String UpdatedSearchResult = PLPpage.getCountofSearchResults();
-		System.out.println("Filter Applied Search results: " + UpdatedSearchResult);
 		assertThat(!SearchResult.contentEquals(UpdatedSearchResult));
 	}
 
