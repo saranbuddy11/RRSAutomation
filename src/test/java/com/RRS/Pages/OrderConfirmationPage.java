@@ -1,6 +1,8 @@
 package com.RRS.Pages;
 
 import java.awt.AWTException;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -21,6 +23,7 @@ public class OrderConfirmationPage extends PageObject {
 	loginPage loginPage = new loginPage();
 	homePage homePage = new homePage();
 	ATC_PopupPage atcPopupPage = new ATC_PopupPage();
+	PLPPage plpPage = new PLPPage();
 
 	@FindBy(xpath = "//h4[contains(normalize-space(),'Order #')]")
 	WebElementFacade OC_OrderNum_Lbl;
@@ -150,6 +153,27 @@ public class OrderConfirmationPage extends PageObject {
 
 	@FindBy(css = "div.cart-item-info-line--2EHSe>small")
 	List<WebElementFacade> qtyDetails;
+
+	@FindBy(css = "h3.savings-price-card-red--1UBeS")
+	List<WebElementFacade> savingPrices;
+
+	@FindBy(css = "h3.savings-price-card-teal--3WLcS")
+	List<WebElementFacade> vipSavingPrices;
+
+	@FindBy(css = "small.savings-price-card-text--3MQ8V")
+	List<WebElementFacade> savingPricesText;
+
+	@FindBy(css = "small.savings-price-card-text--3UOMZ")
+	List<WebElementFacade> vipSavingPricesText;
+
+	@FindBy(css = "div.text-align-left--1c_kk>h1.tag_h1--hWc2x")
+	WebElementFacade confirmedTitle;
+
+	@FindBy(css = "div.bubble-banner-title-vip--2Ka4_")
+	WebElementFacade bubbleBanner;
+
+	@FindBy(css = "div.text-align-center--lK8Wc>h1.tag_h1--hWc2x")
+	WebElementFacade title;
 
 	@Step
 	public void assertVIPUpgradeDetails() throws InterruptedException {
@@ -454,5 +478,112 @@ public class OrderConfirmationPage extends PageObject {
 		qtyDetails.get(3).shouldBeCurrentlyVisible();
 		text = qtyDetails.get(3).getText().toLowerCase().replace("\n", " ");
 		Assert.assertEquals(expectedData.get(0).get(4).toLowerCase(), text);
+	}
+
+	@Step
+	public void verifyPickUpStoreNameInShippingSection(List<List<String>> expectedData) throws InterruptedException {
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		cartSection.shouldBeCurrentlyVisible();
+		cartIcon.shouldBeCurrentlyVisible();
+		cartBody.shouldBeCurrentlyVisible();
+		checkOutPage.cartTitle.shouldBeCurrentlyVisible();
+		String text = checkOutPage.cartTitle.getText().toLowerCase().replace("\n", " ");
+		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text);
+	}
+
+	@Step
+	public void verifyMathCalculationBanner(List<List<String>> expectedData) throws InterruptedException {
+		CommonPage.actions_DownArrow();
+		savingPrices.get(0).shouldBeCurrentlyVisible();
+		String text = savingPrices.get(0).getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(3).toLowerCase(), text);
+		savingPrices.get(1).shouldBeCurrentlyVisible();
+		text = savingPrices.get(1).getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(4).toLowerCase(), text);
+		savingPrices.get(2).shouldBeCurrentlyVisible();
+		text = savingPrices.get(2).getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(5).toLowerCase(), text);
+		savingPricesText.get(0).shouldBeCurrentlyVisible();
+		text = savingPricesText.get(0).getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text);
+		savingPricesText.get(1).shouldBeCurrentlyVisible();
+		text = savingPricesText.get(1).getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(1).toLowerCase(), text);
+		savingPricesText.get(2).shouldBeCurrentlyVisible();
+		text = savingPricesText.get(2).getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(2).toLowerCase(), text);
+		upgradeBtn.shouldBeCurrentlyVisible().isClickable();
+		upgradeBtn.click();
+		Thread.sleep(5000);
+		confirmedTitle.shouldBeCurrentlyVisible();
+	}
+
+	@Step
+	public void loginWithVIPUser(List<List<String>> expectedData) throws InterruptedException {
+		checkOutPage.sectionHeader.get(1).shouldBeCurrentlyVisible();
+		checkOutPage.checkOutButtons.get(1).shouldBeCurrentlyVisible().isClickable();
+		typeInto(loginPage.Enter_EmailAddress, expectedData.get(0).get(0));
+		typeInto(loginPage.Enter_Password, expectedData.get(0).get(1));
+		checkOutPage.checkOutButtons.get(1).click();
+		Thread.sleep(10000);
+	}
+
+	@Step
+	public void clickOnPlaceOrder(List<List<String>> expectedData) throws InterruptedException, AWTException {
+		Thread.sleep(10000);
+		atcPopupPage.orderSummary.shouldBeCurrentlyVisible();
+		CommonPage.pageScrollDown();
+		CommonPage.actions_DownArrow();
+		Thread.sleep(4000);
+		cvnNumber.shouldBeCurrentlyVisible().isEnabled();
+		typeInto(cvnNumber, expectedData.get(0).get(0));
+		CommonPage.pageScrollDown();
+		Thread.sleep(5000);
+		sections.get(0).click();
+		CommonPage.javaScriptExecutor_Click(paymentPlaceOrderBtn);
+		Thread.sleep(10000);
+	}
+
+	@Step
+	public void verifyMathCalculationOnBanner(List<List<String>> expectedData) throws InterruptedException {
+		Thread.sleep(5000);
+		DecimalFormat df = new DecimalFormat("###.##");
+		CommonPage.actions_DownArrow();
+		title.shouldBeCurrentlyVisible();
+		String text = title.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text);
+		orderTitle.shouldBeCurrentlyVisible();
+		text = orderTitle.getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(1).toLowerCase(), text);
+		homePage.Feature_Headers.get(0).shouldBeCurrentlyVisible();
+		text = homePage.Feature_Headers.get(0).getText().replace("$", "");
+		Double actualVipSaving = Double.parseDouble(text);
+		String price = atcPopupPage.lineItem.get(1).getText().replace("$", "");
+		Double expectedPrice = Double.parseDouble(price);
+		Double vipSaving = expectedPrice * 0.1;
+		df.setRoundingMode(RoundingMode.UP);
+		Assert.assertTrue(Double.parseDouble(df.format(vipSaving)) == actualVipSaving);
+		Double vipPrice = expectedPrice - vipSaving;
+		Double reward = vipPrice * .1;
+		homePage.Feature_Headers.get(1).shouldBeCurrentlyVisible();
+		text = homePage.Feature_Headers.get(1).getText().replace("$", "");
+		actualVipSaving = Double.parseDouble(text);
+		Assert.assertTrue(Double.parseDouble(df.format(reward)) == actualVipSaving);
+		homePage.Feature_Headers.get(2).shouldBeCurrentlyVisible();
+		text = homePage.Feature_Headers.get(2).getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(2).toLowerCase(), text);
+		vipSavingPricesText.get(0).shouldBeCurrentlyVisible();
+		text = vipSavingPricesText.get(0).getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(3).toLowerCase(), text);
+		vipSavingPricesText.get(1).shouldBeCurrentlyVisible();
+		text = vipSavingPricesText.get(1).getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(4).toLowerCase(), text);
+		vipSavingPricesText.get(2).shouldBeCurrentlyVisible();
+		text = vipSavingPricesText.get(2).getText().toLowerCase();
+		Assert.assertEquals(expectedData.get(0).get(5).toLowerCase(), text);
 	}
 }

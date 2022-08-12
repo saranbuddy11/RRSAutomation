@@ -194,4 +194,35 @@ public class OrderConfirmation_StepDefinition extends baseClass {
 		List<List<String>> expectedData = table.asLists(String.class);
 		OCPage.verifyItemInShippingSection(expectedData);
 	}
+
+	@Then("Verify Pickup at Store_Name in Shipping Section")
+	public void verify_pickup_at_store_name_in_shipping_section(DataTable table)
+			throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		OCPage.verifyPickUpStoreNameInShippingSection(expectedData);
+	}
+
+	@Then("Verify Math Calculation banner")
+	public void verify_math_calculation_banner(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		OCPage.verifyMathCalculationBanner(expectedData);
+	}
+
+	@Then("Login with VIP user credentials")
+	public void login_with_vip_user_credentials(DataTable table) throws InterruptedException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		OCPage.loginWithVIPUser(expectedData);
+	}
+
+	@Then("Click on place order CTA button")
+	public void click_on_place_order_cta_button(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		OCPage.clickOnPlaceOrder(expectedData);
+	}
+
+	@Then("Verify Math Calculation on Banner")
+	public void verify_math_calculation_on_banner(DataTable table) throws InterruptedException, AWTException {
+		List<List<String>> expectedData = table.asLists(String.class);
+		OCPage.verifyMathCalculationOnBanner(expectedData);
+	}
 }

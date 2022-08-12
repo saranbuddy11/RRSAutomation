@@ -298,3 +298,92 @@ Feature: Order Confirmation Regression Scripts
       | order-confirmation | Thank YOU abcd! |
     And Verify Item in Shipping Section
       | Black/White | Size 9 | Width D | Men's adidas Solar Boost 3 | Quantity 1 |
+
+  @Regression_RK_013
+  Scenario: Verify the items displayed in the Pickup at Store_Name section.
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "38190" and click on search button
+    Then Verify Pickup in Store for selected products
+      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+    Then Verify Pickup in Store name for selected products
+      | California | Costa Mesa |
+    And User Click on Add to Cart Button
+    And User Click on Checkout Button and verify its navigation
+      | checkout | START CHECKOUT |
+    And Click Continue as Guest
+      | Continue as Guest | SAVE 20% TODAY |
+    And verify Continue Without VIP Navigation
+      | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
+    And Verify Shipping section fields
+      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+    And Click Place Order Button and validate Error message
+      #| please fill in all the required fields |
+      | please fill in these required fields: credit card: card number card holder name card expiration month card expiration year card cvn |
+    And Enter Credit Card details
+      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+    And Verify Order Confirmation Page
+      | order-confirmation | Thank YOU abcd! |
+    And Verify Pickup at Store_Name in Shipping Section
+      | Pickup at Costa Mesa |
+
+  @Regression_RK_014
+  Scenario: Verify Order Confirmation page Math Calculation banner for Guest User/ Logged-in Non-VIP User
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "38190" and click on search button
+    Then Verify Pickup in Store for selected products
+      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+    And User Click on Add to Cart Button
+    And User Click on Checkout Button and verify its navigation
+      | checkout | START CHECKOUT |
+    And Click Continue as Guest
+      | Continue as Guest | SAVE 20% TODAY |
+    And verify Continue Without VIP Navigation
+      | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
+    And Verify Shipping section fields
+      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+    And Click Place Order Button and validate Error message
+      # | please fill in all the required fields |
+      | please fill in these required fields: credit card: card number card holder name card expiration month card expiration year card cvn |
+    And Enter Credit Card details
+      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+    And Verify Order Confirmation Page
+      | order-confirmation | Thank YOU abcd! |
+    And Verify VIP bubble blue banner
+      | IT'S NOT TOO LATE TO GET | IN VIP BENEFITS ON THIS ORDER! |
+    And Verify Math Calculation banner
+      | 20% VIP Benefits Today, Then 10% Every Day | 10% VIP Rewards Cash Earned | VIP Fast, Free Shipping Value | $0.00 | $9.00 | $7.00 |
+
+  @Regression_RK_015
+  Scenario: Verify Order Confirmation page Math Calculation banner for VIP user.
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | B | 6 | aria-label | Black/Blue/Purple | 1 | 2 |
+    And User Click on Checkout Button and verify its navigation
+      | checkout | START CHECKOUT |
+    And Login with VIP user credentials
+      | testcucumbervip@gmail.com | 123456 |
+    And Click on place order CTA button
+      | 123 |
+    And Verify Math Calculation on Banner
+      | REMEMBER ALL YOUR AWESOME VIP BENEFITS! | Thank YOU test! | $7.00 | 10% VIP Savings | 10% VIP Rewards Cash Earned | VIP Shipping Value |
+    Then User logout of the application
+
+  @Regression_RK_016
+  Scenario: Verify Order Confirmation page Math Calculation banner for VIP Plus User
+    Given User Land on the RRS home page after login with VIP user
+      | testcucumbervipplus@gmail.com | 123456 |
+    When User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Assert user is directed to appropriate PLP page for the keyword used
+    And Verify User Navigation to PDP page
+    Then Verify Add to Cart Popup
+      | B | 6 | aria-label | Black/Blue/Purple | 1 | 2 |
+    And User Click on Checkout Button
+      | checkout |
+    And Click on place order CTA button
+      | 123 |
+    And Verify Math Calculation on Banner
+      | REMEMBER ALL YOUR AWESOME VIP BENEFITS! | Thank YOU sairam! | $7.00 | 10% VIP Savings | 10% VIP Rewards Cash Earned | VIP Shipping Value |
+    Then User logout of the application
