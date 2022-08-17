@@ -240,11 +240,11 @@ public class PLPPage extends PageObject {
 
 	@Step
 	public void applyFilter(String Filter) throws InterruptedException {
-		String DynamicFilterElement = "//input[@value='r=webPgc%3A" + Filter + "&p=48"+ "']";
+		String DynamicFilterElement = "//input[@value='r=webPgc%3A" + Filter + "&p=48" + "']";
 		// input[@value='r=webPgc%3AShoes']
 		System.out.println("Dynamic xpath created: " + DynamicFilterElement);
 		getDriver().findElement(By.xpath(DynamicFilterElement)).click();
-		Thread.sleep(2000);
+		
 	}
 
 	@Step
@@ -269,7 +269,8 @@ public class PLPPage extends PageObject {
 
 	@Step
 	public void clickFirstProduct(String First_Product_Link) {
-		// String FirstProduct="\"Women's ASICS GEL-Kayano 28\"";
+		//String First_Product="\"Women's ASICS GEL-Kayano 29\"";
+		System.out.println("Dynamic xpath created: " + First_Product_Link);
 		String FirstProduct = "//h2[contains(text(),\"" + First_Product_Link + "\")]";
 		System.out.println("Dynamic xpath created: " + FirstProduct);
 		WebElement ele = getDriver().findElement(By.xpath(FirstProduct));
@@ -298,9 +299,11 @@ public class PLPPage extends PageObject {
 	}
 
 	@Step
-	public void Click_SearchIcon() {
+	public void Click_SearchIcon() throws InterruptedException {
+		//waitFor(Plp_SearchIcon_SVG);
 		Actions a = new Actions(getDriver());
 		a.moveToElement(Plp_SearchIcon_SVG).click().build().perform();
+		Thread.sleep(10000);
 		//Plp_SearchResults_BC.waitUntilVisible();
 	}
 

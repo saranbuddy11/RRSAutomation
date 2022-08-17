@@ -17,7 +17,7 @@ public class CheckoutS3Page extends PageObject {
 	@FindBy(xpath = "//h3[normalize-space()='ORDER SUMMARY']")
 	WebElementFacade CheckoutS3_OrderSummary_Lbl;
 
-	@FindBy(xpath = "//p[normalize-space()='Shipping']")
+	@FindBy(xpath = "//h2[normalize-space()='SHIPPING']")
 	WebElementFacade CheckoutS3_Shipping_Lbl;
 
 	@FindBy(xpath = "//div[contains(@class,'order-summary--')]//div[1]/p[2]")

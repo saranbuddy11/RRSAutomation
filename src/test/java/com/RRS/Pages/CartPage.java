@@ -34,7 +34,7 @@ public class CartPage extends PageObject {
 	@FindBy(xpath = "//span[contains(@class,'price-original--')]")
 	WebElementFacade Cart_OriginalPrice_Lbl;
 
-	@FindBy(css = "button[class='btn--1PWSW theme-rr-navy--2ltSM size-small--1zlxo vip-saving-line-item-button--3L6D6']")
+	@FindBy(xpath = "//button[normalize-space()='Join for $1.99']")
 	WebElementFacade Cart_JoinVIPProgram_Btn;
 
 	@FindBy(xpath = "//div[contains(@class,'paypal-button')][@aria-label='PayPal']")

@@ -87,7 +87,7 @@ public class search extends PageObject {
 	@FindBy(xpath = "//span[contains(normalize-space(),'Shoes']")
 	WebElementFacade category_SVG;
 
-	@FindBy(xpath = "a[class='clickable-text--2XYI6']")
+	@FindBy(xpath = "//a[class='clickable-text--2XYI6']")
 	//a[normalize-space()='Hide Filter']
 	WebElementFacade hide_filters;
 
@@ -134,7 +134,7 @@ public class search extends PageObject {
 		}
 		hide_filters.click();
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(10000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
