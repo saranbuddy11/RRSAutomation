@@ -253,8 +253,9 @@ public class ATC_PopupPage extends PageObject {
 		CommonPage.actions_DownArrow();
 		CommonPage.actions_DownArrow();
 		Thread.sleep(5000);
-		a.moveToElement(pdpPage.variantSize.get(17)).perform();
-		pdpPage.variantSize.get(17).click();
+		a.moveToElement(pdpPage.variantSize.get(13)).perform();
+		Thread.sleep(3000);
+		pdpPage.variantSize.get(13).click();
 		s = pdpPage.variantTitle.get(2).getText();
 		actuals.add(s);
 		CommonPage.pageScrollDown();
@@ -323,8 +324,8 @@ public class ATC_PopupPage extends PageObject {
 		Actions a = new Actions(getDriver());
 		String s = sddlpPage.productTitle.getText();
 		Assert.assertEquals(s.toLowerCase(), expectedData.get(0).get(3).toLowerCase());
-		a.moveToElement(pdpPage.variantColor.get(0)).perform();
-		pdpPage.variantColor.get(0).click();
+		a.moveToElement(pdpPage.variantColor.get(5)).perform();
+		pdpPage.variantColor.get(5).click();
 		s = pdpPage.variantTitle.get(0).getText();
 		Assert.assertEquals(s, expectedData.get(0).get(0));
 		CommonPage.actions_DownArrow();
@@ -332,9 +333,9 @@ public class ATC_PopupPage extends PageObject {
 		a.moveToElement(pdpPage.variantSize.get(2)).perform();
 		pdpPage.variantSize.get(2).click();
 		s = pdpPage.variantTitle.get(1).getText();
-		Assert.assertEquals(s, expectedData.get(0).get(1));
-		s = pdpPage.variantTitle.get(2).getText();
 		Assert.assertEquals(s, expectedData.get(0).get(2));
+//		s = pdpPage.variantTitle.get(2).getText();
+//		Assert.assertEquals(s, expectedData.get(0).get(2));
 		CommonPage.actions_DownArrow();
 		CommonPage.actions_DownArrow();
 		CommonPage.actions_DownArrow();
@@ -351,7 +352,7 @@ public class ATC_PopupPage extends PageObject {
 		modalHeader.shouldBeCurrentlyVisible();
 		searchInput.sendKeys(expectedData.get(0).get(0));
 		Thread.sleep(5000);
-		selectStore.get(0).click();
+		selectStore.get(1).click();
 		Thread.sleep(3000);
 		String s = pickingPlace.get(1).getText();
 		Assert.assertTrue(s.contains(expectedData.get(0).get(1)));
@@ -434,7 +435,7 @@ public class ATC_PopupPage extends PageObject {
 		a.moveToElement(pdpPage.variantColor.get(0)).perform();
 		pdpPage.variantColor.get(0).click();
 		CommonPage.actions_DownArrow();
-		Thread.sleep(3000);
+		Thread.sleep(8000);
 		a.moveToElement(pdpPage.variantSize.get(2)).perform();
 		pdpPage.variantSize.get(2).click();
 		CommonPage.pageScrollDown();

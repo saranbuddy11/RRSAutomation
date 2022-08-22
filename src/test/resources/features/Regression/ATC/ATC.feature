@@ -24,16 +24,16 @@ Feature: ATC Regression Scripts
   @Regression_RK_003
   Scenario: Verify whether the pickup at x city is displayed for Pickup in Store selected products
     Given User Lauch RRS application and navigate to home page
-    When User Search for a product with some keywords "38190" and click on search button
+    When User Search for a product with some keywords "34519" and click on search button
     Then Verify Pickup in Store for selected products
-      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+      | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
 
   @Regression_RK_004
   Scenario: Verify whether the selected store name is displayed correctly for Pickup in Store selected products
     Given User Lauch RRS application and navigate to home page
-    When User Search for a product with some keywords "38190" and click on search button
+    When User Search for a product with some keywords "34519" and click on search button
     Then Verify Pickup in Store for selected products
-      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+      | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     Then Verify Pickup in Store name for selected products
       | Arizona | Tempe |
 

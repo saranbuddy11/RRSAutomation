@@ -128,7 +128,6 @@ public class ATC_PopUp_StepDefinitions extends baseClass {
 	@Then("Verify Quantity and its price calculation at ATC popup")
 	public void verify_quantity_and_its_price_calculation_at_atc_popup() throws InterruptedException {
 		ATC_PopupPage.verifyQuantityAndPriceCalculation(actualData);
-		actualData = null;
 	}
 
 	@Then("choosing SKU's and Navigate to ATC")
@@ -165,6 +164,7 @@ public class ATC_PopUp_StepDefinitions extends baseClass {
 	public void verify_vip_total_and_price_calculation_in_cart_summary_section(String value)
 			throws InterruptedException {
 		ATC_PopupPage.verifyVipTotalAndPriceCalculationInCartSummarySection(value, actualData);
+		actualData = null;
 	}
 
 	@Then("Verify View Cart Page {string}")

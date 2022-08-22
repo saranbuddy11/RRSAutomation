@@ -33,7 +33,7 @@ public class PLPPage extends PageObject {
 	@FindBy(css = "h1[class='tag_h1--hWc2x']")
 	WebElementFacade Women_RunningShoe_H1_Lbl;
 
-	@FindBy(xpath = "//div[contains(@class,'selectbox-header--')]")
+	@FindBy(css = "div.selectbox-header--29nWw")
 	WebElementFacade Plp_SortBy_Drp;
 
 	@FindBy(xpath = "//a[normalize-space()='Hide Filter']")
@@ -299,11 +299,15 @@ public class PLPPage extends PageObject {
 
 	@Step
 	public void Click_SearchIcon() throws InterruptedException {
-		Plp_SearchIcon_SVG.isClickable();
-		Actions a = new Actions(getDriver());
-		a.moveToElement(Plp_SearchIcon_SVG).click().build().perform();
-		Thread.sleep(10000);
-		// Plp_SearchResults_BC.waitUntilVisible();
+		try {
+			Plp_SearchIcon_SVG.isClickable();
+			Actions a = new Actions(getDriver());
+			a.moveToElement(Plp_SearchIcon_SVG).click().build().perform();
+			Thread.sleep(10000);
+			Plp_SearchResults_BC.waitUntilVisible();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Step
