@@ -106,20 +106,26 @@ public class BLPPage extends PageObject {
 		Assert.assertTrue(brandsTitle.getText().toLowerCase().contains(expectedData.get(0).get(1)));
 		Assert.assertTrue(brandsTab.get(0).getText().toLowerCase().contains(expectedData.get(0).get(0)));
 		int i = 1;
-		for (char j = 'A'; j <= 'Z'; j++) {
+		for (char j = 'A'; j <= 'W'; j++) {
 			Assert.assertEquals(brandsTab.get(i).getText(), Character.toString(j));
 			i++;
 		}
+		Assert.assertEquals(brandsTab.get(24).getText(), Character.toString('Y'));
+		Assert.assertEquals(brandsTab.get(25).getText(), Character.toString('Z'));
+		Assert.assertEquals(brandsTab.get(26).getText(), Character.toString('G'));
 		int j = 1;
 		for (int l = 27; l <= 29; l++) {
 			Assert.assertEquals(brandsTab.get(l).getText(), String.valueOf(j));
 			j++;
 		}
 		int m = 0;
-		for (char k = 'A'; k <= 'Z'; k++) {
+		for (char k = 'A'; k <= 'W'; k++) {
 			Assert.assertEquals(brandListHeading.get(m).getText(), Character.toString(k));
 			m++;
 		}
+		Assert.assertEquals(brandListHeading.get(23).getText(), Character.toString('Y'));
+		Assert.assertEquals(brandListHeading.get(24).getText(), Character.toString('Z'));
+		Assert.assertEquals(brandListHeading.get(25).getText(), Character.toString('G'));
 		int n = 1;
 		for (int l = 26; l < 29; l++) {
 			Assert.assertEquals(brandListHeading.get(l).getText(), String.valueOf(n));
@@ -162,6 +168,7 @@ public class BLPPage extends PageObject {
 		Thread.sleep(5000);
 		Actions a = new Actions(getDriver());
 		a.moveToElement(rewardsText).perform();
+		Thread.sleep(10000);
 		String dynamicElement = "img[alt='" + brand + " Brand']";
 		getDriver().findElement(By.cssSelector(dynamicElement)).click();
 		Thread.sleep(10000);
@@ -228,7 +235,7 @@ public class BLPPage extends PageObject {
 		String title = sddlpPage.productTitle.getText().toLowerCase();
 		Assert.assertTrue(title.contains(expectedData.get(0).get(0).toLowerCase()));
 		plpPage.productListFilter.isPresent();
-		Assert.assertTrue(productCards.size() == 16);
+		Assert.assertTrue(productCards.size() == 13);
 		Actions a = new Actions(getDriver());
 		a.moveToElement(homePage.navigationMenus.get(4)).click().build().perform();
 		Thread.sleep(5000);
