@@ -42,7 +42,7 @@ public class PLP_StepDefinition extends baseClass {
 			throws InterruptedException {
 		/* homePage.click_RRSHomeLogo_SVG_Button(); */
 		PLPpage.Type_SearchKeyword(Keyword);
-		PLPpage.Click_SearchIcon();
+		PLPpage.Click_SearchIcon(Keyword);
 	}
 
 	@Then("Assert user is directed to appropriate PLP page for the keyword used")

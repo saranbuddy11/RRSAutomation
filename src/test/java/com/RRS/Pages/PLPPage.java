@@ -298,16 +298,21 @@ public class PLPPage extends PageObject {
 	}
 
 	@Step
-	public void Click_SearchIcon() throws InterruptedException {
+	public void Click_SearchIcon(String keyword) throws InterruptedException {
 		try {
 			Plp_SearchIcon_SVG.isClickable();
 			Actions a = new Actions(getDriver());
 			a.moveToElement(Plp_SearchIcon_SVG).click().build().perform();
 			Thread.sleep(10000);
-			Plp_SearchResults_BC.waitUntilVisible();
-			if (!Plp_SearchResults_BC.isDisplayed()) {
-				CommonPage.actions_Enter();
-				Plp_SearchIcon_SVG.click();
+			while (!Plp_SearchResults_BC.isVisible()) {
+				getDriver().navigate().refresh();
+				waitFor(Plp_SearchBar_Txt);
+				Plp_SearchBar_Txt.click();
+				typeInto(Plp_SearchBar_Txt, keyword);
+				Plp_SearchIcon_SVG.isClickable();
+				a = new Actions(getDriver());
+				a.moveToElement(Plp_SearchIcon_SVG).click().build().perform();
+				Thread.sleep(10000);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -339,10 +344,6 @@ public class PLPPage extends PageObject {
 	@Step
 	public void Assert_PLPpage_SearchKeyword() {
 		Plp_SortBy_Drp.waitUntilVisible();
-		if (!Plp_SortBy_Drp.isDisplayed()) {
-			CommonPage.actions_Enter();
-			Plp_SearchIcon_SVG.click();
-		}
 		Plp_SortBy_Drp.shouldBeVisible();
 		Plp_HideFilter_Lnk.shouldBeVisible();
 		Plp_SearchResults_BC.shouldBeVisible();
