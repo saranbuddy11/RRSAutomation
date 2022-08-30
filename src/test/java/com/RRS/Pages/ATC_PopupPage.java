@@ -237,6 +237,7 @@ public class ATC_PopupPage extends PageObject {
 		actuals.add(s);
 		a.moveToElement(pdpPage.variantColor.get(1)).perform();
 		pdpPage.variantColor.get(1).click();
+		Thread.sleep(5000);
 		s = pdpPage.variantTitle.get(0).getText();
 		actuals.add(s);
 		Assert.assertEquals(s, expectedData.get(0).get(3));
@@ -245,6 +246,7 @@ public class ATC_PopupPage extends PageObject {
 		pdpPage.variantSize.get(2).waitUntilVisible();
 		a.moveToElement(pdpPage.variantSize.get(2)).perform();
 		pdpPage.variantSize.get(2).click();
+		Thread.sleep(5000);
 		s = pdpPage.variantTitle.get(1).getText();
 		actuals.add(s);
 		Assert.assertEquals(s, expectedData.get(0).get(1));
@@ -256,6 +258,7 @@ public class ATC_PopupPage extends PageObject {
 		a.moveToElement(pdpPage.variantSize.get(13)).perform();
 		Thread.sleep(3000);
 		pdpPage.variantSize.get(13).click();
+		Thread.sleep(5000);
 		s = pdpPage.variantTitle.get(2).getText();
 		actuals.add(s);
 		CommonPage.pageScrollDown();
@@ -264,10 +267,12 @@ public class ATC_PopupPage extends PageObject {
 		CommonPage.actions_UpArrow();
 		a.moveToElement(pdpPage.increaseQuantity).perform();
 		pdpPage.increaseQuantity.click();
+		Thread.sleep(5000);
 		s = pdpPage.quantity.getText();
 		Assert.assertEquals(s, expectedData.get(0).get(5));
 		a.moveToElement(pdpPage.decreaseQuantity).perform();
 		pdpPage.decreaseQuantity.click();
+		Thread.sleep(5000);
 		s = pdpPage.quantity.getText();
 		actuals.add(s);
 		Assert.assertEquals(s, expectedData.get(0).get(4));
@@ -318,29 +323,37 @@ public class ATC_PopupPage extends PageObject {
 
 	@Step
 	public void verifyPickupInStore(List<List<String>> expectedData) throws InterruptedException, AWTException {
-		Thread.sleep(5000);
-		CommonPage.pageZoomOut();
-		CommonPage.pageZoomOut();
-		Actions a = new Actions(getDriver());
-		String s = sddlpPage.productTitle.getText();
-		Assert.assertEquals(s.toLowerCase(), expectedData.get(0).get(3).toLowerCase());
-		a.moveToElement(pdpPage.variantColor.get(5)).perform();
-		pdpPage.variantColor.get(5).click();
-		s = pdpPage.variantTitle.get(0).getText();
-		Assert.assertEquals(s, expectedData.get(0).get(0));
-		CommonPage.actions_DownArrow();
-		Thread.sleep(3000);
-		a.moveToElement(pdpPage.variantSize.get(2)).perform();
-		pdpPage.variantSize.get(2).click();
-		s = pdpPage.variantTitle.get(1).getText();
-		Assert.assertEquals(s, expectedData.get(0).get(2));
+		try {
+			Thread.sleep(5000);
+			CommonPage.pageZoomOut();
+			CommonPage.pageZoomOut();
+			Actions a = new Actions(getDriver());
+			String s = sddlpPage.productTitle.getText();
+			Assert.assertEquals(s.toLowerCase(), expectedData.get(0).get(3).toLowerCase());
+			a.moveToElement(pdpPage.variantColor.get(5)).perform();
+			pdpPage.variantColor.get(5).click();
+			Thread.sleep(5000);
+			s = pdpPage.variantTitle.get(0).getText();
+			Assert.assertEquals(s, expectedData.get(0).get(0));
+			CommonPage.actions_DownArrow();
+			CommonPage.actions_DownArrow();
+			CommonPage.actions_DownArrow();
+			Thread.sleep(5000);
+			a.moveToElement(pdpPage.variantSize.get(2)).perform();
+			pdpPage.variantSize.get(2).click();
+			Thread.sleep(5000);
+			s = pdpPage.variantTitle.get(1).getText();
+			Assert.assertEquals(s, expectedData.get(0).get(2));
 //		s = pdpPage.variantTitle.get(2).getText();
 //		Assert.assertEquals(s, expectedData.get(0).get(2));
-		CommonPage.actions_DownArrow();
-		CommonPage.actions_DownArrow();
-		CommonPage.actions_DownArrow();
-		CommonPage.actions_DownArrow();
-		shipment.get(1).shouldBeCurrentlyVisible();
+			CommonPage.actions_DownArrow();
+			CommonPage.actions_DownArrow();
+			CommonPage.actions_DownArrow();
+			CommonPage.actions_DownArrow();
+			shipment.get(1).shouldBeCurrentlyVisible();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Step
