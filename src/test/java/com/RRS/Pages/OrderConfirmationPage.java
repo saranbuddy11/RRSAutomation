@@ -34,6 +34,9 @@ public class OrderConfirmationPage extends PageObject {
 	@FindBy(css = ".vip-saving-title--2zmcw")
 	WebElementFacade OC_JoinVIP_Lbl;
 
+	@FindBy(xpath = "//h3[normalize-space()='ORDER SUMMARY']")
+	WebElementFacade CH3_OrderSummary_Lbl;
+	
 	@FindBy(xpath = "//h3[normalize-space()='Order Summary']")
 	WebElementFacade OC_OrderSummary_Lbl;
 
@@ -55,8 +58,11 @@ public class OrderConfirmationPage extends PageObject {
 	@FindBy(xpath = "//input[@name='CVN']")
 	WebElementFacade OC_CVN_input;
 
-	@FindBy(xpath = "//h1[normalize-space()='WOW, VIP! YOU SAVED ALL THIS TODAY!']")
+	@FindBy(xpath = "//span[contains(text(),'NICE VIP! YOU RECEIVED')]")
 	WebElementFacade OC_WowSavings_banner;
+	
+	@FindBy(xpath = "//span[contains(@class,'bubble-banner-heading--3uwc_')]")
+	WebElementFacade CH3_Bubble_banner;
 
 	@FindBy(xpath = "//small[contains(text(),'Upgrade to VIP Rewards Plus for FREE and earn 10% ')]")
 	WebElementFacade OC_VIPPlusUpgrade_lbl;
@@ -195,7 +201,7 @@ public class OrderConfirmationPage extends PageObject {
 	@Step
 	public void assertCheckoutS3displayed() throws InterruptedException {
 		Thread.sleep(5000);
-		OC_OrderSummary_Lbl.shouldBeVisible();
+		CH3_OrderSummary_Lbl.shouldBeVisible();
 	}
 
 	@Step
@@ -230,6 +236,10 @@ public class OrderConfirmationPage extends PageObject {
 	}
 
 	@Step
+	public void assertBubblebannerDetails() {
+		CH3_Bubble_banner.shouldBeVisible();
+}
+
 	public void verifyHeaderAndFooter() throws AWTException, InterruptedException {
 		header.shouldBeCurrentlyVisible();
 		CommonPage.pageScrollDown();

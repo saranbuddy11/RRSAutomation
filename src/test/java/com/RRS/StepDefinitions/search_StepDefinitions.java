@@ -85,5 +85,14 @@ public class search_StepDefinitions extends baseClass {
 	public void user_selects_top_rated() {
 		search.click_top_rated();
 	}
+	
+	@Given("User apply the filter {string} in the SLP page")
+	public void user_apply_the_filter_in_the_SLP_page(String filter) {
+		try {
+			search.applyFilter(filter);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
