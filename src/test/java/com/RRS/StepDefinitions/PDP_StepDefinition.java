@@ -394,7 +394,7 @@ public class PDP_StepDefinition extends baseClass {
 	public void user_search_for_a_product_with_some_keywords_and_click_on_search_button(String id)
 			throws InterruptedException {
 		PLPpage.Type_SearchKeyword(String.valueOf(id));
-		PLPpage.Click_SearchIcon();
+		PLPpage.Click_SearchIcon(String.valueOf(id));
 	}
 
 	@Then("Verify Outfit Your Run Section {word}")
