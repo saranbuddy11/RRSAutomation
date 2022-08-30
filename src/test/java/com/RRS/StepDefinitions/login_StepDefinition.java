@@ -2,6 +2,9 @@ package com.RRS.StepDefinitions;
 
 import io.cucumber.java.en.*;
 import net.thucydides.core.annotations.Steps;
+
+import java.io.IOException;
+
 import com.RRS.Pages.homePage;
 import com.RRS.Pages.loginPage;
 import com.RRS.base.*;
@@ -52,7 +55,7 @@ public class login_StepDefinition extends baseClass {
 	}
 
 	@Given("User enter the credentials of the user {word}")
-	public void user_enter_the_credentials_of_the_user_vip1(String UserInfo) {
+	public void user_enter_the_credentials_of_the_user_vip1(String UserInfo) throws IOException {
 		System.out.println("User info is: " + UserInfo);
 		String userCred = DataInputProvider.getUserInfo(UserInfo);
 		System.out.println("User cred: " + userCred);
