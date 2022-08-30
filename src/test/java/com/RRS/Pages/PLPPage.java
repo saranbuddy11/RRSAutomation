@@ -244,7 +244,7 @@ public class PLPPage extends PageObject {
 		// input[@value='r=webPgc%3AShoes']
 		System.out.println("Dynamic xpath created: " + DynamicFilterElement);
 		getDriver().findElement(By.xpath(DynamicFilterElement)).click();
-		Thread.sleep(2000);
+		
 	}
 
 	@Step
@@ -269,7 +269,8 @@ public class PLPPage extends PageObject {
 
 	@Step
 	public void clickFirstProduct(String First_Product_Link) {
-		// String FirstProduct="\"Women's ASICS GEL-Kayano 28\"";
+		//String First_Product="\"Women's ASICS GEL-Kayano 29\"";
+		System.out.println("Dynamic xpath created: " + First_Product_Link);
 		String FirstProduct = "//h2[contains(text(),\"" + First_Product_Link + "\")]";
 		System.out.println("Dynamic xpath created: " + FirstProduct);
 		WebElement ele = getDriver().findElement(By.xpath(FirstProduct));

@@ -479,6 +479,8 @@ public class PDPPage extends PageObject {
 	public void verifyUserNavigationToPDP_Page() throws InterruptedException, AWTException {
 		CommonPage.pageZoomOut();
 		CommonPage.pageZoomOut();
+		if(productName!=null && productName.size()>0)
+		{
 		String name = productName.get(0).getText().toLowerCase();
 		blpPage.productCards.get(0).click();
 		Thread.sleep(5000);
@@ -491,6 +493,7 @@ public class PDPPage extends PageObject {
 		Assert.assertTrue(bread_crumb.contains(name));
 		CommonPage.pageScrollDown();
 		addToCartBtn.shouldBeCurrentlyVisible();
+		}
 	}
 
 	@Step

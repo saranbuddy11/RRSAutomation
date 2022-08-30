@@ -11,10 +11,10 @@ Feature: Order Confirmation Page Smoke scripts
 		And User click on Login button
 		#Then user validate the successful login
 		#And User click on the RRS home page logo
-		And User Search for a particular product "40135" and click on search button
+		And User Search for a particular product "41716" and click on search button
     Then Assert user is directed to appropriate PDP page
- 	  And User Select the color variant "Pale Grey"
-    And User Select the size as "L"
+ 	  And User Select the color variant "White"
+    And User Select the size as "XL"
   	And User note down MSPR and VIP price of the product displayed
   	And User click on Add to Cart button
   	Then Assert Add to Cart popup got displayed
@@ -33,4 +33,4 @@ Feature: Order Confirmation Page Smoke scripts
   	
 		Examples: 
       |User|FirstName|
-      |VIP2|SAI|
+      |VIP2|TEST|

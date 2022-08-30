@@ -6,17 +6,17 @@ Feature: PDP Smoke Scripts
   @PDP_4.1
  Scenario: Verify user direction to PDP Page
  		Given User Land on the RRS home page
-    And User Click on shop now link in any of the home page banner
-		Then User Click on any one of the product from PLP Page
+ 		And User Search for a product with some keywords "WOMEN ASICS" and click on search button
+    Then Verify User Navigation to PDP page on clicking of Product
     Then Assert user is directed to appropriate PDP page based on the selection
     And User click on the RRS home page logo
-		And User Search for a particular product "40135" and click on search button
+		And User Search for a particular product "41716" and click on search button
     Then Assert user is directed to appropriate PDP page
   
   @PDP_4.2_4.19 
  Scenario: Verify All the required details of the product displayed in PDP page
     Given User Land on the RRS home page
-		And User Search for a particular product "40135" and click on search button
+		And User Search for a particular product "41716" and click on search button
     Then Assert user is directed to appropriate PDP page
     Then User Verify MSRP and VIP price of the product is displayed in PDP
     Then User Verify item id of the product is displayed in PDP

@@ -32,6 +32,11 @@ public class login_StepDefinition extends baseClass {
 	@Given("User click on Login Image button in Home Page")
 	public void user_click_on_login_image_button_in_home_page() {
 		loginPage.click_Login_SVG_Button();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Given("User enter the VIP user Email address {word}")
