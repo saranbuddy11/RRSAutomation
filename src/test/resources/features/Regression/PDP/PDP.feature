@@ -76,7 +76,7 @@ Feature: PDP Regression Scripts
   Scenario: Verify Product displayed with Colour, Size and Width
     Given User Lauch RRS application and navigate to home page
     And User Search for a product with some keywords "WOMEN ASICS" and click on search button
-    Then Assert user is direceted to appropriate PLP page for the keyword used
+    Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     And Verify SKUs of the product
       | Color | Size | Width |
@@ -85,7 +85,7 @@ Feature: PDP Regression Scripts
   Scenario: Verify thumbnail images and vidoes in PDP page
     Given User Lauch RRS application and navigate to home page
     When User Search for a product with some keywords "WOMEN ASICS" and click on search button
-    Then Assert user is direceted to appropriate PLP page for the keyword used
+    Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page of selecting particular item
       | Women's ASICS GEL-Kayano 28 |
     And Verify thumbnail images and videos
@@ -116,3 +116,36 @@ Feature: PDP Regression Scripts
     When User Search for a product with some keywords "39642" and click on search button
     Then Verify product description and expert review
       | SHOE CATEGORY What is this? | CUSHION LEVEL Learn More |
+
+  @Regression_RK_015
+  Scenario: Verify Review Snapshot section
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "41090" and click on search button
+    Then Verify Review Snapshot Section
+      | 194 Reviews | 4.5 | aria-label | 88% |
+
+  @Regression_RK_016
+  Scenario: Verify Write Review CTA button response
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "41090" and click on search button
+    Then Verify Write Review CTA Button
+      | Write a Review | write | review |
+
+  @Regression_RK_017
+  Scenario Outline: Verify Outfit Your section
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords <ProductID> and click on search button.
+    Then Verify Outfit Your Run Section <Count>
+      | OUTFIT YOUR RUN |
+
+    Examples: 
+      | ProductID | Count |
+      |     39591 |    24 |
+      |     41679 |    12 |
+
+  @Regression_RK_018
+  Scenario: Verify You may also like section
+    Given User Lauch RRS application and navigate to home page
+    When User Search for a product with some keywords "39642" and click on search button
+    Then Verify You may also like section
+      | MEN'S BROOKS GHOST 14 | YOU MAY ALSO LIKE | 12 | Men's Brooks |

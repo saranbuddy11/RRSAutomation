@@ -33,7 +33,7 @@ public class PLPPage extends PageObject {
 	@FindBy(css = "h1[class='tag_h1--hWc2x']")
 	WebElementFacade Women_RunningShoe_H1_Lbl;
 
-	@FindBy(xpath = "//div[contains(@class,'selectbox-header--')]")
+	@FindBy(css = "div.selectbox-header--29nWw")
 	WebElementFacade Plp_SortBy_Drp;
 
 	@FindBy(xpath = "//a[normalize-space()='Hide Filter']")
@@ -174,7 +174,7 @@ public class PLPPage extends PageObject {
 
 	@Step
 	public void applyAnyFilter(String Filter) throws InterruptedException {
-		String DynamicFilterElement = "//label[contains(normalize-space(),'" + Filter + "&p=48"+ "')]";
+		String DynamicFilterElement = "//label[contains(normalize-space(),'" + Filter + "&p=48" + "')]";
 		System.out.println("Dynamic xpath created: " + DynamicFilterElement);
 		getDriver().findElement(By.xpath(DynamicFilterElement)).click();
 		Thread.sleep(2000);
@@ -210,8 +210,8 @@ public class PLPPage extends PageObject {
 			}
 			counter++;
 		}
-		//Plp_LoadMore_Btn.shouldBeVisible();
-		//CommonPage.javaScriptExecutor_Click(Plp_LoadMore_Btn);
+		// Plp_LoadMore_Btn.shouldBeVisible();
+		// CommonPage.javaScriptExecutor_Click(Plp_LoadMore_Btn);
 		Thread.sleep(2000);
 		CommonPage.javaScriptExecutor_Scroll(Plp_MaxProductsDisplayed_Lbl);
 	}
@@ -300,11 +300,15 @@ public class PLPPage extends PageObject {
 
 	@Step
 	public void Click_SearchIcon() throws InterruptedException {
-		//waitFor(Plp_SearchIcon_SVG);
-		Actions a = new Actions(getDriver());
-		a.moveToElement(Plp_SearchIcon_SVG).click().build().perform();
-		Thread.sleep(10000);
-		//Plp_SearchResults_BC.waitUntilVisible();
+		try {
+			Plp_SearchIcon_SVG.isClickable();
+			Actions a = new Actions(getDriver());
+			a.moveToElement(Plp_SearchIcon_SVG).click().build().perform();
+			Thread.sleep(10000);
+			Plp_SearchResults_BC.waitUntilVisible();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Step
@@ -317,11 +321,12 @@ public class PLPPage extends PageObject {
 	}
 
 	@Step
-	public void Type_SearchKeyword(String Keyword) {
+	public void Type_SearchKeyword(String Keyword) throws InterruptedException {
 		waitFor(Plp_SearchBar_Txt);
 		Plp_SearchBar_Txt.click();
 		try {
 			typeInto(Plp_SearchBar_Txt, Keyword);
+			Thread.sleep(3000);
 		} catch (StaleElementReferenceException ex) {
 			typeInto(Plp_SearchBar_Txt, Keyword);
 			ex.printStackTrace();
@@ -330,6 +335,7 @@ public class PLPPage extends PageObject {
 
 	@Step
 	public void Assert_PLPpage_SearchKeyword() {
+		Plp_SortBy_Drp.waitUntilVisible();
 		Plp_SortBy_Drp.shouldBeVisible();
 		Plp_HideFilter_Lnk.shouldBeVisible();
 		Plp_SearchResults_BC.shouldBeVisible();

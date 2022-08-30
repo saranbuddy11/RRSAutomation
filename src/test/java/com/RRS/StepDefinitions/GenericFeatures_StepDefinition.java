@@ -312,21 +312,20 @@ public class GenericFeatures_StepDefinition extends baseClass {
 	}
 
 	@Given("User Lauch RRS application and navigate to home page")
-	public void user_lauch_rrs_application_and_navigate_to_home_page()
-			throws InterruptedException {
+	public void user_lauch_rrs_application_and_navigate_to_home_page() throws InterruptedException {
 		homePage.homePage_Open();
 	}
-	
-	@Given("User Land on the RRS home page after login with non VIP user")
-	public void user_land_on_the_rrs_home_page_after_login_with_non_vip_user(DataTable table) {
+
+	@Given("User Land on the RRS home page after login with user")
+	public void user_land_on_the_rrs_home_page_after_login_with_user(DataTable table) {
 		List<List<String>> expectedData = table.asLists(String.class);
 		homePage.loginUser(expectedData);
 	}
 
 	@When("Verify the Pop up")
 	public void verify_the_pop_up(DataTable table) {
-		//List<List<String>> expectedData = table.asLists(String.class);
-		//homePage.verifyFTvPopUp(expectedData);
+		// List<List<String>> expectedData = table.asLists(String.class);
+		// homePage.verifyFTvPopUp(expectedData);
 	}
 
 	@When("Navigate to Page and Verify the Pop up")

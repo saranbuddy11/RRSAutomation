@@ -311,7 +311,6 @@ public class homePage extends PageObject {
 	public void ClickAnySubMenu(String SubMenuName) throws InterruptedException {
 
 		String DynamicXPATH = "//a[text()='" + SubMenuName + "'][1]";
-		System.out.println("Dynamic xpath created: " + DynamicXPATH);
 		getDriver().findElement(By.xpath(DynamicXPATH)).click();
 		Thread.sleep(300);
 	}
@@ -320,7 +319,6 @@ public class homePage extends PageObject {
 	public void HoverOverAnyTopMenu(String MenuName) throws InterruptedException {
 
 		String DynamicXPATH = "//a[normalize-space()='" + MenuName + "']";
-		System.out.println("Dynamic xpath created: " + DynamicXPATH);
 		WebElement ele = getDriver().findElement(By.xpath(DynamicXPATH));
 		Actions action = new Actions(getDriver());
 		action.moveToElement(ele).perform();
@@ -331,7 +329,6 @@ public class homePage extends PageObject {
 	public void ClickAnyTopMenu(String MenuName) throws InterruptedException {
 
 		String DynamicXPATH = "//a[normalize-space()='" + MenuName + "']";
-		System.out.println("Dynamic xpath created: " + DynamicXPATH);
 		getDriver().findElement(By.xpath(DynamicXPATH)).click();
 		Thread.sleep(5000);
 	}
@@ -352,7 +349,6 @@ public class homePage extends PageObject {
 		// element(EmailCapturePopUp).waitUntilVisible();
 		/*
 		 * while(EmailCapturePopUp.isDisplayed()==true) { Thread.sleep(1000);
-		 * System.out.println("Waiting for popup");
 		 * 
 		 * }
 		 */
@@ -960,7 +956,6 @@ public class homePage extends PageObject {
 		Thread.sleep(5000);
 		pageTitle.isDisplayed();
 		String title = pageTitle.getText();
-		System.out.println(title);
 		Assert.assertTrue(title.contains(expectedData.get(0).get(0)));
 	}
 
