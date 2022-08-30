@@ -1,5 +1,5 @@
 #Author: Sivaram
-@HomePage_Full @RegressionSuite_Full 
+@HomePage_Full @RegressionSuite_Full
 Feature: Home Page Regression scripts - Non-VIP Login User
 
   @homePageNonVIPUser_001 @homePageNonVIPUser_003
@@ -12,8 +12,8 @@ Feature: Home Page Regression scripts - Non-VIP Login User
     And Assert "Non-VIP" user details display at Account Icon section
 
     Examples: 
-      | Email                  | Password |
-      | testuser2022@gmail.com |   123456 |
+      | Email                      | Password |
+      | beta_testuser1@yopmail.com |   123456 |
 
   @homePageNonVIPUser_004 @homePageNonVIPUser_005 @homePageNonVIPUser_007
   Scenario Outline: Verify History Section displayed for VIP User
@@ -29,8 +29,8 @@ Feature: Home Page Regression scripts - Non-VIP Login User
     And Assert wearometer is displayed on Product details in History Section
 
     Examples: 
-      | Email                  | Password |
-      | testuser2022@gmail.com |   123456 |
+      | Email                      | Password |
+      | beta_testuser1@yopmail.com |   123456 |
 
   @homePageNonVIPUser_008
   Scenario Outline: Verify FIND YOUR PERFECT FITTING SHOES FAST section is displayed
@@ -43,8 +43,8 @@ Feature: Home Page Regression scripts - Non-VIP Login User
     And Assert Start Your Online Fitting button is clickable
 
     Examples: 
-      | Email                  | Password |
-      | testuser2022@gmail.com |   123456 |
+      | Email                      | Password |
+      | beta_testuser1@yopmail.com |   123456 |
 
   @homePageNonVIPUser_009
   Scenario: Verify VIP Program Banner in Home Page
@@ -63,8 +63,8 @@ Feature: Home Page Regression scripts - Non-VIP Login User
     And Assert Shop All button is clickable in TODAYS TOP SELLERS IN AMERICA section
 
     Examples: 
-      | Email                  | Password |
-      | testuser2022@gmail.com |   123456 |
+      | Email                      | Password |
+      | beta_testuser1@yopmail.com |   123456 |
 
   @homePageNonVIPUser_011
   Scenario Outline: Verify LOVE BROOKS? HEREs THEIR NEWEST! section is displayed
@@ -77,8 +77,8 @@ Feature: Home Page Regression scripts - Non-VIP Login User
     And Assert Shop All button is clickable in LOVE BROOKS? HERES THEIR NEWEST! section
 
     Examples: 
-      | Email                  | Password |
-      | testuser2022@gmail.com |   123456 |
+      | Email                      | Password |
+      | beta_testuser1@yopmail.com |   123456 |
 
   @homePageNonVIPUser_012
   Scenario Outline: Verify YOUR FAVORITE SHOPS section is displayed
@@ -92,8 +92,8 @@ Feature: Home Page Regression scripts - Non-VIP Login User
     And User Assert "BROOKS" page is displayed for SHOP BY BRAND
 
     Examples: 
-      | Email                  | Password |
-      | testuser2022@gmail.com |   123456 |
+      | Email                      | Password |
+      | beta_testuser1@yopmail.com |   123456 |
 
   @homePageNonVIPUser_013
   Scenario Outline: Verify VIP FAMILY BESTSELLING PERFORMANCE APPAREL section is displayed
@@ -107,8 +107,8 @@ Feature: Home Page Regression scripts - Non-VIP Login User
     And User Assert "MEN'S KORSA PREMIER RUN SHORT SLEEVE" product details page is displayed
 
     Examples: 
-      | Email                     | Password |
-      | testvipuser01@yopmail.com |   123456 |
+      | Email                      | Password |
+      | beta_testuser1@yopmail.com |   123456 |
 
   @homePageNonVIPUser_014
   Scenario: Verify VIP Program Banner in Home Page
