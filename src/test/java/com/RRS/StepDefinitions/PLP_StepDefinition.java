@@ -25,7 +25,7 @@ public class PLP_StepDefinition extends baseClass {
 	@Given("User Click on shop now link in any of the home page banner")
 	public void user_click_on_shop_now_link_in_any_of_the_home_page_banner() throws InterruptedException {
 		PLPpage.Click_ShopNow_Women();
-		//PLPpage.Click_ShopNow_HomePage();
+		// PLPpage.Click_ShopNow_HomePage();
 		// homePage.HoverOverAnyTopMenu("Women");
 		// homePage.ClickWomensRunningSubMenu();
 		// homePage.ClickAnyTopMenu("Women");
@@ -70,8 +70,8 @@ public class PLP_StepDefinition extends baseClass {
 	@Then("User validate the results count not modified but the sorting is modified")
 	public void user_validate_the_results_count_not_modified_but_the_sorting_is_modified() {
 		String UpdatedSearchResult = PLPpage.getCountofSearchResults();
-		if(SearchResult!= null)
-		assertThat(SearchResult.contentEquals(UpdatedSearchResult));
+		if (SearchResult != null)
+			assertThat(SearchResult.contentEquals(UpdatedSearchResult));
 		PLPpage.getAllProductLinks();
 	}
 
@@ -89,7 +89,6 @@ public class PLP_StepDefinition extends baseClass {
 	public void user_validate_the_page_results_based_on_the_filter_applied() {
 		String UpdatedSearchResult = PLPpage.getCountofSearchResults();
 		assertThat(!SearchResult.contentEquals(UpdatedSearchResult));
-		}
 	}
 
 	@Then("User validate review stars for the product are displayed if available")
