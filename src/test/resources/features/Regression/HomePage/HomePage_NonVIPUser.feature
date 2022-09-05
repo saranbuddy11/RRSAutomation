@@ -1,8 +1,8 @@
 #Author: Sivaram
-@HomePage_Full @RegressionSuite_Full 
+@HomePage_Full @HomePageNonVIPUser_Full @RegressionSuite_Full 
 Feature: Home Page Regression scripts - Non-VIP Login User
 
-  @homePageNonVIPUser_001 @homePageNonVIPUser_003
+  @HomePageNonVIPUser_001 @HomePageNonVIPUser_003
   Scenario Outline: Verify User details in Home Page for VIP User logined user
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -15,7 +15,7 @@ Feature: Home Page Regression scripts - Non-VIP Login User
       | Email                  | Password |
       | testuser2022@gmail.com |   123456 |
 
-  @homePageNonVIPUser_004 @homePageNonVIPUser_005 @homePageNonVIPUser_007
+  @HomePageNonVIPUser_004 @HomePageNonVIPUser_005 @HomePageNonVIPUser_007
   Scenario Outline: Verify History Section displayed for VIP User
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -32,7 +32,7 @@ Feature: Home Page Regression scripts - Non-VIP Login User
       | Email                  | Password |
       | testuser2022@gmail.com |   123456 |
 
-  @homePageNonVIPUser_008
+  @HomePageNonVIPUser_008
   Scenario Outline: Verify FIND YOUR PERFECT FITTING SHOES FAST section is displayed
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -46,13 +46,13 @@ Feature: Home Page Regression scripts - Non-VIP Login User
       | Email                  | Password |
       | testuser2022@gmail.com |   123456 |
 
-  @homePageNonVIPUser_009
+  @HomePageNonVIPUser_009
   Scenario: Verify VIP Program Banner in Home Page
     Given User Land on the RRS home page
     And Assert VIP Program Banner is displayed
     And Assert Become a VIP button is clickable
 
-  @homePageNonVIPUser_010
+  @HomePageNonVIPUser_010
   Scenario Outline: Verify TODAYS TOP SELLERS IN AMERICA section is displayed
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -66,7 +66,7 @@ Feature: Home Page Regression scripts - Non-VIP Login User
       | Email                  | Password |
       | testuser2022@gmail.com |   123456 |
 
-  @homePageNonVIPUser_011
+  @HomePageNonVIPUser_011
   Scenario Outline: Verify LOVE BROOKS? HEREs THEIR NEWEST! section is displayed
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -80,7 +80,7 @@ Feature: Home Page Regression scripts - Non-VIP Login User
       | Email                  | Password |
       | testuser2022@gmail.com |   123456 |
 
-  @homePageNonVIPUser_012
+  @HomePageNonVIPUser_012
   Scenario Outline: Verify YOUR FAVORITE SHOPS section is displayed
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -95,7 +95,7 @@ Feature: Home Page Regression scripts - Non-VIP Login User
       | Email                  | Password |
       | testuser2022@gmail.com |   123456 |
 
-  @homePageNonVIPUser_013
+  @HomePageNonVIPUser_013
   Scenario Outline: Verify VIP FAMILY BESTSELLING PERFORMANCE APPAREL section is displayed
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -110,7 +110,7 @@ Feature: Home Page Regression scripts - Non-VIP Login User
       | Email                     | Password |
       | testvipuser01@yopmail.com |   123456 |
 
-  @homePageNonVIPUser_014
+  @HomePageNonVIPUser_014
   Scenario: Verify VIP Program Banner in Home Page
     Given User Land on the RRS home page
     And Assert VIP Program Banner is displayed

@@ -1,8 +1,8 @@
 #Author: Sivaram
-@HomePage_Full @RegressionSuite_Full
+@HomePage_Full @HomePage_VipUser_Full @RegressionSuite_Full
 Feature: Home Page Regression scripts - VIP Login User
 
-  @homePage_VipUser_001 @homePage_VipUser_002 @homePage_VipUser_003 @homePage_VipUser_004
+  @HomePage_VipUser_001 @HomePage_VipUser_002 @HomePage_VipUser_003 @HomePage_VipUser_004
   Scenario Outline: Verify User details in Home Page for VIP User logined user
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -17,7 +17,7 @@ Feature: Home Page Regression scripts - VIP Login User
       | Email                     | Password |
       | testvipuser01@yopmail.com |   123456 |
 
-  @homePage_VipUser_005 @homePage_VipUser_006 @homePage_VipUser_007 @homePage_VipUser_008
+  @HomePage_VipUser_005 @HomePage_VipUser_006 @HomePage_VipUser_007 @HomePage_VipUser_008
   Scenario Outline: Verify History Section displayed for VIP User
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -33,8 +33,17 @@ Feature: Home Page Regression scripts - VIP Login User
     Examples: 
       | Email                     | Password |
       | testvipuser01@yopmail.com |   123456 |
+      
+      
+  @HomePage_VipUser_009 @Regression_RK_009
+  Scenario: Verify whether the Home Page featured 3 Catagories at a time and categories are clickable or not
+    Given User Land on the RRS home page after login with VIP user
+      | testcucumbervip@gmail.com | 123456 |
+    And User should able to see three featured categories in home page
+    When Verify navigation of Clicking on feature in home page
+      | HOKA BONDI 8 |
 
-  @homePage_VipUser_010
+  @HomePage_VipUser_011
   Scenario Outline: Verify FIND YOUR PERFECT FITTING SHOES FAST section is displayed
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -48,7 +57,33 @@ Feature: Home Page Regression scripts - VIP Login User
       | Email                     | Password |
       | testvipuser01@yopmail.com |   123456 |
 
-  @homePage_011
+  @HomePage_VipUser_012 @Regression_RK_012
+  Scenario: Verify the Shop by Category section displayed  for a VIP user
+    Given User Land on the RRS home page after login with VIP user
+      | testcucumbervip@gmail.com | 123456 |
+    And Verify the Shop by Category section displayed for a VIP user
+      | Men’s KORSA Premier Run SS | Women’s KORSA Tempo Sleeveless | Men’s KORSA Pack Leader 7” Short | Women’s KORSA Challenge 5” Short |
+    When Verify the application response when user clicks on any categories
+      | Men’s KORSA Premier Run SS |
+
+  @HomePage_VipUser_013 @Regression_RK_013
+  Scenario: Verify the Shop by Brand section with  Shop All Brands for a VIP user
+    Given User Land on the RRS home page after login with VIP user
+      | testcucumbervip@gmail.com | 123456 |
+    And Verify the Shop by Brand section displayed for a VIP user
+    When Verify the application response when user clicks on any brand
+      | KORSA |
+
+  @HomePage_VipUser_014 @Regression_RK_014
+  Scenario: Verify This Weeks Most-Asked-For-Shoes section with Shop All CTA button for a VIP user
+    Given User Land on the RRS home page after login with VIP user
+      | testcucumbervip@gmail.com | 123456 |
+    And Verify the Top Seller section displayed for a VIP user
+    | Brooks Adrenaline GTS 22 | Saucony Ride 15 |
+    When Verify the application response when user clicks on any product
+      | Brooks Adrenaline GTS 22 |
+      
+  @HomePage_VipUser_015
   Scenario Outline: Verify TODAYS TOP SELLERS IN AMERICA section is displayed
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -62,7 +97,7 @@ Feature: Home Page Regression scripts - VIP Login User
       | Email                     | Password |
       | testvipuser01@yopmail.com |   123456 |
 
-  @homePage_012
+  @HomePage_VipUser_016
   Scenario Outline: Verify LOVE BROOKS? HEREs THEIR NEWEST! section is displayed
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -76,7 +111,7 @@ Feature: Home Page Regression scripts - VIP Login User
       | Email                     | Password |
       | testvipuser01@yopmail.com |   123456 |
 
-  @homePage_013
+  @HomePage_VipUser_017
   Scenario Outline: Verify YOUR FAVORITE SHOPS section is displayed
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -91,7 +126,7 @@ Feature: Home Page Regression scripts - VIP Login User
       | Email                     | Password |
       | testvipuser01@yopmail.com |   123456 |
 
-  @homePage_014
+  @HomePage_VipUser_018
   Scenario Outline: Verify VIP FAMILY BESTSELLING PERFORMANCE APPAREL section is displayed
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -106,36 +141,4 @@ Feature: Home Page Regression scripts - VIP Login User
       | Email                     | Password |
       | testvipuser01@yopmail.com |   123456 |
 
-  @Regression_RK_009
-  Scenario: Verify whether the Home Page featured 3 Catagories at a time and categories are clickable or not
-    Given User Land on the RRS home page after login with VIP user
-      | testcucumbervip@gmail.com | 123456 |
-    And User should able to see three featured categories in home page
-    When Verify navigation of Clicking on feature in home page
-      | HOKA BONDI 8 |
-
-  @Regression_RK_012
-  Scenario: Verify the Shop by Category section displayed  for a VIP user
-    Given User Land on the RRS home page after login with VIP user
-      | testcucumbervip@gmail.com | 123456 |
-    And Verify the Shop by Category section displayed for a VIP user
-      | Men’s KORSA Premier Run SS | Women’s KORSA Tempo Sleeveless | Men’s KORSA Pack Leader 7” Short | Women’s KORSA Challenge 5” Short |
-    When Verify the application response when user clicks on any categories
-      | Men’s KORSA Premier Run SS |
-
-  @Regression_RK_013
-  Scenario: Verify the Shop by Brand section with  Shop All Brands for a VIP user
-    Given User Land on the RRS home page after login with VIP user
-      | testcucumbervip@gmail.com | 123456 |
-    And Verify the Shop by Brand section displayed for a VIP user
-    When Verify the application response when user clicks on any brand
-      | KORSA |
-
-  @Regression_RK_014
-  Scenario: Verify This Weeks Most-Asked-For-Shoes section with Shop All CTA button for a VIP user
-    Given User Land on the RRS home page after login with VIP user
-      | testcucumbervip@gmail.com | 123456 |
-    And Verify the Top Seller section displayed for a VIP user
-    | Brooks Adrenaline GTS 22 | Saucony Ride 15 |
-    When Verify the application response when user clicks on any product
-      | Brooks Adrenaline GTS 22 |
+  

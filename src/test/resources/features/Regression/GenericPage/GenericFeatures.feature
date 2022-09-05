@@ -1,8 +1,8 @@
 #Author: Sairam
-@Myaccount_RRS @RegressionSuite_Full
+@MyAccount_Full @RegressionSuite_Full
 Feature: My account Regression scripts
 
-  @myaccount_1.0 @RegressionSuite
+  @MyAccount_001 
   Scenario Outline: Verify My Account
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -20,7 +20,7 @@ Feature: My account Regression scripts
       
       
       
-  @myaccount_1.1 @RegressionSuite
+  @MyAccount_002
   Scenario Outline: Verify My Details section
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page

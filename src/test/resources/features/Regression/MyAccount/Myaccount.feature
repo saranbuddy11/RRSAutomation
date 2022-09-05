@@ -1,8 +1,8 @@
 #Author: Sivaram
-@Myaccount_Full @RegressionSuite_Full
+@MyAccount_Full @RegressionSuite_Full
 Feature: My account Smoke scripts
 
-  @myaccount_001 @myaccount_002 @myaccount_003 @myaccount_004
+  @MyAccount_001 @MyAccount_002 @MyAccount_003 @MyAccount_004
   Scenario Outline: Verify My Account
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -16,7 +16,7 @@ Feature: My account Smoke scripts
       | Email                     | Password |
       | testvipuser01@yopmail.com |   123456 |
 
-  @myaccount_007
+  @MyAccount_007
   Scenario Outline: Verify user is able to login to an existing account
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -29,7 +29,7 @@ Feature: My account Smoke scripts
       | User |
       | VIP2 |
 
-  @myaccount_008
+  @MyAccount_008
   Scenario Outline: Verify whether the user is able to login to the account with invalid data.
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -42,7 +42,7 @@ Feature: My account Smoke scripts
       | Email                       | Password |
       | testvipuserss01@yopmail.com | 123456s  |
 
-  @myaccount_009
+  @MyAccount_009
   Scenario: Verify user is able to create an account
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -53,13 +53,13 @@ Feature: My account Smoke scripts
     Then User validate successful account creation
     Then User logout of the application
 
-  @myaccount_010
+  @MyAccount_010
   Scenario: Verify user direction to Login page from Footer-My account section
     Given User Land on the RRS home page
     And User click on "My Account" link in footer
     And User Assert account login page
 
-  @myaccount_011
+  @MyAccount_011
   Scenario: Verify user direction to Login page from Header-VIP Drop down program
     Given User Land on the RRS home page
     And User hovers on VIP Program Menu link at top right corner of the header
@@ -67,13 +67,13 @@ Feature: My account Smoke scripts
     And User click on "My Rewards Cash Balance" link in VIP Drop down
     And User Assert account login page
 
-  @myaccount_012
+  @MyAccount_012
   Scenario: Verify user direction to Login page from Footer-Check Order Status section
     Given User Land on the RRS home page
     And User click on "orders" link in footer
     And User Assert account login page
 
-  @myaccount_013
+  @MyAccount_013
   Scenario: Verify user direction to Login page from Footer-Contact Us section
     Given User Land on the RRS home page
     And User click on "contact-us" link in footer
@@ -81,7 +81,7 @@ Feature: My account Smoke scripts
     And User click on GO TO YOUR ACCOUNT button
     And User Assert account login page
 
-  @myaccount_014
+  @MyAccount_014
   Scenario: Verify user direction to Login page from Footer-FAQs section
     Given User Land on the RRS home page
     And User click on "/faq" link in footer
@@ -90,14 +90,14 @@ Feature: My account Smoke scripts
     And User swith to newly opened window
     And User Assert account login page
 
-  @myaccount_015
+  @MyAccount_015
   Scenario: Verify user direction to Login page from Footer-My account section
     Given User Land on the RRS home page
     And User click on "My Account" link in footer section
     And User Assert account login page
     Then User ensure appliction not displaying my account page
 
-  @myaccount_016 @myaccount_017 @myaccount_018 @myaccount_019 @myaccount_020
+  @MyAccount_016 @MyAccount_017 @MyAccount_018 @MyAccount_019 @MyAccount_020
   Scenario Outline: Verify My Account for VIP User
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
@@ -117,7 +117,7 @@ Feature: My account Smoke scripts
       | Email                     | Password |
       | testvipuser01@yopmail.com |   123456 |
 
-  @myaccount_021 @Siva
+  @MyAccount_021 
   Scenario Outline: Verify My Account for Non-VIP User
     Given User Land on the RRS home page
     And User click on Login Image button in Home Page
