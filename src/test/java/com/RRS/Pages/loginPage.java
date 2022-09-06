@@ -250,7 +250,7 @@ public class loginPage extends PageObject {
 	public void user_logout_application() throws InterruptedException {
 		click_Profile_SVG_Button();
 		Logout_Lnk.click();
-		Thread.sleep(5000);
+		Thread.sleep(8000);
 		element(Login_SVG).waitUntilVisible();
 		// LoggedInUser_Hi.shouldNotBeVisible();
 	}

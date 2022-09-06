@@ -1,6 +1,6 @@
 #Author: Sivaram
 @MyAccount_Full @RegressionSuite_Full
-Feature: My account Smoke scripts
+Feature: My account Regression Scripts
 
   @MyAccount_001 @MyAccount_002 @MyAccount_003 @MyAccount_004
   Scenario Outline: Verify My Account
@@ -40,7 +40,7 @@ Feature: My account Smoke scripts
 
     Examples: 
       | Email                       | Password |
-      | testvipuserss01@yopmail.com | 123456s  |
+      | testvipusersss01@yopmail.com | 123456s  |
 
   @MyAccount_009
   Scenario: Verify user is able to create an account
@@ -56,7 +56,7 @@ Feature: My account Smoke scripts
   @MyAccount_010
   Scenario: Verify user direction to Login page from Footer-My account section
     Given User Land on the RRS home page
-    And User click on "My Account" link in footer
+    And User click on "account" link in footer
     And User Assert account login page
 
   @MyAccount_011
