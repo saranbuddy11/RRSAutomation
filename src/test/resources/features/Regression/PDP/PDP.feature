@@ -49,7 +49,7 @@ Feature: PDP Regression Scripts
     And User Search for a product with some keywords "WOMEN ASICS" and click on search button
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page of selecting particular item
-      | Women's ASICS GEL-Kayano 28 |
+      | Women's ASICS GEL-Nimbus 24 |
     And Verify number of reviews and star ratings
       | reviews |
     And Verify navigation when clicks on Reviews
@@ -61,7 +61,7 @@ Feature: PDP Regression Scripts
     And User Search for a product with some keywords "WOMEN ASICS" and click on search button
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page with review count
-      | Women's ASICS GEL-Kayano 28 |
+      | Women's ASICS GEL-Nimbus 24 |
     And Verify number of reviews count
       | reviews |
 
@@ -75,9 +75,9 @@ Feature: PDP Regression Scripts
   @PDP_009
   Scenario: Verify Product displayed with Colour, Size and Width
     Given User Lauch RRS application and navigate to home page
-    And User Search for a product with some keywords "WOMEN ASICS" and click on search button
-    Then Assert user is directed to appropriate PLP page for the keyword used
-    And Verify User Navigation to PDP page
+    And User Search for a product with some keywords "39643" and click on search button
+    #Then Assert user is directed to appropriate PLP page for the keyword used
+    #And Verify User Navigation to PDP page
     And Verify SKUs of the product
       | Color | Size | Width |
 
@@ -87,7 +87,7 @@ Feature: PDP Regression Scripts
     When User Search for a product with some keywords "WOMEN ASICS" and click on search button
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page of selecting particular item
-      | Women's ASICS GEL-Kayano 28 |
+      | Women's ASICS GEL-Nimbus 24 |
     And Verify thumbnail images and videos
 
   @PDP_011
@@ -122,7 +122,7 @@ Feature: PDP Regression Scripts
     Given User Lauch RRS application and navigate to home page
     When User Search for a product with some keywords "41090" and click on search button
     Then Verify Review Snapshot Section
-      | 194 Reviews | 4.5 | aria-label | 88% |
+      | 217 Reviews | 4.5 | aria-label | 88% |
 
   @PDP_016
   Scenario: Verify Write Review CTA button response
@@ -140,7 +140,7 @@ Feature: PDP Regression Scripts
 
     Examples: 
       | ProductID | Count |
-      |     39591 |    24 |
+      |     39591 |    21 |
       |     41679 |    12 |
 
   @PDP_018

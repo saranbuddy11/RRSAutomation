@@ -385,5 +385,5 @@ Feature: Order Confirmation Regression Scripts
     And Click on place order CTA button
       | 123 |
     And Verify Math Calculation on Banner
-      | REMEMBER ALL YOUR AWESOME VIP BENEFITS! | Thank YOU sairam! | $7.00 | 10% VIP Savings | 10% VIP Rewards Cash Earned | VIP Shipping Value |
+      | REMEMBER ALL YOUR AWESOME VIP BENEFITS! | Thank YOU VIPPlus! | $7.00 | 10% VIP Savings | 10% VIP Rewards Cash Earned | VIP Shipping Value |
     Then User logout of the application

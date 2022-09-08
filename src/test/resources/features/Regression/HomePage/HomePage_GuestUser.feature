@@ -13,7 +13,7 @@ Feature: Home Page Regression scripts - Guest User/ Non-Logged-in User
     Given User Land on the RRS home page
     And Assert Categories banner has appropriate categories name
     And Assert 3 categories are displayed
-    Then User click on "Shop Women" in Running shoes category
+    Then User click on "Shop Women's" in Running shoes category
     And User Assert page is displayed
       | women | running shoes |
 

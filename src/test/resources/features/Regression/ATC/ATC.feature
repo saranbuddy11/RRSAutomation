@@ -78,7 +78,7 @@ Feature: ATC Regression Scripts
       | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
     And Verify Quantity and its price calculation at ATC popup
     And Verify VIP Total and price calculation in Cart Summary Section "cart"
-
+    
   @ATC_010 
   Scenario: Verify the application response when the user clicks on View Cart CTA button.
     Given User Lauch RRS application and navigate to home page

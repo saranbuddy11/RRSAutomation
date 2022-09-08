@@ -409,7 +409,7 @@ public class ATC_PopupPage extends PageObject {
 		List<String> data = new ArrayList<String>();
 		Thread.sleep(5000);
 		CommonPage.pageZoomOut();
-		CommonPage.pageZoomOut();
+		//CommonPage.pageZoomOut();
 		Actions a = new Actions(getDriver());
 		String s = sddlpPage.productTitle.getText();
 		Assert.assertEquals(s.toLowerCase(), expectedData.get(0).get(3).toLowerCase());
@@ -431,7 +431,8 @@ public class ATC_PopupPage extends PageObject {
 		pdpPage.increaseQuantity.click();
 		s = pdpPage.quantity.getText();
 		data.add(s);
-		pdpPage.addToCartBtn.shouldBeCurrentlyVisible();
+		a.moveToElement(pdpPage.addToCartBtn).perform();
+		//pdpPage.addToCartBtn.shouldBeCurrentlyVisible();
 		pdpPage.addToCartBtn.click();
 		element(pdpPage.cartTitle).waitUntilVisible();
 		return data;
@@ -514,7 +515,7 @@ public class ATC_PopupPage extends PageObject {
 
 	@Step
 	public void verifyViewCartPage(String value) throws InterruptedException {
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 		Ensure.thatTheCurrentPage().currentUrl().contains(value);
 		vipSection.shouldBeCurrentlyVisible();
 		vipSavingLineItem.isPresent();
