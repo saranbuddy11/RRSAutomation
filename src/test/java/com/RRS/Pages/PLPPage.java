@@ -383,7 +383,8 @@ public class PLPPage extends PageObject {
 	}
 
 	@Step
-	public void applyFilterOnCategories(List<List<String>> expectedData) throws InterruptedException {
+	public void applyFilterOnCategories(List<List<String>> expectedData) throws InterruptedException, AWTException {
+		CommonPage.pageScrolltwice();
 		String DynamicCategoryFilterElement = "input[value*='" + expectedData.get(0).get(0) + "']";
 		getDriver().findElement(By.cssSelector(DynamicCategoryFilterElement)).click();
 		Thread.sleep(5000);
@@ -461,14 +462,15 @@ public class PLPPage extends PageObject {
 
 	@Step
 	public void navigateToCategoryFromTopNavigationMenu(String menu) throws InterruptedException, AWTException {
+		CommonPage.pageScrolltwice();
 		String dynamicElement = "li.menu-item--3cZEn>a[href*='" + menu + "']";
 		Actions a = new Actions(getDriver());
 		a.moveToElement(getDriver().findElement(By.cssSelector(dynamicElement))).click().build().perform();
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 		Ensure.thatTheCurrentPage().currentUrl().contains(menu);
 		CommonPage.pageZoomOut();
 		CommonPage.pageZoomOut();
-		CommonPage.pageZoomOut();
+		
 	}
 
 	@Step

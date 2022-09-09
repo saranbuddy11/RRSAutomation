@@ -130,7 +130,7 @@ public class PLP_StepDefinition extends baseClass {
 	}
 
 	@Then("User applies filter on main category and categories")
-	public void user_applies_filter_on_main_category_and_categories(DataTable table) throws InterruptedException {
+	public void user_applies_filter_on_main_category_and_categories(DataTable table) throws InterruptedException, AWTException {
 		List<List<String>> expectedData = table.asLists(String.class);
 		PLPpage.applyFilterOnCategories(expectedData);
 	}

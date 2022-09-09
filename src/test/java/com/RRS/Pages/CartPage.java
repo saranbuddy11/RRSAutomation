@@ -389,7 +389,7 @@ public class CartPage extends PageObject {
 		atcPopupPage.productName.shouldBeCurrentlyVisible().isClickable();
 		addVipLink.shouldBeCurrentlyVisible().isClickable();
 		addVipLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(8000);
 		element(pdpPage.cartTitle).waitUntilVisible();
 		vipTotal.shouldBeCurrentlyVisible();
 		Assert.assertTrue((vipTotal.getText()).contains("$"));

@@ -9,7 +9,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And User Click on View Cart button
     And Verify View Cart Page "cart"
 
@@ -20,7 +20,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And User Click on View Cart button
     And Verify View Cart Page "cart" and banner
 
@@ -31,7 +31,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | MMedium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And User Click on View Cart button
     And Verify View Cart Page and CTA button for VIP Membership
       | cart | Join for $1.99 |
@@ -43,7 +43,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And Verify View Cart Page with number of Items "cart"
 
   @Cart_005
@@ -53,7 +53,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And Verify View Cart Page and its content "cart"
 
   @Cart_006
@@ -63,7 +63,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And Verify View Cart Page and product name with its functionality "cart"
 
   @Cart_007
@@ -73,7 +73,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And Verify View Cart Page and Quantity option "cart"
 
   @Cart_008
@@ -83,7 +83,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And Verify View Cart Page and Join VIP Link "cart"
 
   @Cart_009
@@ -93,7 +93,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And Verify View Cart Page and Remove Functionality "cart" "Your shopping cart is empty"
 
   @Cart_010
@@ -103,7 +103,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And Verify View Cart Page and Order Subtotal "cart"
 
   @Cart_011
@@ -113,7 +113,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And Verify View Cart Page and Checkout button response
       | cart | checkout |
 
@@ -124,7 +124,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And Verify Login and Checkout button response
       | cart | Login & Checkout | MY ACCOUNT |
 
@@ -135,7 +135,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And Verify Checkout with Paypal button response
       | cart | Checkout | paypal |
 
@@ -146,7 +146,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And Verify Top Picks for you section
       | cart | KORSA | 24 |
 
@@ -157,7 +157,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And Verify Top Picks for you section
       | cart | KORSA | 24 |
     And Verify Functionality of Product and its content "product"
@@ -169,7 +169,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And Verify VIP Price
       | cart | Your VIP Price | $ |
 
@@ -180,7 +180,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And Verify VIP Price
       | cart | Your VIP Price | $ |
     And Verify VIP savings
@@ -194,7 +194,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And Verify VIP Price when user is VIP member
       | cart | Your VIP Price | $ |
     And Verify Estimated Total
@@ -208,7 +208,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And Verify VIP Price
       | cart | Your VIP Price | $ |
     And Verify rewards cash
@@ -222,7 +222,7 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And Verify Save for later and its functionality
       | cart | Save for Later | Your shopping cart is empty | 0 |
     Then User logout of the application
@@ -234,6 +234,6 @@ Feature: Cart Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | M | 7 | aria-label | Black/White | 1 | 2 |
+      | Medium (Normal) | 7 | aria-label | Black/White | 1 | 2 |
     And Verify Checkout with Klarna button response
       | cart | Express Checkout | Klarna. | aria-label |
