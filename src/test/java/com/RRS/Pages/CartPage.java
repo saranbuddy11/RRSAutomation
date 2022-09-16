@@ -113,6 +113,10 @@ public class CartPage extends PageObject {
 
 	@FindBy(css = "h5.cart-item-info-action-remove--2Yi-H")
 	WebElementFacade remove;
+	
+	@FindBy(css = "svg.close-icon--23DDL")
+	WebElementFacade closeIcon;
+	//body/div[@id='rrs-modal']/div//*[name()='svg']
 
 	@FindBy(css = "a.cart-order-summary-check--2VEfI")
 	WebElementFacade checkOut;
