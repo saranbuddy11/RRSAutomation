@@ -5,17 +5,28 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.support.FindBy;
 
+import net.serenitybdd.core.environment.EnvironmentSpecificConfiguration;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.thucydides.core.util.EnvironmentVariables;
 
 public class CustomQueryPage extends PageObject {
 	public static Logger log = LogManager.getLogger(CustomQueryPage.class);
+
+	private EnvironmentVariables env;
+	String url = "";
 
 	@FindBy(css = "h1.tag_h1--hWc2x")
 	WebElementFacade Header_Label;
 
 	public void clickOnQuery(String query) throws InterruptedException {
-		getDriver().get(query);
+		String environment = EnvironmentSpecificConfiguration.from(env).getProperty("execution.environment");
+		if (environment == "uat") {
+			url = "https://uat.roadrunnersports.com/" + query;
+		} else {
+			url = "https://www.roadrunnersports.com/" + query;
+		}
+		getDriver().get(url);
 		Thread.sleep(8000);
 		while (!Header_Label.isVisible()) {
 			getDriver().navigate().refresh();
