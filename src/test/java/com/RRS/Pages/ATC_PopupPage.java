@@ -255,9 +255,9 @@ public class ATC_PopupPage extends PageObject {
 		CommonPage.actions_DownArrow();
 		CommonPage.actions_DownArrow();
 		Thread.sleep(5000);
-		a.moveToElement(pdpPage.variantSize.get(13)).perform();
+		a.moveToElement(pdpPage.variantSize.get(12)).perform();
 		Thread.sleep(3000);
-		pdpPage.variantSize.get(13).click();
+		pdpPage.variantSize.get(12).click();
 		Thread.sleep(5000);
 		s = pdpPage.variantTitle.get(2).getText();
 		actuals.add(s);
@@ -278,6 +278,7 @@ public class ATC_PopupPage extends PageObject {
 		Assert.assertEquals(s, expectedData.get(0).get(4));
 		pdpPage.addToCartBtn.shouldBeCurrentlyVisible();
 		a.moveToElement(pdpPage.addToCartBtn).perform();
+		Thread.sleep(5000);
 		pdpPage.addToCartBtn.click();
 		element(pdpPage.cartTitle).waitUntilVisible();
 		pdpPage.cartTitle.shouldBeCurrentlyVisible();
