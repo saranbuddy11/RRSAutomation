@@ -35,7 +35,7 @@ public class CustomQueryPage extends PageObject {
 	}
 
 	public void validateHeaderOfPage(String query) {
-		String expectedHeader = query.substring(40);
+		String expectedHeader = query.substring(7);
 		expectedHeader = expectedHeader.replace("&z=true", "");
 		if (expectedHeader.contains("%")) {
 			expectedHeader = expectedHeader.replace("%20", " ");
@@ -44,7 +44,6 @@ public class CustomQueryPage extends PageObject {
 				expectedHeader = expectedHeader.replace("0", "");
 			}
 		}
-		System.out.println(expectedHeader.toLowerCase());
 		String actualHeader = Header_Label.getText().toLowerCase();
 		Assert.assertTrue(actualHeader.contains(expectedHeader.toLowerCase()));
 	}
