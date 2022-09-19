@@ -500,7 +500,7 @@ public class Checkout_StepDefinition extends baseClass {
 	}
 
 	@Then("User Click on Add to Cart Button")
-	public void user_click_on_add_to_cart_button() {
+	public void user_click_on_add_to_cart_button() throws InterruptedException {
 		CheckoutS1Page.userClickOnAddToCartButton();
 	}
 

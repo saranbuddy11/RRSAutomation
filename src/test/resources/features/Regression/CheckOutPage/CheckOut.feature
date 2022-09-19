@@ -112,7 +112,7 @@ Feature: Checkout Regression Scripts
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
     And Verify Valid credentials Login
-      | testcucumbervip@gmail.com | 123456 | UPGRADE AND CHECKOUT | CONTINUE AS A VIP |
+      | beta_testvipuser1@yopmail.com | 123456 | UPGRADE AND CHECKOUT | CONTINUE AS A VIP |
     Then User logout of the application
 
   @Checkout_010
@@ -131,7 +131,7 @@ Feature: Checkout Regression Scripts
   @Checkout_011
   Scenario: Verify whether the Logged in VIP user with VIP Plus in cart/Logged in VIP plus user is able to navigates to the Checkout Membership page or not.
     Given User Land on the RRS home page after login with user
-      | testcucumbervip@gmail.com | 123456 |
+      | beta_testvipuser1@yopmail.com | 123456 |
     When User Search for a product with some keywords "WOMEN ASICS" and click on search button
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
@@ -344,7 +344,7 @@ Feature: Checkout Regression Scripts
     Then Verify Pickup in Store for selected products
       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     Then Verify Pickup in Store name for selected products
-      | Arizona | Tempe |
+      | Arizona | Scottsdale |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -353,7 +353,7 @@ Feature: Checkout Regression Scripts
     And verify Continue Without VIP Navigation
       | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
     And Verify Pickup at store Section
-      | Cart (1) | Pickup at Tempe |
+      | Cart (1) | Pickup at Scottsdale |
 
   @Checkout_026
   Scenario: Verify Payment section with different payment methods
@@ -362,7 +362,7 @@ Feature: Checkout Regression Scripts
     Then Verify Pickup in Store for selected products
       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     Then Verify Pickup in Store name for selected products
-      | Arizona | Tempe |
+      | Arizona | Scottsdale |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -380,7 +380,7 @@ Feature: Checkout Regression Scripts
     Then Verify Pickup in Store for selected products
       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     Then Verify Pickup in Store name for selected products
-      | Arizona | Tempe |
+      | Arizona | Scottsdale |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -398,7 +398,7 @@ Feature: Checkout Regression Scripts
     Then Verify Pickup in Store for selected products
       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     Then Verify Pickup in Store name for selected products
-      | Arizona | Tempe |
+      | Arizona | Scottsdale |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -416,7 +416,7 @@ Feature: Checkout Regression Scripts
     Then Verify Pickup in Store for selected products
       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     Then Verify Pickup in Store name for selected products
-      | Arizona | Tempe |
+      | Arizona | Scottsdale |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -430,11 +430,11 @@ Feature: Checkout Regression Scripts
   @Checkout_030
   Scenario: Verify Klarna Payment method
     Given User Lauch RRS application and navigate to home page
-    When User Search for a product with some keywords "38190" and click on search button
+    When User Search for a product with some keywords "34519" and click on search button
     Then Verify Pickup in Store for selected products
       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     Then Verify Pickup in Store name for selected products
-      | Arizona | Tempe |
+      | Arizona | Scottsdale |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -452,7 +452,7 @@ Feature: Checkout Regression Scripts
     Then Verify Pickup in Store for selected products
       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     Then Verify Pickup in Store name for selected products
-      | Arizona | Tempe |
+      | Arizona | Scottsdale |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -461,18 +461,18 @@ Feature: Checkout Regression Scripts
     And verify Continue Without VIP Navigation
       | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
     And Verify Shipping section fields
-      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+      | Test | Account | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
     And Click Place Order Button and validate Error message
-      | Please fill in these required fields: Card Number Card Holder Name Expiration Month Expiration Year CVN |
+      | Please fill in these required fields: Credit Card: Card Number Card Holder Name Card Expiration Month Card Expiration Year Card CVN |
     And Enter Credit Card details
-      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+      | 4111111111111111 | Tester| 01 | 25 | 123 |
     And Verify Order Confirmation Page
-      | order-confirmation | Thank YOU abcd! |
+      | order-confirmation | Thank YOU Test! |
 
   @Checkout_033
   Scenario: Verify the text displayed in 2x cash banner( VIP PLUS) for VIP User
     Given User Land on the RRS home page after login with user
-      | testcucumbervip@gmail.com | 123456 |
+      | beta_testvipuser1@yopmail.com | 123456 |
     When User Search for a product with some keywords "WOMEN ASICS" and click on search button
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
@@ -485,7 +485,7 @@ Feature: Checkout Regression Scripts
   @Checkout_034
   Scenario: Verify Upgrade for free CTA button in 2x Cash banner for VIP user
     Given User Land on the RRS home page after login with user
-      | testcucumbervip@gmail.com | 123456 |
+      | beta_testvipuser1@yopmail.com | 123456 |
     When User Search for a product with some keywords "WOMEN ASICS" and click on search button
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page

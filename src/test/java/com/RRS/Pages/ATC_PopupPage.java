@@ -229,7 +229,7 @@ public class ATC_PopupPage extends PageObject {
 	public List<String> verifyAddToCartPopup(List<List<String>> expectedData)
 			throws AWTException, InterruptedException {
 		List<String> actuals = new ArrayList<String>();
-		Thread.sleep(8000);
+		Thread.sleep(10000);
 		Actions a = new Actions(getDriver());
 		String s = sddlpPage.productTitle.getText();
 		actuals.add(s);

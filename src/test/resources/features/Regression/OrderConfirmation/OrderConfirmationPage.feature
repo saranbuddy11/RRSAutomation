@@ -5,9 +5,9 @@ Feature: Order Confirmation Regression Scripts
   @OC_001
   Scenario: Verify whether the user able to place an order or not.
     Given User Lauch RRS application and navigate to home page
-    When User Search for a product with some keywords "38190" and click on search button
+    When User Search for a product with some keywords "34519" and click on search button
     Then Verify Pickup in Store for selected products
-      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -27,9 +27,9 @@ Feature: Order Confirmation Regression Scripts
   @OC_002 
   Scenario: Verify the header, footer are displayed and RRS Logo functionality in Order confirmation page.
     Given User Lauch RRS application and navigate to home page
-    When User Search for a product with some keywords "38190" and click on search button
+    When User Search for a product with some keywords "34519" and click on search button
     Then Verify Pickup in Store for selected products
-      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -51,9 +51,9 @@ Feature: Order Confirmation Regression Scripts
   @OC_003
   Scenario: Verify whether the order number is displayed at the top along with “Thank You, Firstname!“ and  “Your order is confirmed. We will send you email updates on the status of your order.“ text below it.
     Given User Lauch RRS application and navigate to home page
-    When User Search for a product with some keywords "38190" and click on search button
+    When User Search for a product with some keywords "34519" and click on search button
     Then Verify Pickup in Store for selected products
-      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -73,9 +73,9 @@ Feature: Order Confirmation Regression Scripts
   @OC_004
   Scenario: Verify whether the Join VIP bubble blue banner is displayed with price calculation and Upgrade my order CTA
     Given User Lauch RRS application and navigate to home page
-    When User Search for a product with some keywords "38190" and click on search button
+    When User Search for a product with some keywords "34519" and click on search button
     Then Verify Pickup in Store for selected products
-      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -98,9 +98,9 @@ Feature: Order Confirmation Regression Scripts
   @OC_005
   Scenario: Verify the application response when the user clicks on the Upgrade my order button in the VIP benefits modal popup for guest.
     Given User Lauch RRS application and navigate to home page
-    When User Search for a product with some keywords "38190" and click on search button
+    When User Search for a product with some keywords "34519" and click on search button
     Then Verify Pickup in Store for selected products
-      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+      | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -123,9 +123,9 @@ Feature: Order Confirmation Regression Scripts
   @OC_006 
   Scenario: Verify whether the Checkout faster next time section is displayed for Guest User
     Given User Lauch RRS application and navigate to home page
-    When User Search for a product with some keywords "38190" and click on search button
+    When User Search for a product with some keywords "34519" and click on search button
     Then Verify Pickup in Store for selected products
-      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -148,9 +148,9 @@ Feature: Order Confirmation Regression Scripts
   @OC_007 
   Scenario: Verify whether the email address of the user is auto populated and editable in the Checkout Faster Next Time section.
     Given User Lauch RRS application and navigate to home page
-    When User Search for a product with some keywords "38190" and click on search button
+    When User Search for a product with some keywords "34519" and click on search button
     Then Verify Pickup in Store for selected products
-      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -173,9 +173,9 @@ Feature: Order Confirmation Regression Scripts
   @OC_008
   Scenario: Verify the application response when the user enters email address, password, confirm password and click on the Create Account CTA button.
     Given User Lauch RRS application and navigate to home page
-    When User Search for a product with some keywords "38190" and click on search button
+    When User Search for a product with some keywords "34519" and click on search button
     Then Verify Pickup in Store for selected products
-      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -198,9 +198,9 @@ Feature: Order Confirmation Regression Scripts
   @OC_009
   Scenario: Verify the fields in the shipping address, contact info and payment info of order details section.
     Given User Lauch RRS application and navigate to home page
-    When User Search for a product with some keywords "38190" and click on search button
+    When User Search for a product with some keywords "34519" and click on search button
     Then Verify Pickup in Store for selected products
-      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -227,9 +227,9 @@ Feature: Order Confirmation Regression Scripts
   @OC_010 
   Scenario: Verify the fields in the order summary section.
     Given User Lauch RRS application and navigate to home page
-    When User Search for a product with some keywords "38190" and click on search button
+    When User Search for a product with some keywords "34519" and click on search button
     Then Verify Pickup in Store for selected products
-      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -252,9 +252,9 @@ Feature: Order Confirmation Regression Scripts
   @OC_011
   Scenario: Verify whether the Cart - Option is displayed in the OC page with the expand and collapse click
     Given User Lauch RRS application and navigate to home page
-    When User Search for a product with some keywords "38190" and click on search button
+    When User Search for a product with some keywords "34519" and click on search button
     Then Verify Pickup in Store for selected products
-      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -272,14 +272,14 @@ Feature: Order Confirmation Regression Scripts
     And Verify Order Confirmation Page
       | order-confirmation | Thank YOU abcd! |
     And Verify Cart Option
-      | Cart | Shipping | Outlet Item - IN STOCK & Ready to ship to you. |
+      | Cart | Shipping | IN STOCK! Arrives from Road Runner Sports in 1-3 business days. |
 
   @OC_012
   Scenario: Verify the items displayed in the shipping section.
     Given User Lauch RRS application and navigate to home page
-    When User Search for a product with some keywords "38190" and click on search button
+    When User Search for a product with some keywords "34519" and click on search button
     Then Verify Pickup in Store for selected products
-      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+     | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -293,20 +293,20 @@ Feature: Order Confirmation Regression Scripts
       #| please fill in all the required fields |
       | please fill in these required fields: credit card: card number card holder name card expiration month card expiration year card cvn |
     And Enter Credit Card details
-      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+      | 4111111111111111 | Test | 01 | 25 | 123 |
     And Verify Order Confirmation Page
       | order-confirmation | Thank YOU abcd! |
     And Verify Item in Shipping Section
-      | Black/White | Size 9 | Width D | Men's adidas Solar Boost 3 | Quantity 1 |
+       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short | Quantity 1 |
 
   @OC_013
   Scenario: Verify the items displayed in the Pickup at Store_Name section.
     Given User Lauch RRS application and navigate to home page
-    When User Search for a product with some keywords "38190" and click on search button
+    When User Search for a product with some keywords "34519" and click on search button
     Then Verify Pickup in Store for selected products
-      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     Then Verify Pickup in Store name for selected products
-      | California | Costa Mesa |
+      | Arizona | Scottsdale |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
@@ -315,23 +315,23 @@ Feature: Order Confirmation Regression Scripts
     And verify Continue Without VIP Navigation
       | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
     And Verify Shipping section fields
-      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+      | Test | Account | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
     And Click Place Order Button and validate Error message
       #| please fill in all the required fields |
       | please fill in these required fields: credit card: card number card holder name card expiration month card expiration year card cvn |
     And Enter Credit Card details
       | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
     And Verify Order Confirmation Page
-      | order-confirmation | Thank YOU abcd! |
+      | order-confirmation | Thank YOU Test! |
     And Verify Pickup at Store_Name in Shipping Section
-      | Pickup at Costa Mesa |
+      | Pickup at Scottsdale |
 
   @OC_014
   Scenario: Verify Order Confirmation page Math Calculation banner for Guest User/ Logged-in Non-VIP User
     Given User Lauch RRS application and navigate to home page
-    When User Search for a product with some keywords "38190" and click on search button
+    When User Search for a product with some keywords "34519" and click on search button
     Then Verify Pickup in Store for selected products
-      | Black/White | 9 | Medium (Normal) | Men's adidas Solar Boost 3 |
+      | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short |
     And User Click on Add to Cart Button
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
