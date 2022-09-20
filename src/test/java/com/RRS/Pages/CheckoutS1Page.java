@@ -1016,6 +1016,7 @@ public class CheckoutS1Page extends PageObject {
 		Actions a = new Actions(getDriver());
 		a.moveToElement(pdpPage.addToCartBtn).perform();
 		pdpPage.addToCartBtn.click();
+		Thread.sleep(3000);
 		element(pdpPage.cartTitle).waitUntilVisible();
 		pdpPage.cartTitle.shouldBeCurrentlyVisible();
 	}
@@ -1203,6 +1204,7 @@ public class CheckoutS1Page extends PageObject {
 		typeInto(cvnInput, expectedData.get(0).get(4));
 		if (!billingAddressCheckBox.get(0).isSelected())
 			billingAddressCheckBox.get(0).click();
+		CommonPage.pageScrollDown();
 		CommonPage.pageScrollDown();
 		Thread.sleep(5000);
 		CommonPage.javaScriptExecutor_Click(paymentPlaceOrderBtn);

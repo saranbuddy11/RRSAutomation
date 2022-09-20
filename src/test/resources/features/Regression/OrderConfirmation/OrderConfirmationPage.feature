@@ -16,13 +16,13 @@ Feature: Order Confirmation Regression Scripts
     And verify Continue Without VIP Navigation
       | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
     And Verify Shipping section fields
-      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+      | Test | Account | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
     And Click Place Order Button and validate Error message
-      | Please fill in these required fields: Card Number Card Holder Name Expiration Month Expiration Year CVN |
+      | Please fill in these required fields: Credit Card: Card Number Card Holder Name Card Expiration Month Card Expiration Year Card CVN |
     And Enter Credit Card details
-      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+      | 4111111111111111 | Test | 01 | 25 | 123 |
     And Verify Order Confirmation Page
-      | order-confirmation | Thank YOU abcd! |
+      | order-confirmation | Thank YOU Test! |
 
   @OC_002 
   Scenario: Verify the header, footer are displayed and RRS Logo functionality in Order confirmation page.
@@ -38,13 +38,13 @@ Feature: Order Confirmation Regression Scripts
     And verify Continue Without VIP Navigation
       | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
     And Verify Shipping section fields
-      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+      | Test | Account | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
     And Click Place Order Button and validate Error message
-      | Please fill in these required fields: Card Number Card Holder Name Expiration Month Expiration Year CVN |
+      | Please fill in these required fields: Credit Card: Card Number Card Holder Name Card Expiration Month Card Expiration Year Card CVN |
     And Enter Credit Card details
-      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+      | 4111111111111111 | Test | 01 | 25 | 123 |
     And Verify Order Confirmation Page
-      | order-confirmation | Thank YOU abcd! |
+      | order-confirmation | Thank YOU Test! |
     And Verify Header and Footer
     And Verify RRS Logo functionality
 
@@ -62,13 +62,13 @@ Feature: Order Confirmation Regression Scripts
     And verify Continue Without VIP Navigation
       | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
     And Verify Shipping section fields
-      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+      | Test | Account | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
     And Click Place Order Button and validate Error message
-      | Please fill in these required fields: Card Number Card Holder Name Expiration Month Expiration Year CVN |
+      | Please fill in these required fields: Credit Card: Card Number Card Holder Name Card Expiration Month Card Expiration Year Card CVN |
     And Enter Credit Card details
-      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+      | 4111111111111111 | Test | 01 | 25 | 123 |
     And Verify Order Confirmation Page content
-      | order-confirmation | Thank YOU abcd! | Order # | Your order is confirmed. We'll send you email updates on the status of your order. |
+      | order-confirmation | Thank YOU Test! | Order # | Your order is confirmed. We'll send you email updates on the status of your order. |
 
   @OC_004
   Scenario: Verify whether the Join VIP bubble blue banner is displayed with price calculation and Upgrade my order CTA
@@ -84,14 +84,14 @@ Feature: Order Confirmation Regression Scripts
     And verify Continue Without VIP Navigation
       | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
     And Verify Shipping section fields
-      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+      | Test | Account | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
     And Click Place Order Button and validate Error message
       # | please fill in all the required fields |
-      | Please fill in these required fields: Card Number Card Holder Name Expiration Month Expiration Year CVN |
+      | Please fill in these required fields: Credit Card: Card Number Card Holder Name Card Expiration Month Card Expiration Year Card CVN |
     And Enter Credit Card details
-      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+      | 4111111111111111 | Test | 01 | 25 | 123 |
     And Verify Order Confirmation Page
-      | order-confirmation | Thank YOU abcd! |
+      | order-confirmation | Thank YOU Test! |
     And Verify VIP bubble blue banner
       | IT'S NOT TOO LATE TO GET | IN VIP BENEFITS ON THIS ORDER! |
 
@@ -109,14 +109,14 @@ Feature: Order Confirmation Regression Scripts
     And verify Continue Without VIP Navigation
       | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
     And Verify Shipping section fields
-      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+      | Test | Account | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
     And Click Place Order Button and validate Error message
       # | please fill in all the required fields |
-      | Please fill in these required fields: Card Number Card Holder Name Expiration Month Expiration Year CVN |
+      | Please fill in these required fields: Credit Card: Card Number Card Holder Name Card Expiration Month Card Expiration Year Card CVN |
     And Enter Credit Card details
       | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
     And Verify Order Confirmation Page
-      | order-confirmation | Thank YOU abcd! |
+      | order-confirmation | Thank YOU Test! |
     And Verify upgrade my order
       | CONGRATULATIONS | ON BEING OUR NEWEST VIP MEMBER |
 
@@ -134,14 +134,14 @@ Feature: Order Confirmation Regression Scripts
     And verify Continue Without VIP Navigation
       | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
     And Verify Shipping section fields
-      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+      | Test | Account | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
     And Click Place Order Button and validate Error message
       # | please fill in all the required fields |
-      | Please fill in these required fields: Card Number Card Holder Name Expiration Month Expiration Year CVN |
+      | Please fill in these required fields: Credit Card: Card Number Card Holder Name Card Expiration Month Card Expiration Year Card CVN |
     And Enter Credit Card details
       | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
     And Verify Order Confirmation Page
-      | order-confirmation | Thank YOU abcd! |
+      | order-confirmation | Thank YOU Test! |
     And Verify Checkout Faster section
       | Check out faster next time | Create Account |
 
@@ -159,14 +159,14 @@ Feature: Order Confirmation Regression Scripts
     And verify Continue Without VIP Navigation
       | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
     And Verify Shipping section fields
-      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+      | Test | Account | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
     And Click Place Order Button and validate Error message
       # | please fill in all the required fields |
-      | please fill in these required fields: credit card: card number card holder name card expiration month card expiration year card cvn |
+      | Please fill in these required fields: Credit Card: Card Number Card Holder Name Card Expiration Month Card Expiration Year Card CVN |
     And Enter Credit Card details
       | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
     And Verify Order Confirmation Page
-      | order-confirmation | Thank YOU abcd! |
+      | order-confirmation | Thank YOU Test! |
     And Verify Email Address in Checkout Faster section
       | abc123@gmail.com | value | xyz@gmail.com |
 
@@ -184,14 +184,14 @@ Feature: Order Confirmation Regression Scripts
     And verify Continue Without VIP Navigation
       | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
     And Verify Shipping section fields
-      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+      | Test | Account | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
     And Click Place Order Button and validate Error message
-      | please fill in all the required fields |
-    # | please fill in these required fields: credit card: card number card holder name card expiration month card expiration year card cvn |
+      #| please fill in all the required fields |
+     | Please fill in these required fields: Credit Card: Card Number Card Holder Name Card Expiration Month Card Expiration Year Card CVN |
     And Enter Credit Card details
-      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+      | 4111111111111111 | Test | 01 | 25 | 123 |
     And Verify Order Confirmation Page
-      | order-confirmation | Thank YOU abcd! |
+      | order-confirmation | Thank YOU Test! |
     And Verify Create Account Button
       | 123456 | Your account has been created successfully! GO TO YOUR ACCOUNT |
 
@@ -209,14 +209,14 @@ Feature: Order Confirmation Regression Scripts
     And verify Continue Without VIP Navigation
       | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
     And Verify Shipping section fields
-      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+      | Test | Account | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
     And Click Place Order Button and validate Error message
       #| please fill in all the required fields |
-      | please fill in these required fields: credit card: card number card holder name card expiration month card expiration year card cvn |
+      | Please fill in these required fields: Credit Card: Card Number Card Holder Name Card Expiration Month Card Expiration Year Card CVN |
     And Enter Credit Card details
-      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+      | 4111111111111111 | Test | 01 | 25 | 123 |
     And Verify Order Confirmation Page
-      | order-confirmation | Thank YOU abcd! |
+      | order-confirmation | Thank YOU Test! |
     And Verify Shipping address field
       | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | AZ | United States | NON-VIP Standard Shipping | Guaranteed Delivery by |
     And Verify Contact Info
@@ -238,14 +238,14 @@ Feature: Order Confirmation Regression Scripts
     And verify Continue Without VIP Navigation
       | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
     And Verify Shipping section fields
-      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+      | Test | Account | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
     And Click Place Order Button and validate Error message
       #| please fill in all the required fields |
-      | please fill in these required fields: credit card: card number card holder name card expiration month card expiration year card cvn |
+      | Please fill in these required fields: Credit Card: Card Number Card Holder Name Card Expiration Month Card Expiration Year Card CVN |
     And Enter Credit Card details
-      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+      | 4111111111111111 | Test | 01 | 25 | 123 |
     And Verify Order Confirmation Page
-      | order-confirmation | Thank YOU abcd! |
+      | order-confirmation | Thank YOU Test! |
     And Verify Order Summary field
       | Order Summary | Order Total |
 
@@ -263,14 +263,14 @@ Feature: Order Confirmation Regression Scripts
     And verify Continue Without VIP Navigation
       | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
     And Verify Shipping section fields
-      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+      | Test | Account | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
     And Click Place Order Button and validate Error message
       #| please fill in all the required fields |
-      | please fill in these required fields: credit card: card number card holder name card expiration month card expiration year card cvn |
+      | Please fill in these required fields: Credit Card: Card Number Card Holder Name Card Expiration Month Card Expiration Year Card CVN |
     And Enter Credit Card details
-      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+      | 4111111111111111 | Test | 01 | 25 | 123 |
     And Verify Order Confirmation Page
-      | order-confirmation | Thank YOU abcd! |
+      | order-confirmation | Thank YOU Test! |
     And Verify Cart Option
       | Cart | Shipping | IN STOCK! Arrives from Road Runner Sports in 1-3 business days. |
 
@@ -288,16 +288,16 @@ Feature: Order Confirmation Regression Scripts
     And verify Continue Without VIP Navigation
       | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
     And Verify Shipping section fields
-      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+      | Test | Account | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
     And Click Place Order Button and validate Error message
       #| please fill in all the required fields |
-      | please fill in these required fields: credit card: card number card holder name card expiration month card expiration year card cvn |
+      | Please fill in these required fields: Credit Card: Card Number Card Holder Name Card Expiration Month Card Expiration Year Card CVN |
     And Enter Credit Card details
       | 4111111111111111 | Test | 01 | 25 | 123 |
     And Verify Order Confirmation Page
-      | order-confirmation | Thank YOU abcd! |
+      | order-confirmation | Thank YOU Test! |
     And Verify Item in Shipping Section
-       | Dark Navy | 9 | M | Women's KORSA Challenge 5" Short | Quantity 1 |
+      | Dark Navy | Size M | Quantity 1| Women's KORSA Challenge 5" Short|
 
   @OC_013
   Scenario: Verify the items displayed in the Pickup at Store_Name section.
@@ -318,9 +318,9 @@ Feature: Order Confirmation Regression Scripts
       | Test | Account | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
     And Click Place Order Button and validate Error message
       #| please fill in all the required fields |
-      | please fill in these required fields: credit card: card number card holder name card expiration month card expiration year card cvn |
+      | Please fill in these required fields: Credit Card: Card Number Card Holder Name Card Expiration Month Card Expiration Year Card CVN |
     And Enter Credit Card details
-      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+      | 4111111111111111 | Test | 01 | 25 | 123 |
     And Verify Order Confirmation Page
       | order-confirmation | Thank YOU Test! |
     And Verify Pickup at Store_Name in Shipping Section
@@ -340,18 +340,18 @@ Feature: Order Confirmation Regression Scripts
     And verify Continue Without VIP Navigation
       | CONTINUE WITHOUT VIP | No Thanks, I’ll Pay Full Price: | SHIPPING | ORDER SUMMARY |
     And Verify Shipping section fields
-      | abcd | efgh | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
+      | Test | Account | xyz, 234 poickd | qwerty | phoenix | 85054 | abc123@gmail.com | 9234567810 | AZ - Arizona | United States |
     And Click Place Order Button and validate Error message
       # | please fill in all the required fields |
       | please fill in these required fields: credit card: card number card holder name card expiration month card expiration year card cvn |
     And Enter Credit Card details
-      | 4111111111111111 | xyzqwer | 01 | 25 | 123 |
+      | 4111111111111111 | Test | 01 | 25 | 123 |
     And Verify Order Confirmation Page
-      | order-confirmation | Thank YOU abcd! |
+      | order-confirmation | Thank YOU Test! |
     And Verify VIP bubble blue banner
       | IT'S NOT TOO LATE TO GET | IN VIP BENEFITS ON THIS ORDER! |
     And Verify Math Calculation banner
-      | 20% VIP Benefits Today, Then 10% Every Day | 10% VIP Rewards Cash Earned | VIP Fast, Free Shipping Value | $0.00 | $9.00 | $7.00 |
+      | 20% VIP Benefits Today, Then 10% Every Day | 10% VIP Rewards Cash Earned | VIP Fast, Free Shipping Value | $10.00 | $12.00 | $7.00 |
 
   @OC_015 
   Scenario: Verify Order Confirmation page Math Calculation banner for VIP user.
@@ -360,7 +360,7 @@ Feature: Order Confirmation Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | B | 6 | aria-label | Black/Blue/Purple | 1 | 2 |
+      | B | 7 | aria-label | Black/White | 1 | 2 |
     And User Click on Checkout Button and verify its navigation
       | checkout | START CHECKOUT |
     And Login with VIP user credentials
@@ -379,7 +379,7 @@ Feature: Order Confirmation Regression Scripts
     Then Assert user is directed to appropriate PLP page for the keyword used
     And Verify User Navigation to PDP page
     Then Verify Add to Cart Popup
-      | B | 6 | aria-label | Black/Blue/Purple | 1 | 2 |
+      | B | 7 | aria-label | Black/White | 1 | 2 |
     And User Click on Checkout Button
       | checkout |
     And Click on place order CTA button
