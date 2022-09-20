@@ -43,14 +43,16 @@ public class homePage extends PageObject {
 	@FindBy(xpath = "//button[normalize-space()='Shop Outlet']")
 	WebElementFacade ShopOutlet_Btn;
 
-	@FindBy(xpath = "//button[normalize-space()='Start My Fitting Now']")
-	WebElementFacade StartMyFitNow_Btn;
+	@FindBy(css = "button[name='Start My Fitting Now']")
+	WebElementFacade StartMyFitNow_Btn; 
+	//button[normalize-space()='Start My Fitting Now']
 
 	@FindBy(xpath = "//a[@href='/category/womens/shoes/running']")
 	WebElementFacade SubMenu_WomensRunning_Lnk;
 
-	@FindBy(xpath = "//h1[text()='WELCOME TO YOUR PERFECT FIT']")
+	@FindBy(css = "h1[class='tag_h1--hWc2x'] font")
 	WebElementFacade topBannerGuestuser;
+	//h1[text()='WELCOME TO YOUR PERFECT FIT']
 
 	@FindBy(xpath = "//div[contains(@class,'banner-header-title')]/h1")
 	WebElementFacade topBannerVIPuser;
@@ -127,16 +129,16 @@ public class homePage extends PageObject {
 	@FindBy(xpath = "//h2[contains(text(),'Love Brooks')]/following::button[1][text()='Shop All Brooks']")
 	WebElementFacade loveBrokesSectionShopAll_Btn;
 
-	@FindBy(xpath = "//a[contains(@aria-label,'The Hottest Brands of Running shoes')]")
+	@FindBy(xpath = "//a[contains(@aria-label,'THE HOTTEST BRANDS OF RUNNING SHOES')]")
 	List<WebElementFacade> hottestBrands_Lnk;
 
 	@FindBy(css = "div.img__link>a[href*='womens']")
 	List<WebElementFacade> hottestBrandsWomen_Lnk;
 
-	@FindBy(xpath = "//a[contains(@aria-label,'The Best Running Apparel')]")
+	@FindBy(xpath = "//a[contains(@aria-label,''KORSA: THE BEST RUNNING APPAREL')]")
 	List<WebElementFacade> bestRunningApparel_Lnk;
 
-	@FindBy(xpath = "//a[contains(@aria-label,'HOKA Bondi 8')]")
+	@FindBy(xpath = "//a[contains(@aria-label,'MIZUNO WAVE RIDER 26')]")
 	List<WebElementFacade> BrooksGlycerin_Lnk;
 
 	@FindBy(css = "div.img-wrapper>img")

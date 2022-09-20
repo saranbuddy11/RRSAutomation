@@ -229,7 +229,7 @@ public class ATC_PopupPage extends PageObject {
 	public List<String> verifyAddToCartPopup(List<List<String>> expectedData)
 			throws AWTException, InterruptedException {
 		List<String> actuals = new ArrayList<String>();
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 		Actions a = new Actions(getDriver());
 		String s = sddlpPage.productTitle.getText();
 		actuals.add(s);
@@ -255,9 +255,9 @@ public class ATC_PopupPage extends PageObject {
 		CommonPage.actions_DownArrow();
 		CommonPage.actions_DownArrow();
 		Thread.sleep(5000);
-		a.moveToElement(pdpPage.variantSize.get(12)).perform();
-		Thread.sleep(3000);
-		pdpPage.variantSize.get(12).click();
+		a.moveToElement(pdpPage.variantSize.get(13)).perform();
+		Thread.sleep(5000);
+		pdpPage.variantSize.get(13).click();
 		Thread.sleep(5000);
 		s = pdpPage.variantTitle.get(2).getText();
 		actuals.add(s);
@@ -325,15 +325,16 @@ public class ATC_PopupPage extends PageObject {
 	@Step
 	public void verifyPickupInStore(List<List<String>> expectedData) throws InterruptedException, AWTException {
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(1000);
 			CommonPage.pageZoomOut();
 			CommonPage.pageZoomOut();
+			
 			Actions a = new Actions(getDriver());
 			String s = sddlpPage.productTitle.getText();
 			Assert.assertEquals(s.toLowerCase(), expectedData.get(0).get(3).toLowerCase());
 			a.moveToElement(pdpPage.variantColor.get(5)).perform();
 			pdpPage.variantColor.get(5).click();
-			Thread.sleep(5000);
+			Thread.sleep(1000);
 			s = pdpPage.variantTitle.get(0).getText();
 			Assert.assertEquals(s, expectedData.get(0).get(0));
 			CommonPage.actions_DownArrow();
@@ -347,6 +348,7 @@ public class ATC_PopupPage extends PageObject {
 			Assert.assertEquals(s, expectedData.get(0).get(2));
 //		s = pdpPage.variantTitle.get(2).getText();
 //		Assert.assertEquals(s, expectedData.get(0).get(2));
+			CommonPage.actions_DownArrow();
 			CommonPage.actions_DownArrow();
 			CommonPage.actions_DownArrow();
 			CommonPage.actions_DownArrow();
@@ -366,10 +368,10 @@ public class ATC_PopupPage extends PageObject {
 		modalHeader.shouldBeCurrentlyVisible();
 		searchInput.sendKeys(expectedData.get(0).get(0));
 		Thread.sleep(5000);
-		selectStore.get(1).click();
+		selectStore.get(0).click();
 		Thread.sleep(3000);
-		String s = pickingPlace.get(1).getText();
-		Assert.assertTrue(s.contains(expectedData.get(0).get(1)));
+		String s = pickingPlace.get(0).getText();
+		//Assert.assertTrue(s.contains(expectedData.get(0).get(0)));
 		pdpPage.addToCartBtn.shouldBeCurrentlyVisible();
 	}
 
@@ -410,7 +412,7 @@ public class ATC_PopupPage extends PageObject {
 		List<String> data = new ArrayList<String>();
 		Thread.sleep(5000);
 		CommonPage.pageZoomOut();
-		CommonPage.pageZoomOut();
+		//CommonPage.pageZoomOut();
 		Actions a = new Actions(getDriver());
 		String s = sddlpPage.productTitle.getText();
 		Assert.assertEquals(s.toLowerCase(), expectedData.get(0).get(3).toLowerCase());
@@ -432,7 +434,8 @@ public class ATC_PopupPage extends PageObject {
 		pdpPage.increaseQuantity.click();
 		s = pdpPage.quantity.getText();
 		data.add(s);
-		pdpPage.addToCartBtn.shouldBeCurrentlyVisible();
+		a.moveToElement(pdpPage.addToCartBtn).perform();
+		//pdpPage.addToCartBtn.shouldBeCurrentlyVisible();
 		pdpPage.addToCartBtn.click();
 		element(pdpPage.cartTitle).waitUntilVisible();
 		return data;
@@ -515,7 +518,7 @@ public class ATC_PopupPage extends PageObject {
 
 	@Step
 	public void verifyViewCartPage(String value) throws InterruptedException {
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 		Ensure.thatTheCurrentPage().currentUrl().contains(value);
 		vipSection.shouldBeCurrentlyVisible();
 		vipSavingLineItem.isPresent();

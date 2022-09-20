@@ -527,6 +527,7 @@ public class CheckoutS1Page extends PageObject {
 		Thread.sleep(8000);
 		plpPage.pageTitle.waitUntilVisible();
 		Ensure.thatTheCurrentPage().currentUrl().contains(expectedData.get(0).get(0));
+		Thread.sleep(5000);
 		plpPage.pageTitle.shouldBeCurrentlyVisible();
 		String text = plpPage.pageTitle.getText().toLowerCase();
 		Assert.assertEquals(expectedData.get(0).get(0).toLowerCase(), text);
@@ -607,7 +608,7 @@ public class CheckoutS1Page extends PageObject {
 		cartPage.remove.shouldBeCurrentlyVisible().isClickable();
 		cartPage.remove.click();
 		Thread.sleep(5000);
-		cartPage.remove.click();
+		cartPage.closeIcon.click();
 		Thread.sleep(5000);
 	}
 
@@ -1007,12 +1008,15 @@ public class CheckoutS1Page extends PageObject {
 	}
 
 	@Step
-	public void userClickOnAddToCartButton() {
+	public void userClickOnAddToCartButton() throws InterruptedException {
 		CommonPage.actions_DownArrow();
 		CommonPage.actions_DownArrow();
+		CommonPage.actions_DownArrow();
+		Thread.sleep(3000);
 		Actions a = new Actions(getDriver());
 		a.moveToElement(pdpPage.addToCartBtn).perform();
 		pdpPage.addToCartBtn.click();
+		Thread.sleep(3000);
 		element(pdpPage.cartTitle).waitUntilVisible();
 		pdpPage.cartTitle.shouldBeCurrentlyVisible();
 	}
@@ -1200,6 +1204,7 @@ public class CheckoutS1Page extends PageObject {
 		typeInto(cvnInput, expectedData.get(0).get(4));
 		if (!billingAddressCheckBox.get(0).isSelected())
 			billingAddressCheckBox.get(0).click();
+		CommonPage.pageScrollDown();
 		CommonPage.pageScrollDown();
 		Thread.sleep(5000);
 		CommonPage.javaScriptExecutor_Click(paymentPlaceOrderBtn);

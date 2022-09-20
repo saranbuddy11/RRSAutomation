@@ -814,8 +814,10 @@ public class PDPPage extends PageObject {
 		reviewLink.shouldBeCurrentlyVisible().isClickable();
 		String text = reviewLink.getText();
 		Assert.assertEquals(text, expectedData.get(0).get(0));
+		Actions a = new Actions(getDriver());
+		a.moveToElement(reviewLink).perform();
 		reviewLink.click();
-		Thread.sleep(5000);
+		Thread.sleep(8000);
 		headerTitle3.shouldBeCurrentlyVisible();
 		text = headerTitle3.getText();
 		Assert.assertEquals(text, expectedData.get(0).get(0));

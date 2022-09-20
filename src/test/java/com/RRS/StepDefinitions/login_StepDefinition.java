@@ -60,8 +60,9 @@ public class login_StepDefinition extends baseClass {
 	}
 
 	@Given("User enter the credentials of the user {word}")
-	public void user_enter_the_credentials_of_the_user_vip1(String UserInfo) throws IOException {
+	public void user_enter_the_credentials_of_the_user_vip1(String UserInfo) throws IOException, InterruptedException {
 		System.out.println("User info is: " + UserInfo);
+		Thread.sleep(5000);
 		String userCred = DataInputProvider.getUserInfo(UserInfo);
 		System.out.println("User cred: " + userCred);
 		String[] userDetails = userCred.split("::");
