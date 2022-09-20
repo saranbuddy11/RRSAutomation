@@ -244,7 +244,7 @@ public class PLPPage extends PageObject {
 		// input[@value='r=webPgc%3AShoes']
 		System.out.println("Dynamic xpath created: " + DynamicFilterElement);
 		getDriver().findElement(By.xpath(DynamicFilterElement)).click();
-		
+
 	}
 
 	@Step
@@ -269,7 +269,7 @@ public class PLPPage extends PageObject {
 
 	@Step
 	public void clickFirstProduct(String First_Product_Link) {
-		//String First_Product="\"Women's ASICS GEL-Kayano 29\"";
+		// String First_Product="\"Women's ASICS GEL-Kayano 29\"";
 		System.out.println("Dynamic xpath created: " + First_Product_Link);
 		String FirstProduct = "//h2[contains(text(),\"" + First_Product_Link + "\")]";
 		System.out.println("Dynamic xpath created: " + FirstProduct);
@@ -307,12 +307,12 @@ public class PLPPage extends PageObject {
 			Thread.sleep(10000);
 			while (!Plp_SearchResults_BC.isVisible()) {
 				getDriver().navigate().refresh();
-				waitFor(Plp_SearchBar_Txt);
-				Plp_SearchBar_Txt.click();
-				typeInto(Plp_SearchBar_Txt, keyword);
-				Plp_SearchIcon_SVG.isClickable();
-				a = new Actions(getDriver());
-				a.moveToElement(Plp_SearchIcon_SVG).click().build().perform();
+//				waitFor(Plp_SearchBar_Txt);
+//				Plp_SearchBar_Txt.click();
+//				typeInto(Plp_SearchBar_Txt, keyword);
+//				Plp_SearchIcon_SVG.isClickable();
+//				a = new Actions(getDriver());
+//				a.moveToElement(Plp_SearchIcon_SVG).click().build().perform();
 				Thread.sleep(10000);
 			}
 		} catch (Exception e) {

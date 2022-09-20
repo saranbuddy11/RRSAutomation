@@ -278,6 +278,7 @@ public class ATC_PopupPage extends PageObject {
 		Assert.assertEquals(s, expectedData.get(0).get(4));
 		pdpPage.addToCartBtn.shouldBeCurrentlyVisible();
 		a.moveToElement(pdpPage.addToCartBtn).perform();
+		Thread.sleep(5000);
 		pdpPage.addToCartBtn.click();
 		element(pdpPage.cartTitle).waitUntilVisible();
 		pdpPage.cartTitle.shouldBeCurrentlyVisible();
