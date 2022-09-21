@@ -1,8 +1,8 @@
 #Author: R.Karthik
-@RegressionSuite_Full
+@CustomQuery_Full @RegressionSuite_Full
 Feature: Custom Query Scripts
 
-  @Regression_RK_001
+  @CustomQuery_001
   Scenario Outline: Verify Custom query URL
     Given User Lauch RRS application and navigate to home page
     When Click on Custom query links <CustomQuery>
